@@ -821,11 +821,7 @@ Default__GA_PlayerEndCycleReload_C
             if (pCamera->OutlineAsset)
                 pCamera->OutlineAsset->ColorIndex = 3;
             pCamera->OutlineComponent->Multicast_SetActiveReplicated(pCamera->OutlineAsset);
-            //pCamera->OutlineComponent->Multicast();
         }
-
-        SDK::ULevel* pPersistentLevel = pGWorld->PersistentLevel;
-        pPersistentLevel->Actors;
 
         GetConfig().m_stNormalEnemies.m_bWasOutlineActive = GetConfig().m_stNormalEnemies.m_bOutline;
         GetConfig().m_stSpecialEnemies.m_bWasOutlineActive = GetConfig().m_stSpecialEnemies.m_bOutline;

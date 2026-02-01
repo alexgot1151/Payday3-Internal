@@ -1,4 +1,5 @@
 module;
+#include <map>
 #include <imgui.h>
 #include "../Dumper-7/SDK.hpp"
 
@@ -9,6 +10,53 @@ import Features.ESP;
 export namespace Menu
 {
     inline bool g_bClientMove = false;
+    inline char g_szCallTraceFilter[1024]{};
+    inline bool g_bCallTraceFilterSubclasses = false;
+    inline std::string g_sCallTraceFilter{};
+
+    struct CallTraceEntry_t{
+        std::string m_sClassName{};
+        std::vector<std::string> m_vecSubClasses{};
+        std::unordered_map<size_t, std::string> m_umapCalledFunctions{};
+
+        void Draw()
+        {
+            if(!g_sCallTraceFilter.empty() && !m_sClassName.contains(g_sCallTraceFilter)){
+                if(!g_bCallTraceFilterSubclasses)
+                    return;
+                
+                if(std::find_if(m_vecSubClasses.begin(), m_vecSubClasses.end(), [&](const std::string& str) {
+                    return str.contains(g_sCallTraceFilter);
+                }) == m_vecSubClasses.end())
+                    return;
+            }
+
+            if(ImGui::CollapsingHeader(m_sClassName.c_str()))
+            {
+                ImGui::PushID(m_sClassName.c_str());
+
+                if(m_vecSubClasses.size()){
+                    if(ImGui::TreeNode("Sub Classes"))
+                    {
+                        for(const auto& str : m_vecSubClasses)
+                            ImGui::Text("%s", str.c_str());
+                        ImGui::TreePop();
+                    }
+                }
+                
+                if(ImGui::TreeNode("Called Functions"))
+                {
+                    for(const auto& pairEntry : m_umapCalledFunctions)
+                        ImGui::Text("%s", pairEntry.second.c_str());
+                    ImGui::TreePop();
+                }
+                ImGui::PopID();
+            }
+        }
+    };
+
+    inline std::map<size_t, CallTraceEntry_t> g_mapCallTraces{};
+
     void PreDraw()
     {
         SDK::UWorld* pGWorld = SDK::UWorld::GetWorld();
@@ -102,6 +150,43 @@ export namespace Menu
 #endif
 
         ImGui::End();
+
+
+        ImGui::Begin("Call Traces",  &bShowMenu);
+        if(ImGui::Button("Clear"))
+            ImGui::OpenPopup("Confirm Clear");
+            
+        if (ImGui::BeginPopupModal("Confirm Clear", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+        {
+            ImGui::Text("Are you sure you want to clear all entries?");
+            ImGui::Separator();
+
+            if (ImGui::Button("Yes")) {
+                ImGui::CloseCurrentPopup();
+                g_mapCallTraces.clear();
+            }
+
+            ImGui::SameLine();
+
+            if (ImGui::Button("No"))
+                ImGui::CloseCurrentPopup();
+
+            ImGui::EndPopup();
+        }
+        
+        ImGui::InputText("##Filter", g_szCallTraceFilter, sizeof(g_szCallTraceFilter));
+        ImGui::SameLine();
+        ImGui::Checkbox("##Filter Use Subclasses", &g_bCallTraceFilterSubclasses);
+
+        g_sCallTraceFilter = g_szCallTraceFilter;
+
+        ImGui::Separator();
+        for (auto& pairEntry : g_mapCallTraces)
+            pairEntry.second.Draw();
+        
+        ImGui::End();
+
+        
 	}
 
     void PostDraw() {}

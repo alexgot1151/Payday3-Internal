@@ -80,22 +80,71 @@ bool Init()
 }
 
 #include "Dumper-7/SDK/Engine_parameters.hpp"
+#include "Dumper-7/SDK/Starbreeze_parameters.hpp"
+
+SDK::ASBZPlayerCharacter* GetLocalPlayer()
+{
+	SDK::UWorld* pGWorld = SDK::UWorld::GetWorld();
+	if (!pGWorld)
+		return{};
+
+	SDK::UGameInstance* pGameInstance = pGWorld->OwningGameInstance;
+	if (!pGameInstance)
+		return{};
+
+	SDK::ULocalPlayer* pLocalPlayer = pGameInstance->LocalPlayers[0];
+	if (!pLocalPlayer)
+		return{};
+
+	SDK::ASBZPlayerController* pLocalPlayerController = reinterpret_cast<SDK::ASBZPlayerController*>(pLocalPlayer->PlayerController);
+	if (!pLocalPlayerController || !pLocalPlayerController->IsA(SDK::ASBZPlayerController::StaticClass()))
+		return{};
+
+	SDK::ASBZPlayerCharacter* pLocalPlayerPawn = reinterpret_cast<SDK::ASBZPlayerCharacter*>(pLocalPlayerController->AcknowledgedPawn);
+	if (!pLocalPlayerPawn || !pLocalPlayerPawn->IsA(SDK::ASBZPlayerCharacter::StaticClass()))
+		return{};
+
+	return pLocalPlayerPawn;
+}
 
 using UObjectProcessEvent_t = void(*)(const SDK::UObject*, class SDK::UFunction*, void*);
 UObjectProcessEvent_t UObjectProcessEvent_o = nullptr;
 void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* pFunction, void* pParams)
 {
-	std::string sClassName = pObject->GetName();
-	std::string sFnName = pFunction->GetName();
-	static auto nameBlueprintUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"BlueprintUpdateCamera");
-	static auto nameServerUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerUpdateCamera");
-	static auto nameReceiveTick = SDK::UKismetStringLibrary::Conv_StringToName(L"ReceiveTick");
-
-	if(pFunction->Name == nameReceiveTick)
+	if(pObject->IsA(SDK::UKismetStringLibrary::StaticClass()))
 	{
 		UObjectProcessEvent_o(pObject, pFunction, pParams);
 		return;
 	}
+
+	size_t iNameHash = std::hash<std::string>{}(pObject->Class->Name.GetRawString());
+	size_t iFuncHash = std::hash<std::string>{}(pFunction->GetName());
+
+	std::string sClassName = pObject->GetName();
+	std::string sFnName = pFunction->GetName();
+
+	if (!Menu::g_mapCallTraces.contains(iNameHash)) {
+		Menu::CallTraceEntry_t entry{
+			.m_sClassName = pObject->Class->Name.GetRawString(),
+		};
+
+		auto pStruct = static_cast<const SDK::UStruct*>(pObject->Class);
+		for (pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct); pStruct != nullptr; pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct))
+			entry.m_vecSubClasses.push_back(pStruct->Name.GetRawString());
+		
+		Menu::g_mapCallTraces.try_emplace(iNameHash, std::move(entry));
+	}
+
+	if (auto itrEntry = Menu::g_mapCallTraces.find(iNameHash); itrEntry != Menu::g_mapCallTraces.end()){
+		if (!itrEntry->second.m_umapCalledFunctions.contains(iFuncHash)){
+			itrEntry->second.m_umapCalledFunctions.try_emplace(iFuncHash, sFnName);
+			Utils::LogDebug(std::format("{}->{}(...)", itrEntry->second.m_sClassName, sFnName));
+		}
+	}
+		
+	static auto nameBlueprintUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"BlueprintUpdateCamera");
+	static auto nameServerUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerUpdateCamera");
+	static auto nameReceiveTick = SDK::UKismetStringLibrary::Conv_StringToName(L"ReceiveTick");
 
 	if (pFunction->Name == nameBlueprintUpdateCamera){
 		auto& params = *reinterpret_cast<SDK::Params::PlayerCameraManager_BlueprintUpdateCamera*>(pParams);
@@ -113,45 +162,58 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 		return;
 	}
 
-	if(pObject->IsA(SDK::UGameplayAbility::StaticClass()) || pObject->IsA(SDK::ASBZWeapon::StaticClass())){
-		std::cout << sClassName << "->" << sFnName << "\n";
+	if(pObject->IsA(SDK::ASBZKeypadBase::StaticClass()))
+	{
+		//std::cout << reinterpret_cast<const SDK::ASBZKeypadBase*>(pObject)->Code << "\n";
 		UObjectProcessEvent_o(pObject, pFunction, pParams);
 		return;
 	}
-	
+
+	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()))
+	{
+		SDK::ASBZPlayerCharacter* pLocalPlayer = GetLocalPlayer();
+		if (pLocalPlayer && pLocalPlayer->Interactor)
+		{
+			auto pInteractor = pLocalPlayer->Interactor;
+			auto pInteraction = pInteractor->GetCurrentInteraction();
+			// Picking up bags gets us kicked so we just make sure the duration is longer than that.
+			if(pInteraction && pInteraction->Duration > 0.3f){
+				static int32_t iLastInteractId = 0;
+
+				if(pInteractor->InteractId && iLastInteractId != pInteractor->InteractId){
+					pInteractor->Server_CompleteInteraction(pInteraction, pInteractor->InteractId);
+					pInteractor->Multicast_CompletedInteraction(pInteraction, false);
+
+					// Dirty hack to prevent completing the interaction multiple times.
+					iLastInteractId = pInteractor->InteractId;
+				}
+			}
+			
+		}
+	}
+
 	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()) || pObject->IsA(SDK::APlayerController::StaticClass()) || pObject->IsA(SDK::APlayerCameraManager::StaticClass()) || pObject->IsA(SDK::UCharacterMovementComponent::StaticClass()))
 	{
-		static std::string aBlacklist[] = {
-			"ProjectWorldLocationToScreen",
-			"GetCameraLocation",
-			"GetCameraRotation",
-			"StopAllCameraShakes",
-			"GetComponentByClass",
-			"K2_GetActorLocation",
-			"K2_GetActorRotation",
-			"GetActorEnableCollision"
-		};
-
-		for(const std::string& sBlacklistedFunction : aBlacklist){
-			if(sFnName.contains(sBlacklistedFunction)){
-				UObjectProcessEvent_o(pObject, pFunction, pParams);
-				return;
-			}
-		}
-
 		if(sFnName.contains("ServerMovePacked")){
 			if(!Menu::g_bClientMove) 
 				UObjectProcessEvent_o(pObject, pFunction, pParams);
 
 			return;
 		}
-
-		std::cout << sClassName << "->" << sFnName << "\n";
 	}
 
-	if(sFnName.contains("timeout") || sFnName.contains("Timeout")){
-		//std::cout << sClassName << "->" << sFnName << "\n";
-		return;
+	if(pObject->IsA(SDK::ASBZPlayerState::StaticClass())){
+		if(sFnName.contains("Multicast_SetMiniGameState"))
+		{
+			UObjectProcessEvent_o(pObject, pFunction, pParams);
+
+			SDK::ASBZPlayerCharacter* pLocalPlayer = GetLocalPlayer();
+			if(pLocalPlayer && pLocalPlayer->PlayerState)
+				pLocalPlayer->SBZPlayerState->Server_SetMiniGameState(SDK::EPD3MiniGameState::Success);
+			
+
+			return;
+		}
 	}
 
 	UObjectProcessEvent_o(pObject, pFunction, pParams);
@@ -169,6 +231,13 @@ void MainLoop()
 		if (!pGWorld)
 			continue;
 
+		if (!UObjectProcessEvent_o)
+		{
+			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<UObjectProcessEvent_t>(pGWorld, SDK::Offsets::ProcessEventIdx));
+			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&UObjectProcessEvent_hk), reinterpret_cast<void**>(&UObjectProcessEvent_o)) == MH_OK)
+				MH_EnableHook(pFn);
+		}
+
 		SDK::UGameInstance* pGameInstance = pGWorld->OwningGameInstance;
 		if (!pGameInstance)
 			continue;
@@ -177,26 +246,14 @@ void MainLoop()
 		if (!pLocalPlayer)
 			continue;
 
-		//pLocalPlayer->PlayerController->Input
-
-		//pLocalPlayer.VTable
-
 		SDK::ASBZPlayerController* pLocalPlayerController = reinterpret_cast<SDK::ASBZPlayerController*>(pLocalPlayer->PlayerController);
 		if (!pLocalPlayerController || !pLocalPlayerController->IsA(SDK::ASBZPlayerController::StaticClass()))
 			continue;
 
-		if (!UObjectProcessEvent_o)
-		{
-			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<UObjectProcessEvent_t>(pLocalPlayerController, SDK::Offsets::ProcessEventIdx));
-			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&UObjectProcessEvent_hk), reinterpret_cast<void**>(&UObjectProcessEvent_o)) == MH_OK)
-				MH_EnableHook(pFn);
-		}
-
+		
 		SDK::ASBZPlayerCharacter* pLocalPlayerPawn = reinterpret_cast<SDK::ASBZPlayerCharacter*>(pLocalPlayerController->AcknowledgedPawn);
 		if (!pLocalPlayerPawn || !pLocalPlayerPawn->IsA(SDK::ASBZPlayerCharacter::StaticClass()))
 			continue;
-
-
 
 		SDK::USBZPlayerMovementComponent* pMovementComponent = reinterpret_cast<SDK::USBZPlayerMovementComponent*>(pLocalPlayerPawn->GetComponentByClass(SDK::USBZPlayerMovementComponent::StaticClass()));
 		if (!pMovementComponent)
@@ -214,8 +271,10 @@ void MainLoop()
 			pMovementComponent->MovementMode = SDK::EMovementMode::MOVE_Walking;
 		}
 
-		//bool LineOfSightTo(const class AActor* Other, const struct FVector& ViewPoint, bool bAlternateChecks) const;
+		
 
+		//bool LineOfSightTo(const class AActor* Other, const struct FVector& ViewPoint, bool bAlternateChecks) const;
+		
 		pLocalPlayerPawn->CarryTiltDegrees = 0.0f;
 		pLocalPlayerPawn->CarryTiltSpeed = 0.0f;
 		pLocalPlayerPawn->CarryAdditionalTiltDegrees = 0.0f;
