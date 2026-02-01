@@ -17,7 +17,7 @@ export namespace Menu
     struct CallTraceEntry_t{
         std::string m_sClassName{};
         std::vector<std::string> m_vecSubClasses{};
-        std::unordered_map<size_t, std::string> m_umapCalledFunctions{};
+        std::map<size_t, std::string> m_mapCalledFunctions{};
 
         void Draw()
         {
@@ -46,7 +46,7 @@ export namespace Menu
                 
                 if(ImGui::TreeNode("Called Functions"))
                 {
-                    for(const auto& pairEntry : m_umapCalledFunctions)
+                    for(const auto& pairEntry : m_mapCalledFunctions)
                         ImGui::Text("%s", pairEntry.second.c_str());
                     ImGui::TreePop();
                 }

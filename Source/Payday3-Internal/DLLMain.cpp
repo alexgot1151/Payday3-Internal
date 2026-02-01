@@ -30,6 +30,8 @@ namespace Globals {
 	std::unique_ptr<Console> g_upConsole;
 }
 
+static std::chrono::milliseconds g_durationPing{ 100 };
+
 bool Init() 
 {
 	Globals::g_hBaseModule = GetModuleHandleA(NULL);
@@ -123,10 +125,16 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 	std::string sClassName = pObject->GetName();
 	std::string sFnName = pFunction->GetName();
 
-	if (!Menu::g_mapCallTraces.contains(iNameHash)) {
+	if (auto itrEntry = Menu::g_mapCallTraces.find(iNameHash); itrEntry != Menu::g_mapCallTraces.end()) {
+		if (!itrEntry->second.m_mapCalledFunctions.contains(iFuncHash))
+			itrEntry->second.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
+	}
+	else {
 		Menu::CallTraceEntry_t entry{
 			.m_sClassName = pObject->Class->Name.GetRawString(),
 		};
+
+		entry.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
 
 		auto pStruct = static_cast<const SDK::UStruct*>(pObject->Class);
 		for (pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct); pStruct != nullptr; pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct))
@@ -134,17 +142,11 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 		
 		Menu::g_mapCallTraces.try_emplace(iNameHash, std::move(entry));
 	}
-
-	if (auto itrEntry = Menu::g_mapCallTraces.find(iNameHash); itrEntry != Menu::g_mapCallTraces.end()){
-		if (!itrEntry->second.m_umapCalledFunctions.contains(iFuncHash)){
-			itrEntry->second.m_umapCalledFunctions.try_emplace(iFuncHash, sFnName);
-			Utils::LogDebug(std::format("{}->{}(...)", itrEntry->second.m_sClassName, sFnName));
-		}
-	}
 		
 	static auto nameBlueprintUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"BlueprintUpdateCamera");
 	static auto nameServerUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerUpdateCamera");
 	static auto nameReceiveTick = SDK::UKismetStringLibrary::Conv_StringToName(L"ReceiveTick");
+	static auto nameServerMovePacked = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerMovePacked");
 
 	if (pFunction->Name == nameBlueprintUpdateCamera){
 		auto& params = *reinterpret_cast<SDK::Params::PlayerCameraManager_BlueprintUpdateCamera*>(pParams);
@@ -169,26 +171,31 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 		return;
 	}
 
-	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()))
+	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()) && pFunction->Name == nameServerMovePacked)
 	{
+
 		SDK::ASBZPlayerCharacter* pLocalPlayer = GetLocalPlayer();
 		if (pLocalPlayer && pLocalPlayer->Interactor)
 		{
 			auto pInteractor = pLocalPlayer->Interactor;
 			auto pInteraction = pInteractor->GetCurrentInteraction();
-			// Picking up bags gets us kicked so we just make sure the duration is longer than that.
-			if(pInteraction && pInteraction->Duration > 0.3f){
-				static int32_t iLastInteractId = 0;
+			if(pInteraction){
+				static std::chrono::time_point<std::chrono::steady_clock> timeInteractLast = std::chrono::steady_clock::now();
 
-				if(pInteractor->InteractId && iLastInteractId != pInteractor->InteractId){
+				bool bSkipInstantInteraction = false;
+				// Bags get us kicked ;|
+				if(auto pOwner = pInteraction->GetOwner(); pOwner)
+					bSkipInstantInteraction = pOwner->IsA(SDK::ASBZBagItem::StaticClass());
+				
+
+				if(!bSkipInstantInteraction && std::chrono::steady_clock::now() - timeInteractLast > g_durationPing){
 					pInteractor->Server_CompleteInteraction(pInteraction, pInteractor->InteractId);
 					pInteractor->Multicast_CompletedInteraction(pInteraction, false);
 
 					// Dirty hack to prevent completing the interaction multiple times.
-					iLastInteractId = pInteractor->InteractId;
+					timeInteractLast = std::chrono::steady_clock::now();
 				}
 			}
-			
 		}
 	}
 
@@ -259,7 +266,9 @@ void MainLoop()
 		if (!pMovementComponent)
 			continue;
 
-	
+		if(pLocalPlayerPawn->SBZPlayerState)
+			g_durationPing = std::chrono::milliseconds(static_cast<int>(pLocalPlayerPawn->SBZPlayerState->GetPingInMilliseconds() * 2.f));
+
 		if(Menu::g_bClientMove){
 			if (pLocalPlayerPawn->GetActorEnableCollision())
 				pLocalPlayerPawn->SetActorEnableCollision(false);
