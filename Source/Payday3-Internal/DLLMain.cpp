@@ -147,6 +147,8 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 	static auto nameServerUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerUpdateCamera");
 	static auto nameReceiveTick = SDK::UKismetStringLibrary::Conv_StringToName(L"ReceiveTick");
 	static auto nameServerMovePacked = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerMovePacked");
+	static auto nameGA_Fire_C = SDK::UKismetStringLibrary::Conv_StringToName(L"GA_Fire_C");
+	static auto nameK2_CommitExecute = SDK::UKismetStringLibrary::Conv_StringToName(L"K2_CommitExecute");
 
 	if (pFunction->Name == nameBlueprintUpdateCamera){
 		auto& params = *reinterpret_cast<SDK::Params::PlayerCameraManager_BlueprintUpdateCamera*>(pParams);
@@ -164,9 +166,55 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 		return;
 	}
 
+	if(sClassName.contains("PlayerAbilitySystem")){
+		return;
+	}
+
+	if (pFunction->Name == nameK2_CommitExecute)
+	{
+		//std::cout << pObject->GetName() << '\n';
+		//UObjectProcessEvent_o(pObject, pFunction, pParams);
+		return;
+	}
+
 	if(pObject->IsA(SDK::ASBZKeypadBase::StaticClass()))
 	{
-		//std::cout << reinterpret_cast<const SDK::ASBZKeypadBase*>(pObject)->Code << "\n";
+		auto pKeypad = reinterpret_cast<SDK::ASBZKeypadBase*>(const_cast<SDK::UObject*>(pObject));
+		
+		uint8_t iActiveKey = 0;
+		switch(pKeypad->Inputs)
+		{
+		case(0):
+			iActiveKey = pKeypad->Code / 1000;
+			break;
+
+		case(1):
+			iActiveKey = (pKeypad->Code / 100) % 10;
+			break;
+			
+		case(2):
+			iActiveKey = (pKeypad->Code / 10) % 10;
+			break;
+
+		case(3):
+			iActiveKey = pKeypad->Code % 10;
+			break;
+
+		default:
+			iActiveKey = (pKeypad->GuessedCode != pKeypad->Code) ? 10 : 11;
+			break;
+		}
+
+		for (int i = 0; i < pKeypad->KeypadInteractableComponentArray.Num(); i++)
+		{
+			auto pKey = pKeypad->KeypadInteractableComponentArray[i];
+			if(!pKey)
+				continue;
+			
+			pKey->SetLocalEnabled(i == static_cast<int>(iActiveKey));
+		}
+		//pKeypad->GuessedCode = pKeypad->Code;
+		
 		UObjectProcessEvent_o(pObject, pFunction, pParams);
 		return;
 	}
@@ -226,6 +274,12 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 	UObjectProcessEvent_o(pObject, pFunction, pParams);
 }
 
+UObjectProcessEvent_t UObjectProcessEventPlayerAbility_o = nullptr;
+void UObjectProcessEventPlayerAbility_hk(const SDK::UObject* pObject, class SDK::UFunction* pFunction, void* pParams)
+{
+	std::cout << "CALLED THIS SHIT\n";
+}
+
 void MainLoop()
 {	
 	while (!GetAsyncKeyState(UNLOAD_KEY) && !GetAsyncKeyState(UNLOAD_KEY_ALT))
@@ -281,12 +335,17 @@ void MainLoop()
 		}
 
 		
-
+		if(pLocalPlayerPawn->AbilitySystem && !UObjectProcessEventPlayerAbility_o)
+		{
+			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<UObjectProcessEvent_t>(pLocalPlayerPawn->AbilitySystem, SDK::Offsets::ProcessEventIdx));
+			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&UObjectProcessEventPlayerAbility_hk), reinterpret_cast<void**>(&UObjectProcessEventPlayerAbility_o)) == MH_OK)
+				MH_EnableHook(pFn);
+		}
 		//bool LineOfSightTo(const class AActor* Other, const struct FVector& ViewPoint, bool bAlternateChecks) const;
 		
 		pLocalPlayerPawn->CarryTiltDegrees = 0.0f;
-		pLocalPlayerPawn->CarryTiltSpeed = 0.0f;
-		pLocalPlayerPawn->CarryAdditionalTiltDegrees = 0.0f;
+		pLocalPlayerPawn->CarryTiltSpeed = 10000.0f;
+		//pLocalPlayerPawn->CarryAdditionalTiltDegrees = 0.0f;
 
 		//pLocalPlayerPawn->K2_SetActorLocation(pLocalPlayerPawn->K2_GetActorLocation() + (SDK::UKismetMathLibrary::GetForwardVector(pLocalPlayerPawn->K2_GetActorRotation()).GetNormalized() * 100.0f), false, nullptr, true);
 		//pLocalPlayerPawn->Client_Teleport(, 0.f);
