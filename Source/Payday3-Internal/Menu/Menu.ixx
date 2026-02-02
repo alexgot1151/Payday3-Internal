@@ -2,6 +2,7 @@ module;
 #include <map>
 #include <imgui.h>
 #include "../Dumper-7/SDK.hpp"
+#include "../Config.hpp"
 
 export module Menu;
 import Utils.Logging;
@@ -108,7 +109,8 @@ export namespace Menu
 
         auto& espConfig = ESP::GetConfig();
 
-        ImGui::Begin("Payday 3 Internal", &bShowMenu, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse);
+        std::string windowTitle = std::format("Payday 3 Internal - {}", CURRENT_VERSION);
+        ImGui::Begin(windowTitle.c_str(), &bShowMenu, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse);
 		// Header
 		ImGui::Text("DirectX 12 Hook Active");
 		ImGui::Text("Press INSERT to toggle menu");

@@ -36,7 +36,8 @@ bool Init()
 {
 	Globals::g_hBaseModule = GetModuleHandleA(NULL);
 
-	Globals::g_upConsole = std::make_unique<Console>(Globals::g_bDebug, "Payday3-Internal Debug Console");
+	std::string consoleTitle = "Payday3-Internal Debug Console " + std::string(CURRENT_VERSION);
+	Globals::g_upConsole = std::make_unique<Console>(Globals::g_bDebug, consoleTitle.c_str());
 	if (!Globals::g_upConsole)
 		return false;
 

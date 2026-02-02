@@ -1,5 +1,7 @@
 #pragma once
 
+#define CURRENT_VERSION "V1"
+
 #define UNLOAD_KEY VK_END
 #define UNLOAD_KEY_ALT VK_DELETE
 #define CONSOLE_KEY VK_HOME
