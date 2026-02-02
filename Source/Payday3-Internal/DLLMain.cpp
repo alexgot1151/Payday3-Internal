@@ -167,17 +167,6 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 		return;
 	}
 
-	if(sClassName.contains("PlayerAbilitySystem")){
-		return;
-	}
-
-	if (pFunction->Name == nameK2_CommitExecute)
-	{
-		//std::cout << pObject->GetName() << '\n';
-		//UObjectProcessEvent_o(pObject, pFunction, pParams);
-		return;
-	}
-
 	if(pObject->IsA(SDK::ASBZKeypadBase::StaticClass()))
 	{
 		auto pKeypad = reinterpret_cast<SDK::ASBZKeypadBase*>(const_cast<SDK::UObject*>(pObject));
@@ -275,12 +264,6 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 	UObjectProcessEvent_o(pObject, pFunction, pParams);
 }
 
-UObjectProcessEvent_t UObjectProcessEventPlayerAbility_o = nullptr;
-void UObjectProcessEventPlayerAbility_hk(const SDK::UObject* pObject, class SDK::UFunction* pFunction, void* pParams)
-{
-	std::cout << "CALLED THIS SHIT\n";
-}
-
 void MainLoop()
 {	
 	while (!GetAsyncKeyState(UNLOAD_KEY) && !GetAsyncKeyState(UNLOAD_KEY_ALT))
@@ -336,12 +319,6 @@ void MainLoop()
 		}
 
 		
-		if(pLocalPlayerPawn->AbilitySystem && !UObjectProcessEventPlayerAbility_o)
-		{
-			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<UObjectProcessEvent_t>(pLocalPlayerPawn->AbilitySystem, SDK::Offsets::ProcessEventIdx));
-			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&UObjectProcessEventPlayerAbility_hk), reinterpret_cast<void**>(&UObjectProcessEventPlayerAbility_o)) == MH_OK)
-				MH_EnableHook(pFn);
-		}
 		//bool LineOfSightTo(const class AActor* Other, const struct FVector& ViewPoint, bool bAlternateChecks) const;
 		
 		pLocalPlayerPawn->CarryTiltDegrees = 0.0f;
