@@ -4,6 +4,12 @@ if is_mode("debug") then
     set_symbols("debug", "edit")
 end
 
+option("avx2")
+    set_default(true)
+    set_showmenu(true)
+    set_description("Enable AVX2 optimizations")
+option_end()
+
 set_targetdir(is_mode("debug") and "Build/Debug" or "Build/Release")
 set_runtimes(is_mode("debug") and "MDd" or "MD")
 
@@ -11,6 +17,10 @@ add_requires("vcpkg::minhook 1.3.4")
 add_requires("vcpkg::imgui", {configs = {vs_runtimes = "MDd",features = {"win32-binding", "dx12-binding"}}})
 
 target("Payday3-Internal")
+    if has_config("avx2") then
+        add_vectorexts("avx2")
+    end
+
     set_languages("c++latest")
     set_kind("shared")
     add_files("Source/Payday3-Internal/DLLMain.cpp")
