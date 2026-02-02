@@ -25,7 +25,7 @@ jobs:
         xmake-version: latest
 
     - name: Configure xmake (Release)
-      run: xmake config -m release -a x64 -p windows -Y
+      run: xmake config -m release -a x64 -p windows -y
 
     - name: Build project (Release)
       run: xmake build Payday3-Internal
