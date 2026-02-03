@@ -7,3 +7,5 @@
 #define CONSOLE_KEY VK_HOME
 
 #define TARGET_VERSION "902193"
+
+#define NOMINMAX

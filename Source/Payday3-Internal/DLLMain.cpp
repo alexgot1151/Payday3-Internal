@@ -11,11 +11,10 @@
 
 #include "config.hpp"
 
-import Utils.Console;
-import Utils.Logging;
-import Hook.Dx12Hook;
-import Menu;
-
+#include "Utils/Console.hpp"
+#include "Utils/Logging.hpp"
+#include "Utils/Dx12Hook.hpp"
+#include "Menu.hpp"
 #include "Dumper-7/SDK.hpp"
 
 namespace Globals {
@@ -203,8 +202,7 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 			
 			pKey->SetLocalEnabled(i == static_cast<int>(iActiveKey));
 		}
-		//pKeypad->GuessedCode = pKeypad->Code;
-		
+
 		UObjectProcessEvent_o(pObject, pFunction, pParams);
 		return;
 	}

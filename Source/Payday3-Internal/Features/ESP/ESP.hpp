@@ -1,4 +1,5 @@
-module;
+#pragma once
+
 #include <imgui.h>
 #include <unordered_map>
 #include <unordered_set>
@@ -6,11 +7,9 @@ module;
 #include <algorithm>
 #include <cmath>
 #include "../../Dumper-7/SDK.hpp"
+#include "../../Utils/Logging.hpp"
 
-export module Features.ESP;
-import Utils.Logging;
-
-export namespace ESP
+namespace ESP
 {
     // ESP Configuration
     

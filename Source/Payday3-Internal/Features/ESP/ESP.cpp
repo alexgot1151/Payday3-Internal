@@ -6,10 +6,11 @@
 #include <cmath>
 #include <chrono>
 #include "../../Dumper-7/SDK.hpp"
+#include "../../Utils/Logging.hpp"
+#include "ESP.hpp"
 
-
-import Utils.Logging;
-import Features.ESP;
+#undef min
+#undef max
 
 // Bone pair structure for skeleton rendering
 struct BonePair {

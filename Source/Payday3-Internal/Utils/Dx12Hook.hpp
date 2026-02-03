@@ -1,4 +1,5 @@
-module;
+#pragma once
+
 #include <Windows.h>
 #include <d3d12.h>
 #include <dxgi1_4.h>
@@ -10,15 +11,13 @@ module;
 #include <thread>
 #include <chrono>
 #include <mutex>
+#include "Utils/Logging.hpp"
+#include "../Menu.hpp"
 
 #pragma comment(lib, "d3d12.lib")
 #pragma comment(lib, "dxgi.lib")
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-
-export module Hook.Dx12Hook;
-import Utils.Logging;
-import Menu;
 
 namespace Dx12Hook
 {
@@ -428,7 +427,7 @@ namespace Dx12Hook
 	}
 }
 
-export namespace Dx12Hook
+namespace Dx12Hook
 {
 	bool Initialize()
 	{

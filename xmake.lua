@@ -24,11 +24,10 @@ target("Payday3-Internal")
     set_languages("c++latest")
     set_kind("shared")
     add_files("Source/Payday3-Internal/DLLMain.cpp")
-    add_files("Source/Payday3-Internal/Utils/**.ixx")
-    add_files("Source/Payday3-Internal/Hook/**.ixx")
-    add_files("Source/Payday3-Internal/Menu/**.ixx")
-    add_files("Source/Payday3-Internal/Features/**.ixx")
+    add_files("Source/Payday3-Internal/Utils/**.cpp")
+    add_files("Source/Payday3-Internal/Menu.cpp");
     add_files("Source/Payday3-Internal/Features/**.cpp");
+
     add_files("Source/Payday3-Internal/Dumper-7/SDK/Basic.cpp")
     add_files("Source/Payday3-Internal/Dumper-7/SDK/CoreUObject_functions.cpp")
     add_files("Source/Payday3-Internal/Dumper-7/SDK/Engine_Functions.cpp")

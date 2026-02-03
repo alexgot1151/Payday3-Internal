@@ -1,62 +1,48 @@
-module;
 #include <map>
 #include <imgui.h>
-#include "../Dumper-7/SDK.hpp"
-#include "../Config.hpp"
+#include "Dumper-7/SDK.hpp"
+#include "Config.hpp"
+#include "Utils/Logging.hpp"
+#include "Features/ESP/ESP.hpp"
+#include "Menu.hpp"
 
-export module Menu;
-import Utils.Logging;
-import Features.ESP;
 
-export namespace Menu
+namespace Menu
 {
-    inline bool g_bClientMove = false;
-    inline char g_szCallTraceFilter[1024]{};
-    inline bool g_bCallTraceFilterSubclasses = false;
-    inline std::string g_sCallTraceFilter{};
+    void CallTraceEntry_t::Draw()
+    {
+        if(!g_sCallTraceFilter.empty() && !m_sClassName.contains(g_sCallTraceFilter)){
+            if(!g_bCallTraceFilterSubclasses)
+                return;
+            
+            if(std::find_if(m_vecSubClasses.begin(), m_vecSubClasses.end(), [&](const std::string& str) {
+                return str.contains(g_sCallTraceFilter);
+            }) == m_vecSubClasses.end())
+                return;
+        }
 
-    struct CallTraceEntry_t{
-        std::string m_sClassName{};
-        std::vector<std::string> m_vecSubClasses{};
-        std::map<size_t, std::string> m_mapCalledFunctions{};
-
-        void Draw()
+        if(ImGui::CollapsingHeader(m_sClassName.c_str()))
         {
-            if(!g_sCallTraceFilter.empty() && !m_sClassName.contains(g_sCallTraceFilter)){
-                if(!g_bCallTraceFilterSubclasses)
-                    return;
-                
-                if(std::find_if(m_vecSubClasses.begin(), m_vecSubClasses.end(), [&](const std::string& str) {
-                    return str.contains(g_sCallTraceFilter);
-                }) == m_vecSubClasses.end())
-                    return;
-            }
+            ImGui::PushID(m_sClassName.c_str());
 
-            if(ImGui::CollapsingHeader(m_sClassName.c_str()))
-            {
-                ImGui::PushID(m_sClassName.c_str());
-
-                if(m_vecSubClasses.size()){
-                    if(ImGui::TreeNode("Sub Classes"))
-                    {
-                        for(const auto& str : m_vecSubClasses)
-                            ImGui::Text("%s", str.c_str());
-                        ImGui::TreePop();
-                    }
-                }
-                
-                if(ImGui::TreeNode("Called Functions"))
+            if(m_vecSubClasses.size()){
+                if(ImGui::TreeNode("Sub Classes"))
                 {
-                    for(const auto& pairEntry : m_mapCalledFunctions)
-                        ImGui::Text("%s", pairEntry.second.c_str());
+                    for(const auto& str : m_vecSubClasses)
+                        ImGui::Text("%s", str.c_str());
                     ImGui::TreePop();
                 }
-                ImGui::PopID();
             }
+            
+            if(ImGui::TreeNode("Called Functions"))
+            {
+                for(const auto& pairEntry : m_mapCalledFunctions)
+                    ImGui::Text("%s", pairEntry.second.c_str());
+                ImGui::TreePop();
+            }
+            ImGui::PopID();
         }
-    };
-
-    inline std::map<size_t, CallTraceEntry_t> g_mapCallTraces{};
+    }
 
     void PreDraw()
     {

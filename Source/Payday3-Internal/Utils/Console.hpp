@@ -1,15 +1,14 @@
-module;
+#pragma once
+
 #include <windows.h>
 #include <iostream>
 #include <string>
 #include <format>
 #include <io.h>
 #include <fcntl.h>
+#include "Logging.hpp"
 
-export module Utils.Console;
-import Utils.Logging;
-
-export class Console
+class Console
 {
 private:
 	FILE* m_pSTDOutDummy = nullptr;
