@@ -10,6 +10,7 @@
 namespace Menu
 {
     inline bool g_bClientMove = false;
+    inline bool g_bSilentAim = false;
     inline char g_szCallTraceFilter[1024]{};
     inline bool g_bCallTraceFilterSubclasses = false;
     inline std::string g_sCallTraceFilter{};

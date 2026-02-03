@@ -264,6 +264,7 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 
 static SDK::FVector g_vecOriginalLocation{};
 static SDK::FRotator g_rotOriginalRotation{};
+static SDK::FRotator g_rotSilentAimRotation{};
 
 using ULocalPlayerGetViewPoint_t = void(*)(SDK::ULocalPlayer*, SDK::FMinimalViewInfo*);
 ULocalPlayerGetViewPoint_t ULocalPlayerGetViewPoint_o = nullptr;
@@ -283,6 +284,13 @@ void APlayerControllerGetPlayerViewPoint_hk(SDK::APlayerController* _this, SDK::
 
 	g_vecOriginalLocation = *out_Location;
 	g_rotOriginalRotation = *out_Rotation;
+
+	if(!Menu::g_bSilentAim)
+	{
+		g_rotSilentAimRotation = *out_Rotation;
+		return;
+	}
+		
 
 	*out_Rotation = SDK::FRotator(0.f, 0.f, 0.f);
 }
