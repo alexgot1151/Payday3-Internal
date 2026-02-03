@@ -103,6 +103,7 @@ namespace Menu
 		ImGui::Separator();
 
         ImGui::Checkbox("Client Move", &g_bClientMove);
+        ImGui::Checkbox("Silent Aim", &g_bSilentAim);
 		
 		// Performance metrics
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 
