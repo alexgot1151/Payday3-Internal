@@ -11,6 +11,7 @@ import Features.ESP;
 export namespace Menu
 {
     inline bool g_bClientMove = false;
+    inline bool g_bSilentAim = false;
     inline char g_szCallTraceFilter[1024]{};
     inline bool g_bCallTraceFilterSubclasses = false;
     inline std::string g_sCallTraceFilter{};
@@ -117,6 +118,7 @@ export namespace Menu
 		ImGui::Separator();
 
         ImGui::Checkbox("Client Move", &g_bClientMove);
+        ImGui::Checkbox("Silent Aim", &g_bSilentAim);
 		
 		// Performance metrics
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 

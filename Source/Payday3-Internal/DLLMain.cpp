@@ -264,6 +264,31 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 	UObjectProcessEvent_o(pObject, pFunction, pParams);
 }
 
+static SDK::FVector g_vecOriginalLocation{};
+static SDK::FRotator g_rotOriginalRotation{};
+
+using ULocalPlayerGetViewPoint_t = void(*)(SDK::ULocalPlayer*, SDK::FMinimalViewInfo*);
+ULocalPlayerGetViewPoint_t ULocalPlayerGetViewPoint_o = nullptr;
+void ULocalPlayerGetViewPoint_hk(SDK::ULocalPlayer* _this, SDK::FMinimalViewInfo* OutViewInfo)
+{
+	ULocalPlayerGetViewPoint_o(_this, OutViewInfo);
+
+	OutViewInfo->Location = g_vecOriginalLocation;
+	OutViewInfo->Rotation = g_rotOriginalRotation;
+}
+
+using APlayerControllerGetPlayerViewPoint_t = void(*)(SDK::APlayerController*, SDK::FVector*, SDK::FRotator*);
+APlayerControllerGetPlayerViewPoint_t APlayerControllerGetPlayerViewPoint_o = nullptr;
+void APlayerControllerGetPlayerViewPoint_hk(SDK::APlayerController* _this, SDK::FVector* out_Location, SDK::FRotator* out_Rotation)
+{
+	APlayerControllerGetPlayerViewPoint_o(_this, out_Location, out_Rotation);
+
+	g_vecOriginalLocation = *out_Location;
+	g_rotOriginalRotation = *out_Rotation;
+
+	*out_Rotation = SDK::FRotator(0.f, 0.f, 0.f);
+}
+
 void MainLoop()
 {	
 	while (!GetAsyncKeyState(UNLOAD_KEY) && !GetAsyncKeyState(UNLOAD_KEY_ALT))
@@ -278,7 +303,7 @@ void MainLoop()
 
 		if (!UObjectProcessEvent_o)
 		{
-			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<UObjectProcessEvent_t>(pGWorld, SDK::Offsets::ProcessEventIdx));
+			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<UObjectProcessEvent_t>(pGWorld, SDK::Offsets::ProcessEventIdx)); 
 			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&UObjectProcessEvent_hk), reinterpret_cast<void**>(&UObjectProcessEvent_o)) == MH_OK)
 				MH_EnableHook(pFn);
 		}
@@ -291,10 +316,27 @@ void MainLoop()
 		if (!pLocalPlayer)
 			continue;
 
-		SDK::ASBZPlayerController* pLocalPlayerController = reinterpret_cast<SDK::ASBZPlayerController*>(pLocalPlayer->PlayerController);
-		if (!pLocalPlayerController || !pLocalPlayerController->IsA(SDK::ASBZPlayerController::StaticClass()))
+		if (!ULocalPlayerGetViewPoint_o)
+		{
+			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<ULocalPlayerGetViewPoint_t>(pLocalPlayer, 0x50));
+			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&ULocalPlayerGetViewPoint_hk), reinterpret_cast<void**>(&ULocalPlayerGetViewPoint_o)) == MH_OK)
+				MH_EnableHook(pFn);
+		}
+	
+		SDK::APlayerController* pLocalPlayerControllerBase = pLocalPlayer->PlayerController;
+		if (!pLocalPlayerControllerBase)
 			continue;
 
+		if (!APlayerControllerGetPlayerViewPoint_o)
+		{
+			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<APlayerControllerGetPlayerViewPoint_t>(pLocalPlayerControllerBase, 0xED));
+			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&APlayerControllerGetPlayerViewPoint_hk), reinterpret_cast<void**>(&APlayerControllerGetPlayerViewPoint_o)) == MH_OK)
+				MH_EnableHook(pFn);
+		}
+
+		SDK::ASBZPlayerController* pLocalPlayerController = reinterpret_cast<SDK::ASBZPlayerController*>(pLocalPlayerControllerBase);
+		if (!pLocalPlayerController || !pLocalPlayerController->IsA(SDK::ASBZPlayerController::StaticClass()))
+			continue;
 		
 		SDK::ASBZPlayerCharacter* pLocalPlayerPawn = reinterpret_cast<SDK::ASBZPlayerCharacter*>(pLocalPlayerController->AcknowledgedPawn);
 		if (!pLocalPlayerPawn || !pLocalPlayerPawn->IsA(SDK::ASBZPlayerCharacter::StaticClass()))
