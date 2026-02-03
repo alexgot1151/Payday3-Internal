@@ -142,26 +142,10 @@ namespace Menu
 
 
         ImGui::Begin("Call Traces",  &bShowMenu);
-        if(ImGui::Button("Clear"))
-            ImGui::OpenPopup("Confirm Clear");
-            
-        if (ImGui::BeginPopupModal("Confirm Clear", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
-        {
-            ImGui::Text("Are you sure you want to clear all entries?");
-            ImGui::Separator();
 
-            if (ImGui::Button("Yes")) {
-                ImGui::CloseCurrentPopup();
-                g_mapCallTraces.clear();
-            }
-
-            ImGui::SameLine();
-
-            if (ImGui::Button("No"))
-                ImGui::CloseCurrentPopup();
-
-            ImGui::EndPopup();
-        }
+        static const char* aCallTraceItems[] = { "Inactive", "UObject", "PlayerController" };
+        if(ImGui::Combo("Call Trace Area", reinterpret_cast<int*>(&g_eCallTraceArea), aCallTraceItems, IM_ARRAYSIZE(aCallTraceItems)))
+            g_mapCallTraces.clear();
         
         ImGui::InputText("##Filter", g_szCallTraceFilter, sizeof(g_szCallTraceFilter));
         ImGui::SameLine();

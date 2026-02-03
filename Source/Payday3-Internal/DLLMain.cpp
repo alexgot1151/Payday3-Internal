@@ -119,30 +119,32 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 		return;
 	}
 
-	size_t iNameHash = std::hash<std::string>{}(pObject->Class->Name.GetRawString());
-	size_t iFuncHash = std::hash<std::string>{}(pFunction->GetName());
-
 	std::string sClassName = pObject->GetName();
 	std::string sFnName = pFunction->GetName();
 
-	if (auto itrEntry = Menu::g_mapCallTraces.find(iNameHash); itrEntry != Menu::g_mapCallTraces.end()) {
-		if (!itrEntry->second.m_mapCalledFunctions.contains(iFuncHash))
-			itrEntry->second.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
-	}
-	else {
-		Menu::CallTraceEntry_t entry{
-			.m_sClassName = pObject->Class->Name.GetRawString(),
-		};
+	if(Menu::g_eCallTraceArea == Menu::ECallTraceArea::UObject){
+		size_t iNameHash = std::hash<std::string>{}(pObject->Class->Name.GetRawString());
+		size_t iFuncHash = std::hash<std::string>{}(pFunction->GetName());
 
-		entry.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
+		if (auto itrEntry = Menu::g_mapCallTraces.find(iNameHash); itrEntry != Menu::g_mapCallTraces.end()) {
+			if (!itrEntry->second.m_mapCalledFunctions.contains(iFuncHash))
+				itrEntry->second.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
+		}
+		else {
+			Menu::CallTraceEntry_t entry{
+				.m_sClassName = pObject->Class->Name.GetRawString(),
+			};
 
-		auto pStruct = static_cast<const SDK::UStruct*>(pObject->Class);
-		for (pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct); pStruct != nullptr; pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct))
-			entry.m_vecSubClasses.push_back(pStruct->Name.GetRawString());
-		
-		Menu::g_mapCallTraces.try_emplace(iNameHash, std::move(entry));
+			entry.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
+
+			auto pStruct = static_cast<const SDK::UStruct*>(pObject->Class);
+			for (pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct); pStruct != nullptr; pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct))
+				entry.m_vecSubClasses.push_back(pStruct->Name.GetRawString());
+			
+			Menu::g_mapCallTraces.try_emplace(iNameHash, std::move(entry));
+		}
 	}
-		
+
 	static auto nameBlueprintUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"BlueprintUpdateCamera");
 	static auto nameServerUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerUpdateCamera");
 	static auto nameReceiveTick = SDK::UKismetStringLibrary::Conv_StringToName(L"ReceiveTick");
@@ -262,6 +264,38 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 	UObjectProcessEvent_o(pObject, pFunction, pParams);
 }
 
+UObjectProcessEvent_t UObjectProcessEventPlayer_o = nullptr;
+void UObjectProcessEventPlayer_hk(const SDK::UObject* pObject, class SDK::UFunction* pFunction, void* pParams)
+{
+	std::string sClassName = pObject->GetName();
+	std::string sFnName = pFunction->GetName();
+
+	if(Menu::g_eCallTraceArea == Menu::ECallTraceArea::PlayerController){
+		size_t iNameHash = std::hash<std::string>{}(pObject->Class->Name.GetRawString());
+		size_t iFuncHash = std::hash<std::string>{}(pFunction->GetName());
+
+		if (auto itrEntry = Menu::g_mapCallTraces.find(iNameHash); itrEntry != Menu::g_mapCallTraces.end()) {
+			if (!itrEntry->second.m_mapCalledFunctions.contains(iFuncHash))
+				itrEntry->second.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
+		}
+		else {
+			Menu::CallTraceEntry_t entry{
+				.m_sClassName = pObject->Class->Name.GetRawString(),
+			};
+
+			entry.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
+
+			auto pStruct = static_cast<const SDK::UStruct*>(pObject->Class);
+			for (pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct); pStruct != nullptr; pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct))
+				entry.m_vecSubClasses.push_back(pStruct->Name.GetRawString());
+			
+			Menu::g_mapCallTraces.try_emplace(iNameHash, std::move(entry));
+		}
+	}
+
+	UObjectProcessEventPlayer_o(pObject, pFunction, pParams);
+}
+
 static SDK::FVector g_vecOriginalLocation{};
 static SDK::FRotator g_rotOriginalRotation{};
 static SDK::FRotator g_rotSilentAimRotation{};
@@ -290,9 +324,16 @@ void APlayerControllerGetPlayerViewPoint_hk(SDK::APlayerController* _this, SDK::
 		g_rotSilentAimRotation = *out_Rotation;
 		return;
 	}
-		
+	
+	SDK::FRotator rotCurrent = *out_Rotation;
+	SDK::FRotator rotGoal = SDK::FRotator(0.f, 0.f, 0.f);
 
-	*out_Rotation = SDK::FRotator(0.f, 0.f, 0.f);
+
+	SDK::FRotator rotOut{};
+	rotOut.Yaw = rotGoal.Yaw - ((rotGoal.Yaw - rotCurrent.Yaw) * 0.49f);
+	rotOut.Pitch = 0.f;
+
+	*out_Rotation = rotOut;
 }
 
 void MainLoop()
@@ -340,6 +381,13 @@ void MainLoop()
 				MH_EnableHook(pFn);
 		}
 
+		if(!UObjectProcessEventPlayer_o)
+		{
+			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<UObjectProcessEvent_t>(pLocalPlayerControllerBase, SDK::Offsets::ProcessEventIdx)); 
+			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&UObjectProcessEventPlayer_hk), reinterpret_cast<void**>(&UObjectProcessEventPlayer_o)) == MH_OK)
+				MH_EnableHook(pFn);
+		}
+
 		SDK::ASBZPlayerController* pLocalPlayerController = reinterpret_cast<SDK::ASBZPlayerController*>(pLocalPlayerControllerBase);
 		if (!pLocalPlayerController || !pLocalPlayerController->IsA(SDK::ASBZPlayerController::StaticClass()))
 			continue;
@@ -366,6 +414,35 @@ void MainLoop()
 			pMovementComponent->MovementMode = SDK::EMovementMode::MOVE_Walking;
 		}
 
+		if(SDK::USBZOnlineFunctionLibrary::IsSoloGame(pGWorld))
+		{
+
+			if(pLocalPlayerPawn->FPCameraAttachment){
+				auto pCameraComponent = pLocalPlayerPawn->FPCameraAttachment;
+				if(pCameraComponent->EquippedWeaponData && pCameraComponent->EquippedWeaponData->IsA(SDK::USBZRangedWeaponData::StaticClass())){
+					auto pRangedWeaponData = reinterpret_cast<SDK::USBZRangedWeaponData*>(pCameraComponent->EquippedWeaponData);
+					if(pRangedWeaponData->FireData && pRangedWeaponData->FireData->IsA(SDK::USBZPlayerWeaponFireData::StaticClass())){
+						auto pFireData = reinterpret_cast<SDK::USBZPlayerWeaponFireData*>(pRangedWeaponData->FireData);
+						pFireData->AmmoLoadedMax = pFireData->AmmoPerReload = 999.f;
+						pFireData->AmmoInventoryMax = 99999.f;
+					}
+				}
+
+				if(pCameraComponent->EquippedWeapon && pCameraComponent->EquippedWeapon->IsA(SDK::ASBZWeapon::StaticClass())){
+					auto pWeapon = pCameraComponent->EquippedWeapon;
+					//pWeapon->bIsReloading = false;
+				}
+			}
+
+			if(pLocalPlayerPawn->SBZPlayerState){
+				auto pPlayerState = pLocalPlayerPawn->SBZPlayerState;
+				pPlayerState->ReloadEndTime = 0.f;
+			}
+
+		}
+		else{
+
+		}
 		
 		//bool LineOfSightTo(const class AActor* Other, const struct FVector& ViewPoint, bool bAlternateChecks) const;
 		

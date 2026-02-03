@@ -9,10 +9,18 @@
 
 namespace Menu
 {
+    enum class ECallTraceArea{
+        Inactive,
+        UObject,
+        PlayerController
+    };
+
     inline bool g_bClientMove = false;
     inline bool g_bSilentAim = false;
     inline char g_szCallTraceFilter[1024]{};
     inline bool g_bCallTraceFilterSubclasses = false;
+    inline ECallTraceArea g_eCallTraceArea = ECallTraceArea::Inactive;
+
     inline std::string g_sCallTraceFilter{};
 
     struct CallTraceEntry_t{
