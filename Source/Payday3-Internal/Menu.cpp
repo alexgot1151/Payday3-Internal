@@ -1,11 +1,114 @@
 #include <map>
 #include <imgui.h>
+#include <imgui_internal.h>
 #include "Dumper-7/SDK.hpp"
 #include "Config.hpp"
 #include "Utils/Logging.hpp"
 #include "Features/ESP/ESP.hpp"
 #include "Menu.hpp"
 
+void CheatConfig::Aimbot_t::Draw(){
+    ImGui::Checkbox("Silent Aim", &m_bSilentAim);
+}
+
+void DrawEnemyESPSection(const char* szType, ESP::EnemyESP& stSettings)
+{
+    if(!ImGui::BeginCombo(szType, std::format("{}###{}", stSettings.m_sPreviewText, szType).c_str()))
+        return;
+
+    ImGui::PushItemFlag(ImGuiItemFlags_AutoClosePopups, false);
+    if (ImGui::Selectable("Box", &stSettings.m_bBox) ||
+        ImGui::Selectable("Health", &stSettings.m_bHealth) ||
+        ImGui::Selectable("Armor", &stSettings.m_bArmor) ||
+        ImGui::Selectable("Name", &stSettings.m_bName) ||
+        ImGui::Selectable("Flags", &stSettings.m_bFlags) ||
+        ImGui::Selectable("Skeleton", &stSettings.m_bSkeleton) ||
+        ImGui::Selectable("Outline", &stSettings.m_bOutline))
+        stSettings.UpdatePreviewText();
+    ImGui::PopItemFlag();
+
+    ImGui::EndCombo();
+}
+
+void CheatConfig::Visuals_t::Draw(){
+    auto& espConfig = ESP::GetConfig();
+    ImGui::Checkbox("Enable ESP", &espConfig.bESP);
+    if (espConfig.bESP) {
+        ImGui::Indent();
+
+        DrawEnemyESPSection("Normal Enemies", espConfig.m_stNormalEnemies);
+        DrawEnemyESPSection("Special Enemies", espConfig.m_stSpecialEnemies);
+
+#ifdef _DEBUG
+        ImGui::Checkbox("Debug Draw Bone Indices", &espConfig.bDebugDrawBoneIndices);
+        ImGui::Checkbox("Debug Draw Bone Names Instead of Indices", &espConfig.bDebugDrawBoneNames);
+#endif
+        
+#ifdef _DEBUG
+        ImGui::Checkbox("Debug Skeleton", &espConfig.bDebugSkeleton);
+        if (espConfig.bDebugSkeleton) {
+            ImGui::Indent();
+            ImGui::Checkbox("Debug Skeleton Draw Bone Indices", &espConfig.bDebugSkeletonDrawBoneIndices);
+            ImGui::Checkbox("Debug Skeleton Draw Bone Names Instead of Indices", &espConfig.bDebugSkeletonDrawBoneNames);
+            ImGui::Unindent();
+        }
+#endif
+        ImGui::Unindent();
+    }
+#ifdef _DEBUG
+    ImGui::Checkbox("Debug ESP (Show Class Names)", &espConfig.bDebugESP);
+#endif
+}
+
+std::string CreateMultiSelectPreviewText(const std::vector<std::pair<bool, const char*>>& vecInput, const char* szUnique){
+    std::string sReturned = "";
+
+    static auto fnAppend = [](std::string& sText, bool bAppend, const char* szAppendText) {
+        if (!bAppend)
+            return;
+
+        if (sText.size())
+            sText += ", ";
+
+        sText += szAppendText;
+    };
+
+    for(const auto& pairEntry : vecInput)
+        fnAppend(sReturned, pairEntry.first, pairEntry.second);
+    
+    return std::format("{}###{}", (!sReturned.size()) ? "None" : sReturned, szUnique);
+}
+
+void CheatConfig::Misc_t::Draw(){
+    ImGui::Checkbox("Client Move", &m_bClientMove);
+
+    static std::string sRemovalsPreview = CreateMultiSelectPreviewText({
+        { m_bNoSpread, "No Spread" },
+        { m_bNoRecoil, "No Recoil" },
+        { m_bInstantInteraction, "Instant Interaction" },
+        { m_bInstantMinigame, "Instant Minigame" }
+    }, "Removals");
+
+    if(ImGui::BeginCombo("Removals", sRemovalsPreview.c_str()))
+    {
+        ImGui::PushItemFlag(ImGuiItemFlags_AutoClosePopups, false);
+        
+        if (ImGui::Selectable("No Spread", &m_bNoSpread) ||
+            ImGui::Selectable("No Recoil", &m_bNoRecoil) ||
+            ImGui::Selectable("Instant Interaction", &m_bInstantInteraction) ||
+            ImGui::Selectable("Instant Minigame", &m_bInstantMinigame)) {
+            sRemovalsPreview = CreateMultiSelectPreviewText({
+                { m_bNoSpread, "No Spread" },
+                { m_bNoRecoil, "No Recoil" },
+                { m_bInstantInteraction, "Instant Interaction" },
+                { m_bInstantMinigame, "Instant Minigame" }
+            }, "Removals");
+        }
+            
+        ImGui::PopItemFlag();
+        ImGui::EndCombo();
+    }
+}
 
 namespace Menu
 {
@@ -70,22 +173,7 @@ namespace Menu
         ESP::RenderDebugESP(pPersistentLevel, pPlayerController);
     }
 
-    void DrawEnemyESPSection(const char* szType, ESP::EnemyESP& stSettings)
-    {
-        if(!ImGui::BeginCombo(szType, std::format("{}###{}", stSettings.m_sPreviewText, szType).c_str()))
-            return;
-
-        if (ImGui::Selectable("Box", &stSettings.m_bBox) ||
-            ImGui::Selectable("Health", &stSettings.m_bHealth) ||
-            ImGui::Selectable("Armor", &stSettings.m_bArmor) ||
-            ImGui::Selectable("Name", &stSettings.m_bName) ||
-            ImGui::Selectable("Flags", &stSettings.m_bFlags) ||
-            ImGui::Selectable("Skeleton", &stSettings.m_bSkeleton) ||
-            ImGui::Selectable("Outline", &stSettings.m_bOutline))
-            stSettings.UpdatePreviewText();
-
-        ImGui::EndCombo();
-    }
+    
 
 	// Draw the main menu content
 	void Draw(bool& bShowMenu)
@@ -93,56 +181,39 @@ namespace Menu
 		if (!bShowMenu)
 			return;
 
-        auto& espConfig = ESP::GetConfig();
+        
 
-        std::string windowTitle = std::format("Payday 3 Internal - {}", CURRENT_VERSION);
+        std::string windowTitle = std::format("Omegaware Pd3 Internal - {}", CURRENT_VERSION);
         ImGui::Begin(windowTitle.c_str(), &bShowMenu, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse);
-		// Header
-		ImGui::Text("DirectX 12 Hook Active");
-		ImGui::Text("Press INSERT to toggle menu");
-		ImGui::Separator();
 
-        ImGui::Checkbox("Client Move", &g_bClientMove);
-        ImGui::Checkbox("Silent Aim", &g_bSilentAim);
+        if(ImGui::BeginTabBar("CheatTabs"))
+        {
+            if(ImGui::BeginTabItem("Aimbot")){
+                CheatConfig::Get().m_aimbot.Draw();
+                ImGui::EndTabItem();
+            }
+
+            if(ImGui::BeginTabItem("Visuals")){
+                CheatConfig::Get().m_visuals.Draw();
+                ImGui::EndTabItem();
+            }
+
+            if(ImGui::BeginTabItem("Misc")){
+                CheatConfig::Get().m_misc.Draw();
+                ImGui::EndTabItem();
+            }
+
+            ImGui::EndTabBar();
+        }
 		
 		// Performance metrics
-		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 
-			1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-		
-		ImGui::Separator();
-		
-		ImGui::Checkbox("Enable ESP", &espConfig.bESP);
-        if (espConfig.bESP) {
-            ImGui::Indent();
+		//ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 
-            DrawEnemyESPSection("Normal Enemies", espConfig.m_stNormalEnemies);
-            DrawEnemyESPSection("Special Enemies", espConfig.m_stSpecialEnemies);
-
-#ifdef _DEBUG
-            ImGui::Checkbox("Debug Draw Bone Indices", &espConfig.bDebugDrawBoneIndices);
-            ImGui::Checkbox("Debug Draw Bone Names Instead of Indices", &espConfig.bDebugDrawBoneNames);
-#endif
-            
-#ifdef _DEBUG
-            ImGui::Checkbox("Debug Skeleton", &espConfig.bDebugSkeleton);
-            if (espConfig.bDebugSkeleton) {
-                ImGui::Indent();
-                ImGui::Checkbox("Debug Skeleton Draw Bone Indices", &espConfig.bDebugSkeletonDrawBoneIndices);
-                ImGui::Checkbox("Debug Skeleton Draw Bone Names Instead of Indices", &espConfig.bDebugSkeletonDrawBoneNames);
-                ImGui::Unindent();
-            }
-#endif
-            ImGui::Unindent();
-        }
-#ifdef _DEBUG
-        ImGui::Checkbox("Debug ESP (Show Class Names)", &espConfig.bDebugESP);
-#endif
 
         ImGui::End();
 
 
         ImGui::Begin("Call Traces",  &bShowMenu);
-
         static const char* aCallTraceItems[] = { "Inactive", "UObject", "PlayerController" };
         if(ImGui::Combo("Call Trace Area", reinterpret_cast<int*>(&g_eCallTraceArea), aCallTraceItems, IM_ARRAYSIZE(aCallTraceItems)))
             g_mapCallTraces.clear();
@@ -156,10 +227,7 @@ namespace Menu
         ImGui::Separator();
         for (auto& pairEntry : g_mapCallTraces)
             pairEntry.second.Draw();
-        
         ImGui::End();
-
-        
 	}
 
     void PostDraw() {}

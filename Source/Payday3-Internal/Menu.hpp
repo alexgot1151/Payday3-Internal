@@ -7,6 +7,39 @@
 #include "Utils/Logging.hpp"
 #include "Features/ESP/ESP.hpp"
 
+struct CheatConfig{
+    struct Aimbot_t {
+        bool m_bSilentAim = false;
+
+        void Draw();
+    };
+
+    Aimbot_t m_aimbot{};
+
+    struct Visuals_t {
+        void Draw();
+    };
+
+    Visuals_t m_visuals{};
+
+    struct Misc_t {
+        bool m_bClientMove = false;
+        bool m_bNoSpread = true;
+        bool m_bNoRecoil = true;
+        bool m_bInstantInteraction = true;
+        bool m_bInstantMinigame = true;
+
+        void Draw();
+    };
+
+    Misc_t m_misc{};
+
+    static CheatConfig& Get(){
+        static CheatConfig config{};
+        return config;
+    };
+};
+
 namespace Menu
 {
     enum class ECallTraceArea{
@@ -15,8 +48,6 @@ namespace Menu
         PlayerController
     };
 
-    inline bool g_bClientMove = false;
-    inline bool g_bSilentAim = false;
     inline char g_szCallTraceFilter[1024]{};
     inline bool g_bCallTraceFilterSubclasses = false;
     inline ECallTraceArea g_eCallTraceArea = ECallTraceArea::Inactive;

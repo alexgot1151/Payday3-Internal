@@ -17,6 +17,9 @@
 #include "Menu.hpp"
 #include "Dumper-7/SDK.hpp"
 
+#undef min
+#undef max
+
 namespace Globals {
 #ifdef _DEBUG
 	static constexpr bool g_bDebug = true;
@@ -147,22 +150,10 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 
 	static auto nameBlueprintUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"BlueprintUpdateCamera");
 	static auto nameServerUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerUpdateCamera");
-	static auto nameReceiveTick = SDK::UKismetStringLibrary::Conv_StringToName(L"ReceiveTick");
+	
 	static auto nameServerMovePacked = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerMovePacked");
 	static auto nameGA_Fire_C = SDK::UKismetStringLibrary::Conv_StringToName(L"GA_Fire_C");
 	static auto nameK2_CommitExecute = SDK::UKismetStringLibrary::Conv_StringToName(L"K2_CommitExecute");
-
-	if (pFunction->Name == nameBlueprintUpdateCamera){
-		auto& params = *reinterpret_cast<SDK::Params::PlayerCameraManager_BlueprintUpdateCamera*>(pParams);
-		UObjectProcessEvent_o(pObject, pFunction, pParams);
-
-		return;
-	}
-
-	if (pFunction->Name == nameServerUpdateCamera){
-		UObjectProcessEvent_o(pObject, pFunction, pParams);
-		return;
-	}
 
 	if (sFnName.contains("ClientPlayForceFeedback_Internal")) {
 		return;
@@ -209,59 +200,55 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 		return;
 	}
 
-	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()) && pFunction->Name == nameServerMovePacked)
-	{
-
-		SDK::ASBZPlayerCharacter* pLocalPlayer = GetLocalPlayer();
-		if (pLocalPlayer && pLocalPlayer->Interactor)
-		{
-			auto pInteractor = pLocalPlayer->Interactor;
-			auto pInteraction = pInteractor->GetCurrentInteraction();
-			if(pInteraction){
-				static std::chrono::time_point<std::chrono::steady_clock> timeInteractLast = std::chrono::steady_clock::now();
-
-				bool bSkipInstantInteraction = false;
-				// Bags get us kicked ;|
-				if(auto pOwner = pInteraction->GetOwner(); pOwner)
-					bSkipInstantInteraction = pOwner->IsA(SDK::ASBZBagItem::StaticClass());
-				
-
-				if(!bSkipInstantInteraction && std::chrono::steady_clock::now() - timeInteractLast > g_durationPing){
-					pInteractor->Server_CompleteInteraction(pInteraction, pInteractor->InteractId);
-					pInteractor->Multicast_CompletedInteraction(pInteraction, false);
-
-					// Dirty hack to prevent completing the interaction multiple times.
-					timeInteractLast = std::chrono::steady_clock::now();
-				}
-			}
-		}
-	}
-
 	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()) || pObject->IsA(SDK::APlayerController::StaticClass()) || pObject->IsA(SDK::APlayerCameraManager::StaticClass()) || pObject->IsA(SDK::UCharacterMovementComponent::StaticClass()))
 	{
-		if(sFnName.contains("ServerMovePacked")){
-			if(!Menu::g_bClientMove) 
+		if(pFunction->Name == nameServerMovePacked){
+			if(!CheatConfig::Get().m_misc.m_bClientMove) 
 				UObjectProcessEvent_o(pObject, pFunction, pParams);
 
 			return;
 		}
 	}
 
-	if(pObject->IsA(SDK::ASBZPlayerState::StaticClass())){
-		if(sFnName.contains("Multicast_SetMiniGameState"))
-		{
-			UObjectProcessEvent_o(pObject, pFunction, pParams);
+	UObjectProcessEvent_o(pObject, pFunction, pParams);
+}
 
-			SDK::ASBZPlayerCharacter* pLocalPlayer = GetLocalPlayer();
-			if(pLocalPlayer && pLocalPlayer->PlayerState)
-				pLocalPlayer->SBZPlayerState->Server_SetMiniGameState(SDK::EPD3MiniGameState::Success);
+void OnPlayerTick()
+{
+	SDK::ASBZPlayerCharacter* pLocalPlayer = GetLocalPlayer();
+	if (!pLocalPlayer)
+		return;
+
+	if (pLocalPlayer->Interactor)
+	{
+		auto pInteractor = pLocalPlayer->Interactor;
+		auto pInteraction = pInteractor->GetCurrentInteraction();
+		if(pInteraction){
+			static std::chrono::time_point<std::chrono::steady_clock> timeInteractLast = std::chrono::steady_clock::now();
+
+			bool bSkipInstantInteraction = false;
+			// Bags get us kicked ;|
+			if(auto pOwner = pInteraction->GetOwner(); pOwner)
+				bSkipInstantInteraction = pOwner->IsA(SDK::ASBZBagItem::StaticClass());
 			
 
-			return;
+			if(CheatConfig::Get().m_misc.m_bInstantInteraction && !bSkipInstantInteraction && std::chrono::steady_clock::now() - timeInteractLast > g_durationPing){
+				pInteractor->Server_CompleteInteraction(pInteraction, pInteractor->InteractId);
+				pInteractor->Multicast_CompletedInteraction(pInteraction, false);
+
+				// Dirty hack to prevent completing the interaction multiple times.
+				timeInteractLast = std::chrono::steady_clock::now();
+			}
 		}
 	}
 
-	UObjectProcessEvent_o(pObject, pFunction, pParams);
+	if (pLocalPlayer->SBZPlayerState)
+	{
+		auto pPlayerState = pLocalPlayer->SBZPlayerState;
+		if (CheatConfig::Get().m_misc.m_bInstantMinigame && pPlayerState->MiniGameState != SDK::EPD3MiniGameState::None)
+			pLocalPlayer->SBZPlayerState->Server_SetMiniGameState(SDK::EPD3MiniGameState::Success);
+	}
+
 }
 
 UObjectProcessEvent_t UObjectProcessEventPlayer_o = nullptr;
@@ -293,6 +280,12 @@ void UObjectProcessEventPlayer_hk(const SDK::UObject* pObject, class SDK::UFunct
 		}
 	}
 
+	static auto nameReceiveTick = SDK::UKismetStringLibrary::Conv_StringToName(L"ReceiveTick");
+	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()) && pFunction->Name == nameReceiveTick)
+		OnPlayerTick();
+
+	
+	
 	UObjectProcessEventPlayer_o(pObject, pFunction, pParams);
 }
 
@@ -319,7 +312,7 @@ void APlayerControllerGetPlayerViewPoint_hk(SDK::APlayerController* _this, SDK::
 	g_vecOriginalLocation = *out_Location;
 	g_rotOriginalRotation = *out_Rotation;
 
-	if(!Menu::g_bSilentAim)
+	if(!CheatConfig::Get().m_aimbot.m_bSilentAim)
 	{
 		g_rotSilentAimRotation = *out_Rotation;
 		return;
@@ -352,7 +345,7 @@ void MainLoop()
 		{
 			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<UObjectProcessEvent_t>(pGWorld, SDK::Offsets::ProcessEventIdx)); 
 			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&UObjectProcessEvent_hk), reinterpret_cast<void**>(&UObjectProcessEvent_o)) == MH_OK)
-				MH_EnableHook(pFn);
+				Utils::LogHook("UObjectProcessEvent", MH_EnableHook(pFn));
 		}
 
 		SDK::UGameInstance* pGameInstance = pGWorld->OwningGameInstance;
@@ -367,7 +360,7 @@ void MainLoop()
 		{
 			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<ULocalPlayerGetViewPoint_t>(pLocalPlayer, 0x50));
 			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&ULocalPlayerGetViewPoint_hk), reinterpret_cast<void**>(&ULocalPlayerGetViewPoint_o)) == MH_OK)
-				MH_EnableHook(pFn);
+				Utils::LogHook("ULocalPlayerGetViewPoint", MH_EnableHook(pFn));
 		}
 	
 		SDK::APlayerController* pLocalPlayerControllerBase = pLocalPlayer->PlayerController;
@@ -378,14 +371,14 @@ void MainLoop()
 		{
 			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<APlayerControllerGetPlayerViewPoint_t>(pLocalPlayerControllerBase, 0xED));
 			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&APlayerControllerGetPlayerViewPoint_hk), reinterpret_cast<void**>(&APlayerControllerGetPlayerViewPoint_o)) == MH_OK)
-				MH_EnableHook(pFn);
+				Utils::LogHook("APlayerControllerGetPlayerViewPoint", MH_EnableHook(pFn));
 		}
 
 		if(!UObjectProcessEventPlayer_o)
 		{
 			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<UObjectProcessEvent_t>(pLocalPlayerControllerBase, SDK::Offsets::ProcessEventIdx)); 
 			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&UObjectProcessEventPlayer_hk), reinterpret_cast<void**>(&UObjectProcessEventPlayer_o)) == MH_OK)
-				MH_EnableHook(pFn);
+				Utils::LogHook("UObjectProcessEventPlayer", MH_EnableHook(pFn));
 		}
 
 		SDK::ASBZPlayerController* pLocalPlayerController = reinterpret_cast<SDK::ASBZPlayerController*>(pLocalPlayerControllerBase);
@@ -401,9 +394,9 @@ void MainLoop()
 			continue;
 
 		if(pLocalPlayerPawn->SBZPlayerState)
-			g_durationPing = std::chrono::milliseconds(static_cast<int>(pLocalPlayerPawn->SBZPlayerState->GetPingInMilliseconds() * 2.f));
+			g_durationPing = std::chrono::milliseconds(std::min(static_cast<int>(pLocalPlayerPawn->SBZPlayerState->GetPingInMilliseconds() * 2.f), 30));
 
-		if(Menu::g_bClientMove){
+		if(CheatConfig::Get().m_misc.m_bClientMove){
 			if (pLocalPlayerPawn->GetActorEnableCollision())
 				pLocalPlayerPawn->SetActorEnableCollision(false);
 
@@ -440,10 +433,7 @@ void MainLoop()
 			}
 
 		}
-		else{
 
-		}
-		
 		//bool LineOfSightTo(const class AActor* Other, const struct FVector& ViewPoint, bool bAlternateChecks) const;
 		
 		pLocalPlayerPawn->CarryTiltDegrees = 0.0f;
