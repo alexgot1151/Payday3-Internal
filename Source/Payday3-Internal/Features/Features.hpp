@@ -13,6 +13,8 @@
 namespace Cheat {
     inline std::chrono::milliseconds g_durationPing{ 100 };
     inline bool g_bIsSoloGame = false;
+    inline SDK::FVector g_vecAimbotTargetLocation{};
+    inline bool g_bIsAimbotTargetAvailible = false;
 
     void OnPlayerControllerTick();
 };

@@ -8,6 +8,7 @@
 #include "../../Dumper-7/SDK.hpp"
 #include "../../Utils/Logging.hpp"
 #include "ESP.hpp"
+#include "../Features.hpp"
 
 #undef min
 #undef max
@@ -577,71 +578,6 @@ namespace ESP
         SDK::AActor* m_pActor;
     };
 
-/*
-Default__GA_Hacker_RoutedPing_C
-Default__GA_Hacker_SecuredLoop_C
-Default__GA_PlayerCrouch_C
-Default__GA_EquipNextWeapon_C
-Default__GA_EquipPreviousWeapon_C
-Default__GA_EquipPrimaryWeapon_C
-Default__GA_EquipSecondaryWeapon_C
-Default__GA_Traverse_C
-Default__GA_PlayerJump_C
-Default__GA_Run_C
-Default__GA_Downed_C
-Default__GA_BleedOut_C
-Default__GA_Interact_C
-Default__GA_Equip_C
-Default__GA_Shout_C
-Default__GA_ThrowBag_C
-Default__GA_Slide_C
-Default__GA_Carry_C
-Default__GA_ThrowCarry_C
-Default__GA_ThrowItem_C
-Default__GA_MiniGame_C
-Default__GA_Land_C
-Default__GA_MaskOnInput_C
-Default__SBZPlayerViewTargetAbility
-Default__GA_HumanShieldInstigator_C
-Default__GA_HumanShieldShove_C
-Default__SBZEquipPlaceableAbility
-Default__GA_Tased_C
-Default__SBZCuffedAbility
-Default__SBZEquipNextGadgetAbility
-Default__SBZEquipAutoAbility
-Default__GA_MaskOnAction_C
-Default__GA_Tased_Gently_C
-Default__GA_Tased_Uncontrolled_C
-Default__SBZKillHumanShieldAbility
-Default__SBZSubduedAbility
-Default__GA_Tackle_C
-Default__SBZToolUnequippedAbility
-Default__SBZZiplineAbility
-Default__GA_CuttingTool_C
-Default__SBZExitPhoneAbility
-Default__SBZPlayerRunExitAbility
-Default__SBZCanUIActivatePhoneAbility
-Default__GA_AnimatedInteraction_C
-Default__GA_EquippableInspect_C
-Default__GA_HackDrone_C
-Default__GA_PlayerWeaponTanking_C
-Default__GA_PlayerWeaponWallReaction_C
-Default__GA_PlayerThrowBagAnimation_C
-Default__GA_PlayerEmote_C
-Default__SBZEquipConsumableAbility
-Default__GA_UseConsumable_C
-Default__SBZSkillHET5AOEDamageAbility
-Default__SBZTickOverskillOperatorAbility
-Default__GA_Phone_C
-Default__GA_PlaceECMJammer_C
-Default__GA_RequestOverkillWeapon_C
-Default__GA_Fire_C
-Default__GA_PlayerTarget_C
-Default__GA_Reload_C
-Default__GA_Melee_C
-Default__GA_PlayerEndCycleReload_C
-*/
-
     SDK::FGameplayAbilitySpec* GetAbilitySpec(SDK::USBZPlayerAbilitySystemComponent* pAbilitySystem, const SDK::FName& nameAbility){
         if (!pAbilitySystem)
             return nullptr;
@@ -710,40 +646,31 @@ Default__GA_PlayerEndCycleReload_C
         SDK::FVector vecForward = SDK::UKismetMathLibrary::GetForwardVector(vecPlayerRotation);
         SDK::FVector vecLookAheadLocation = vecCameraLocation + (vecForward * 200.f);
 
+        SDK::FVector vecTargetLocation{};
+        bool bDidFindTarget = false;
         for (ActorInfo& infoActor : vecActors){
             auto pActor = infoActor.m_pActor;
             SDK::FVector2D vec2ScreenLocation;
             if (!pActor)
                 continue;
 
-            SDK::FVector vecOffset{};
+            switch(infoActor.m_eType){
+            case EActorType::Guard:
+            case EActorType::Shield:
+            case EActorType::Cloaker:
+            case EActorType::Sniper:
+            case EActorType::Grenadier:
+            case EActorType::Taser:
+            case EActorType::Techie:
+            case EActorType::Dozer:
+                vecTargetLocation = reinterpret_cast<SDK::ACH_BaseCop_C*>(pActor)->Mesh->GetSocketLocation(SDK::UKismetStringLibrary::Conv_StringToName(L"Head"));
+                bDidFindTarget = true;
+                break;
 
-            if(0){
-                switch(infoActor.m_eType){
-                case EActorType::Guard:
-                case EActorType::Shield:
-                case EActorType::Cloaker:
-                case EActorType::Sniper:
-                case EActorType::Grenadier:
-                case EActorType::Taser:
-                case EActorType::Techie:;
-                    vecOffset = pActor->K2_GetActorLocation() - reinterpret_cast<SDK::ACH_BaseCop_C*>(pActor)->Mesh->GetSocketLocation(SDK::UKismetStringLibrary::Conv_StringToName(L"Head"));
-                    pActor->K2_SetActorRotation(vecPlayerRotation, true);
-                    pActor->K2_SetActorLocation(vecLookAheadLocation + vecOffset, false, nullptr, true);
-                    break;
-
-                case EActorType::Dozer:
-                    vecOffset = pActor->K2_GetActorLocation() - reinterpret_cast<SDK::ACH_BaseCop_C*>(pActor)->Mesh->GetSocketLocation(SDK::UKismetStringLibrary::Conv_StringToName(L"Head"));
-                    pActor->K2_SetActorRotation(SDK::FRotator(-vecPlayerRotation.Pitch, -vecPlayerRotation.Yaw), true);
-                    pActor->K2_SetActorLocation(vecLookAheadLocation + vecOffset, false, nullptr, true);
-                    break;
-
-                default:
-                    break;
-                }
+            default:
+                break;
             }
             
-
             if(!pPlayerController->ProjectWorldLocationToScreen(pActor->K2_GetActorLocation(), &vec2ScreenLocation, false))
                 continue;
 
@@ -771,6 +698,9 @@ Default__GA_PlayerEndCycleReload_C
                 break;
             }           
         }
+
+        Cheat::g_vecAimbotTargetLocation = vecTargetLocation;
+        Cheat::g_bIsAimbotTargetAvailible = bDidFindTarget;
 
         auto pLocalPlayer = reinterpret_cast<SDK::ASBZPlayerCharacter*>(pPlayerController->AcknowledgedPawn);
         if (!pLocalPlayer)

@@ -248,8 +248,6 @@ void UObjectProcessEventPlayer_hk(const SDK::UObject* pObject, class SDK::UFunct
 	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()) && pFunction->Name == nameReceiveTick)
 		Cheat::OnPlayerControllerTick();
 
-	
-	
 	UObjectProcessEventPlayer_o(pObject, pFunction, pParams);
 }
 
@@ -290,7 +288,10 @@ void APlayerControllerGetPlayerViewPoint_hk(SDK::APlayerController* _this, SDK::
 	rotOut.Yaw = rotGoal.Yaw - ((rotGoal.Yaw - rotCurrent.Yaw) * 0.49f);
 	rotOut.Pitch = 0.f;
 
-	*out_Rotation = rotOut;
+	if(Cheat::g_bIsAimbotTargetAvailible){
+		*out_Location = Cheat::g_vecAimbotTargetLocation;
+		*out_Rotation = SDK::UKismetMathLibrary::FindLookAtRotation(*out_Location, Cheat::g_vecAimbotTargetLocation);
+	}
 }
 
 void MainLoop()
@@ -390,10 +391,7 @@ void MainLoop()
 		pLocalPlayerPawn->CarryTiltSpeed = 10000.0f;
 		//pLocalPlayerPawn->CarryAdditionalTiltDegrees = 0.0f;
 
-		//pLocalPlayerPawn->K2_SetActorLocation(pLocalPlayerPawn->K2_GetActorLocation() + (SDK::UKismetMathLibrary::GetForwardVector(pLocalPlayerPawn->K2_GetActorRotation()).GetNormalized() * 100.0f), false, nullptr, true);
-		//pLocalPlayerPawn->Client_Teleport(, 0.f);
-
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	}
 }
 
