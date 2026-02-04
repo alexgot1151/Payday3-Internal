@@ -639,7 +639,7 @@ namespace ESP
             if (lhs.m_flDistance == rhs.m_flDistance)
                 rhs.m_flDistance += 0.001f;
 
-            return lhs.m_flDistance < rhs.m_flDistance;
+            return lhs.m_flDistance > rhs.m_flDistance;
         });
         
         SDK::FRotator vecPlayerRotation = pPlayerController->PlayerCameraManager->GetCameraRotation();
