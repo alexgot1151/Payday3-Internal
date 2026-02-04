@@ -16,9 +16,11 @@
 #include "Utils/Dx12Hook.hpp"
 #include "Menu.hpp"
 #include "Dumper-7/SDK.hpp"
+#include "Features/Features.hpp"
 
 #undef min
 #undef max
+
 
 namespace Globals {
 #ifdef _DEBUG
@@ -31,8 +33,6 @@ namespace Globals {
 	static HMODULE g_hBaseModule;
 	std::unique_ptr<Console> g_upConsole;
 }
-
-static std::chrono::milliseconds g_durationPing{ 100 };
 
 bool Init() 
 {
@@ -215,44 +215,6 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 	UObjectProcessEvent_o(pObject, pFunction, pParams);
 }
 
-void OnPlayerTick()
-{
-	SDK::ASBZPlayerCharacter* pLocalPlayer = GetLocalPlayer();
-	if (!pLocalPlayer)
-		return;
-
-	if (pLocalPlayer->Interactor)
-	{
-		auto pInteractor = pLocalPlayer->Interactor;
-		auto pInteraction = pInteractor->GetCurrentInteraction();
-		if(pInteraction){
-			static std::chrono::time_point<std::chrono::steady_clock> timeInteractLast = std::chrono::steady_clock::now();
-
-			bool bSkipInstantInteraction = false;
-			// Bags get us kicked ;|
-			if(auto pOwner = pInteraction->GetOwner(); pOwner)
-				bSkipInstantInteraction = pOwner->IsA(SDK::ASBZBagItem::StaticClass());
-			
-
-			if(CheatConfig::Get().m_misc.m_bInstantInteraction && !bSkipInstantInteraction && std::chrono::steady_clock::now() - timeInteractLast > g_durationPing){
-				pInteractor->Server_CompleteInteraction(pInteraction, pInteractor->InteractId);
-				pInteractor->Multicast_CompletedInteraction(pInteraction, false);
-
-				// Dirty hack to prevent completing the interaction multiple times.
-				timeInteractLast = std::chrono::steady_clock::now();
-			}
-		}
-	}
-
-	if (pLocalPlayer->SBZPlayerState)
-	{
-		auto pPlayerState = pLocalPlayer->SBZPlayerState;
-		if (CheatConfig::Get().m_misc.m_bInstantMinigame && pPlayerState->MiniGameState != SDK::EPD3MiniGameState::None)
-			pLocalPlayer->SBZPlayerState->Server_SetMiniGameState(SDK::EPD3MiniGameState::Success);
-	}
-
-}
-
 UObjectProcessEvent_t UObjectProcessEventPlayer_o = nullptr;
 void UObjectProcessEventPlayer_hk(const SDK::UObject* pObject, class SDK::UFunction* pFunction, void* pParams)
 {
@@ -284,7 +246,7 @@ void UObjectProcessEventPlayer_hk(const SDK::UObject* pObject, class SDK::UFunct
 
 	static auto nameReceiveTick = SDK::UKismetStringLibrary::Conv_StringToName(L"ReceiveTick");
 	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()) && pFunction->Name == nameReceiveTick)
-		OnPlayerTick();
+		Cheat::OnPlayerControllerTick();
 
 	
 	
@@ -395,21 +357,7 @@ void MainLoop()
 		if (!pMovementComponent)
 			continue;
 
-		if(pLocalPlayerPawn->SBZPlayerState)
-			g_durationPing = std::chrono::milliseconds(std::min(static_cast<int>(pLocalPlayerPawn->SBZPlayerState->GetPingInMilliseconds() * 2.f), 30));
-
-		if(CheatConfig::Get().m_misc.m_bClientMove){
-			if (pLocalPlayerPawn->GetActorEnableCollision())
-				pLocalPlayerPawn->SetActorEnableCollision(false);
-
-			pMovementComponent->MovementMode = SDK::EMovementMode::MOVE_Flying;
-		}
-		else if(!pLocalPlayerPawn->GetActorEnableCollision()){
-			pLocalPlayerPawn->SetActorEnableCollision(true);
-			pMovementComponent->MovementMode = SDK::EMovementMode::MOVE_Walking;
-		}
-
-		if(SDK::USBZOnlineFunctionLibrary::IsSoloGame(pGWorld))
+		if(SDK::USBZOnlineFunctionLibrary::IsSoloGame(pGWorld) && 0)
 		{
 
 			if(pLocalPlayerPawn->FPCameraAttachment){

@@ -85,6 +85,7 @@ void CheatConfig::Misc_t::Draw(){
     static std::string sRemovalsPreview = CreateMultiSelectPreviewText({
         { m_bNoSpread, "No Spread" },
         { m_bNoRecoil, "No Recoil" },
+        { m_bNoCameraShake, "No Camera Shake" },
         { m_bInstantInteraction, "Instant Interaction" },
         { m_bInstantMinigame, "Instant Minigame" }
     }, "Removals");
@@ -95,11 +96,13 @@ void CheatConfig::Misc_t::Draw(){
         
         if (ImGui::Selectable("No Spread", &m_bNoSpread) ||
             ImGui::Selectable("No Recoil", &m_bNoRecoil) ||
+            ImGui::Selectable("No Camera Shake", &m_bNoCameraShake) ||
             ImGui::Selectable("Instant Interaction", &m_bInstantInteraction) ||
             ImGui::Selectable("Instant Minigame", &m_bInstantMinigame)) {
             sRemovalsPreview = CreateMultiSelectPreviewText({
                 { m_bNoSpread, "No Spread" },
                 { m_bNoRecoil, "No Recoil" },
+                { m_bNoCameraShake, "No Camera Shake" },
                 { m_bInstantInteraction, "Instant Interaction" },
                 { m_bInstantMinigame, "Instant Minigame" }
             }, "Removals");

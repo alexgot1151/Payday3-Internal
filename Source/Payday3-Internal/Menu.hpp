@@ -26,6 +26,7 @@ struct CheatConfig{
         bool m_bClientMove = false;
         bool m_bNoSpread = true;
         bool m_bNoRecoil = true;
+        bool m_bNoCameraShake = true;
         bool m_bInstantInteraction = true;
         bool m_bInstantMinigame = true;
 

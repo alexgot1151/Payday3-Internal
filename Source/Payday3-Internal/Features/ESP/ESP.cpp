@@ -776,27 +776,6 @@ Default__GA_PlayerEndCycleReload_C
         if (!pLocalPlayer)
             return;
 
-        // No Recoil
-        if (pLocalPlayer->RecoilComponent && pLocalPlayer->RecoilComponent->CurrentRecoilData){
-            pLocalPlayer->RecoilComponent->CurrentRecoilData->ViewKick.SpeedDeflect = 0.f;
-            pLocalPlayer->RecoilComponent->CurrentRecoilData->GunKickXY.SpeedDeflect = 0.f;
-        }
-
-        // No Spread
-        if (pLocalPlayer->FPCameraAttachment && pLocalPlayer->FPCameraAttachment->EquippedWeaponData){
-            if (pLocalPlayer->FPCameraAttachment->EquippedWeaponData->IsA(SDK::USBZRangedWeaponData::StaticClass())){
-                auto pWeaponData = reinterpret_cast<SDK::USBZRangedWeaponData*>(pLocalPlayer->FPCameraAttachment->EquippedWeaponData);
-            
-                if (pWeaponData->SpreadData){
-                    auto pSpreadData = pWeaponData->SpreadData;
-                    pSpreadData->InnerClusterSpreadMultiplier = pSpreadData->FireSpreadStart = pSpreadData->FireSpreadMinCap = pSpreadData->FireSpreadCap = pSpreadData->FireSpreadIncrease = 0.f;
-                }
-            }
-        }
-        
-        // No camera shake
-        pPlayerController->PlayerCameraManager->StopAllCameraShakes(true);
-
         auto pAbilitySystem = pLocalPlayer->PlayerAbilitySystem;
         if (!pAbilitySystem)
             return;
