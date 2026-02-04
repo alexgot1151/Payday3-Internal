@@ -67,6 +67,7 @@ bool Init()
 		}
 	}
 
+	int32_t iFramerateLimit = SDK::USBZSettingsFunctionsVideo::GetFramerateLimit(pGWorld);
 	Utils::LogDebug("GWorld pointer acquired: " + std::to_string(reinterpret_cast<uint64_t>(pGWorld)));
 
 	if (MH_Initialize() != MH_OK) {
@@ -81,6 +82,7 @@ bool Init()
         return false;
     }
 
+	SDK::USBZSettingsFunctionsVideo::SetFramerateLimit(pGWorld, iFramerateLimit);
 	return true;
 }
 
