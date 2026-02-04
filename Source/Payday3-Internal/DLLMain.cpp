@@ -276,21 +276,16 @@ void APlayerControllerGetPlayerViewPoint_hk(SDK::APlayerController* _this, SDK::
 
 	if(!CheatConfig::Get().m_aimbot.m_bSilentAim)
 	{
-		g_rotSilentAimRotation = *out_Rotation;
+		g_rotSilentAimRotation = *out_Rotation;		
 		return;
 	}
 	
-	SDK::FRotator rotCurrent = *out_Rotation;
-	SDK::FRotator rotGoal = SDK::FRotator(0.f, 0.f, 0.f);
-
-
-	SDK::FRotator rotOut{};
-	rotOut.Yaw = rotGoal.Yaw - ((rotGoal.Yaw - rotCurrent.Yaw) * 0.49f);
-	rotOut.Pitch = 0.f;
 
 	if(Cheat::g_bIsAimbotTargetAvailible){
+		SDK::FRotator rotCurrent = *out_Rotation;
+		SDK::FRotator rotGoal = SDK::UKismetMathLibrary::FindLookAtRotation(*out_Location, Cheat::g_vecAimbotTargetLocation);
+		*out_Rotation = (rotGoal - ((rotGoal - rotCurrent).GetNormalized() * 0.5f)).GetNormalized();
 		*out_Location = Cheat::g_vecAimbotTargetLocation;
-		*out_Rotation = SDK::UKismetMathLibrary::FindLookAtRotation(*out_Location, Cheat::g_vecAimbotTargetLocation);
 	}
 }
 
@@ -391,7 +386,7 @@ void MainLoop()
 		pLocalPlayerPawn->CarryTiltSpeed = 10000.0f;
 		//pLocalPlayerPawn->CarryAdditionalTiltDegrees = 0.0f;
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(500));
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 }
 
