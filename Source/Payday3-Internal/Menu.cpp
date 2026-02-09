@@ -9,6 +9,10 @@
 
 void CheatConfig::Aimbot_t::Draw(){
     ImGui::Checkbox("Silent Aim", &m_bSilentAim);
+    ImGui::Checkbox("Aim Fix", &m_bAimFix);
+    ImGui::Checkbox("Aim Test", &m_bAimTest);
+    ImGui::SliderFloat("Aim Fix Percentage", &m_flAimFix, 0.0f, 1.0f, "%0.3f");
+    ImGui::SliderFloat("Aim Scalar", &m_flAimScalar, 0.0f, 200.0f, "%0.0f");
 }
 
 void DrawEnemyESPSection(const char* szType, ESP::EnemyESP& stSettings)

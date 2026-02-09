@@ -10,6 +10,10 @@
 struct CheatConfig{
     struct Aimbot_t {
         bool m_bSilentAim = false;
+        bool m_bAimFix = false;
+        bool m_bAimTest = false;
+        float m_flAimFix = 0.5f;
+        float m_flAimScalar = 10.f;
 
         void Draw();
     };

@@ -9,6 +9,7 @@
 #include "../../Utils/Logging.hpp"
 #include "ESP.hpp"
 #include "../Features.hpp"
+#include "../../Menu.hpp"
 
 #undef min
 #undef max
@@ -509,7 +510,17 @@ namespace ESP
             if (stSettings.m_bArmor && pGuard->AttributeSet->Armor.CurrentValue > std::numeric_limits<float>::epsilon()){
                 DrawBar(pDrawList, vec4ScreenBox, pGuard->AttributeSet->Armor.CurrentValue / pGuard->AttributeSet->ArmorMax.CurrentValue, IM_COL32(64, 147, 255, 200), flBarOffset);
                 flBarOffset += 8.f;
-            }            
+            }
+            
+            static auto nameHead = SDK::UKismetStringLibrary::Conv_StringToName(L"Head");
+            auto vecTarget = pSkeletalMesh->GetSocketLocation(nameHead);
+            auto vecStart = vecTarget + (SDK::UKismetMathLibrary::GetForwardVector((pSkeletalMesh->GetSocketRotation(nameHead) + SDK::FRotator(0.f, 90.f, 0.f)).Normalize()) * CheatConfig::Get().m_aimbot.m_flAimScalar);
+
+            SDK::FVector2D vec2Start{}, vec2End{};
+            if (pPlayerController->ProjectWorldLocationToScreen(vecStart, &vec2Start, false) && 
+                pPlayerController->ProjectWorldLocationToScreen(vecTarget, &vec2End, false)){
+                pDrawList->AddLine(ImVec2(vec2Start.X, vec2Start.Y), ImVec2(vec2End.X, vec2End.Y), IM_COL32(255, 0, 0, 255), 2.f);
+            }
 
 
             if (!stSettings.m_bFlags)
@@ -575,6 +586,7 @@ namespace ESP
     struct ActorInfo{
         EActorType m_eType;
         float m_flDistance;
+        float m_flPriority;
         SDK::AActor* m_pActor;
     };
 
@@ -599,9 +611,6 @@ namespace ESP
     }
 
     void Render(SDK::UWorld* pGWorld, SDK::APlayerController* pPlayerController) {
-        if (!GetConfig().bESP)
-            return;
-
         SDK::USBZWorldRuntime* pWorldRuntime = reinterpret_cast<SDK::USBZWorldRuntime*>(SDK::USBZWorldRuntime::GetWorldRuntime(pGWorld));
         if (!pWorldRuntime)
             return;
@@ -626,9 +635,52 @@ namespace ESP
             if (ShouldSkipActor(pActor, eType))
                 continue;
 
+            float flPriority = 0.f;
+            switch(eType){
+            case EActorType::Cloaker:
+                flPriority = 20.f;
+                break;
+
+            case EActorType::Grenadier:
+                flPriority = 6.f;
+                break;
+
+            case EActorType::Sniper:
+                flPriority = 5.f;
+                break;
+
+            case EActorType::Taser:
+                flPriority = 4.f;
+                break;
+
+            case EActorType::Techie:
+                flPriority = 3.f;
+                break;
+
+            case EActorType::Dozer:
+                flPriority = 2.f;
+                break;
+
+            case EActorType::Shield:
+                flPriority = 1.f;
+                break;
+
+            case EActorType::Guard:
+                flPriority = 1.f;
+                break;
+
+            default:
+                break;
+            }
+
+            float flDistance = (pActor->K2_GetActorLocation() - vecCameraLocation).Magnitude();
+            if(flDistance < 1000.f)
+                flPriority += 10.f;
+
             vecActors.emplace_back(ActorInfo{
                 .m_eType = eType,
-                .m_flDistance = (pActor->K2_GetActorLocation() - vecCameraLocation).Magnitude(),
+                .m_flDistance = flDistance,
+                .m_flPriority = flPriority,
                 .m_pActor = pActor
             });
         }
@@ -646,15 +698,20 @@ namespace ESP
         SDK::FVector vecForward = SDK::UKismetMathLibrary::GetForwardVector(vecPlayerRotation);
         SDK::FVector vecLookAheadLocation = vecCameraLocation + (vecForward * 200.f);
 
-        SDK::FVector vecTargetLocation{};
-        bool bDidFindTarget = false;
-        for (ActorInfo& infoActor : vecActors){
-            auto pActor = infoActor.m_pActor;
-            SDK::FVector2D vec2ScreenLocation;
-            if (!pActor)
+        static auto nameHead = SDK::UKismetStringLibrary::Conv_StringToName(L"Head");
+        float flAimScalar = CheatConfig::Get().m_aimbot.m_flAimScalar;
+
+        float flBestPriority = 0.f;
+        std::optional<std::pair<SDK::FVector, SDK::FRotator>> pairBestTarget{};
+        for (auto itr = vecActors.rbegin(); itr != vecActors.rend(); ++itr){
+            auto pGuard = reinterpret_cast<SDK::ACH_BaseCop_C*>(itr->m_pActor);
+            if(!pGuard || flBestPriority >= itr->m_flPriority)
                 continue;
 
-            switch(infoActor.m_eType){
+            SDK::FVector vecTarget{};
+            SDK::FVector vecStart{};
+
+            switch(itr->m_eType){
             case EActorType::Guard:
             case EActorType::Shield:
             case EActorType::Cloaker:
@@ -662,14 +719,43 @@ namespace ESP
             case EActorType::Grenadier:
             case EActorType::Taser:
             case EActorType::Techie:
+                pairBestTarget = std::make_pair(pGuard->Mesh->GetSocketLocation(nameHead), SDK::FRotator(0.f, 0.f, 0.f));
+                flBestPriority = itr->m_flPriority;
+                break;
+
             case EActorType::Dozer:
-                vecTargetLocation = reinterpret_cast<SDK::ACH_BaseCop_C*>(pActor)->Mesh->GetSocketLocation(SDK::UKismetStringLibrary::Conv_StringToName(L"Head"));
-                bDidFindTarget = true;
+                vecTarget = pGuard->Mesh->GetSocketLocation(nameHead);
+                vecStart = vecTarget + (SDK::UKismetMathLibrary::GetForwardVector((pGuard->Mesh->GetSocketRotation(nameHead) + SDK::FRotator(0.f, 90.f, 0.f)).Normalize()) * flAimScalar);
+                pairBestTarget = std::make_pair(vecStart, SDK::UKismetMathLibrary::FindLookAtRotation(vecStart, vecTarget));
+                flBestPriority = itr->m_flPriority;
+                
                 break;
 
             default:
                 break;
             }
+        }
+
+        Cheat::g_bIsAimbotTargetAvailible = pairBestTarget.has_value();
+        if(pairBestTarget)
+        {
+            Cheat::g_vecAimbotTargetLocation = pairBestTarget->first;
+            Cheat::g_rotAimbotTargetRotation = pairBestTarget->second;
+        }
+  
+
+        
+
+        if (!GetConfig().bESP)
+            return;
+
+        for (ActorInfo& infoActor : vecActors){
+            auto pActor = infoActor.m_pActor;
+            SDK::FVector2D vec2ScreenLocation;
+            if (!pActor)
+                continue;
+
+            
             
             if(!pPlayerController->ProjectWorldLocationToScreen(pActor->K2_GetActorLocation(), &vec2ScreenLocation, false))
                 continue;
@@ -698,9 +784,6 @@ namespace ESP
                 break;
             }           
         }
-
-        Cheat::g_vecAimbotTargetLocation = vecTargetLocation;
-        Cheat::g_bIsAimbotTargetAvailible = bDidFindTarget;
 
         auto pLocalPlayer = reinterpret_cast<SDK::ASBZPlayerCharacter*>(pPlayerController->AcknowledgedPawn);
         if (!pLocalPlayer)
