@@ -511,17 +511,6 @@ namespace ESP
                 DrawBar(pDrawList, vec4ScreenBox, pGuard->AttributeSet->Armor.CurrentValue / pGuard->AttributeSet->ArmorMax.CurrentValue, IM_COL32(64, 147, 255, 200), flBarOffset);
                 flBarOffset += 8.f;
             }
-            
-            static auto nameHead = SDK::UKismetStringLibrary::Conv_StringToName(L"Head");
-            auto vecTarget = pSkeletalMesh->GetSocketLocation(nameHead);
-            auto vecStart = vecTarget + (SDK::UKismetMathLibrary::GetForwardVector((pSkeletalMesh->GetSocketRotation(nameHead) + SDK::FRotator(0.f, 90.f, 0.f)).Normalize()) * CheatConfig::Get().m_aimbot.m_flAimScalar);
-
-            SDK::FVector2D vec2Start{}, vec2End{};
-            if (pPlayerController->ProjectWorldLocationToScreen(vecStart, &vec2Start, false) && 
-                pPlayerController->ProjectWorldLocationToScreen(vecTarget, &vec2End, false)){
-                pDrawList->AddLine(ImVec2(vec2Start.X, vec2Start.Y), ImVec2(vec2End.X, vec2End.Y), IM_COL32(255, 0, 0, 255), 2.f);
-            }
-
 
             if (!stSettings.m_bFlags)
                 return;
@@ -622,6 +611,11 @@ namespace ESP
 
         SDK::FVector vecCameraLocation = pPlayerController->PlayerCameraManager->GetCameraLocation();
         std::vector<ActorInfo> vecActors{};
+
+        int32_t iLocalPlayerIndex = std::numeric_limits<int32_t>::lowest();
+        if(pPlayerController && pPlayerController->AcknowledgedPawn)
+            iLocalPlayerIndex = pPlayerController->AcknowledgedPawn->Index;
+        
         vecActors.reserve(actors.Num());
         for (int i = 0; i < actors.Num(); ++i){
             if (!actors.IsValidIndex(i))
@@ -635,52 +629,74 @@ namespace ESP
             if (ShouldSkipActor(pActor, eType))
                 continue;
 
-            float flPriority = 0.f;
+            float flPriority = 1.f;
+            bool bTargetingLocalPlayer = false; // Is local player goal target.
+            bool bTargeting = false; // Is aiming at target.
+            bool bInAction = false;
+            bool bDeathAllowed = true;
+
+            if(pActor->IsA(SDK::ASBZAIBaseCharacter::StaticClass())){
+                auto pGuard = reinterpret_cast<SDK::ASBZAIBaseCharacter*>(pActor);
+
+                bTargetingLocalPlayer = pGuard->CurrentTarget && pGuard->CurrentTarget->Index == iLocalPlayerIndex;
+                bTargeting = pGuard->bIsTargeting;
+
+                auto pController = reinterpret_cast<SDK::ASBZAIController*>(pGuard->Controller);
+                if(pController->IsA(SDK::ASBZAIController::StaticClass())){
+                    // This mf is likely sabotaging something or saving hostages.
+                    bInAction = pController->CurrentActions.Num() > 0;
+                }
+
+                bDeathAllowed = pGuard->bIsDeathAllowed;
+            }
+
             switch(eType){
             case EActorType::Cloaker:
-                flPriority = 20.f;
-                break;
-
-            case EActorType::Grenadier:
-                flPriority = 6.f;
+                flPriority = 11.f;
                 break;
 
             case EActorType::Sniper:
-                flPriority = 5.f;
-                break;
-
             case EActorType::Taser:
-                flPriority = 4.f;
+                if(bTargetingLocalPlayer)
+                    flPriority = (bTargeting) ? 10.f : 5.f;
+                else
+                    flPriority = (bTargeting) ? 5.f : 2.f;
                 break;
 
+            case EActorType::Grenadier:
             case EActorType::Techie:
-                flPriority = 3.f;
+                flPriority = 8.f;
                 break;
 
             case EActorType::Dozer:
-                flPriority = 2.f;
+                if(bInAction)
+                    flPriority = 9.f;
+                else if(bTargetingLocalPlayer)
+                    flPriority = (bTargeting) ? 7.f : 4.f;
+                else
+                    flPriority = (bTargeting) ? 4.f : 2.f;
                 break;
 
             case EActorType::Shield:
-                flPriority = 1.f;
-                break;
-
             case EActorType::Guard:
-                flPriority = 1.f;
+                if(bInAction)
+                    flPriority = 9.f;
+                else if(bTargetingLocalPlayer)
+                    flPriority = (bTargeting) ? 6.f : 3.f;
+                else
+                    flPriority = (bTargeting) ? 3.f : 1.f;
                 break;
 
             default:
                 break;
             }
 
-            float flDistance = (pActor->K2_GetActorLocation() - vecCameraLocation).Magnitude();
-            if(flDistance < 1000.f)
-                flPriority += 10.f;
+            
 
             vecActors.emplace_back(ActorInfo{
                 .m_eType = eType,
-                .m_flDistance = flDistance,
-                .m_flPriority = flPriority,
+                .m_flDistance = (pActor->K2_GetActorLocation() - vecCameraLocation).Magnitude(),
+                .m_flPriority = bDeathAllowed ? flPriority : 0.f,
                 .m_pActor = pActor
             });
         }
@@ -699,7 +715,6 @@ namespace ESP
         SDK::FVector vecLookAheadLocation = vecCameraLocation + (vecForward * 200.f);
 
         static auto nameHead = SDK::UKismetStringLibrary::Conv_StringToName(L"Head");
-        float flAimScalar = CheatConfig::Get().m_aimbot.m_flAimScalar;
 
         float flBestPriority = 0.f;
         std::optional<std::pair<SDK::FVector, SDK::FRotator>> pairBestTarget{};
@@ -725,7 +740,7 @@ namespace ESP
 
             case EActorType::Dozer:
                 vecTarget = pGuard->Mesh->GetSocketLocation(nameHead);
-                vecStart = vecTarget + (SDK::UKismetMathLibrary::GetForwardVector((pGuard->Mesh->GetSocketRotation(nameHead) + SDK::FRotator(0.f, 90.f, 0.f)).Normalize()) * flAimScalar);
+                vecStart = vecTarget + (SDK::UKismetMathLibrary::GetForwardVector((pGuard->Mesh->GetSocketRotation(nameHead) + SDK::FRotator(0.f, 90.f, 0.f)).Normalize()) * 50.f);
                 pairBestTarget = std::make_pair(vecStart, SDK::UKismetMathLibrary::FindLookAtRotation(vecStart, vecTarget));
                 flBestPriority = itr->m_flPriority;
                 

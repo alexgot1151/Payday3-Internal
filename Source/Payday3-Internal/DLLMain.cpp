@@ -280,25 +280,12 @@ void APlayerControllerGetPlayerViewPoint_hk(SDK::APlayerController* _this, SDK::
 		return;
 	}
 
-	if(CheatConfig::Get().m_aimbot.m_bAimTest)
-	{
-		SDK::FRotator rotCurrent = *out_Rotation;
-		SDK::FRotator rotGoal = SDK::FRotator(0.f, 0.f, 0.f);
-		if(CheatConfig::Get().m_aimbot.m_bAimFix)
-			*out_Rotation = (rotGoal - ((rotGoal - rotCurrent).GetNormalized() * CheatConfig::Get().m_aimbot.m_flAimFix)).GetNormalized();
-		else
-			*out_Rotation = rotGoal;
-		return;
-	}
-	
 
 	if(Cheat::g_bIsAimbotTargetAvailible){
 		SDK::FRotator rotCurrent = *out_Rotation;
 		SDK::FRotator rotGoal = Cheat::g_rotAimbotTargetRotation;
-		if(CheatConfig::Get().m_aimbot.m_bAimFix)
-			*out_Rotation = (rotGoal - ((rotGoal - rotCurrent).GetNormalized() * CheatConfig::Get().m_aimbot.m_flAimFix)).GetNormalized();
-		else
-			*out_Rotation = rotGoal;
+		//*out_Rotation = (rotGoal - ((rotGoal - rotCurrent).GetNormalized() * 0.5f)).GetNormalized();
+		*out_Rotation = rotGoal;
 		*out_Location = Cheat::g_vecAimbotTargetLocation;
 	}
 }
