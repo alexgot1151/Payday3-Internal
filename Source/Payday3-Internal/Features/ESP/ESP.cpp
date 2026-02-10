@@ -642,7 +642,7 @@ namespace ESP
                 bTargeting = pGuard->bIsTargeting;
 
                 auto pController = reinterpret_cast<SDK::ASBZAIController*>(pGuard->Controller);
-                if(pController->IsA(SDK::ASBZAIController::StaticClass())){
+                if(pController && pController->IsA(SDK::ASBZAIController::StaticClass())){
                     // This mf is likely sabotaging something or saving hostages.
                     bInAction = pController->CurrentActions.Num() > 0;
                 }

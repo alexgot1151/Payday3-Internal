@@ -260,6 +260,8 @@ ULocalPlayerGetViewPoint_t ULocalPlayerGetViewPoint_o = nullptr;
 void ULocalPlayerGetViewPoint_hk(SDK::ULocalPlayer* _this, SDK::FMinimalViewInfo* OutViewInfo)
 {
 	ULocalPlayerGetViewPoint_o(_this, OutViewInfo);
+	if(!Cheat::g_bIsInGame)
+		return;
 
 	OutViewInfo->Location = g_vecOriginalLocation;
 	OutViewInfo->Rotation = g_rotOriginalRotation;
@@ -270,6 +272,8 @@ APlayerControllerGetPlayerViewPoint_t APlayerControllerGetPlayerViewPoint_o = nu
 void APlayerControllerGetPlayerViewPoint_hk(SDK::APlayerController* _this, SDK::FVector* out_Location, SDK::FRotator* out_Rotation)
 {
 	APlayerControllerGetPlayerViewPoint_o(_this, out_Location, out_Rotation);
+	if(!Cheat::g_bIsInGame)
+		return;
 
 	g_vecOriginalLocation = *out_Location;
 	g_rotOriginalRotation = *out_Rotation;
@@ -343,8 +347,12 @@ void MainLoop()
 		}
 
 		SDK::ASBZPlayerController* pLocalPlayerController = reinterpret_cast<SDK::ASBZPlayerController*>(pLocalPlayerControllerBase);
-		if (!pLocalPlayerController || !pLocalPlayerController->IsA(SDK::ASBZPlayerController::StaticClass()))
+		if (!pLocalPlayerController || !pLocalPlayerController->IsA(SDK::ASBZPlayerController::StaticClass())){
+			Cheat::g_bIsInGame = false;
 			continue;
+		}
+
+		Cheat::g_bIsInGame = true;
 		
 		SDK::ASBZPlayerCharacter* pLocalPlayerPawn = reinterpret_cast<SDK::ASBZPlayerCharacter*>(pLocalPlayerController->AcknowledgedPawn);
 		if (!pLocalPlayerPawn || !pLocalPlayerPawn->IsA(SDK::ASBZPlayerCharacter::StaticClass()))
