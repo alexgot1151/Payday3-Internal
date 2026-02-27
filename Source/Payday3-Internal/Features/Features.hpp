@@ -14,6 +14,7 @@ namespace Cheat {
     inline std::chrono::milliseconds g_durationPing{ 100 };
     inline bool g_bIsSoloGame = false;
     inline bool g_bIsInGame = false;
+    inline bool g_bIsInStealth = false;
     inline int32_t g_iFireAbilityHandle = 0;
     inline int32_t g_iMethLabIndex = -1;
 

@@ -196,6 +196,11 @@ void Cheat::OnPlayerControllerTick(){
     if (!pWorldRuntime)
         return;
 
+    auto pGameState = reinterpret_cast<SDK::APD3HeistGameState*>(pGWorld->GameState);
+    if(pGameState && pGameState->IsA(SDK::APD3HeistGameState::StaticClass())){
+        g_bIsInStealth = pGameState->CurrentHeistState == SDK::EPD3HeistState::Stealth || pGameState->CurrentHeistState == SDK::EPD3HeistState::Search;
+    }
+
     //OverrideMethLabInteractables();
 
     g_bIsSoloGame = SDK::USBZOnlineFunctionLibrary::IsSoloGame(pGWorld);

@@ -338,7 +338,7 @@ void APlayerControllerGetPlayerViewPoint_hk(SDK::APlayerController* _this, SDK::
 	else if(pGoalRet1 != pReturnAddress && pGoalRet2 != pReturnAddress)
 		return;
 	
-	if(!Cheat::g_stTargetInfo || !CheatConfig::Get().m_aimbot.m_bEnabled)
+	if(!Cheat::g_stTargetInfo || !CheatConfig::Get().m_aimbot.m_bEnabled || (Cheat::g_bIsInStealth && CheatConfig::Get().m_aimbot.m_bDisableInStealth))
 		return;
 
 	SDK::FRotator rotCurrent = *out_Rotation;
