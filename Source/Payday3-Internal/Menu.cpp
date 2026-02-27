@@ -32,12 +32,14 @@ void Hotkey(const char* szLabel, Menu::Hotkey_t& bind){
 
     ImGui::TextUnformatted(szLabel);
 
-    ImGui::SameLine();
-    static const char* aTypes[] = { "Off", "On", "Hold", "Hold Off", "Toggle" };
-    int iItem = static_cast<int>(bind.m_eType);
-    ImGui::Combo("", &iItem, aTypes, IM_ARRAYSIZE(aTypes));
-    bind.m_eType = static_cast<Menu::Hotkey_t::EType>(iItem);
-
+    if(!bind.m_bFixedType){
+        ImGui::SameLine();
+        static const char* aTypes[] = { "Off", "On", "Hold", "Hold Off", "Toggle" };
+        int iItem = static_cast<int>(bind.m_eType);
+        ImGui::Combo("", &iItem, aTypes, IM_ARRAYSIZE(aTypes));
+        bind.m_eType = static_cast<Menu::Hotkey_t::EType>(iItem);
+    }
+    
     if(bind.m_eType != Menu::Hotkey_t::EType::AlwaysOff && bind.m_eType != Menu::Hotkey_t::EType::AlwaysOn){
         ImGui::SameLine();
         if(ImGui::GetActiveID() == id){
@@ -150,6 +152,7 @@ void CheatConfig::Visuals_t::Draw(){
 
 void CheatConfig::Misc_t::Draw(){
     Hotkey("Client Move", m_keyClientMove);
+    Hotkey("Client Move Teleport", m_keyClientMoveTeleport);
 
 
     static std::string sRemovalsPreview = CreateMultiSelectPreviewText({
@@ -247,6 +250,7 @@ namespace Menu
     void PreDraw()
     {
         CheatConfig::Get().m_misc.m_keyClientMove.UpdateState();
+        CheatConfig::Get().m_misc.m_keyClientMoveTeleport.UpdateState();
 
         SDK::UWorld* pGWorld = SDK::UWorld::GetWorld();
         if (!pGWorld)

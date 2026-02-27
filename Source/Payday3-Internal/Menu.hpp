@@ -19,7 +19,9 @@ namespace Menu{
         
         ImGuiKey m_eKeyCode = ImGuiKey_None;
         EType m_eType = EType::Hold;
+        bool m_bFixedType = false;
         bool m_bActive = false;
+        bool m_bPressedThisFrame = false;
 
         const char* ToString() const{
             switch(m_eKeyCode){
@@ -183,6 +185,7 @@ namespace Menu{
         };
 
         void UpdateState(){
+            m_bPressedThisFrame = ImGui::IsKeyPressed(m_eKeyCode, false);
             switch(m_eType){
             case EType::AlwaysOff:
                 m_bActive = false;
@@ -197,7 +200,7 @@ namespace Menu{
                 m_bActive = !ImGui::IsKeyDown(m_eKeyCode);
                 break;
             case EType::Toggle:
-                if(ImGui::IsKeyPressed(m_eKeyCode, false))
+                if(m_bPressedThisFrame)
                     m_bActive = !m_bActive;
                 break;
             }
@@ -205,6 +208,10 @@ namespace Menu{
 
         inline bool GetState() const{
             return m_bActive;
+        };
+
+        inline bool Pressed() const{
+            return m_bPressedThisFrame;
         };
 
         bool SetToPressedKey(){
@@ -260,6 +267,7 @@ struct CheatConfig{
 
     struct Misc_t {
         Menu::Hotkey_t m_keyClientMove{ ImGuiKey_MouseX2, Menu::Hotkey_t::EType::Hold };
+        Menu::Hotkey_t m_keyClientMoveTeleport{ ImGuiKey_MouseX1, Menu::Hotkey_t::EType::Hold, true };
         bool m_bNoSpread = true;
         bool m_bNoRecoil = true;
         bool m_bNoCameraShake = true;

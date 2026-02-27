@@ -333,6 +333,15 @@ void Cheat::OnPlayerControllerTick(){
         if (pLocalPlayer->GetActorEnableCollision())
             pLocalPlayer->SetActorEnableCollision(false);
 
+        if(CheatConfig::Get().m_misc.m_keyClientMoveTeleport.Pressed()){
+            SDK::FVector vecPoint = pLocalPlayer->K2_GetActorLocation();
+            SDK::FSBZMinimalAgilityTraversalTrajectory trajectory{
+                vecPoint, vecPoint, vecPoint, vecPoint, 1000, SDK::ESBZAgilityTraversalType::VaultLowFast, false, false
+            };
+
+            pMovementComponent->Server_StartTraversal(trajectory);
+        }
+
         pMovementComponent->MovementMode = SDK::EMovementMode::MOVE_Flying;
         pMovementComponent->BrakingDecelerationFlying = 10000.f;
         pMovementComponent->MaxFlySpeed = 10000.f;
