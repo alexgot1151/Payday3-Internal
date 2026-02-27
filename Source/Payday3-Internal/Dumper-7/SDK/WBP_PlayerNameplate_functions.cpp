@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function WBP_PlayerNameplate.WBP_PlayerNameplate_C.ExecuteUbergraph_WBP_PlayerNameplate
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UWBP_PlayerNameplate_C::ExecuteUbergraph_WBP_PlayerNameplate(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_PlayerNameplate_C", "ExecuteUbergraph_WBP_PlayerNameplate");
-
-	Params::WBP_PlayerNameplate_C_ExecuteUbergraph_WBP_PlayerNameplate Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function WBP_PlayerNameplate.WBP_PlayerNameplate_C.SetDisplayName
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
@@ -115,26 +95,6 @@ void UWBP_PlayerNameplate_C::InitPlayer(const class FText& InDisplayName, const 
 }
 
 
-// Function WBP_PlayerNameplate.WBP_PlayerNameplate_C.BP_SetLobbyInfo
-// (Event, Public, HasOutParams, BlueprintEvent)
-// Parameters:
-// const struct FSBZLobbyCharacterInfoUi&  InLobbyInfo                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
-
-void UWBP_PlayerNameplate_C::BP_SetLobbyInfo(const struct FSBZLobbyCharacterInfoUi& InLobbyInfo)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_PlayerNameplate_C", "BP_SetLobbyInfo");
-
-	Params::WBP_PlayerNameplate_C_BP_SetLobbyInfo Parms{};
-
-	Parms.InLobbyInfo = std::move(InLobbyInfo);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function WBP_PlayerNameplate.WBP_PlayerNameplate_C.BP_SetUserData
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
@@ -190,6 +150,46 @@ void UWBP_PlayerNameplate_C::BP_SetRenownLevel(int32 RenownLevel_0)
 	Params::WBP_PlayerNameplate_C_BP_SetRenownLevel Parms{};
 
 	Parms.RenownLevel_0 = RenownLevel_0;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_PlayerNameplate.WBP_PlayerNameplate_C.ExecuteUbergraph_WBP_PlayerNameplate
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_PlayerNameplate_C::ExecuteUbergraph_WBP_PlayerNameplate(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_PlayerNameplate_C", "ExecuteUbergraph_WBP_PlayerNameplate");
+
+	Params::WBP_PlayerNameplate_C_ExecuteUbergraph_WBP_PlayerNameplate Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_PlayerNameplate.WBP_PlayerNameplate_C.BP_SetLobbyInfo
+// (Event, Public, HasOutParams, BlueprintEvent)
+// Parameters:
+// const struct FSBZLobbyCharacterInfoUi&  InLobbyInfo                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
+
+void UWBP_PlayerNameplate_C::BP_SetLobbyInfo(const struct FSBZLobbyCharacterInfoUi& InLobbyInfo)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_PlayerNameplate_C", "BP_SetLobbyInfo");
+
+	Params::WBP_PlayerNameplate_C_BP_SetLobbyInfo Parms{};
+
+	Parms.InLobbyInfo = std::move(InLobbyInfo);
 
 	UObject::ProcessEvent(Func, &Parms);
 }

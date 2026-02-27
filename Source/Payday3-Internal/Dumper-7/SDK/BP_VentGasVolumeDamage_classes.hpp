@@ -21,10 +21,10 @@ namespace SDK
 class ABP_VentGasVolumeDamage_C final : public ASBZVolumeDamageProp
 {
 public:
-	TSubclassOf<class USBZDamageType> GetVolumeDamageType() const;
-	struct FGameplayTagContainer GetVolumeDamageAddedTagContainer() const;
-	float GetVolumeDamagePerSecond() const;
 	float GetVolumeDamageTickSeconds() const;
+	float GetVolumeDamagePerSecond() const;
+	struct FGameplayTagContainer GetVolumeDamageAddedTagContainer() const;
+	TSubclassOf<class USBZDamageType> GetVolumeDamageType() const;
 
 public:
 	static class UClass* StaticClass()

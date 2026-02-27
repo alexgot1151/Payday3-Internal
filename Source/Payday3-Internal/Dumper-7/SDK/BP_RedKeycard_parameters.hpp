@@ -14,14 +14,14 @@
 namespace SDK::Params
 {
 
-// Function BP_RedKeycard.BP_RedKeycard_C.UserConstructionScript
-// 0x0001 (0x0001 - 0x0000)
-struct BP_RedKeycard_C_UserConstructionScript final
+// Function BP_RedKeycard.BP_RedKeycard_C.GetSensorOutlineComponent
+// 0x0008 (0x0008 - 0x0000)
+struct BP_RedKeycard_C_GetSensorOutlineComponent final
 {
 public:
-	bool                                          CallFunc_IsDedicatedServer_ReturnValue;            // 0x0000(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+	class USBZOutlineComponent*                   ReturnValue;                                       // 0x0000(0x0008)(Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
-DUMPER7_ASSERTS_BP_RedKeycard_C_UserConstructionScript;
+DUMPER7_ASSERTS_BP_RedKeycard_C_GetSensorOutlineComponent;
 
 // Function BP_RedKeycard.BP_RedKeycard_C.GetSensorComponent
 // 0x0008 (0x0008 - 0x0000)
@@ -32,14 +32,14 @@ public:
 };
 DUMPER7_ASSERTS_BP_RedKeycard_C_GetSensorComponent;
 
-// Function BP_RedKeycard.BP_RedKeycard_C.GetSensorOutlineComponent
-// 0x0008 (0x0008 - 0x0000)
-struct BP_RedKeycard_C_GetSensorOutlineComponent final
+// Function BP_RedKeycard.BP_RedKeycard_C.UserConstructionScript
+// 0x0001 (0x0001 - 0x0000)
+struct BP_RedKeycard_C_UserConstructionScript final
 {
 public:
-	class USBZOutlineComponent*                   ReturnValue;                                       // 0x0000(0x0008)(Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          CallFunc_IsDedicatedServer_ReturnValue;            // 0x0000(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
-DUMPER7_ASSERTS_BP_RedKeycard_C_GetSensorOutlineComponent;
+DUMPER7_ASSERTS_BP_RedKeycard_C_UserConstructionScript;
 
 }
 

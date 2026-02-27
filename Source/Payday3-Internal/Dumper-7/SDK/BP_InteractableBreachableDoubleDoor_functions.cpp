@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function BP_InteractableBreachableDoubleDoor.BP_InteractableBreachableDoubleDoor_C.ExecuteUbergraph_BP_InteractableBreachableDoubleDoor
-// (Final, UbergraphFunction)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_InteractableBreachableDoubleDoor_C::ExecuteUbergraph_BP_InteractableBreachableDoubleDoor(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_InteractableBreachableDoubleDoor_C", "ExecuteUbergraph_BP_InteractableBreachableDoubleDoor");
-
-	Params::BP_InteractableBreachableDoubleDoor_C_ExecuteUbergraph_BP_InteractableBreachableDoubleDoor Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function BP_InteractableBreachableDoubleDoor.BP_InteractableBreachableDoubleDoor_C.setBreachedMeshVisibility
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
@@ -52,6 +32,26 @@ void ABP_InteractableBreachableDoubleDoor_C::setBreachedMeshVisibility(bool brea
 	Params::BP_InteractableBreachableDoubleDoor_C_setBreachedMeshVisibility Parms{};
 
 	Parms.breached = breached;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_InteractableBreachableDoubleDoor.BP_InteractableBreachableDoubleDoor_C.ExecuteUbergraph_BP_InteractableBreachableDoubleDoor
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_InteractableBreachableDoubleDoor_C::ExecuteUbergraph_BP_InteractableBreachableDoubleDoor(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_InteractableBreachableDoubleDoor_C", "ExecuteUbergraph_BP_InteractableBreachableDoubleDoor");
+
+	Params::BP_InteractableBreachableDoubleDoor_C_ExecuteUbergraph_BP_InteractableBreachableDoubleDoor Parms{};
+
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

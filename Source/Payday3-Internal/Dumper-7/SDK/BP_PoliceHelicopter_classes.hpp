@@ -33,9 +33,9 @@ public:
 	class USBZVariationSetData*                   VariationData;                                     // 0x06F0(0x0008)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_BP_PoliceHelicopter(int32 EntryPoint);
-	void ReceiveOnDoorStateChanged(ESBZAerialVehicleDoor Door, bool bIsDoorOpen);
 	void OnPawnSpawned(class APD3PawnSpawnGroup* SpawnGroup, class ASBZPawnSpawnBase* Spawner, class APawn* Pawn);
+	void ReceiveOnDoorStateChanged(ESBZAerialVehicleDoor Door, bool bIsDoorOpen);
+	void ExecuteUbergraph_BP_PoliceHelicopter(int32 EntryPoint);
 	void ReceiveBeginPlay();
 
 public:

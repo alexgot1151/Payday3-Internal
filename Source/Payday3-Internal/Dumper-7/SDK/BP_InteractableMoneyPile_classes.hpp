@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "BP_SingleBagGeneratorBase_classes.hpp"
+#include "Engine_structs.hpp"
 
 
 namespace SDK
@@ -19,7 +19,7 @@ namespace SDK
 
 // BlueprintGeneratedClass BP_InteractableMoneyPile.BP_InteractableMoneyPile_C
 // 0x0018 (0x0370 - 0x0358)
-class ABP_InteractableMoneyPile_C : public ABP_SingleBagGeneratorBase_C
+class ABP_InteractableMoneyPile_C final : public ABP_SingleBagGeneratorBase_C
 {
 public:
 	struct FPointerToUberGraphFrame               UberGraphFrame_BP_InteractableMoneyPile_C;         // 0x0358(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
@@ -27,8 +27,8 @@ public:
 	class UStaticMeshComponent*                   StaticMesh;                                        // 0x0368(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_BP_InteractableMoneyPile(int32 EntryPoint);
 	void BP_OnChangedToSecondaryType(bool bDoCosmetics);
+	void ExecuteUbergraph_BP_InteractableMoneyPile(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

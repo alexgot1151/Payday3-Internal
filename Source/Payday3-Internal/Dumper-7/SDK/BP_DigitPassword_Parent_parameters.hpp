@@ -14,6 +14,16 @@
 namespace SDK::Params
 {
 
+// Function BP_DigitPassword_Parent.BP_DigitPassword_Parent_C.BP_SetCode
+// 0x0010 (0x0010 - 0x0000)
+struct BP_DigitPassword_Parent_C_BP_SetCode final
+{
+public:
+	class UWidgetComponent*                       Widget;                                            // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         CodeToShow_0;                                      // 0x0008(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_DigitPassword_Parent_C_BP_SetCode;
+
 // Function BP_DigitPassword_Parent.BP_DigitPassword_Parent_C.ExecuteUbergraph_BP_DigitPassword_Parent
 // 0x0058 (0x0058 - 0x0000)
 struct BP_DigitPassword_Parent_C_ExecuteUbergraph_BP_DigitPassword_Parent final
@@ -38,16 +48,6 @@ public:
 	float                                         CallFunc_Conv_IntToFloat_ReturnValue;              // 0x0054(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_DigitPassword_Parent_C_ExecuteUbergraph_BP_DigitPassword_Parent;
-
-// Function BP_DigitPassword_Parent.BP_DigitPassword_Parent_C.BP_SetCode
-// 0x0010 (0x0010 - 0x0000)
-struct BP_DigitPassword_Parent_C_BP_SetCode final
-{
-public:
-	class UWidgetComponent*                       Widget;                                            // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         CodeToShow_0;                                      // 0x0008(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_DigitPassword_Parent_C_BP_SetCode;
 
 }
 

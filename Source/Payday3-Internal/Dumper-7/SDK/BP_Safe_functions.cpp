@@ -17,23 +17,43 @@
 namespace SDK
 {
 
-// Function BP_Safe.BP_Safe_C.ExecuteUbergraph_BP_Safe
-// (Final, UbergraphFunction, HasDefaults)
+// Function BP_Safe.BP_Safe_C.SpawnItemInContainer
+// (Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class UClass*                           WhatShould_Spawn                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class ABP_RoomSpawnController_C*        RoomControllerRef                                      (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class AActor**                          SpawnedActor                                           (Parm, OutParm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_Safe_C::ExecuteUbergraph_BP_Safe(int32 EntryPoint)
+void ABP_Safe_C::SpawnItemInContainer(class UClass* WhatShould_Spawn, class ABP_RoomSpawnController_C* RoomControllerRef, class AActor** SpawnedActor)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Safe_C", "ExecuteUbergraph_BP_Safe");
+		Func = Class->GetFunction("BP_Safe_C", "SpawnItemInContainer");
 
-	Params::BP_Safe_C_ExecuteUbergraph_BP_Safe Parms{};
+	Params::BP_Safe_C_SpawnItemInContainer Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.WhatShould_Spawn = WhatShould_Spawn;
+	Parms.RoomControllerRef = RoomControllerRef;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (SpawnedActor != nullptr)
+		*SpawnedActor = Parms.SpawnedActor;
+}
+
+
+// Function BP_Safe.BP_Safe_C.OnRep_Open
+// (BlueprintCallable, BlueprintEvent)
+
+void ABP_Safe_C::OnRep_Open()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Safe_C", "OnRep_Open");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 
@@ -59,43 +79,23 @@ void ABP_Safe_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
 }
 
 
-// Function BP_Safe.BP_Safe_C.OnRep_Open
-// (BlueprintCallable, BlueprintEvent)
-
-void ABP_Safe_C::OnRep_Open()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Safe_C", "OnRep_Open");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_Safe.BP_Safe_C.SpawnItemInContainer
-// (Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
+// Function BP_Safe.BP_Safe_C.ExecuteUbergraph_BP_Safe
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// class UClass*                           WhatShould_Spawn                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class ABP_RoomSpawnController_C*        RoomControllerRef                                      (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class AActor**                          SpawnedActor                                           (Parm, OutParm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_Safe_C::SpawnItemInContainer(class UClass* WhatShould_Spawn, class ABP_RoomSpawnController_C* RoomControllerRef, class AActor** SpawnedActor)
+void ABP_Safe_C::ExecuteUbergraph_BP_Safe(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Safe_C", "SpawnItemInContainer");
+		Func = Class->GetFunction("BP_Safe_C", "ExecuteUbergraph_BP_Safe");
 
-	Params::BP_Safe_C_SpawnItemInContainer Parms{};
+	Params::BP_Safe_C_ExecuteUbergraph_BP_Safe Parms{};
 
-	Parms.WhatShould_Spawn = WhatShould_Spawn;
-	Parms.RoomControllerRef = RoomControllerRef;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (SpawnedActor != nullptr)
-		*SpawnedActor = Parms.SpawnedActor;
 }
 
 }

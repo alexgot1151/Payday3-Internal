@@ -11,9 +11,9 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
+#include "AnimGraphRuntime_structs.hpp"
 #include "Starbreeze_structs.hpp"
 #include "Starbreeze_classes.hpp"
-#include "AnimGraphRuntime_structs.hpp"
 
 
 namespace SDK
@@ -37,13 +37,13 @@ public:
 	float                                         Tail_Rotor_Speed;                                  // 0x0E7C(0x0004)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_ABP_Helicopter(int32 EntryPoint);
-	void BlueprintUpdateAnimation(float DeltaTimeX);
-	void EvaluateGraphExposedInputs_ExecuteUbergraph_ABP_Helicopter_AnimGraphNode_ModifyBone_A78D83F4407A86000184928B157B16F6();
-	void EvaluateGraphExposedInputs_ExecuteUbergraph_ABP_Helicopter_AnimGraphNode_ModifyBone_AC792ADB49F5E54BC06324AEBDF31802();
-	void SetDoorState(ESBZAerialVehicleDoor Door, bool bIsOpen);
-	void UpdateRotorYaw(float Current_Yaw, float Speed, float Delta_Time, float* New_Yaw);
 	void AnimGraph(struct FPoseLink* AnimGraph_0);
+	void UpdateRotorYaw(float Current_Yaw, float Speed, float Delta_Time, float* New_Yaw);
+	void SetDoorState(ESBZAerialVehicleDoor Door, bool bIsOpen);
+	void EvaluateGraphExposedInputs_ExecuteUbergraph_ABP_Helicopter_AnimGraphNode_ModifyBone_AC792ADB49F5E54BC06324AEBDF31802();
+	void EvaluateGraphExposedInputs_ExecuteUbergraph_ABP_Helicopter_AnimGraphNode_ModifyBone_A78D83F4407A86000184928B157B16F6();
+	void BlueprintUpdateAnimation(float DeltaTimeX);
+	void ExecuteUbergraph_ABP_Helicopter(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

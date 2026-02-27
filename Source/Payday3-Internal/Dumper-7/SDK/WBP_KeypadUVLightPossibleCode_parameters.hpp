@@ -14,6 +14,17 @@
 namespace SDK::Params
 {
 
+// Function WBP_KeypadUVLightPossibleCode.WBP_KeypadUVLightPossibleCode_C.SetText
+// 0x0020 (0x0020 - 0x0000)
+struct WBP_KeypadUVLightPossibleCode_C_SetText final
+{
+public:
+	int32                                         Value;                                             // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_4[0x4];                                        // 0x0004(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
+	class FText                                   CallFunc_Conv_IntToText_ReturnValue;               // 0x0008(0x0018)()
+};
+DUMPER7_ASSERTS_WBP_KeypadUVLightPossibleCode_C_SetText;
+
 // Function WBP_KeypadUVLightPossibleCode.WBP_KeypadUVLightPossibleCode_C.SetKeypad
 // 0x0018 (0x0018 - 0x0000)
 struct WBP_KeypadUVLightPossibleCode_C_SetKeypad final
@@ -29,17 +40,6 @@ public:
 	int32                                         K2Node_Select_Default;                             // 0x0014(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_WBP_KeypadUVLightPossibleCode_C_SetKeypad;
-
-// Function WBP_KeypadUVLightPossibleCode.WBP_KeypadUVLightPossibleCode_C.SetText
-// 0x0020 (0x0020 - 0x0000)
-struct WBP_KeypadUVLightPossibleCode_C_SetText final
-{
-public:
-	int32                                         Value;                                             // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_4[0x4];                                        // 0x0004(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
-	class FText                                   CallFunc_Conv_IntToText_ReturnValue;               // 0x0008(0x0018)()
-};
-DUMPER7_ASSERTS_WBP_KeypadUVLightPossibleCode_C_SetText;
 
 }
 

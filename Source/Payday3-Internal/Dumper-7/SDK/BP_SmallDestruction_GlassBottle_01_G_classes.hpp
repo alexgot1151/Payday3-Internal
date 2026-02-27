@@ -11,8 +11,8 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
-#include "Starbreeze_structs.hpp"
 #include "SBZSmallCosmeticDestruction_fading_classes.hpp"
+#include "Starbreeze_structs.hpp"
 
 
 namespace SDK
@@ -20,15 +20,15 @@ namespace SDK
 
 // BlueprintGeneratedClass BP_SmallDestruction_GlassBottle_01_G.BP_SmallDestruction_GlassBottle_01_G_C
 // 0x0010 (0x02F0 - 0x02E0)
-class ABP_SmallDestruction_GlassBottle_01_G_C : public ASBZSmallCosmeticDestruction_fading_C
+class ABP_SmallDestruction_GlassBottle_01_G_C final : public ASBZSmallCosmeticDestruction_fading_C
 {
 public:
 	struct FPointerToUberGraphFrame               UberGraphFrame_BP_SmallDestruction_GlassBottle_01_G_C; // 0x02E0(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
 	class USBZCosmeticDestructionComponent*       SBZCosmeticDestruction;                            // 0x02E8(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_BP_SmallDestruction_GlassBottle_01_G(int32 EntryPoint);
 	void BndEvt__BP_GlassBottle_SmallCosmeticDestruction_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature(ESBZCosmeticDestructionType Type, const struct FSBZCosmeticDestructionContext& HitContext);
+	void ExecuteUbergraph_BP_SmallDestruction_GlassBottle_01_G(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

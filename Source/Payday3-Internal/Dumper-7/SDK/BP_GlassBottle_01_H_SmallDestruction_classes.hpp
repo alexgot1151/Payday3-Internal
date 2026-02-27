@@ -11,8 +11,8 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
-#include "Starbreeze_structs.hpp"
 #include "SBZSmallCosmeticDestruction_fading_classes.hpp"
+#include "Starbreeze_structs.hpp"
 
 
 namespace SDK
@@ -27,8 +27,8 @@ public:
 	class USBZCosmeticDestructionComponent*       SBZCosmeticDestruction;                            // 0x02E8(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_BP_GlassBottle_01_H_SmallDestruction(int32 EntryPoint);
 	void BndEvt__BP_SmallDestruction_GlassBottle_01_H_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature(ESBZCosmeticDestructionType Type, const struct FSBZCosmeticDestructionContext& HitContext);
+	void ExecuteUbergraph_BP_GlassBottle_01_H_SmallDestruction(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

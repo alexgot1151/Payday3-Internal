@@ -13,6 +13,7 @@
 #include <mutex>
 #include "Utils/Logging.hpp"
 #include "../Menu.hpp"
+#include "../Features/Aimbot.hpp"
 
 #pragma comment(lib, "d3d12.lib")
 #pragma comment(lib, "dxgi.lib")
@@ -268,6 +269,8 @@ namespace Dx12Hook
 	if (g_bShuttingDown)
 		return oPresent(pSwapChain, SyncInterval, Flags);
 
+	Cheat::AimbotOnFrameBegin();
+	
 	// Start new frame
 	ImGui_ImplDX12_NewFrame();
 	ImGui_ImplWin32_NewFrame();

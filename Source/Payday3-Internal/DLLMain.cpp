@@ -17,6 +17,9 @@
 #include "Menu.hpp"
 #include "Dumper-7/SDK.hpp"
 #include "Features/Features.hpp"
+#include <intrin.h>
+
+#pragma intrinsic(_ReturnAddress)
 
 #undef min
 #undef max
@@ -88,6 +91,7 @@ bool Init()
 
 #include "Dumper-7/SDK/Engine_parameters.hpp"
 #include "Dumper-7/SDK/Starbreeze_parameters.hpp"
+#include "Dumper-7/SDK/GameplayAbilities_parameters.hpp"
 
 SDK::ASBZPlayerCharacter* GetLocalPlayer()
 {
@@ -114,53 +118,61 @@ SDK::ASBZPlayerCharacter* GetLocalPlayer()
 	return pLocalPlayerPawn;
 }
 
+inline void RecordProcessEventCall(const SDK::UObject* pObject, class SDK::UFunction* pFunction, void* pParams){
+	auto sClassName = pObject->Class->Name.GetRawString();
+	auto sFnName = pFunction->GetName();
+	size_t iNameHash = std::hash<std::string>{}(sClassName);
+	size_t iFuncHash = std::hash<std::string>{}(sFnName);
+
+	if (auto itrEntry = Menu::g_mapCallTraces.find(iNameHash); itrEntry != Menu::g_mapCallTraces.end())
+		itrEntry->second.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
+	else {
+		Menu::CallTraceEntry_t entry{
+			.m_sClassName = sClassName
+		};
+
+		entry.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
+
+		auto pStruct = static_cast<const SDK::UStruct*>(pObject->Class);
+		for (pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct); pStruct != nullptr; pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct))
+			entry.m_vecSubClasses.push_back(pStruct->Name.GetRawString());
+		
+		Menu::g_mapCallTraces.try_emplace(iNameHash, std::move(entry));
+	}
+}
+
+bool g_bAttemptedToShoot = false;
+
 using UObjectProcessEvent_t = void(*)(const SDK::UObject*, class SDK::UFunction*, void*);
 UObjectProcessEvent_t UObjectProcessEvent_o = nullptr;
 void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* pFunction, void* pParams)
 {
-	if(pObject->IsA(SDK::UKismetStringLibrary::StaticClass()))
-	{
+	if(pObject->IsA(SDK::UKismetStringLibrary::StaticClass())){
 		UObjectProcessEvent_o(pObject, pFunction, pParams);
 		return;
 	}
 
-	std::string sClassName = pObject->GetName();
-	std::string sFnName = pFunction->GetName();
+	if(Menu::g_eCallTraceArea == Menu::ECallTraceArea::UObject)
+		RecordProcessEventCall(pObject, pFunction, pParams);
 
-	if(Menu::g_eCallTraceArea == Menu::ECallTraceArea::UObject){
-		size_t iNameHash = std::hash<std::string>{}(pObject->Class->Name.GetRawString());
-		size_t iFuncHash = std::hash<std::string>{}(pFunction->GetName());
-
-		if (auto itrEntry = Menu::g_mapCallTraces.find(iNameHash); itrEntry != Menu::g_mapCallTraces.end()) {
-			if (!itrEntry->second.m_mapCalledFunctions.contains(iFuncHash))
-				itrEntry->second.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
-		}
-		else {
-			Menu::CallTraceEntry_t entry{
-				.m_sClassName = pObject->Class->Name.GetRawString(),
-			};
-
-			entry.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
-
-			auto pStruct = static_cast<const SDK::UStruct*>(pObject->Class);
-			for (pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct); pStruct != nullptr; pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct))
-				entry.m_vecSubClasses.push_back(pStruct->Name.GetRawString());
-			
-			Menu::g_mapCallTraces.try_emplace(iNameHash, std::move(entry));
-		}
-	}
-
-	static auto nameBlueprintUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"BlueprintUpdateCamera");
-	static auto nameServerUpdateCamera = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerUpdateCamera");
-	
 	static auto nameServerMovePacked = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerMovePacked");
 	static auto nameGA_Fire_C = SDK::UKismetStringLibrary::Conv_StringToName(L"GA_Fire_C");
 	static auto nameK2_CommitExecute = SDK::UKismetStringLibrary::Conv_StringToName(L"K2_CommitExecute");
 
-	if (sFnName.contains("ClientPlayForceFeedback_Internal")) {
+	static auto nameClientPlayForceFeedback_Internal = SDK::UKismetStringLibrary::Conv_StringToName(L"ClientPlayForceFeedback_Internal");
+	if (pFunction->Name == nameClientPlayForceFeedback_Internal)
+		return;
+
+	static auto nameServerTryActivateAbility = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerTryActivateAbility");
+	if(pFunction->Name == nameServerTryActivateAbility){
+		UObjectProcessEvent_o(pObject, pFunction, pParams);
+		auto& params = *reinterpret_cast<SDK::Params::AbilitySystemComponent_ServerTryActivateAbility*>(pParams);	
 		return;
 	}
 
+	if(pObject->IsA(SDK::ASBZCookingStation::StaticClass()))
+		Cheat::g_iMethLabIndex = pObject->Index;
+	
 	if(pObject->IsA(SDK::ASBZKeypadBase::StaticClass()))
 	{
 		auto pKeypad = reinterpret_cast<SDK::ASBZKeypadBase*>(const_cast<SDK::UObject*>(pObject));
@@ -172,7 +184,7 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 			iActiveKey = pKeypad->Code / 1000;
 			break;
 
-		case(1):
+		case(1):	
 			iActiveKey = (pKeypad->Code / 100) % 10;
 			break;
 			
@@ -205,10 +217,24 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()) || pObject->IsA(SDK::APlayerController::StaticClass()) || pObject->IsA(SDK::APlayerCameraManager::StaticClass()) || pObject->IsA(SDK::UCharacterMovementComponent::StaticClass()))
 	{
 		if(pFunction->Name == nameServerMovePacked){
-			if(!CheatConfig::Get().m_misc.m_bClientMove) 
+			if(!CheatConfig::Get().m_misc.m_keyClientMove.GetState()) 
 				UObjectProcessEvent_o(pObject, pFunction, pParams);
 
 			return;
+		}
+	}
+
+	static auto nameOnActionPressed = SDK::UKismetStringLibrary::Conv_StringToName(L"OnActionPressed");
+	static auto nameOnActionReleased = SDK::UKismetStringLibrary::Conv_StringToName(L"OnActionReleased");
+	if(pObject->IsA(SDK::USBZActionInputWidget::StaticClass())){
+		static auto nameMaskOn = SDK::UKismetStringLibrary::Conv_StringToName(L"MaskOn");
+		auto pWidget = reinterpret_cast<const SDK::USBZActionInputWidget*>(pObject);
+		if(pFunction->Name == nameOnActionPressed && pWidget->ActionName == nameMaskOn){
+			//std::cout << "ActionPressed: " << pWidget->ActionName.ToString() << '\n';
+			g_bAttemptedToShoot = true;
+		}
+		else if(pFunction->Name == nameOnActionReleased){
+			//std::cout << "ActionReleased: " << pWidget->ActionName.ToString() << '\n';
 		}
 	}
 
@@ -218,42 +244,18 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 UObjectProcessEvent_t UObjectProcessEventPlayer_o = nullptr;
 void UObjectProcessEventPlayer_hk(const SDK::UObject* pObject, class SDK::UFunction* pFunction, void* pParams)
 {
-	std::string sClassName = pObject->GetName();
-	std::string sFnName = pFunction->GetName();
-
-	if(Menu::g_eCallTraceArea == Menu::ECallTraceArea::PlayerController){
-		size_t iNameHash = std::hash<std::string>{}(pObject->Class->Name.GetRawString());
-		size_t iFuncHash = std::hash<std::string>{}(pFunction->GetName());
-
-		if (auto itrEntry = Menu::g_mapCallTraces.find(iNameHash); itrEntry != Menu::g_mapCallTraces.end()) {
-			if (!itrEntry->second.m_mapCalledFunctions.contains(iFuncHash))
-				itrEntry->second.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
-		}
-		else {
-			Menu::CallTraceEntry_t entry{
-				.m_sClassName = pObject->Class->Name.GetRawString(),
-			};
-
-			entry.m_mapCalledFunctions.try_emplace(iFuncHash, sFnName);
-
-			auto pStruct = static_cast<const SDK::UStruct*>(pObject->Class);
-			for (pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct); pStruct != nullptr; pStruct = static_cast<const SDK::UStruct*>(pStruct->SuperStruct))
-				entry.m_vecSubClasses.push_back(pStruct->Name.GetRawString());
-			
-			Menu::g_mapCallTraces.try_emplace(iNameHash, std::move(entry));
-		}
-	}
+	if(Menu::g_eCallTraceArea == Menu::ECallTraceArea::PlayerController)
+		RecordProcessEventCall(pObject, pFunction, pParams);
 
 	static auto nameReceiveTick = SDK::UKismetStringLibrary::Conv_StringToName(L"ReceiveTick");
 	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()) && pFunction->Name == nameReceiveTick)
 		Cheat::OnPlayerControllerTick();
-
+		
 	UObjectProcessEventPlayer_o(pObject, pFunction, pParams);
 }
 
 static SDK::FVector g_vecOriginalLocation{};
 static SDK::FRotator g_rotOriginalRotation{};
-static SDK::FRotator g_rotSilentAimRotation{};
 
 using ULocalPlayerGetViewPoint_t = void(*)(SDK::ULocalPlayer*, SDK::FMinimalViewInfo*);
 ULocalPlayerGetViewPoint_t ULocalPlayerGetViewPoint_o = nullptr;
@@ -271,27 +273,88 @@ using APlayerControllerGetPlayerViewPoint_t = void(*)(SDK::APlayerController*, S
 APlayerControllerGetPlayerViewPoint_t APlayerControllerGetPlayerViewPoint_o = nullptr;
 void APlayerControllerGetPlayerViewPoint_hk(SDK::APlayerController* _this, SDK::FVector* out_Location, SDK::FRotator* out_Rotation)
 {
+	static std::vector<std::pair<uintptr_t, uint64_t>> vecHackyShitVector{};
+	static uintptr_t pGoalRet1 = 0;
+	static uintptr_t pGoalRet2 = 0;
 	APlayerControllerGetPlayerViewPoint_o(_this, out_Location, out_Rotation);
-	if(!Cheat::g_bIsInGame)
+	if(!Cheat::g_bIsInGame){
+		vecHackyShitVector.clear();
 		return;
-
+	}
+		
 	g_vecOriginalLocation = *out_Location;
 	g_rotOriginalRotation = *out_Rotation;
 
-	if(!CheatConfig::Get().m_aimbot.m_bSilentAim)
-	{
-		g_rotSilentAimRotation = *out_Rotation;		
+	auto pReturnAddress = reinterpret_cast<uintptr_t>(_ReturnAddress());
+	if(!pGoalRet1 || !pGoalRet2){
+		bool bFound = false;
+		for(size_t i = 0; i < vecHackyShitVector.size(); ++i){
+			if(vecHackyShitVector[i].first == pReturnAddress){
+				vecHackyShitVector[i].second++;
+				bFound = true;
+				break;
+			}
+		}
+
+		if(!bFound)
+			vecHackyShitVector.emplace_back(std::pair<uintptr_t, uint64_t>{ pReturnAddress, 1 });
+
+		if(g_bAttemptedToShoot){
+			if(vecHackyShitVector.size() > 5){
+				std::pair<uintptr_t, uint64_t> pairs[3]{};
+
+				for(size_t i = 0; i < vecHackyShitVector.size(); ++i){
+					if(vecHackyShitVector[i].second < pairs[0].second || !pairs[0].first){
+						pairs[2] = pairs[1];
+						pairs[1] = pairs[0];
+						pairs[0] = vecHackyShitVector[i];
+						continue;
+					}
+
+					if(vecHackyShitVector[i].second < pairs[1].second || !pairs[1].first){
+						pairs[2] = pairs[1];
+						pairs[1] = vecHackyShitVector[i];
+						continue;
+					}
+
+					if(vecHackyShitVector[i].second < pairs[2].second || !pairs[2].first){
+						pairs[2] = vecHackyShitVector[i];
+						continue;
+					}
+				}
+
+				if(pairs[2].second > 6000 && pairs[1].second - pairs[0].second < pairs[2].second - pairs[1].second){
+					pGoalRet1 = pairs[0].first;
+					pGoalRet2 = pairs[1].first;
+					vecHackyShitVector.clear();
+
+					std::cout << "pAimbotFixup\n";
+				}
+			}
+		}
+
+		g_bAttemptedToShoot = false;
+	}
+	else if(pGoalRet1 != pReturnAddress && pGoalRet2 != pReturnAddress)
 		return;
-	}
+	
+	if(!Cheat::g_stTargetInfo || !CheatConfig::Get().m_aimbot.m_bEnabled)
+		return;
 
+	SDK::FRotator rotCurrent = *out_Rotation;
+	SDK::FRotator rotGoal = Cheat::g_stTargetInfo->m_rotAimRotation;
+	//*out_Rotation = (rotGoal - ((rotGoal - rotCurrent).GetNormalized() * 0.5f)).GetNormalized();
+	*out_Rotation = rotGoal;
+	*out_Location = Cheat::g_stTargetInfo->m_vecAimPosition;
+}
 
-	if(Cheat::g_bIsAimbotTargetAvailible){
-		SDK::FRotator rotCurrent = *out_Rotation;
-		SDK::FRotator rotGoal = Cheat::g_rotAimbotTargetRotation;
-		//*out_Rotation = (rotGoal - ((rotGoal - rotCurrent).GetNormalized() * 0.5f)).GetNormalized();
-		*out_Rotation = rotGoal;
-		*out_Location = Cheat::g_vecAimbotTargetLocation;
-	}
+inline void HookFunction(const std::string& sName, void* pFunction, void* pDetour, void** ppOriginal, std::source_location loc = std::source_location::current()){
+	auto eStatus = MH_CreateHook(pFunction, pDetour, ppOriginal);
+	Utils::LogHook(sName, eStatus, loc);
+	if(eStatus != MH_OK)
+		return;
+
+	Utils::LogHook(sName, MH_EnableHook(pFunction), loc);
 }
 
 void MainLoop()
@@ -307,11 +370,7 @@ void MainLoop()
 			continue;
 
 		if (!UObjectProcessEvent_o)
-		{
-			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<UObjectProcessEvent_t>(pGWorld, SDK::Offsets::ProcessEventIdx)); 
-			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&UObjectProcessEvent_hk), reinterpret_cast<void**>(&UObjectProcessEvent_o)) == MH_OK)
-				Utils::LogHook("UObjectProcessEvent", MH_EnableHook(pFn));
-		}
+			HookFunction("UObjectProcessEvent", SDK::InSDKUtils::GetVirtualFunction<void*>(pGWorld, SDK::Offsets::ProcessEventIdx), reinterpret_cast<void*>(&UObjectProcessEvent_hk), reinterpret_cast<void**>(&UObjectProcessEvent_o));
 
 		SDK::UGameInstance* pGameInstance = pGWorld->OwningGameInstance;
 		if (!pGameInstance)
@@ -322,30 +381,18 @@ void MainLoop()
 			continue;
 
 		if (!ULocalPlayerGetViewPoint_o)
-		{
-			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<ULocalPlayerGetViewPoint_t>(pLocalPlayer, 0x50));
-			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&ULocalPlayerGetViewPoint_hk), reinterpret_cast<void**>(&ULocalPlayerGetViewPoint_o)) == MH_OK)
-				Utils::LogHook("ULocalPlayerGetViewPoint", MH_EnableHook(pFn));
-		}
+			HookFunction("ULocalPlayerGetViewPoint", SDK::InSDKUtils::GetVirtualFunction<void*>(pLocalPlayer, 0x50), reinterpret_cast<void*>(&ULocalPlayerGetViewPoint_hk), reinterpret_cast<void**>(&ULocalPlayerGetViewPoint_o));
 	
 		SDK::APlayerController* pLocalPlayerControllerBase = pLocalPlayer->PlayerController;
 		if (!pLocalPlayerControllerBase)
 			continue;
 
 		if (!APlayerControllerGetPlayerViewPoint_o)
-		{
-			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<APlayerControllerGetPlayerViewPoint_t>(pLocalPlayerControllerBase, 0xED));
-			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&APlayerControllerGetPlayerViewPoint_hk), reinterpret_cast<void**>(&APlayerControllerGetPlayerViewPoint_o)) == MH_OK)
-				Utils::LogHook("APlayerControllerGetPlayerViewPoint", MH_EnableHook(pFn));
-		}
+			HookFunction("APlayerControllerGetPlayerViewPoint", SDK::InSDKUtils::GetVirtualFunction<void*>(pLocalPlayerControllerBase, 0xED), reinterpret_cast<void*>(&APlayerControllerGetPlayerViewPoint_hk), reinterpret_cast<void**>(&APlayerControllerGetPlayerViewPoint_o));
 
 		if(!UObjectProcessEventPlayer_o)
-		{
-			auto pFn = reinterpret_cast<void*>(SDK::InSDKUtils::GetVirtualFunction<UObjectProcessEvent_t>(pLocalPlayerControllerBase, SDK::Offsets::ProcessEventIdx)); 
-			if (MH_CreateHook(pFn, reinterpret_cast<void*>(&UObjectProcessEventPlayer_hk), reinterpret_cast<void**>(&UObjectProcessEventPlayer_o)) == MH_OK)
-				Utils::LogHook("UObjectProcessEventPlayer", MH_EnableHook(pFn));
-		}
-
+			HookFunction("UObjectProcessEventPlayer", SDK::InSDKUtils::GetVirtualFunction<void*>(pLocalPlayerControllerBase, SDK::Offsets::ProcessEventIdx), reinterpret_cast<void*>(&UObjectProcessEventPlayer_hk), reinterpret_cast<void**>(&UObjectProcessEventPlayer_o));
+		
 		SDK::ASBZPlayerController* pLocalPlayerController = reinterpret_cast<SDK::ASBZPlayerController*>(pLocalPlayerControllerBase);
 		if (!pLocalPlayerController || !pLocalPlayerController->IsA(SDK::ASBZPlayerController::StaticClass())){
 			Cheat::g_bIsInGame = false;
@@ -362,38 +409,40 @@ void MainLoop()
 		if (!pMovementComponent)
 			continue;
 
-		if(SDK::USBZOnlineFunctionLibrary::IsSoloGame(pGWorld) && 0)
-		{
-
-			if(pLocalPlayerPawn->FPCameraAttachment){
-				auto pCameraComponent = pLocalPlayerPawn->FPCameraAttachment;
-				if(pCameraComponent->EquippedWeaponData && pCameraComponent->EquippedWeaponData->IsA(SDK::USBZRangedWeaponData::StaticClass())){
-					auto pRangedWeaponData = reinterpret_cast<SDK::USBZRangedWeaponData*>(pCameraComponent->EquippedWeaponData);
-					if(pRangedWeaponData->FireData && pRangedWeaponData->FireData->IsA(SDK::USBZPlayerWeaponFireData::StaticClass())){
-						auto pFireData = reinterpret_cast<SDK::USBZPlayerWeaponFireData*>(pRangedWeaponData->FireData);
-						pFireData->AmmoLoadedMax = pFireData->AmmoPerReload = 999.f;
-						pFireData->AmmoInventoryMax = 99999.f;
-					}
-				}
-
-				if(pCameraComponent->EquippedWeapon && pCameraComponent->EquippedWeapon->IsA(SDK::ASBZWeapon::StaticClass())){
-					auto pWeapon = pCameraComponent->EquippedWeapon;
-					//pWeapon->bIsReloading = false;
-				}
-			}
-
-			if(pLocalPlayerPawn->SBZPlayerState){
-				auto pPlayerState = pLocalPlayerPawn->SBZPlayerState;
-				pPlayerState->ReloadEndTime = 0.f;
-			}
+		auto* pAbilitySystem = pLocalPlayerPawn->PlayerAbilitySystem;
+		if (pAbilitySystem){
 
 		}
 
-		//bool LineOfSightTo(const class AActor* Other, const struct FVector& ViewPoint, bool bAlternateChecks) const;
-		
+
+		/** 
+		if(pLocalPlayerPawn->FPCameraAttachment){
+			auto pCameraComponent = pLocalPlayerPawn->FPCameraAttachment;
+			if(pCameraComponent->EquippedWeaponData && pCameraComponent->EquippedWeaponData->IsA(SDK::USBZRangedWeaponData::StaticClass())){
+				
+				auto pRangedWeaponData = reinterpret_cast<SDK::USBZRangedWeaponData*>(pCameraComponent->EquippedWeaponData);
+				if(pRangedWeaponData->FireData && pRangedWeaponData->FireData->IsA(SDK::USBZPlayerWeaponFireData::StaticClass())){
+					auto pFireData = reinterpret_cast<SDK::USBZPlayerWeaponFireData*>(pRangedWeaponData->FireData);
+					
+					//pFireData->AmmoLoadedMax = pFireData->AmmoPerReload = 999.f;
+					//pFireData->AmmoInventoryMax = 99999.f;
+				}
+			}
+
+			if(pCameraComponent->EquippedWeapon && pCameraComponent->EquippedWeapon->IsA(SDK::ASBZWeapon::StaticClass())){
+				auto pWeapon = pCameraComponent->EquippedWeapon;
+				//pWeapon->bIsReloading = false;
+			}
+		}
+
+		if(pLocalPlayerPawn->SBZPlayerState){
+			auto pPlayerState = pLocalPlayerPawn->SBZPlayerState;
+			//pPlayerState->ReloadEndTime = 0.f;
+		}
+		*/
+
 		pLocalPlayerPawn->CarryTiltDegrees = 0.0f;
 		pLocalPlayerPawn->CarryTiltSpeed = 10000.0f;
-		//pLocalPlayerPawn->CarryAdditionalTiltDegrees = 0.0f;
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}

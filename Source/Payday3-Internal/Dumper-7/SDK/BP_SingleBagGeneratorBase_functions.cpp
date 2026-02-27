@@ -17,41 +17,21 @@
 namespace SDK
 {
 
-// Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.ExecuteUbergraph_BP_SingleBagGeneratorBase
-// (Final, UbergraphFunction, HasDefaults)
+// Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.setBinaryState
+// (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    state                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_SingleBagGeneratorBase_C::ExecuteUbergraph_BP_SingleBagGeneratorBase(int32 EntryPoint)
+void ABP_SingleBagGeneratorBase_C::setBinaryState(bool state)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_SingleBagGeneratorBase_C", "ExecuteUbergraph_BP_SingleBagGeneratorBase");
+		Func = Class->GetFunction("BP_SingleBagGeneratorBase_C", "setBinaryState");
 
-	Params::BP_SingleBagGeneratorBase_C_ExecuteUbergraph_BP_SingleBagGeneratorBase Parms{};
+	Params::BP_SingleBagGeneratorBase_C_setBinaryState Parms{};
 
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.ReceiveEndPlay
-// (Event, Protected, BlueprintEvent)
-// Parameters:
-// EEndPlayReason                          EndPlayReason                                          (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_SingleBagGeneratorBase_C::ReceiveEndPlay(EEndPlayReason EndPlayReason)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_SingleBagGeneratorBase_C", "ReceiveEndPlay");
-
-	Params::BP_SingleBagGeneratorBase_C_ReceiveEndPlay Parms{};
-
-	Parms.EndPlayReason = EndPlayReason;
+	Parms.state = state;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -81,21 +61,41 @@ void ABP_SingleBagGeneratorBase_C::BndEvt__BP_SingleBagGeneratorBase_Interactabl
 }
 
 
-// Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.setBinaryState
-// (Public, BlueprintCallable, BlueprintEvent)
+// Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.ReceiveEndPlay
+// (Event, Protected, BlueprintEvent)
 // Parameters:
-// bool                                    state                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// EEndPlayReason                          EndPlayReason                                          (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_SingleBagGeneratorBase_C::setBinaryState(bool state)
+void ABP_SingleBagGeneratorBase_C::ReceiveEndPlay(EEndPlayReason EndPlayReason)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_SingleBagGeneratorBase_C", "setBinaryState");
+		Func = Class->GetFunction("BP_SingleBagGeneratorBase_C", "ReceiveEndPlay");
 
-	Params::BP_SingleBagGeneratorBase_C_setBinaryState Parms{};
+	Params::BP_SingleBagGeneratorBase_C_ReceiveEndPlay Parms{};
 
-	Parms.state = state;
+	Parms.EndPlayReason = EndPlayReason;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.ExecuteUbergraph_BP_SingleBagGeneratorBase
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_SingleBagGeneratorBase_C::ExecuteUbergraph_BP_SingleBagGeneratorBase(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_SingleBagGeneratorBase_C", "ExecuteUbergraph_BP_SingleBagGeneratorBase");
+
+	Params::BP_SingleBagGeneratorBase_C_ExecuteUbergraph_BP_SingleBagGeneratorBase Parms{};
+
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

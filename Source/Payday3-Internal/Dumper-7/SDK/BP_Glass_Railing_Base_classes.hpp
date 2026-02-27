@@ -29,8 +29,8 @@ public:
 	int32                                         ParticleCount;                                     // 0x0328(0x0004)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_BP_Glass_Railing_Base(int32 EntryPoint);
 	void BndEvt__NewBlueprint_PropDamage_K2Node_ComponentBoundEvent_0_SBZPropDamageHitsSignature__DelegateSignature(class UActorComponent* PoolComponent, int32 Hits, bool bDoCosmetics, const struct FSBZPropDamageContext& DamageContext);
+	void ExecuteUbergraph_BP_Glass_Railing_Base(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

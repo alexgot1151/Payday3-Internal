@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function BP_VentReactor.BP_VentReactor_C.ExecuteUbergraph_BP_VentReactor
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_VentReactor_C::ExecuteUbergraph_BP_VentReactor(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_VentReactor_C", "ExecuteUbergraph_BP_VentReactor");
-
-	Params::BP_VentReactor_C_ExecuteUbergraph_BP_VentReactor Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function BP_VentReactor.BP_VentReactor_C.OnStateChanged
 // (Event, Protected, BlueprintEvent)
 // Parameters:
@@ -54,6 +34,26 @@ void ABP_VentReactor_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
 
 	Parms.bStateToChangeTo = bStateToChangeTo;
 	Parms.bDoCosmetics = bDoCosmetics;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_VentReactor.BP_VentReactor_C.ExecuteUbergraph_BP_VentReactor
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_VentReactor_C::ExecuteUbergraph_BP_VentReactor(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_VentReactor_C", "ExecuteUbergraph_BP_VentReactor");
+
+	Params::BP_VentReactor_C_ExecuteUbergraph_BP_VentReactor Parms{};
+
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

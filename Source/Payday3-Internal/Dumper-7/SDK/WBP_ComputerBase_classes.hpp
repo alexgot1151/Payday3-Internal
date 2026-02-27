@@ -25,24 +25,24 @@ public:
 	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x0290(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
 
 public:
-	void ExecuteUbergraph_WBP_ComputerBase(int32 EntryPoint);
-	void updateInformation(const class FText& main, const class FText& secondary, const class FText& additional);
-	void updateKeypadPossibleCodes(const TArray<int32>& codes);
-	void updateHackingProgress(int32 progress);
-	void updateHackingTimerProcessName(const class FText& InText);
-	void UpdateSuccessText(const class FText& InText);
-	void UpdateEmailDisplayText(const struct FSBZHackableDisplayText& DisplayText);
-	void UpdateUnlockDisplayText(const struct FSBZHackableDisplayText& NewDisplayText);
-	void Unlocked();
-	void Email();
-	void NotActive();
-	void Failed();
-	void Progressing();
-	void Names();
-	void Code();
-	void Active();
-	void Done();
 	void Interupted();
+	void Done();
+	void Active();
+	void Code();
+	void Names();
+	void Progressing();
+	void Failed();
+	void NotActive();
+	void Email();
+	void Unlocked();
+	void UpdateUnlockDisplayText(const struct FSBZHackableDisplayText& NewDisplayText);
+	void UpdateEmailDisplayText(const struct FSBZHackableDisplayText& DisplayText);
+	void UpdateSuccessText(const class FText& InText);
+	void updateHackingTimerProcessName(const class FText& InText);
+	void updateHackingProgress(int32 progress);
+	void updateKeypadPossibleCodes(const TArray<int32>& codes);
+	void updateInformation(const class FText& main, const class FText& secondary, const class FText& additional);
+	void ExecuteUbergraph_WBP_ComputerBase(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

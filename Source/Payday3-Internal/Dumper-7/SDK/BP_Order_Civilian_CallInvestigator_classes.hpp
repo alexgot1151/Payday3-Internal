@@ -27,8 +27,8 @@ public:
 	class FName                                   TargetKey;                                         // 0x0138(0x000C)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_BP_Order_Civilian_CallInvestigator(int32 EntryPoint);
 	void OnStartedBP(class APawn* Pawn);
+	void ExecuteUbergraph_BP_Order_Civilian_CallInvestigator(int32 EntryPoint);
 
 	bool ExecPredicate(const class UObject* Owner) const;
 

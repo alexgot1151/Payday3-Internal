@@ -12,8 +12,8 @@
 
 #include "Engine_structs.hpp"
 #include "GameplayTags_structs.hpp"
-#include "AIModule_structs.hpp"
 #include "Starbreeze_classes.hpp"
+#include "AIModule_structs.hpp"
 
 
 namespace SDK
@@ -28,8 +28,8 @@ public:
 	struct FGameplayTag                           TagToBeRemoved;                                    // 0x00B8(0x000C)(Edit, BlueprintVisible, DisableEditOnInstance, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_UTD_ReturnToStart(int32 EntryPoint);
 	void OnDeactivatedBP(EBTNodeResult NodeResult);
+	void ExecuteUbergraph_UTD_ReturnToStart(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

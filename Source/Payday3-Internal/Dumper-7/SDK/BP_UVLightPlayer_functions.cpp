@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function BP_UVLightPlayer.BP_UVLightPlayer_C.ExecuteUbergraph_BP_UVLightPlayer
-// (Final, UbergraphFunction)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_UVLightPlayer_C::ExecuteUbergraph_BP_UVLightPlayer(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_UVLightPlayer_C", "ExecuteUbergraph_BP_UVLightPlayer");
-
-	Params::BP_UVLightPlayer_C_ExecuteUbergraph_BP_UVLightPlayer Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function BP_UVLightPlayer.BP_UVLightPlayer_C.ReceiveTick
 // (Event, Public, BlueprintEvent)
 // Parameters:
@@ -52,6 +32,26 @@ void ABP_UVLightPlayer_C::ReceiveTick(float DeltaSeconds)
 	Params::BP_UVLightPlayer_C_ReceiveTick Parms{};
 
 	Parms.DeltaSeconds = DeltaSeconds;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_UVLightPlayer.BP_UVLightPlayer_C.ExecuteUbergraph_BP_UVLightPlayer
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_UVLightPlayer_C::ExecuteUbergraph_BP_UVLightPlayer(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_UVLightPlayer_C", "ExecuteUbergraph_BP_UVLightPlayer");
+
+	Params::BP_UVLightPlayer_C_ExecuteUbergraph_BP_UVLightPlayer Parms{};
+
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

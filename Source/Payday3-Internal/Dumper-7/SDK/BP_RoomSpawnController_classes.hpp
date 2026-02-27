@@ -33,12 +33,12 @@ public:
 	TMulticastInlineDelegate<void()>              DispatchRedCardPickup;                             // 0x0300(0x0010)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, BlueprintAssignable, BlueprintCallable)
 
 public:
-	void ExecuteUbergraph_BP_RoomSpawnController(int32 EntryPoint);
-	void OnCardPickupEvent(class ASBZInteractionActor* Interactable, class USBZInteractorComponent* Interactor);
-	void BindRedCardEvent(class ABP_RedKeycard_C* CardRef);
-	void SpawnRedCardInRoom();
-	void UserConstructionScript();
 	void NewFunction_0(TArray<class AActor*>& Array, class UClass* WhatShould_Spawn);
+	void UserConstructionScript();
+	void SpawnRedCardInRoom();
+	void BindRedCardEvent(class ABP_RedKeycard_C* CardRef);
+	void OnCardPickupEvent(class ASBZInteractionActor* Interactable, class USBZInteractorComponent* Interactor);
+	void ExecuteUbergraph_BP_RoomSpawnController(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

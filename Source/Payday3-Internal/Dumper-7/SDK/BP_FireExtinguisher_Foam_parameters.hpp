@@ -16,6 +16,15 @@
 namespace SDK::Params
 {
 
+// Function BP_FireExtinguisher_Foam.BP_FireExtinguisher_Foam_C.BP_OnExplosion
+// 0x0001 (0x0001 - 0x0000)
+struct BP_FireExtinguisher_Foam_C_BP_OnExplosion final
+{
+public:
+	bool                                          bDoCosmetics;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_FireExtinguisher_Foam_C_BP_OnExplosion;
+
 // Function BP_FireExtinguisher_Foam.BP_FireExtinguisher_Foam_C.ExecuteUbergraph_BP_FireExtinguisher_Foam
 // 0x0008 (0x0008 - 0x0000)
 struct BP_FireExtinguisher_Foam_C_ExecuteUbergraph_BP_FireExtinguisher_Foam final
@@ -26,14 +35,14 @@ public:
 };
 DUMPER7_ASSERTS_BP_FireExtinguisher_Foam_C_ExecuteUbergraph_BP_FireExtinguisher_Foam;
 
-// Function BP_FireExtinguisher_Foam.BP_FireExtinguisher_Foam_C.BP_OnExplosion
+// Function BP_FireExtinguisher_Foam.BP_FireExtinguisher_Foam_C.CanAffectStealth
 // 0x0001 (0x0001 - 0x0000)
-struct BP_FireExtinguisher_Foam_C_BP_OnExplosion final
+struct BP_FireExtinguisher_Foam_C_CanAffectStealth final
 {
 public:
-	bool                                          bDoCosmetics;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          ReturnValue;                                       // 0x0000(0x0001)(Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor)
 };
-DUMPER7_ASSERTS_BP_FireExtinguisher_Foam_C_BP_OnExplosion;
+DUMPER7_ASSERTS_BP_FireExtinguisher_Foam_C_CanAffectStealth;
 
 // Function BP_FireExtinguisher_Foam.BP_FireExtinguisher_Foam_C.GetSightModifier
 // 0x002C (0x002C - 0x0000)
@@ -51,15 +60,6 @@ public:
 	float                                         K2Node_Select_Default;                             // 0x0028(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_FireExtinguisher_Foam_C_GetSightModifier;
-
-// Function BP_FireExtinguisher_Foam.BP_FireExtinguisher_Foam_C.CanAffectStealth
-// 0x0001 (0x0001 - 0x0000)
-struct BP_FireExtinguisher_Foam_C_CanAffectStealth final
-{
-public:
-	bool                                          ReturnValue;                                       // 0x0000(0x0001)(Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_FireExtinguisher_Foam_C_CanAffectStealth;
 
 }
 

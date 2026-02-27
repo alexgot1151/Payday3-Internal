@@ -265,7 +265,7 @@ namespace ESP
             SDK::ABP_RFIDTagBase_C::StaticClass(),
             SDK::ABP_KeycardBase_C::StaticClass(),
             SDK::ABP_CarriedInteractableBase_C::StaticClass(),
-            SDK::UGE_CarKeys_C::StaticClass(),
+//            SDK::UGE_CarKeys_C::StaticClass(),
             SDK::UGA_Phone_C::StaticClass()
         };
         if(!std::none_of(aObjectiveItemClasses.begin(), aObjectiveItemClasses.end(), [pActor](SDK::UClass* pClass) { return pActor->IsA(pClass); }))
@@ -525,13 +525,14 @@ namespace ESP
 
                 if (DetermineActorType(pChildObj) != EActorType::ObjectiveItem)
                     continue;
+    
                 
                 pDrawList->AddText(
                     ImVec2(vec4ScreenBox.z + 5.f, vec4ScreenBox.y + flFlagsOffset),
                     IM_COL32(0, 255, 0, 255),
                     (pChildObj->IsA(SDK::ABP_CarriedBlueKeycard_C::StaticClass()) ? "Blue Keycard" : 
                         pChildObj->IsA(SDK::ABP_CarriedRedKeycard_C::StaticClass()) ? "Red Keycard" :
-                        pChildObj->IsA(SDK::ABP_CarriedHackablePhone_C::StaticClass()) ? "Phone" :
+                        //pChildObj->IsA(SDK::ABP_CarriedHackablePhone_C::StaticClass()) ? "Phone" :
                         pChildObj->IsA(SDK::ABP_CarriedFakeID_C::StaticClass()) ? "Fake ID" :
                         pChildObj->Name.ToString()).c_str()
                 );
@@ -575,7 +576,6 @@ namespace ESP
     struct ActorInfo{
         EActorType m_eType;
         float m_flDistance;
-        float m_flPriority;
         SDK::AActor* m_pActor;
     };
 
@@ -601,9 +601,10 @@ namespace ESP
 
     void Render(SDK::UWorld* pGWorld, SDK::APlayerController* pPlayerController) {
         SDK::USBZWorldRuntime* pWorldRuntime = reinterpret_cast<SDK::USBZWorldRuntime*>(SDK::USBZWorldRuntime::GetWorldRuntime(pGWorld));
-        if (!pWorldRuntime)
+        if (!pWorldRuntime || !pGWorld->PersistentLevel || !pGWorld->PersistentLevel->Actors)
             return;
-        
+
+        SDK::FRotator rotCameraRotation = pPlayerController->PlayerCameraManager->GetCameraRotation().Normalize();
         ImDrawList* pDrawList = ImGui::GetBackgroundDrawList();
         
         UC::TArray<SDK::UObject*>& actors = pWorldRuntime->AllPawns->Objects;
@@ -612,9 +613,7 @@ namespace ESP
         SDK::FVector vecCameraLocation = pPlayerController->PlayerCameraManager->GetCameraLocation();
         std::vector<ActorInfo> vecActors{};
 
-        int32_t iLocalPlayerIndex = std::numeric_limits<int32_t>::lowest();
-        if(pPlayerController && pPlayerController->AcknowledgedPawn)
-            iLocalPlayerIndex = pPlayerController->AcknowledgedPawn->Index;
+        static auto nameHead = SDK::UKismetStringLibrary::Conv_StringToName(L"Head");
         
         vecActors.reserve(actors.Num());
         for (int i = 0; i < actors.Num(); ++i){
@@ -629,79 +628,12 @@ namespace ESP
             if (ShouldSkipActor(pActor, eType))
                 continue;
 
-            float flPriority = 1.f;
-            bool bTargetingLocalPlayer = false; // Is local player goal target.
-            bool bTargeting = false; // Is aiming at target.
-            bool bInAction = false;
-            bool bDeathAllowed = true;
-
-            if(pActor->IsA(SDK::ASBZAIBaseCharacter::StaticClass())){
-                auto pGuard = reinterpret_cast<SDK::ASBZAIBaseCharacter*>(pActor);
-
-                bTargetingLocalPlayer = pGuard->CurrentTarget && pGuard->CurrentTarget->Index == iLocalPlayerIndex;
-                bTargeting = pGuard->bIsTargeting;
-
-                auto pController = reinterpret_cast<SDK::ASBZAIController*>(pGuard->Controller);
-                if(pController && pController->IsA(SDK::ASBZAIController::StaticClass())){
-                    // This mf is likely sabotaging something or saving hostages.
-                    bInAction = pController->CurrentActions.Num() > 0;
-                }
-
-                bDeathAllowed = pGuard->bIsDeathAllowed;
-            }
-
-            switch(eType){
-            case EActorType::Cloaker:
-                flPriority = 11.f;
-                break;
-
-            case EActorType::Sniper:
-            case EActorType::Taser:
-                if(bTargetingLocalPlayer)
-                    flPriority = (bTargeting) ? 10.f : 5.f;
-                else
-                    flPriority = (bTargeting) ? 5.f : 2.f;
-                break;
-
-            case EActorType::Grenadier:
-            case EActorType::Techie:
-                flPriority = 8.f;
-                break;
-
-            case EActorType::Dozer:
-                if(bInAction)
-                    flPriority = 9.f;
-                else if(bTargetingLocalPlayer)
-                    flPriority = (bTargeting) ? 7.f : 4.f;
-                else
-                    flPriority = (bTargeting) ? 4.f : 2.f;
-                break;
-
-            case EActorType::Shield:
-            case EActorType::Guard:
-                if(bInAction)
-                    flPriority = 9.f;
-                else if(bTargetingLocalPlayer)
-                    flPriority = (bTargeting) ? 6.f : 3.f;
-                else
-                    flPriority = (bTargeting) ? 3.f : 1.f;
-                break;
-
-            default:
-                break;
-            }
-
-            
-
             vecActors.emplace_back(ActorInfo{
                 .m_eType = eType,
                 .m_flDistance = (pActor->K2_GetActorLocation() - vecCameraLocation).Magnitude(),
-                .m_flPriority = bDeathAllowed ? flPriority : 0.f,
                 .m_pActor = pActor
             });
         }
-
-        
 
         std::sort(vecActors.begin(), vecActors.end(), [](ActorInfo& lhs, ActorInfo& rhs) {
             if (lhs.m_flDistance == rhs.m_flDistance)
@@ -710,57 +642,6 @@ namespace ESP
             return lhs.m_flDistance > rhs.m_flDistance;
         });
         
-        SDK::FRotator vecPlayerRotation = pPlayerController->PlayerCameraManager->GetCameraRotation();
-        SDK::FVector vecForward = SDK::UKismetMathLibrary::GetForwardVector(vecPlayerRotation);
-        SDK::FVector vecLookAheadLocation = vecCameraLocation + (vecForward * 200.f);
-
-        static auto nameHead = SDK::UKismetStringLibrary::Conv_StringToName(L"Head");
-
-        float flBestPriority = 0.f;
-        std::optional<std::pair<SDK::FVector, SDK::FRotator>> pairBestTarget{};
-        for (auto itr = vecActors.rbegin(); itr != vecActors.rend(); ++itr){
-            auto pGuard = reinterpret_cast<SDK::ACH_BaseCop_C*>(itr->m_pActor);
-            if(!pGuard || flBestPriority >= itr->m_flPriority)
-                continue;
-
-            SDK::FVector vecTarget{};
-            SDK::FVector vecStart{};
-
-            switch(itr->m_eType){
-            case EActorType::Guard:
-            case EActorType::Shield:
-            case EActorType::Cloaker:
-            case EActorType::Sniper:
-            case EActorType::Grenadier:
-            case EActorType::Taser:
-            case EActorType::Techie:
-                pairBestTarget = std::make_pair(pGuard->Mesh->GetSocketLocation(nameHead), SDK::FRotator(0.f, 0.f, 0.f));
-                flBestPriority = itr->m_flPriority;
-                break;
-
-            case EActorType::Dozer:
-                vecTarget = pGuard->Mesh->GetSocketLocation(nameHead);
-                vecStart = vecTarget + (SDK::UKismetMathLibrary::GetForwardVector((pGuard->Mesh->GetSocketRotation(nameHead) + SDK::FRotator(0.f, 90.f, 0.f)).Normalize()) * 50.f);
-                pairBestTarget = std::make_pair(vecStart, SDK::UKismetMathLibrary::FindLookAtRotation(vecStart, vecTarget));
-                flBestPriority = itr->m_flPriority;
-                
-                break;
-
-            default:
-                break;
-            }
-        }
-
-        Cheat::g_bIsAimbotTargetAvailible = pairBestTarget.has_value();
-        if(pairBestTarget)
-        {
-            Cheat::g_vecAimbotTargetLocation = pairBestTarget->first;
-            Cheat::g_rotAimbotTargetRotation = pairBestTarget->second;
-        }
-  
-
-        
-
         if (!GetConfig().bESP)
             return;
 

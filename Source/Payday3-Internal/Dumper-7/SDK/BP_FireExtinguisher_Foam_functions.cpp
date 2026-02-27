@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BP_FireExtinguisher_Foam.BP_FireExtinguisher_Foam_C.BP_OnExplosion
+// (Event, Protected, BlueprintEvent)
+// Parameters:
+// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void ABP_FireExtinguisher_Foam_C::BP_OnExplosion(bool bDoCosmetics)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_FireExtinguisher_Foam_C", "BP_OnExplosion");
+
+	Params::BP_FireExtinguisher_Foam_C_BP_OnExplosion Parms{};
+
+	Parms.bDoCosmetics = bDoCosmetics;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BP_FireExtinguisher_Foam.BP_FireExtinguisher_Foam_C.ExecuteUbergraph_BP_FireExtinguisher_Foam
 // (Final, UbergraphFunction)
 // Parameters:
@@ -37,23 +57,23 @@ void ABP_FireExtinguisher_Foam_C::ExecuteUbergraph_BP_FireExtinguisher_Foam(int3
 }
 
 
-// Function BP_FireExtinguisher_Foam.BP_FireExtinguisher_Foam_C.BP_OnExplosion
-// (Event, Protected, BlueprintEvent)
+// Function BP_FireExtinguisher_Foam.BP_FireExtinguisher_Foam_C.CanAffectStealth
+// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
-// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// bool                                    ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor)
 
-void ABP_FireExtinguisher_Foam_C::BP_OnExplosion(bool bDoCosmetics)
+bool ABP_FireExtinguisher_Foam_C::CanAffectStealth() const
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_FireExtinguisher_Foam_C", "BP_OnExplosion");
+		Func = Class->GetFunction("BP_FireExtinguisher_Foam_C", "CanAffectStealth");
 
-	Params::BP_FireExtinguisher_Foam_C_BP_OnExplosion Parms{};
-
-	Parms.bDoCosmetics = bDoCosmetics;
+	Params::BP_FireExtinguisher_Foam_C_CanAffectStealth Parms{};
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 }
 
 
@@ -75,26 +95,6 @@ float ABP_FireExtinguisher_Foam_C::GetSightModifier(const struct FVector& Start,
 
 	Parms.Start = std::move(Start);
 	Parms.End = std::move(End);
-
-	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
-}
-
-
-// Function BP_FireExtinguisher_Foam.BP_FireExtinguisher_Foam_C.CanAffectStealth
-// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
-// Parameters:
-// bool                                    ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor)
-
-bool ABP_FireExtinguisher_Foam_C::CanAffectStealth() const
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_FireExtinguisher_Foam_C", "CanAffectStealth");
-
-	Params::BP_FireExtinguisher_Foam_C_CanAffectStealth Parms{};
 
 	UObject::ProcessEvent(Func, &Parms);
 

@@ -17,20 +17,6 @@
 namespace SDK
 {
 
-// Function WBP_ComputerUnlocked.WBP_ComputerUnlocked_C.OnRep_CodePacket
-// (BlueprintCallable, BlueprintEvent)
-
-void UWBP_ComputerUnlocked_C::OnRep_CodePacket()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_ComputerUnlocked_C", "OnRep_CodePacket");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
 // Function WBP_ComputerUnlocked.WBP_ComputerUnlocked_C.UpdateDisplayText
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
@@ -48,6 +34,20 @@ void UWBP_ComputerUnlocked_C::UpdateDisplayText(const struct FSBZHackableDisplay
 	Parms.NewDisplayText = std::move(NewDisplayText);
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_ComputerUnlocked.WBP_ComputerUnlocked_C.OnRep_CodePacket
+// (BlueprintCallable, BlueprintEvent)
+
+void UWBP_ComputerUnlocked_C::OnRep_CodePacket()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_ComputerUnlocked_C", "OnRep_CodePacket");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

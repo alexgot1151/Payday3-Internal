@@ -10,14 +10,61 @@
 
 #include "Basic.hpp"
 
-#include "AkAudio_structs.hpp"
 #include "Starbreeze_structs.hpp"
-#include "Engine_structs.hpp"
+#include "AkAudio_structs.hpp"
 #include "CoreUObject_structs.hpp"
+#include "Engine_structs.hpp"
 
 
 namespace SDK::Params
 {
+
+// Function BP_SecurityCamera.BP_SecurityCamera_C.BP_OnCameraColorStateChanged
+// 0x0001 (0x0001 - 0x0000)
+struct BP_SecurityCamera_C_BP_OnCameraColorStateChanged final
+{
+public:
+	ESBZCameraColorState                          NewCameraColorState;                               // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_SecurityCamera_C_BP_OnCameraColorStateChanged;
+
+// Function BP_SecurityCamera.BP_SecurityCamera_C.HighlightHackable_1
+// 0x0001 (0x0001 - 0x0000)
+struct BP_SecurityCamera_C_HighlightHackable_1 final
+{
+public:
+	bool                                          bInHighlight;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_SecurityCamera_C_HighlightHackable_1;
+
+// Function BP_SecurityCamera.BP_SecurityCamera_C.OnRuntimeStateRemoved
+// 0x0001 (0x0001 - 0x0000)
+struct BP_SecurityCamera_C_OnRuntimeStateRemoved final
+{
+public:
+	ESBZRuntimeState                              AppliedState;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_SecurityCamera_C_OnRuntimeStateRemoved;
+
+// Function BP_SecurityCamera.BP_SecurityCamera_C.OnRuntimeStateApplied
+// 0x0001 (0x0001 - 0x0000)
+struct BP_SecurityCamera_C_OnRuntimeStateApplied final
+{
+public:
+	ESBZRuntimeState                              AppliedState;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_SecurityCamera_C_OnRuntimeStateApplied;
+
+// Function BP_SecurityCamera.BP_SecurityCamera_C.BP_OnStateChanged
+// 0x0003 (0x0003 - 0x0000)
+struct BP_SecurityCamera_C_BP_OnStateChanged final
+{
+public:
+	ESBZCameraState                               OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	ESBZCameraState                               NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bDoCosmetics;                                      // 0x0002(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_SecurityCamera_C_BP_OnStateChanged;
 
 // Function BP_SecurityCamera.BP_SecurityCamera_C.ExecuteUbergraph_BP_SecurityCamera
 // 0x02B0 (0x02B0 - 0x0000)
@@ -82,53 +129,6 @@ public:
 	int32                                         CallFunc_PostEvent_ReturnValue_4;                  // 0x02A0(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_SecurityCamera_C_ExecuteUbergraph_BP_SecurityCamera;
-
-// Function BP_SecurityCamera.BP_SecurityCamera_C.BP_OnStateChanged
-// 0x0003 (0x0003 - 0x0000)
-struct BP_SecurityCamera_C_BP_OnStateChanged final
-{
-public:
-	ESBZCameraState                               OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	ESBZCameraState                               NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bDoCosmetics;                                      // 0x0002(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_SecurityCamera_C_BP_OnStateChanged;
-
-// Function BP_SecurityCamera.BP_SecurityCamera_C.OnRuntimeStateApplied
-// 0x0001 (0x0001 - 0x0000)
-struct BP_SecurityCamera_C_OnRuntimeStateApplied final
-{
-public:
-	ESBZRuntimeState                              AppliedState;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_SecurityCamera_C_OnRuntimeStateApplied;
-
-// Function BP_SecurityCamera.BP_SecurityCamera_C.OnRuntimeStateRemoved
-// 0x0001 (0x0001 - 0x0000)
-struct BP_SecurityCamera_C_OnRuntimeStateRemoved final
-{
-public:
-	ESBZRuntimeState                              AppliedState;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_SecurityCamera_C_OnRuntimeStateRemoved;
-
-// Function BP_SecurityCamera.BP_SecurityCamera_C.HighlightHackable_1
-// 0x0001 (0x0001 - 0x0000)
-struct BP_SecurityCamera_C_HighlightHackable_1 final
-{
-public:
-	bool                                          bInHighlight;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_SecurityCamera_C_HighlightHackable_1;
-
-// Function BP_SecurityCamera.BP_SecurityCamera_C.BP_OnCameraColorStateChanged
-// 0x0001 (0x0001 - 0x0000)
-struct BP_SecurityCamera_C_BP_OnCameraColorStateChanged final
-{
-public:
-	ESBZCameraColorState                          NewCameraColorState;                               // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_SecurityCamera_C_BP_OnCameraColorStateChanged;
 
 }
 

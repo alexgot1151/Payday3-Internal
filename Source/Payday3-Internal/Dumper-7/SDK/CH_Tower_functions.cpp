@@ -17,23 +17,17 @@
 namespace SDK
 {
 
-// Function CH_Tower.CH_Tower_C.ExecuteUbergraph_CH_Tower
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function CH_Tower.CH_Tower_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
 
-void ACH_Tower_C::ExecuteUbergraph_CH_Tower(int32 EntryPoint)
+void ACH_Tower_C::ReceiveBeginPlay()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("CH_Tower_C", "ExecuteUbergraph_CH_Tower");
+		Func = Class->GetFunction("CH_Tower_C", "ReceiveBeginPlay");
 
-	Params::CH_Tower_C_ExecuteUbergraph_CH_Tower Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 
@@ -51,17 +45,23 @@ void ACH_Tower_C::BP_OnKill()
 }
 
 
-// Function CH_Tower.CH_Tower_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
+// Function CH_Tower.CH_Tower_C.ExecuteUbergraph_CH_Tower
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ACH_Tower_C::ReceiveBeginPlay()
+void ACH_Tower_C::ExecuteUbergraph_CH_Tower(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("CH_Tower_C", "ReceiveBeginPlay");
+		Func = Class->GetFunction("CH_Tower_C", "ExecuteUbergraph_CH_Tower");
 
-	UObject::ProcessEvent(Func, nullptr);
+	Params::CH_Tower_C_ExecuteUbergraph_CH_Tower Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
 }
 
 }

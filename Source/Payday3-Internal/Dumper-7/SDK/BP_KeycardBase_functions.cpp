@@ -17,23 +17,43 @@
 namespace SDK
 {
 
-// Function BP_KeycardBase.BP_KeycardBase_C.ExecuteUbergraph_BP_KeycardBase
-// (Final, UbergraphFunction)
+// Function BP_KeycardBase.BP_KeycardBase_C.GetSensorComponent
+// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZSensorComponent*              ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_KeycardBase_C::ExecuteUbergraph_BP_KeycardBase(int32 EntryPoint)
+class USBZSensorComponent* ABP_KeycardBase_C::GetSensorComponent()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_KeycardBase_C", "ExecuteUbergraph_BP_KeycardBase");
+		Func = Class->GetFunction("BP_KeycardBase_C", "GetSensorComponent");
 
-	Params::BP_KeycardBase_C_ExecuteUbergraph_BP_KeycardBase Parms{};
-
-	Parms.EntryPoint = EntryPoint;
+	Params::BP_KeycardBase_C_GetSensorComponent Parms{};
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
+}
+
+
+// Function BP_KeycardBase.BP_KeycardBase_C.GetSensorOutlineComponent
+// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// class USBZOutlineComponent*             ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+class USBZOutlineComponent* ABP_KeycardBase_C::GetSensorOutlineComponent()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_KeycardBase_C", "GetSensorOutlineComponent");
+
+	Params::BP_KeycardBase_C_GetSensorOutlineComponent Parms{};
+
+	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 }
 
 
@@ -61,43 +81,23 @@ void ABP_KeycardBase_C::BndEvt__Interactable_K2Node_ComponentBoundEvent_0_SBZOnI
 }
 
 
-// Function BP_KeycardBase.BP_KeycardBase_C.GetSensorOutlineComponent
-// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
+// Function BP_KeycardBase.BP_KeycardBase_C.ExecuteUbergraph_BP_KeycardBase
+// (Final, UbergraphFunction)
 // Parameters:
-// class USBZOutlineComponent*             ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-class USBZOutlineComponent* ABP_KeycardBase_C::GetSensorOutlineComponent()
+void ABP_KeycardBase_C::ExecuteUbergraph_BP_KeycardBase(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_KeycardBase_C", "GetSensorOutlineComponent");
+		Func = Class->GetFunction("BP_KeycardBase_C", "ExecuteUbergraph_BP_KeycardBase");
 
-	Params::BP_KeycardBase_C_GetSensorOutlineComponent Parms{};
+	Params::BP_KeycardBase_C_ExecuteUbergraph_BP_KeycardBase Parms{};
 
-	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
-}
-
-
-// Function BP_KeycardBase.BP_KeycardBase_C.GetSensorComponent
-// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// class USBZSensorComponent*              ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-class USBZSensorComponent* ABP_KeycardBase_C::GetSensorComponent()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_KeycardBase_C", "GetSensorComponent");
-
-	Params::BP_KeycardBase_C_GetSensorComponent Parms{};
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 }
 
 }

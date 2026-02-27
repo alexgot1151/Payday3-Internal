@@ -16,6 +16,15 @@
 namespace SDK::Params
 {
 
+// Function BP_CivilianController.BP_CivilianController_C.ReceivePossess
+// 0x0008 (0x0008 - 0x0000)
+struct BP_CivilianController_C_ReceivePossess final
+{
+public:
+	class APawn*                                  PossessedPawn;                                     // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_CivilianController_C_ReceivePossess;
+
 // Function BP_CivilianController.BP_CivilianController_C.ExecuteUbergraph_BP_CivilianController
 // 0x0040 (0x0040 - 0x0000)
 struct BP_CivilianController_C_ExecuteUbergraph_BP_CivilianController final
@@ -32,15 +41,6 @@ public:
 	bool                                          K2Node_DynamicCast_bSuccess;                       // 0x0038(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_BP_CivilianController_C_ExecuteUbergraph_BP_CivilianController;
-
-// Function BP_CivilianController.BP_CivilianController_C.ReceivePossess
-// 0x0008 (0x0008 - 0x0000)
-struct BP_CivilianController_C_ReceivePossess final
-{
-public:
-	class APawn*                                  PossessedPawn;                                     // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_CivilianController_C_ReceivePossess;
 
 }
 

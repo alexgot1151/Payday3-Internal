@@ -275,6 +275,20 @@ void UWBP_UI_SM_ResultScreen_C::BndEvt__WBP_UI_SM_ResultScreen_WBP_ChallengeRewa
 }
 
 
+// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.Construct
+// (BlueprintCosmetic, Event, Public, BlueprintEvent)
+
+void UWBP_UI_SM_ResultScreen_C::Construct()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "Construct");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
 // Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.ResetRewards
 // (BlueprintCallable, BlueprintEvent)
 
@@ -289,6 +303,40 @@ void UWBP_UI_SM_ResultScreen_C::ResetRewards()
 }
 
 
+// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.PreConstruct
+// (BlueprintCosmetic, Event, Public, BlueprintEvent)
+// Parameters:
+// bool                                    IsDesignTime                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void UWBP_UI_SM_ResultScreen_C::PreConstruct(bool IsDesignTime)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "PreConstruct");
+
+	Params::WBP_UI_SM_ResultScreen_C_PreConstruct Parms{};
+
+	Parms.IsDesignTime = IsDesignTime;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.OnInitialized
+// (BlueprintCosmetic, Event, Public, BlueprintEvent)
+
+void UWBP_UI_SM_ResultScreen_C::OnInitialized()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "OnInitialized");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
 // Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.TryPlayVideo
 // (BlueprintCallable, BlueprintEvent)
 
@@ -298,20 +346,6 @@ void UWBP_UI_SM_ResultScreen_C::TryPlayVideo()
 
 	if (Func == nullptr)
 		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "TryPlayVideo");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.Construct
-// (BlueprintCosmetic, Event, Public, BlueprintEvent)
-
-void UWBP_UI_SM_ResultScreen_C::Construct()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "Construct");
 
 	UObject::ProcessEvent(Func, nullptr);
 }
@@ -387,21 +421,21 @@ void UWBP_UI_SM_ResultScreen_C::BndEvt__WBP_UI_SM_ResultScreen_ContinueToMenuAct
 }
 
 
-// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.PreConstruct
-// (BlueprintCosmetic, Event, Public, BlueprintEvent)
+// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.OnRestartAcceptTimerUpdated
+// (Event, Protected, BlueprintEvent)
 // Parameters:
-// bool                                    IsDesignTime                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// float                                   InNewTime                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void UWBP_UI_SM_ResultScreen_C::PreConstruct(bool IsDesignTime)
+void UWBP_UI_SM_ResultScreen_C::OnRestartAcceptTimerUpdated(float InNewTime)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "PreConstruct");
+		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "OnRestartAcceptTimerUpdated");
 
-	Params::WBP_UI_SM_ResultScreen_C_PreConstruct Parms{};
+	Params::WBP_UI_SM_ResultScreen_C_OnRestartAcceptTimerUpdated Parms{};
 
-	Parms.IsDesignTime = IsDesignTime;
+	Parms.InNewTime = InNewTime;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -441,20 +475,6 @@ void UWBP_UI_SM_ResultScreen_C::OnSkipInput(class FName ActionName)
 }
 
 
-// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.OnInitialized
-// (BlueprintCosmetic, Event, Public, BlueprintEvent)
-
-void UWBP_UI_SM_ResultScreen_C::OnInitialized()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "OnInitialized");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
 // Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.OnRestartExpireTimerUpdated
 // (Event, Protected, BlueprintEvent)
 // Parameters:
@@ -488,26 +508,6 @@ void UWBP_UI_SM_ResultScreen_C::OnRestartCountdownTimerUpdated(float InNewTime)
 		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "OnRestartCountdownTimerUpdated");
 
 	Params::WBP_UI_SM_ResultScreen_C_OnRestartCountdownTimerUpdated Parms{};
-
-	Parms.InNewTime = InNewTime;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.OnRestartAcceptTimerUpdated
-// (Event, Protected, BlueprintEvent)
-// Parameters:
-// float                                   InNewTime                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UWBP_UI_SM_ResultScreen_C::OnRestartAcceptTimerUpdated(float InNewTime)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "OnRestartAcceptTimerUpdated");
-
-	Params::WBP_UI_SM_ResultScreen_C_OnRestartAcceptTimerUpdated Parms{};
 
 	Parms.InNewTime = InNewTime;
 
@@ -1234,6 +1234,26 @@ void UWBP_UI_SM_ResultScreen_C::InitializeTutorialButtons()
 		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "InitializeTutorialButtons");
 
 	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.HasHostDisconnected
+// (Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent, BlueprintPure)
+// Parameters:
+// bool                                    ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor)
+
+bool UWBP_UI_SM_ResultScreen_C::HasHostDisconnected()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "HasHostDisconnected");
+
+	Params::WBP_UI_SM_ResultScreen_C_HasHostDisconnected Parms{};
+
+	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 }
 
 

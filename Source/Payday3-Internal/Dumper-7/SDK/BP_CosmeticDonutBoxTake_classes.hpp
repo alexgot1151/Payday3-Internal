@@ -30,13 +30,13 @@ public:
 	TArray<class UAnimSequence*>                  Animations;                                        // 0x02F0(0x0010)(Edit, BlueprintVisible, DisableEditOnInstance)
 
 public:
-	void ExecuteUbergraph_BP_CosmeticDonutBoxTake(int32 EntryPoint);
-	void OnPooled();
-	void OnUnpooled();
-	void ReceiveTick(float DeltaSeconds);
-	void ReceiveBeginPlay();
-	void GetAnimation(float Duration, class UAnimSequence** Animation);
 	void PlayAnimation(class UAnimSequence* Animation);
+	void GetAnimation(float Duration, class UAnimSequence** Animation);
+	void ReceiveBeginPlay();
+	void ReceiveTick(float DeltaSeconds);
+	void OnUnpooled();
+	void OnPooled();
+	void ExecuteUbergraph_BP_CosmeticDonutBoxTake(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

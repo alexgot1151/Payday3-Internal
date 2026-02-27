@@ -18,6 +18,44 @@
 namespace SDK::Params
 {
 
+// Function BP_ElevatorDoor.BP_ElevatorDoor_C.OpenDoors_Internal
+// 0x0001 (0x0001 - 0x0000)
+struct BP_ElevatorDoor_C_OpenDoors_Internal final
+{
+public:
+	bool                                          bOpen;                                             // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ElevatorDoor_C_OpenDoors_Internal;
+
+// Function BP_ElevatorDoor.BP_ElevatorDoor_C.Open Doors No Cosmetics
+// 0x0001 (0x0001 - 0x0000)
+struct BP_ElevatorDoor_C_Open_Doors_No_Cosmetics final
+{
+public:
+	bool                                          bOpen;                                             // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ElevatorDoor_C_Open_Doors_No_Cosmetics;
+
+// Function BP_ElevatorDoor.BP_ElevatorDoor_C.OnStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct BP_ElevatorDoor_C_OnStateChanged final
+{
+public:
+	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ElevatorDoor_C_OnStateChanged;
+
+// Function BP_ElevatorDoor.BP_ElevatorDoor_C.ReactToCloset
+// 0x0002 (0x0002 - 0x0000)
+struct BP_ElevatorDoor_C_ReactToCloset final
+{
+public:
+	bool                                          bActorsInCloset;                                   // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ElevatorDoor_C_ReactToCloset;
+
 // Function BP_ElevatorDoor.BP_ElevatorDoor_C.ExecuteUbergraph_BP_ElevatorDoor
 // 0x00B8 (0x00B8 - 0x0000)
 struct BP_ElevatorDoor_C_ExecuteUbergraph_BP_ElevatorDoor final
@@ -62,44 +100,6 @@ public:
 	TSubclassOf<class UNavArea>                   K2Node_Select_Default_2;                           // 0x00B0(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, UObjectWrapper, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_ElevatorDoor_C_ExecuteUbergraph_BP_ElevatorDoor;
-
-// Function BP_ElevatorDoor.BP_ElevatorDoor_C.ReactToCloset
-// 0x0002 (0x0002 - 0x0000)
-struct BP_ElevatorDoor_C_ReactToCloset final
-{
-public:
-	bool                                          bActorsInCloset;                                   // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ElevatorDoor_C_ReactToCloset;
-
-// Function BP_ElevatorDoor.BP_ElevatorDoor_C.OnStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct BP_ElevatorDoor_C_OnStateChanged final
-{
-public:
-	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ElevatorDoor_C_OnStateChanged;
-
-// Function BP_ElevatorDoor.BP_ElevatorDoor_C.Open Doors No Cosmetics
-// 0x0001 (0x0001 - 0x0000)
-struct BP_ElevatorDoor_C_Open_Doors_No_Cosmetics final
-{
-public:
-	bool                                          bOpen;                                             // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ElevatorDoor_C_Open_Doors_No_Cosmetics;
-
-// Function BP_ElevatorDoor.BP_ElevatorDoor_C.OpenDoors_Internal
-// 0x0001 (0x0001 - 0x0000)
-struct BP_ElevatorDoor_C_OpenDoors_Internal final
-{
-public:
-	bool                                          bOpen;                                             // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ElevatorDoor_C_OpenDoors_Internal;
 
 // Function BP_ElevatorDoor.BP_ElevatorDoor_C.DoorPositionInterp
 // 0x0040 (0x0040 - 0x0000)

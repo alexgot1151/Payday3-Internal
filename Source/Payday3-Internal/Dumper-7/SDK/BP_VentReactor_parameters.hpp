@@ -11,12 +11,22 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
-#include "AkAudio_structs.hpp"
 #include "CoreUObject_structs.hpp"
+#include "AkAudio_structs.hpp"
 
 
 namespace SDK::Params
 {
+
+// Function BP_VentReactor.BP_VentReactor_C.OnStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct BP_VentReactor_C_OnStateChanged final
+{
+public:
+	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_VentReactor_C_OnStateChanged;
 
 // Function BP_VentReactor.BP_VentReactor_C.ExecuteUbergraph_BP_VentReactor
 // 0x00E0 (0x00E0 - 0x0000)
@@ -49,16 +59,6 @@ public:
 	class ABP_DecorativeSmokeGrenade_C*           CallFunc_FinishSpawningActor_ReturnValue;          // 0x00D8(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_VentReactor_C_ExecuteUbergraph_BP_VentReactor;
-
-// Function BP_VentReactor.BP_VentReactor_C.OnStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct BP_VentReactor_C_OnStateChanged final
-{
-public:
-	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_VentReactor_C_OnStateChanged;
 
 // Function BP_VentReactor.BP_VentReactor_C.ReactToCloset
 // 0x0002 (0x0002 - 0x0000)

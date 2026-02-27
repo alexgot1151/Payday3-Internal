@@ -17,43 +17,23 @@
 namespace SDK
 {
 
-// Function WBP_KeypadUVLightInteraction.WBP_KeypadUVLightInteraction_C.ExecuteUbergraph_WBP_KeypadUVLightInteraction
-// (Final, UbergraphFunction)
+// Function WBP_KeypadUVLightInteraction.WBP_KeypadUVLightInteraction_C.GetBrushColor_0
+// (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// struct FLinearColor                     ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void UWBP_KeypadUVLightInteraction_C::ExecuteUbergraph_WBP_KeypadUVLightInteraction(int32 EntryPoint)
+struct FLinearColor UWBP_KeypadUVLightInteraction_C::GetBrushColor_0()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_KeypadUVLightInteraction_C", "ExecuteUbergraph_WBP_KeypadUVLightInteraction");
+		Func = Class->GetFunction("WBP_KeypadUVLightInteraction_C", "GetBrushColor_0");
 
-	Params::WBP_KeypadUVLightInteraction_C_ExecuteUbergraph_WBP_KeypadUVLightInteraction Parms{};
-
-	Parms.EntryPoint = EntryPoint;
+	Params::WBP_KeypadUVLightInteraction_C_GetBrushColor_0 Parms{};
 
 	UObject::ProcessEvent(Func, &Parms);
-}
 
-
-// Function WBP_KeypadUVLightInteraction.WBP_KeypadUVLightInteraction_C.SetKeypad
-// (BlueprintCallable, BlueprintEvent)
-// Parameters:
-// class ABP_KeyPad_C*                     Keypad_0                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UWBP_KeypadUVLightInteraction_C::SetKeypad(class ABP_KeyPad_C* Keypad_0)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_KeypadUVLightInteraction_C", "SetKeypad");
-
-	Params::WBP_KeypadUVLightInteraction_C_SetKeypad Parms{};
-
-	Parms.Keypad_0 = Keypad_0;
-
-	UObject::ProcessEvent(Func, &Parms);
+	return Parms.ReturnValue;
 }
 
 
@@ -77,23 +57,43 @@ class FText UWBP_KeypadUVLightInteraction_C::Get_CodeText_Text_0()
 }
 
 
-// Function WBP_KeypadUVLightInteraction.WBP_KeypadUVLightInteraction_C.GetBrushColor_0
-// (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
+// Function WBP_KeypadUVLightInteraction.WBP_KeypadUVLightInteraction_C.SetKeypad
+// (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FLinearColor                     ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class ABP_KeyPad_C*                     Keypad_0                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-struct FLinearColor UWBP_KeypadUVLightInteraction_C::GetBrushColor_0()
+void UWBP_KeypadUVLightInteraction_C::SetKeypad(class ABP_KeyPad_C* Keypad_0)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_KeypadUVLightInteraction_C", "GetBrushColor_0");
+		Func = Class->GetFunction("WBP_KeypadUVLightInteraction_C", "SetKeypad");
 
-	Params::WBP_KeypadUVLightInteraction_C_GetBrushColor_0 Parms{};
+	Params::WBP_KeypadUVLightInteraction_C_SetKeypad Parms{};
+
+	Parms.Keypad_0 = Keypad_0;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
 
-	return Parms.ReturnValue;
+
+// Function WBP_KeypadUVLightInteraction.WBP_KeypadUVLightInteraction_C.ExecuteUbergraph_WBP_KeypadUVLightInteraction
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_KeypadUVLightInteraction_C::ExecuteUbergraph_WBP_KeypadUVLightInteraction(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_KeypadUVLightInteraction_C", "ExecuteUbergraph_WBP_KeypadUVLightInteraction");
+
+	Params::WBP_KeypadUVLightInteraction_C_ExecuteUbergraph_WBP_KeypadUVLightInteraction Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
 }
 
 }

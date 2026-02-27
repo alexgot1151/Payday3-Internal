@@ -12,8 +12,8 @@
 
 #include "Engine_structs.hpp"
 #include "bp_screen_classes.hpp"
-#include "AkAudio_structs.hpp"
 #include "Starbreeze_structs.hpp"
+#include "AkAudio_structs.hpp"
 
 
 namespace SDK
@@ -29,9 +29,9 @@ public:
 	class UNiagaraComponent*                      FX_pressure_leak;                                  // 0x0340(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_BP_CoffeeMachine_01_SCR(int32 EntryPoint);
-	void BndEvt__BP_CoffeeMachine_01_SCR_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature(ESBZCosmeticDestructionType Type, const struct FSBZCosmeticDestructionContext& HitContext);
 	void ReceiveBeginPlay();
+	void BndEvt__BP_CoffeeMachine_01_SCR_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature(ESBZCosmeticDestructionType Type, const struct FSBZCosmeticDestructionContext& HitContext);
+	void ExecuteUbergraph_BP_CoffeeMachine_01_SCR(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

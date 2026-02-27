@@ -17,15 +17,6 @@
 namespace SDK::Params
 {
 
-// Function WBP_KeypadInteraction.WBP_KeypadInteraction_C.SetCodeText
-// 0x0018 (0x0018 - 0x0000)
-struct WBP_KeypadInteraction_C_SetCodeText final
-{
-public:
-	class FText                                   InText;                                            // 0x0000(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
-};
-DUMPER7_ASSERTS_WBP_KeypadInteraction_C_SetCodeText;
-
 // Function WBP_KeypadInteraction.WBP_KeypadInteraction_C.SetBackgroundColor
 // 0x0074 (0x0074 - 0x0000)
 struct WBP_KeypadInteraction_C_SetBackgroundColor final
@@ -43,6 +34,15 @@ public:
 	struct FLinearColor                           K2Node_Select_Default;                             // 0x0064(0x0010)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_WBP_KeypadInteraction_C_SetBackgroundColor;
+
+// Function WBP_KeypadInteraction.WBP_KeypadInteraction_C.SetCodeText
+// 0x0018 (0x0018 - 0x0000)
+struct WBP_KeypadInteraction_C_SetCodeText final
+{
+public:
+	class FText                                   InText;                                            // 0x0000(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
+};
+DUMPER7_ASSERTS_WBP_KeypadInteraction_C_SetCodeText;
 
 }
 

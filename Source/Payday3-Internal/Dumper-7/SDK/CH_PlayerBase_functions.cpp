@@ -17,45 +17,72 @@
 namespace SDK
 {
 
-// Function CH_PlayerBase.CH_PlayerBase_C.ExecuteUbergraph_CH_PlayerBase
-// (Final, UbergraphFunction)
+// Function CH_PlayerBase.CH_PlayerBase_C.SetMaskAnimation
+// (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// float                                   InDuration                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// ESBZMaskType&                           InMaskType                                             (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReferenceParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class FName&                            InMorphTarget                                          (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReferenceParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ACH_PlayerBase_C::ExecuteUbergraph_CH_PlayerBase(int32 EntryPoint)
+void ACH_PlayerBase_C::SetMaskAnimation(float InDuration, ESBZMaskType& InMaskType, class FName& InMorphTarget)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("CH_PlayerBase_C", "ExecuteUbergraph_CH_PlayerBase");
+		Func = Class->GetFunction("CH_PlayerBase_C", "SetMaskAnimation");
 
-	Params::CH_PlayerBase_C_ExecuteUbergraph_CH_PlayerBase Parms{};
+	Params::CH_PlayerBase_C_SetMaskAnimation Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.InDuration = InDuration;
+	Parms.InMaskType = InMaskType;
+	Parms.InMorphTarget = InMorphTarget;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	InMaskType = Parms.InMaskType;
+	InMorphTarget = Parms.InMorphTarget;
 }
 
 
-// Function CH_PlayerBase.CH_PlayerBase_C.BP_MaskOff
-// (Event, Protected, HasOutParams, BlueprintEvent)
-// Parameters:
-// float                                   AnimationDuration                                      (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// const class FName&                      MorphTargetName                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReferenceParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function CH_PlayerBase.CH_PlayerBase_C.UserConstructionScript
+// (Event, Public, BlueprintCallable, BlueprintEvent)
 
-void ACH_PlayerBase_C::BP_MaskOff(float AnimationDuration, const class FName& MorphTargetName)
+void ACH_PlayerBase_C::UserConstructionScript()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("CH_PlayerBase_C", "BP_MaskOff");
+		Func = Class->GetFunction("CH_PlayerBase_C", "UserConstructionScript");
 
-	Params::CH_PlayerBase_C_BP_MaskOff Parms{};
+	UObject::ProcessEvent(Func, nullptr);
+}
 
-	Parms.AnimationDuration = AnimationDuration;
-	Parms.MorphTargetName = MorphTargetName;
 
-	UObject::ProcessEvent(Func, &Parms);
+// Function CH_PlayerBase.CH_PlayerBase_C.MaskAnimationTimeline__FinishedFunc
+// (BlueprintEvent)
+
+void ACH_PlayerBase_C::MaskAnimationTimeline__FinishedFunc()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("CH_PlayerBase_C", "MaskAnimationTimeline__FinishedFunc");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function CH_PlayerBase.CH_PlayerBase_C.MaskAnimationTimeline__UpdateFunc
+// (BlueprintEvent)
+
+void ACH_PlayerBase_C::MaskAnimationTimeline__UpdateFunc()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("CH_PlayerBase_C", "MaskAnimationTimeline__UpdateFunc");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 
@@ -83,72 +110,45 @@ void ACH_PlayerBase_C::BP_MaskOn(float AnimationDuration, ESBZMaskType MaskType_
 }
 
 
-// Function CH_PlayerBase.CH_PlayerBase_C.MaskAnimationTimeline__UpdateFunc
-// (BlueprintEvent)
-
-void ACH_PlayerBase_C::MaskAnimationTimeline__UpdateFunc()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("CH_PlayerBase_C", "MaskAnimationTimeline__UpdateFunc");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function CH_PlayerBase.CH_PlayerBase_C.MaskAnimationTimeline__FinishedFunc
-// (BlueprintEvent)
-
-void ACH_PlayerBase_C::MaskAnimationTimeline__FinishedFunc()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("CH_PlayerBase_C", "MaskAnimationTimeline__FinishedFunc");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function CH_PlayerBase.CH_PlayerBase_C.UserConstructionScript
-// (Event, Public, BlueprintCallable, BlueprintEvent)
-
-void ACH_PlayerBase_C::UserConstructionScript()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("CH_PlayerBase_C", "UserConstructionScript");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function CH_PlayerBase.CH_PlayerBase_C.SetMaskAnimation
-// (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
+// Function CH_PlayerBase.CH_PlayerBase_C.BP_MaskOff
+// (Event, Protected, HasOutParams, BlueprintEvent)
 // Parameters:
-// float                                   InDuration                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// ESBZMaskType&                           InMaskType                                             (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReferenceParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class FName&                            InMorphTarget                                          (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReferenceParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// float                                   AnimationDuration                                      (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// const class FName&                      MorphTargetName                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReferenceParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ACH_PlayerBase_C::SetMaskAnimation(float InDuration, ESBZMaskType& InMaskType, class FName& InMorphTarget)
+void ACH_PlayerBase_C::BP_MaskOff(float AnimationDuration, const class FName& MorphTargetName)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("CH_PlayerBase_C", "SetMaskAnimation");
+		Func = Class->GetFunction("CH_PlayerBase_C", "BP_MaskOff");
 
-	Params::CH_PlayerBase_C_SetMaskAnimation Parms{};
+	Params::CH_PlayerBase_C_BP_MaskOff Parms{};
 
-	Parms.InDuration = InDuration;
-	Parms.InMaskType = InMaskType;
-	Parms.InMorphTarget = InMorphTarget;
+	Parms.AnimationDuration = AnimationDuration;
+	Parms.MorphTargetName = MorphTargetName;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
 
-	InMaskType = Parms.InMaskType;
-	InMorphTarget = Parms.InMorphTarget;
+
+// Function CH_PlayerBase.CH_PlayerBase_C.ExecuteUbergraph_CH_PlayerBase
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ACH_PlayerBase_C::ExecuteUbergraph_CH_PlayerBase(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("CH_PlayerBase_C", "ExecuteUbergraph_CH_PlayerBase");
+
+	Params::CH_PlayerBase_C_ExecuteUbergraph_CH_PlayerBase Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
 }
 
 }

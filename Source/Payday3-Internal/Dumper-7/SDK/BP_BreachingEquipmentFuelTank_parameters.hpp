@@ -16,6 +16,17 @@
 namespace SDK::Params
 {
 
+// Function BP_BreachingEquipmentFuelTank.BP_BreachingEquipmentFuelTank_C.BndEvt__BP_BreachingEquipmentFuelTank_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature
+// 0x0018 (0x0018 - 0x0000)
+struct BP_BreachingEquipmentFuelTank_C_BndEvt__BP_BreachingEquipmentFuelTank_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature final
+{
+public:
+	class USBZBaseInteractableComponent*          Interactable_0;                                    // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_BreachingEquipmentFuelTank_C_BndEvt__BP_BreachingEquipmentFuelTank_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature;
+
 // Function BP_BreachingEquipmentFuelTank.BP_BreachingEquipmentFuelTank_C.ExecuteUbergraph_BP_BreachingEquipmentFuelTank
 // 0x0058 (0x0058 - 0x0000)
 struct BP_BreachingEquipmentFuelTank_C_ExecuteUbergraph_BP_BreachingEquipmentFuelTank final
@@ -37,17 +48,6 @@ public:
 	int32                                         CallFunc_PostEvent_ReturnValue;                    // 0x0054(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_BreachingEquipmentFuelTank_C_ExecuteUbergraph_BP_BreachingEquipmentFuelTank;
-
-// Function BP_BreachingEquipmentFuelTank.BP_BreachingEquipmentFuelTank_C.BndEvt__BP_BreachingEquipmentFuelTank_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature
-// 0x0018 (0x0018 - 0x0000)
-struct BP_BreachingEquipmentFuelTank_C_BndEvt__BP_BreachingEquipmentFuelTank_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature final
-{
-public:
-	class USBZBaseInteractableComponent*          Interactable_0;                                    // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_BreachingEquipmentFuelTank_C_BndEvt__BP_BreachingEquipmentFuelTank_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature;
 
 // Function BP_BreachingEquipmentFuelTank.BP_BreachingEquipmentFuelTank_C.OnStateChanged
 // 0x0002 (0x0002 - 0x0000)

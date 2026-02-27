@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function BP_BaseEquipmentBag.BP_BaseEquipmentBag_C.ExecuteUbergraph_BP_BaseEquipmentBag
-// (Final, UbergraphFunction)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_BaseEquipmentBag_C::ExecuteUbergraph_BP_BaseEquipmentBag(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_BaseEquipmentBag_C", "ExecuteUbergraph_BP_BaseEquipmentBag");
-
-	Params::BP_BaseEquipmentBag_C_ExecuteUbergraph_BP_BaseEquipmentBag Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function BP_BaseEquipmentBag.BP_BaseEquipmentBag_C.BP_OnZiplineAttachmentChanged
 // (Event, Protected, BlueprintEvent)
 // Parameters:
@@ -52,6 +32,26 @@ void ABP_BaseEquipmentBag_C::BP_OnZiplineAttachmentChanged(bool bIsAttached)
 	Params::BP_BaseEquipmentBag_C_BP_OnZiplineAttachmentChanged Parms{};
 
 	Parms.bIsAttached = bIsAttached;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_BaseEquipmentBag.BP_BaseEquipmentBag_C.ExecuteUbergraph_BP_BaseEquipmentBag
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_BaseEquipmentBag_C::ExecuteUbergraph_BP_BaseEquipmentBag(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_BaseEquipmentBag_C", "ExecuteUbergraph_BP_BaseEquipmentBag");
+
+	Params::BP_BaseEquipmentBag_C_ExecuteUbergraph_BP_BaseEquipmentBag Parms{};
+
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

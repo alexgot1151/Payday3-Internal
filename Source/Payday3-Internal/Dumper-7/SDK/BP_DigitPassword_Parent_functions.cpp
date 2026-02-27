@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function BP_DigitPassword_Parent.BP_DigitPassword_Parent_C.ExecuteUbergraph_BP_DigitPassword_Parent
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_DigitPassword_Parent_C::ExecuteUbergraph_BP_DigitPassword_Parent(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_DigitPassword_Parent_C", "ExecuteUbergraph_BP_DigitPassword_Parent");
-
-	Params::BP_DigitPassword_Parent_C_ExecuteUbergraph_BP_DigitPassword_Parent Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function BP_DigitPassword_Parent.BP_DigitPassword_Parent_C.BP_SetCode
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
@@ -54,6 +34,26 @@ void ABP_DigitPassword_Parent_C::BP_SetCode(class UWidgetComponent* Widget, int3
 
 	Parms.Widget = Widget;
 	Parms.CodeToShow_0 = CodeToShow_0;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_DigitPassword_Parent.BP_DigitPassword_Parent_C.ExecuteUbergraph_BP_DigitPassword_Parent
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_DigitPassword_Parent_C::ExecuteUbergraph_BP_DigitPassword_Parent(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_DigitPassword_Parent_C", "ExecuteUbergraph_BP_DigitPassword_Parent");
+
+	Params::BP_DigitPassword_Parent_C_ExecuteUbergraph_BP_DigitPassword_Parent Parms{};
+
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

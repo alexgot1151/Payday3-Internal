@@ -17,6 +17,20 @@
 namespace SDK
 {
 
+// Function BP_CosmeticCigaret.BP_CosmeticCigaret_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
+
+void ABP_CosmeticCigaret_C::ReceiveBeginPlay()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_CosmeticCigaret_C", "ReceiveBeginPlay");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
 // Function BP_CosmeticCigaret.BP_CosmeticCigaret_C.ExecuteUbergraph_BP_CosmeticCigaret
 // (Final, UbergraphFunction)
 // Parameters:
@@ -34,20 +48,6 @@ void ABP_CosmeticCigaret_C::ExecuteUbergraph_BP_CosmeticCigaret(int32 EntryPoint
 	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_CosmeticCigaret.BP_CosmeticCigaret_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
-
-void ABP_CosmeticCigaret_C::ReceiveBeginPlay()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_CosmeticCigaret_C", "ReceiveBeginPlay");
-
-	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

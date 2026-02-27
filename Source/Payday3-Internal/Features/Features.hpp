@@ -14,9 +14,21 @@ namespace Cheat {
     inline std::chrono::milliseconds g_durationPing{ 100 };
     inline bool g_bIsSoloGame = false;
     inline bool g_bIsInGame = false;
-    inline SDK::FVector g_vecAimbotTargetLocation{};
-    inline SDK::FRotator g_rotAimbotTargetRotation{};
-    inline bool g_bIsAimbotTargetAvailible = false;
+    inline int32_t g_iFireAbilityHandle = 0;
+    inline int32_t g_iMethLabIndex = -1;
+
+    inline bool g_bShouldBeAiming = true;
+    struct TargetInfo_t{
+        SDK::FVector m_vecTargetPosition;
+        SDK::FVector m_vecAimPosition;
+        SDK::FRotator m_rotAimRotation;
+        float m_flPriority;
+        float m_flDistance;
+        int32_t m_iIndex;
+        SDK::APawn* m_pEntity{};
+    };
+
+    inline std::optional<TargetInfo_t> g_stTargetInfo{};
 
     void OnPlayerControllerTick();
 };

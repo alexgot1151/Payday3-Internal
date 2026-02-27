@@ -17,23 +17,17 @@
 namespace SDK
 {
 
-// Function GA_PlayerCrouch.GA_PlayerCrouch_C.ExecuteUbergraph_GA_PlayerCrouch
-// (Final, UbergraphFunction)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function GA_PlayerCrouch.GA_PlayerCrouch_C.K2_ActivateAbility
+// (Event, Protected, BlueprintEvent)
 
-void UGA_PlayerCrouch_C::ExecuteUbergraph_GA_PlayerCrouch(int32 EntryPoint)
+void UGA_PlayerCrouch_C::K2_ActivateAbility()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("GA_PlayerCrouch_C", "ExecuteUbergraph_GA_PlayerCrouch");
+		Func = Class->GetFunction("GA_PlayerCrouch_C", "K2_ActivateAbility");
 
-	Params::GA_PlayerCrouch_C_ExecuteUbergraph_GA_PlayerCrouch Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 
@@ -57,17 +51,23 @@ void UGA_PlayerCrouch_C::K2_OnEndAbility(bool bWasCancelled)
 }
 
 
-// Function GA_PlayerCrouch.GA_PlayerCrouch_C.K2_ActivateAbility
-// (Event, Protected, BlueprintEvent)
+// Function GA_PlayerCrouch.GA_PlayerCrouch_C.ExecuteUbergraph_GA_PlayerCrouch
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void UGA_PlayerCrouch_C::K2_ActivateAbility()
+void UGA_PlayerCrouch_C::ExecuteUbergraph_GA_PlayerCrouch(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("GA_PlayerCrouch_C", "K2_ActivateAbility");
+		Func = Class->GetFunction("GA_PlayerCrouch_C", "ExecuteUbergraph_GA_PlayerCrouch");
 
-	UObject::ProcessEvent(Func, nullptr);
+	Params::GA_PlayerCrouch_C_ExecuteUbergraph_GA_PlayerCrouch Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
 }
 
 }

@@ -38,8 +38,8 @@ public:
 	class UTextBlock*                             TextTitle;                                         // 0x0300(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
 
 public:
-	void OnRep_CodePacket();
 	void UpdateDisplayText(const struct FSBZHackableDisplayText& NewDisplayText);
+	void OnRep_CodePacket();
 
 public:
 	static class UClass* StaticClass()

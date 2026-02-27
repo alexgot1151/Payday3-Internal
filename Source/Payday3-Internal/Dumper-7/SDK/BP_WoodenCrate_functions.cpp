@@ -17,62 +17,56 @@
 namespace SDK
 {
 
-// Function BP_WoodenCrate.BP_WoodenCrate_C.ExecuteUbergraph_BP_WoodenCrate
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_WoodenCrate_C::ExecuteUbergraph_BP_WoodenCrate(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_WoodenCrate_C", "ExecuteUbergraph_BP_WoodenCrate");
-
-	Params::BP_WoodenCrate_C_ExecuteUbergraph_BP_WoodenCrate Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_WoodenCrate.BP_WoodenCrate_C.setBinaryState
+// Function BP_WoodenCrate.BP_WoodenCrate_C.setMarking
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                                    state                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// bool                                    visible                                                (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_WoodenCrate_C::setBinaryState(bool state)
+void ABP_WoodenCrate_C::setMarking(bool visible)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_WoodenCrate_C", "setBinaryState");
+		Func = Class->GetFunction("BP_WoodenCrate_C", "setMarking");
 
-	Params::BP_WoodenCrate_C_setBinaryState Parms{};
+	Params::BP_WoodenCrate_C_setMarking Parms{};
 
-	Parms.state = state;
+	Parms.visible = visible;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
 
 
-// Function BP_WoodenCrate.BP_WoodenCrate_C.BndEvt__BP_WoodenCrate_marked_SBZBinaryState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature
-// (BlueprintEvent)
-// Parameters:
-// bool                                    bState_0                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// Function BP_WoodenCrate.BP_WoodenCrate_C.UserConstructionScript
+// (Event, Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 
-void ABP_WoodenCrate_C::BndEvt__BP_WoodenCrate_marked_SBZBinaryState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature(bool bState_0, bool bDoCosmetics)
+void ABP_WoodenCrate_C::UserConstructionScript()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_WoodenCrate_C", "BndEvt__BP_WoodenCrate_marked_SBZBinaryState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature");
+		Func = Class->GetFunction("BP_WoodenCrate_C", "UserConstructionScript");
 
-	Params::BP_WoodenCrate_C_BndEvt__BP_WoodenCrate_marked_SBZBinaryState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature Parms{};
+	UObject::ProcessEvent(Func, nullptr);
+}
 
-	Parms.bState_0 = bState_0;
+
+// Function BP_WoodenCrate.BP_WoodenCrate_C.OnStateChanged
+// (Event, Protected, BlueprintEvent)
+// Parameters:
+// bool                                    bStateToChangeTo                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void ABP_WoodenCrate_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_WoodenCrate_C", "OnStateChanged");
+
+	Params::BP_WoodenCrate_C_OnStateChanged Parms{};
+
+	Parms.bStateToChangeTo = bStateToChangeTo;
 	Parms.bDoCosmetics = bDoCosmetics;
 
 	UObject::ProcessEvent(Func, &Parms);
@@ -103,57 +97,63 @@ void ABP_WoodenCrate_C::BndEvt__BP_ReplicatedBinaryActorVent_SBZInteractable_K2N
 }
 
 
-// Function BP_WoodenCrate.BP_WoodenCrate_C.OnStateChanged
-// (Event, Protected, BlueprintEvent)
+// Function BP_WoodenCrate.BP_WoodenCrate_C.BndEvt__BP_WoodenCrate_marked_SBZBinaryState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature
+// (BlueprintEvent)
 // Parameters:
-// bool                                    bStateToChangeTo                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// bool                                    bState_0                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 // bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_WoodenCrate_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
+void ABP_WoodenCrate_C::BndEvt__BP_WoodenCrate_marked_SBZBinaryState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature(bool bState_0, bool bDoCosmetics)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_WoodenCrate_C", "OnStateChanged");
+		Func = Class->GetFunction("BP_WoodenCrate_C", "BndEvt__BP_WoodenCrate_marked_SBZBinaryState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature");
 
-	Params::BP_WoodenCrate_C_OnStateChanged Parms{};
+	Params::BP_WoodenCrate_C_BndEvt__BP_WoodenCrate_marked_SBZBinaryState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature Parms{};
 
-	Parms.bStateToChangeTo = bStateToChangeTo;
+	Parms.bState_0 = bState_0;
 	Parms.bDoCosmetics = bDoCosmetics;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
 
 
-// Function BP_WoodenCrate.BP_WoodenCrate_C.UserConstructionScript
-// (Event, Public, HasDefaults, BlueprintCallable, BlueprintEvent)
+// Function BP_WoodenCrate.BP_WoodenCrate_C.setBinaryState
+// (Public, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// bool                                    state                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_WoodenCrate_C::UserConstructionScript()
+void ABP_WoodenCrate_C::setBinaryState(bool state)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_WoodenCrate_C", "UserConstructionScript");
+		Func = Class->GetFunction("BP_WoodenCrate_C", "setBinaryState");
 
-	UObject::ProcessEvent(Func, nullptr);
+	Params::BP_WoodenCrate_C_setBinaryState Parms{};
+
+	Parms.state = state;
+
+	UObject::ProcessEvent(Func, &Parms);
 }
 
 
-// Function BP_WoodenCrate.BP_WoodenCrate_C.setMarking
-// (Public, BlueprintCallable, BlueprintEvent)
+// Function BP_WoodenCrate.BP_WoodenCrate_C.ExecuteUbergraph_BP_WoodenCrate
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// bool                                    visible                                                (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_WoodenCrate_C::setMarking(bool visible)
+void ABP_WoodenCrate_C::ExecuteUbergraph_BP_WoodenCrate(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_WoodenCrate_C", "setMarking");
+		Func = Class->GetFunction("BP_WoodenCrate_C", "ExecuteUbergraph_BP_WoodenCrate");
 
-	Params::BP_WoodenCrate_C_setMarking Parms{};
+	Params::BP_WoodenCrate_C_ExecuteUbergraph_BP_WoodenCrate Parms{};
 
-	Parms.visible = visible;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

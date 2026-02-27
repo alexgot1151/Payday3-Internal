@@ -17,21 +17,27 @@
 namespace SDK
 {
 
-// Function BP_LA_Manager_Scripted_EyeScan.BP_LA_Manager_Scripted_EyeScan_C.ExecuteUbergraph_BP_LA_Manager_Scripted_EyeScan
-// (Final, UbergraphFunction)
+// Function BP_LA_Manager_Scripted_EyeScan.BP_LA_Manager_Scripted_EyeScan_C.BndEvt__BP_LA_Civ_Cosmetic_Dance_SBZLifeAction_K2Node_ComponentBoundEvent_0_SBZLifeActionStopEventDelegate__DelegateSignature
+// (BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class ASBZCharacter*                    Character                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZLifeActionInstance*           ActionInstance                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZLifeActionSlot*               ActionSlot                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// ESBZLifeActionStopReason                Result                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_LA_Manager_Scripted_EyeScan_C::ExecuteUbergraph_BP_LA_Manager_Scripted_EyeScan(int32 EntryPoint)
+void ABP_LA_Manager_Scripted_EyeScan_C::BndEvt__BP_LA_Civ_Cosmetic_Dance_SBZLifeAction_K2Node_ComponentBoundEvent_0_SBZLifeActionStopEventDelegate__DelegateSignature(class ASBZCharacter* Character, class USBZLifeActionInstance* ActionInstance, class USBZLifeActionSlot* ActionSlot, ESBZLifeActionStopReason Result)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_LA_Manager_Scripted_EyeScan_C", "ExecuteUbergraph_BP_LA_Manager_Scripted_EyeScan");
+		Func = Class->GetFunction("BP_LA_Manager_Scripted_EyeScan_C", "BndEvt__BP_LA_Civ_Cosmetic_Dance_SBZLifeAction_K2Node_ComponentBoundEvent_0_SBZLifeActionStopEventDelegate__DelegateSignature");
 
-	Params::BP_LA_Manager_Scripted_EyeScan_C_ExecuteUbergraph_BP_LA_Manager_Scripted_EyeScan Parms{};
+	Params::BP_LA_Manager_Scripted_EyeScan_C_BndEvt__BP_LA_Civ_Cosmetic_Dance_SBZLifeAction_K2Node_ComponentBoundEvent_0_SBZLifeActionStopEventDelegate__DelegateSignature Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.Character = Character;
+	Parms.ActionInstance = ActionInstance;
+	Parms.ActionSlot = ActionSlot;
+	Parms.Result = Result;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -61,27 +67,21 @@ void ABP_LA_Manager_Scripted_EyeScan_C::BndEvt__BP_LA_Manager_Scripted_EyeScan_S
 }
 
 
-// Function BP_LA_Manager_Scripted_EyeScan.BP_LA_Manager_Scripted_EyeScan_C.BndEvt__BP_LA_Civ_Cosmetic_Dance_SBZLifeAction_K2Node_ComponentBoundEvent_0_SBZLifeActionStopEventDelegate__DelegateSignature
-// (BlueprintEvent)
+// Function BP_LA_Manager_Scripted_EyeScan.BP_LA_Manager_Scripted_EyeScan_C.ExecuteUbergraph_BP_LA_Manager_Scripted_EyeScan
+// (Final, UbergraphFunction)
 // Parameters:
-// class ASBZCharacter*                    Character                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class USBZLifeActionInstance*           ActionInstance                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class USBZLifeActionSlot*               ActionSlot                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// ESBZLifeActionStopReason                Result                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_LA_Manager_Scripted_EyeScan_C::BndEvt__BP_LA_Civ_Cosmetic_Dance_SBZLifeAction_K2Node_ComponentBoundEvent_0_SBZLifeActionStopEventDelegate__DelegateSignature(class ASBZCharacter* Character, class USBZLifeActionInstance* ActionInstance, class USBZLifeActionSlot* ActionSlot, ESBZLifeActionStopReason Result)
+void ABP_LA_Manager_Scripted_EyeScan_C::ExecuteUbergraph_BP_LA_Manager_Scripted_EyeScan(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_LA_Manager_Scripted_EyeScan_C", "BndEvt__BP_LA_Civ_Cosmetic_Dance_SBZLifeAction_K2Node_ComponentBoundEvent_0_SBZLifeActionStopEventDelegate__DelegateSignature");
+		Func = Class->GetFunction("BP_LA_Manager_Scripted_EyeScan_C", "ExecuteUbergraph_BP_LA_Manager_Scripted_EyeScan");
 
-	Params::BP_LA_Manager_Scripted_EyeScan_C_BndEvt__BP_LA_Civ_Cosmetic_Dance_SBZLifeAction_K2Node_ComponentBoundEvent_0_SBZLifeActionStopEventDelegate__DelegateSignature Parms{};
+	Params::BP_LA_Manager_Scripted_EyeScan_C_ExecuteUbergraph_BP_LA_Manager_Scripted_EyeScan Parms{};
 
-	Parms.Character = Character;
-	Parms.ActionInstance = ActionInstance;
-	Parms.ActionSlot = ActionSlot;
-	Parms.Result = Result;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

@@ -17,35 +17,29 @@
 namespace SDK
 {
 
-// Function CH_Cloaker.CH_Cloaker_C.ExecuteUbergraph_CH_Cloaker
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function CH_Cloaker.CH_Cloaker_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
 
-void ACH_Cloaker_C::ExecuteUbergraph_CH_Cloaker(int32 EntryPoint)
+void ACH_Cloaker_C::ReceiveBeginPlay()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("CH_Cloaker_C", "ExecuteUbergraph_CH_Cloaker");
+		Func = Class->GetFunction("CH_Cloaker_C", "ReceiveBeginPlay");
 
-	Params::CH_Cloaker_C_ExecuteUbergraph_CH_Cloaker Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 
-// Function CH_Cloaker.CH_Cloaker_C.BP_OnKill
+// Function CH_Cloaker.CH_Cloaker_C.BP_OnTagReactionPlayed
 // (Event, Public, BlueprintEvent)
 
-void ACH_Cloaker_C::BP_OnKill()
+void ACH_Cloaker_C::BP_OnTagReactionPlayed()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("CH_Cloaker_C", "BP_OnKill");
+		Func = Class->GetFunction("CH_Cloaker_C", "BP_OnTagReactionPlayed");
 
 	UObject::ProcessEvent(Func, nullptr);
 }
@@ -73,31 +67,37 @@ void ACH_Cloaker_C::BP_OnHeistStateChanged(EPD3HeistState OldState, EPD3HeistSta
 }
 
 
-// Function CH_Cloaker.CH_Cloaker_C.BP_OnTagReactionPlayed
+// Function CH_Cloaker.CH_Cloaker_C.BP_OnKill
 // (Event, Public, BlueprintEvent)
 
-void ACH_Cloaker_C::BP_OnTagReactionPlayed()
+void ACH_Cloaker_C::BP_OnKill()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("CH_Cloaker_C", "BP_OnTagReactionPlayed");
+		Func = Class->GetFunction("CH_Cloaker_C", "BP_OnKill");
 
 	UObject::ProcessEvent(Func, nullptr);
 }
 
 
-// Function CH_Cloaker.CH_Cloaker_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
+// Function CH_Cloaker.CH_Cloaker_C.ExecuteUbergraph_CH_Cloaker
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ACH_Cloaker_C::ReceiveBeginPlay()
+void ACH_Cloaker_C::ExecuteUbergraph_CH_Cloaker(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("CH_Cloaker_C", "ReceiveBeginPlay");
+		Func = Class->GetFunction("CH_Cloaker_C", "ExecuteUbergraph_CH_Cloaker");
 
-	UObject::ProcessEvent(Func, nullptr);
+	Params::CH_Cloaker_C_ExecuteUbergraph_CH_Cloaker Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
 }
 
 }

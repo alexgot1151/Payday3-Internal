@@ -29,8 +29,8 @@ public:
 	class UUserWidget*                            Target;                                            // 0x0308(0x0008)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_WBP_PocketDrillWidget(int32 EntryPoint);
 	void OnUpdateBreachState(ESBZBreachingEquipmentState NewState);
+	void ExecuteUbergraph_WBP_PocketDrillWidget(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

@@ -11,9 +11,9 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
-#include "AkAudio_structs.hpp"
 #include "Starbreeze_structs.hpp"
 #include "Starbreeze_classes.hpp"
+#include "AkAudio_structs.hpp"
 
 
 namespace SDK
@@ -37,14 +37,14 @@ public:
 	int32                                         MarkerID;                                          // 0x0944(0x0004)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_BP_SecurityCamera(int32 EntryPoint);
-	void BP_OnStateChanged(ESBZCameraState OldState, ESBZCameraState NewState, bool bDoCosmetics);
-	void OnRuntimeStateApplied(ESBZRuntimeState AppliedState);
-	void OnRuntimeStateRemoved(ESBZRuntimeState AppliedState);
-	void BP_OnIndestructibleCamera();
-	void HighlightHackable_1(bool bInHighlight);
-	void BP_OnCameraColorStateChanged(ESBZCameraColorState NewCameraColorState);
 	void UserConstructionScript();
+	void BP_OnCameraColorStateChanged(ESBZCameraColorState NewCameraColorState);
+	void HighlightHackable_1(bool bInHighlight);
+	void BP_OnIndestructibleCamera();
+	void OnRuntimeStateRemoved(ESBZRuntimeState AppliedState);
+	void OnRuntimeStateApplied(ESBZRuntimeState AppliedState);
+	void BP_OnStateChanged(ESBZCameraState OldState, ESBZCameraState NewState, bool bDoCosmetics);
+	void ExecuteUbergraph_BP_SecurityCamera(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

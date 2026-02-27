@@ -10,9 +10,9 @@
 
 #include "Basic.hpp"
 
-#include "Starbreeze_classes.hpp"
 #include "AnimGraphRuntime_structs.hpp"
 #include "Engine_structs.hpp"
+#include "Starbreeze_classes.hpp"
 
 
 namespace SDK
@@ -29,8 +29,8 @@ public:
 	struct FAnimNode_Slot                         AnimGraphNode_Slot;                                // 0x03F0(0x0060)()
 
 public:
-	void ExecuteUbergraph_ABP_DoctorBag_EQP(int32 EntryPoint);
 	void AnimGraph(struct FPoseLink* AnimGraph_0);
+	void ExecuteUbergraph_ABP_DoctorBag_EQP(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

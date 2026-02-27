@@ -43,10 +43,10 @@ public:
 	class UStaticMeshComponent*                   PocketDrill_Base;                                  // 0x05B8(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_BP_PocketDrill(int32 EntryPoint);
-	void BndEvt__BP_PocketDrill_ActivationInteraction_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void ReceiveTick(float DeltaSeconds);
 	void BP_OnStateChanged(ESBZBreachingEquipmentState OldState, ESBZBreachingEquipmentState NewState, bool bDoCosmetics);
+	void ReceiveTick(float DeltaSeconds);
+	void BndEvt__BP_PocketDrill_ActivationInteraction_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void ExecuteUbergraph_BP_PocketDrill(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

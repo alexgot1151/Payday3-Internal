@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function CH_SWAT_SHIELD.CH_SWAT_SHIELD_C.ExecuteUbergraph_CH_SWAT_SHIELD
-// (Final, UbergraphFunction)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ACH_SWAT_SHIELD_C::ExecuteUbergraph_CH_SWAT_SHIELD(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("CH_SWAT_SHIELD_C", "ExecuteUbergraph_CH_SWAT_SHIELD");
-
-	Params::CH_SWAT_SHIELD_C_ExecuteUbergraph_CH_SWAT_SHIELD Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function CH_SWAT_SHIELD.CH_SWAT_SHIELD_C.ReceiveActorBeginOverlap
 // (Event, Public, BlueprintEvent)
 // Parameters:
@@ -52,6 +32,26 @@ void ACH_SWAT_SHIELD_C::ReceiveActorBeginOverlap(class AActor* OtherActor)
 	Params::CH_SWAT_SHIELD_C_ReceiveActorBeginOverlap Parms{};
 
 	Parms.OtherActor = OtherActor;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function CH_SWAT_SHIELD.CH_SWAT_SHIELD_C.ExecuteUbergraph_CH_SWAT_SHIELD
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ACH_SWAT_SHIELD_C::ExecuteUbergraph_CH_SWAT_SHIELD(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("CH_SWAT_SHIELD_C", "ExecuteUbergraph_CH_SWAT_SHIELD");
+
+	Params::CH_SWAT_SHIELD_C_ExecuteUbergraph_CH_SWAT_SHIELD Parms{};
+
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

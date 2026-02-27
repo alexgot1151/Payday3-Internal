@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function UTD_ReturnToStart.UTD_ReturnToStart_C.ExecuteUbergraph_UTD_ReturnToStart
-// (Final, UbergraphFunction)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UUTD_ReturnToStart_C::ExecuteUbergraph_UTD_ReturnToStart(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("UTD_ReturnToStart_C", "ExecuteUbergraph_UTD_ReturnToStart");
-
-	Params::UTD_ReturnToStart_C_ExecuteUbergraph_UTD_ReturnToStart Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function UTD_ReturnToStart.UTD_ReturnToStart_C.OnDeactivatedBP
 // (Event, Public, BlueprintEvent)
 // Parameters:
@@ -52,6 +32,26 @@ void UUTD_ReturnToStart_C::OnDeactivatedBP(EBTNodeResult NodeResult)
 	Params::UTD_ReturnToStart_C_OnDeactivatedBP Parms{};
 
 	Parms.NodeResult = NodeResult;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function UTD_ReturnToStart.UTD_ReturnToStart_C.ExecuteUbergraph_UTD_ReturnToStart
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UUTD_ReturnToStart_C::ExecuteUbergraph_UTD_ReturnToStart(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("UTD_ReturnToStart_C", "ExecuteUbergraph_UTD_ReturnToStart");
+
+	Params::UTD_ReturnToStart_C_ExecuteUbergraph_UTD_ReturnToStart Parms{};
+
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

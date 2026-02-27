@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function BP_Vase_02_D_SmallDestruction.BP_Vase_02_D_SmallDestruction_C.ExecuteUbergraph_BP_Vase_02_D_SmallDestruction
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_Vase_02_D_SmallDestruction_C::ExecuteUbergraph_BP_Vase_02_D_SmallDestruction(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Vase_02_D_SmallDestruction_C", "ExecuteUbergraph_BP_Vase_02_D_SmallDestruction");
-
-	Params::BP_Vase_02_D_SmallDestruction_C_ExecuteUbergraph_BP_Vase_02_D_SmallDestruction Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function BP_Vase_02_D_SmallDestruction.BP_Vase_02_D_SmallDestruction_C.BndEvt__BP_Vase_02_D_SmallDestruction_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
 // (HasOutParams, BlueprintEvent)
 // Parameters:
@@ -54,6 +34,26 @@ void ABP_Vase_02_D_SmallDestruction_C::BndEvt__BP_Vase_02_D_SmallDestruction_SBZ
 
 	Parms.Type = Type;
 	Parms.HitContext = std::move(HitContext);
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_Vase_02_D_SmallDestruction.BP_Vase_02_D_SmallDestruction_C.ExecuteUbergraph_BP_Vase_02_D_SmallDestruction
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_Vase_02_D_SmallDestruction_C::ExecuteUbergraph_BP_Vase_02_D_SmallDestruction(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Vase_02_D_SmallDestruction_C", "ExecuteUbergraph_BP_Vase_02_D_SmallDestruction");
+
+	Params::BP_Vase_02_D_SmallDestruction_C_ExecuteUbergraph_BP_Vase_02_D_SmallDestruction Parms{};
+
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

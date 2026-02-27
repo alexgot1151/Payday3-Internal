@@ -17,17 +17,23 @@
 namespace SDK
 {
 
-// Function BP_CarriedRedKeycard.BP_CarriedRedKeycard_C.UserConstructionScript
-// (Event, Public, BlueprintCallable, BlueprintEvent)
+// Function BP_CarriedRedKeycard.BP_CarriedRedKeycard_C.GetSensorComponent
+// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// class USBZSensorComponent*              ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_CarriedRedKeycard_C::UserConstructionScript()
+class USBZSensorComponent* ABP_CarriedRedKeycard_C::GetSensorComponent()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_CarriedRedKeycard_C", "UserConstructionScript");
+		Func = Class->GetFunction("BP_CarriedRedKeycard_C", "GetSensorComponent");
 
-	UObject::ProcessEvent(Func, nullptr);
+	Params::BP_CarriedRedKeycard_C_GetSensorComponent Parms{};
+
+	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 }
 
 
@@ -51,23 +57,17 @@ class USBZOutlineComponent* ABP_CarriedRedKeycard_C::GetSensorOutlineComponent()
 }
 
 
-// Function BP_CarriedRedKeycard.BP_CarriedRedKeycard_C.GetSensorComponent
-// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// class USBZSensorComponent*              ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function BP_CarriedRedKeycard.BP_CarriedRedKeycard_C.UserConstructionScript
+// (Event, Public, BlueprintCallable, BlueprintEvent)
 
-class USBZSensorComponent* ABP_CarriedRedKeycard_C::GetSensorComponent()
+void ABP_CarriedRedKeycard_C::UserConstructionScript()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_CarriedRedKeycard_C", "GetSensorComponent");
+		Func = Class->GetFunction("BP_CarriedRedKeycard_C", "UserConstructionScript");
 
-	Params::BP_CarriedRedKeycard_C_GetSensorComponent Parms{};
-
-	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

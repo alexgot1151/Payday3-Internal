@@ -11,10 +11,10 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
-#include "Starbreeze_structs.hpp"
-#include "Starbreeze_classes.hpp"
 #include "AnimGraphRuntime_structs.hpp"
 #include "PhysXVehicles_structs.hpp"
+#include "Starbreeze_structs.hpp"
+#include "Starbreeze_classes.hpp"
 
 
 namespace SDK

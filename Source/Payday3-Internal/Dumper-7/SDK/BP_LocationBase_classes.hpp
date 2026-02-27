@@ -42,15 +42,15 @@ public:
 	bool                                          ignorePenetratingPlayers;                          // 0x0364(0x0001)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor)
 
 public:
-	void ExecuteUbergraph_BP_LocationBase(int32 EntryPoint);
-	void ReceiveBeginPlay();
-	void BndEvt__BP_LocationBase_SBZInteractableGhost_K2Node_ComponentBoundEvent_3_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void BndEvt__BP_LocationBase_SBZInteractableObject_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void OnStateChanged(int32 OldState, int32 NewState, bool bDoCosmetics);
-	void UserConstructionScript();
-	void setGhostVisible(bool addMarker_0);
-	void setInvisible();
 	void setObjectVisible();
+	void setInvisible();
+	void setGhostVisible(bool addMarker_0);
+	void UserConstructionScript();
+	void OnStateChanged(int32 OldState, int32 NewState, bool bDoCosmetics);
+	void BndEvt__BP_LocationBase_SBZInteractableObject_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void BndEvt__BP_LocationBase_SBZInteractableGhost_K2Node_ComponentBoundEvent_3_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void ReceiveBeginPlay();
+	void ExecuteUbergraph_BP_LocationBase(int32 EntryPoint);
 	void setObjectRemovable(bool addMarker_0);
 	void setMeshVisibility(bool visible, bool ghost);
 	void addMarker(const class USBZMarkerDataAsset* MarkerDataAsset);

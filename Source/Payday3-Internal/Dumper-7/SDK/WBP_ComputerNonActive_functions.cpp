@@ -17,6 +17,20 @@
 namespace SDK
 {
 
+// Function WBP_ComputerNonActive.WBP_ComputerNonActive_C.Construct
+// (BlueprintCosmetic, Event, Public, BlueprintEvent)
+
+void UWBP_ComputerNonActive_C::Construct()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_ComputerNonActive_C", "Construct");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
 // Function WBP_ComputerNonActive.WBP_ComputerNonActive_C.ExecuteUbergraph_WBP_ComputerNonActive
 // (Final, UbergraphFunction)
 // Parameters:
@@ -34,20 +48,6 @@ void UWBP_ComputerNonActive_C::ExecuteUbergraph_WBP_ComputerNonActive(int32 Entr
 	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_ComputerNonActive.WBP_ComputerNonActive_C.Construct
-// (BlueprintCosmetic, Event, Public, BlueprintEvent)
-
-void UWBP_ComputerNonActive_C::Construct()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_ComputerNonActive_C", "Construct");
-
-	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

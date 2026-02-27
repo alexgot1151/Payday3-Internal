@@ -17,23 +17,43 @@
 namespace SDK
 {
 
-// Function BP_CarriedInteractableBase.BP_CarriedInteractableBase_C.ExecuteUbergraph_BP_CarriedInteractableBase
-// (Final, UbergraphFunction)
+// Function BP_CarriedInteractableBase.BP_CarriedInteractableBase_C.GetSensorComponent
+// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZSensorComponent*              ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_CarriedInteractableBase_C::ExecuteUbergraph_BP_CarriedInteractableBase(int32 EntryPoint)
+class USBZSensorComponent* ABP_CarriedInteractableBase_C::GetSensorComponent()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_CarriedInteractableBase_C", "ExecuteUbergraph_BP_CarriedInteractableBase");
+		Func = Class->GetFunction("BP_CarriedInteractableBase_C", "GetSensorComponent");
 
-	Params::BP_CarriedInteractableBase_C_ExecuteUbergraph_BP_CarriedInteractableBase Parms{};
-
-	Parms.EntryPoint = EntryPoint;
+	Params::BP_CarriedInteractableBase_C_GetSensorComponent Parms{};
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
+}
+
+
+// Function BP_CarriedInteractableBase.BP_CarriedInteractableBase_C.GetSensorOutlineComponent
+// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// class USBZOutlineComponent*             ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+class USBZOutlineComponent* ABP_CarriedInteractableBase_C::GetSensorOutlineComponent()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_CarriedInteractableBase_C", "GetSensorOutlineComponent");
+
+	Params::BP_CarriedInteractableBase_C_GetSensorOutlineComponent Parms{};
+
+	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 }
 
 
@@ -61,43 +81,23 @@ void ABP_CarriedInteractableBase_C::BndEvt__BP_CarriedInteractableBase_Interacta
 }
 
 
-// Function BP_CarriedInteractableBase.BP_CarriedInteractableBase_C.GetSensorOutlineComponent
-// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
+// Function BP_CarriedInteractableBase.BP_CarriedInteractableBase_C.ExecuteUbergraph_BP_CarriedInteractableBase
+// (Final, UbergraphFunction)
 // Parameters:
-// class USBZOutlineComponent*             ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-class USBZOutlineComponent* ABP_CarriedInteractableBase_C::GetSensorOutlineComponent()
+void ABP_CarriedInteractableBase_C::ExecuteUbergraph_BP_CarriedInteractableBase(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_CarriedInteractableBase_C", "GetSensorOutlineComponent");
+		Func = Class->GetFunction("BP_CarriedInteractableBase_C", "ExecuteUbergraph_BP_CarriedInteractableBase");
 
-	Params::BP_CarriedInteractableBase_C_GetSensorOutlineComponent Parms{};
+	Params::BP_CarriedInteractableBase_C_ExecuteUbergraph_BP_CarriedInteractableBase Parms{};
 
-	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
-}
-
-
-// Function BP_CarriedInteractableBase.BP_CarriedInteractableBase_C.GetSensorComponent
-// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// class USBZSensorComponent*              ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-class USBZSensorComponent* ABP_CarriedInteractableBase_C::GetSensorComponent()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_CarriedInteractableBase_C", "GetSensorComponent");
-
-	Params::BP_CarriedInteractableBase_C_GetSensorComponent Parms{};
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 }
 
 }

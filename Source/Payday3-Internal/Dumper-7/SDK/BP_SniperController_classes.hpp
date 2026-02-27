@@ -25,8 +25,8 @@ public:
 	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x0690(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
 
 public:
-	void ExecuteUbergraph_BP_SniperController(int32 EntryPoint);
 	void ReceivePossess(class APawn* PossessedPawn);
+	void ExecuteUbergraph_BP_SniperController(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

@@ -20,7 +20,7 @@ namespace SDK
 
 // BlueprintGeneratedClass BP_Moon_Gun.BP_Moon_Gun_C
 // 0x0040 (0x0B30 - 0x0AF0)
-class ABP_Moon_Gun_C : public ASBZAIDrone
+class ABP_Moon_Gun_C final : public ASBZAIDrone
 {
 public:
 	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x0AF0(0x0008)(ZeroConstructor, Transient, DuplicateTransient)

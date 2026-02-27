@@ -11,8 +11,8 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
-#include "AkAudio_structs.hpp"
 #include "Starbreeze_classes.hpp"
+#include "AkAudio_structs.hpp"
 
 
 namespace SDK
@@ -41,13 +41,13 @@ public:
 	bool                                          HasBeenMarked;                                     // 0x05BC(0x0001)(Edit, BlueprintVisible, Net, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor)
 
 public:
-	void ExecuteUbergraph_BP_Placeable_ArmorBag(int32 EntryPoint);
-	void BndEvt__BP_Placeable_ArmorBag_ProjectileMovementComponent_K2Node_ComponentBoundEvent_1_ActorComponentActivatedSignature__DelegateSignature(class UActorComponent* Component, bool bReset);
-	void OnChargesChanged(float ChargesChangeTo, bool bDoCosmetics);
-	void BndEvt__SBZShoutTarget_K2Node_ComponentBoundEvent_2_SBZShoutedAtDelegate__DelegateSignature(class USBZShoutTargetComponent* ShoutTarget, class APawn* Shouter);
-	void Timeline_0__UpdateFunc();
-	void Timeline_0__FinishedFunc();
 	void UpdateCharges(float NewChargeCount);
+	void Timeline_0__FinishedFunc();
+	void Timeline_0__UpdateFunc();
+	void BndEvt__SBZShoutTarget_K2Node_ComponentBoundEvent_2_SBZShoutedAtDelegate__DelegateSignature(class USBZShoutTargetComponent* ShoutTarget, class APawn* Shouter);
+	void OnChargesChanged(float ChargesChangeTo, bool bDoCosmetics);
+	void BndEvt__BP_Placeable_ArmorBag_ProjectileMovementComponent_K2Node_ComponentBoundEvent_1_ActorComponentActivatedSignature__DelegateSignature(class UActorComponent* Component, bool bReset);
+	void ExecuteUbergraph_BP_Placeable_ArmorBag(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

@@ -17,6 +17,20 @@
 namespace SDK
 {
 
+// Function GA_Tased.GA_Tased_C.K2_ActivateAbility
+// (Event, Protected, BlueprintEvent)
+
+void UGA_Tased_C::K2_ActivateAbility()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("GA_Tased_C", "K2_ActivateAbility");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
 // Function GA_Tased.GA_Tased_C.ExecuteUbergraph_GA_Tased
 // (Final, UbergraphFunction)
 // Parameters:
@@ -34,20 +48,6 @@ void UGA_Tased_C::ExecuteUbergraph_GA_Tased(int32 EntryPoint)
 	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function GA_Tased.GA_Tased_C.K2_ActivateAbility
-// (Event, Protected, BlueprintEvent)
-
-void UGA_Tased_C::K2_ActivateAbility()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("GA_Tased_C", "K2_ActivateAbility");
-
-	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

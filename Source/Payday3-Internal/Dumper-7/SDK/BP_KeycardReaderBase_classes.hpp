@@ -11,9 +11,9 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
-#include "AkAudio_structs.hpp"
 #include "Starbreeze_structs.hpp"
 #include "Starbreeze_classes.hpp"
+#include "AkAudio_structs.hpp"
 
 
 namespace SDK
@@ -37,13 +37,13 @@ public:
 	TArray<float>                                 Values;                                            // 0x0358(0x0010)(Edit, BlueprintVisible, DisableEditOnInstance)
 
 public:
-	void ExecuteUbergraph_BP_KeycardReaderBase(int32 EntryPoint);
-	void ReceiveBeginPlay();
-	void BndEvt__BP_KeycardReaderBase_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent_0, bool bInNewState);
-	void BP_OnStateChanged(ESBZModuleActorState NewState, bool bDoCosmetics);
-	void Timeline_0__UpdateFunc();
-	void Timeline_0__FinishedFunc();
 	void SetPrimitiveAndVisability(class UPrimitiveComponent* StaticMesh_0, class USceneComponent* Text, float Value);
+	void Timeline_0__FinishedFunc();
+	void Timeline_0__UpdateFunc();
+	void BP_OnStateChanged(ESBZModuleActorState NewState, bool bDoCosmetics);
+	void BndEvt__BP_KeycardReaderBase_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent_0, bool bInNewState);
+	void ReceiveBeginPlay();
+	void ExecuteUbergraph_BP_KeycardReaderBase(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

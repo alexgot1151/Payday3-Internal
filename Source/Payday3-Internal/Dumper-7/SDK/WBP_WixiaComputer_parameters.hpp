@@ -16,6 +16,71 @@
 namespace SDK::Params
 {
 
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.UpdateEmailDisplayText
+// 0x0060 (0x0060 - 0x0000)
+struct WBP_WixiaComputer_C_UpdateEmailDisplayText final
+{
+public:
+	struct FSBZHackableDisplayText                DisplayText;                                       // 0x0000(0x0060)(BlueprintVisible, BlueprintReadOnly, Parm)
+};
+DUMPER7_ASSERTS_WBP_WixiaComputer_C_UpdateEmailDisplayText;
+
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.UpdateSuccessText
+// 0x0018 (0x0018 - 0x0000)
+struct WBP_WixiaComputer_C_UpdateSuccessText final
+{
+public:
+	class FText                                   InText;                                            // 0x0000(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
+};
+DUMPER7_ASSERTS_WBP_WixiaComputer_C_UpdateSuccessText;
+
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.UpdateUnlockDisplayText
+// 0x0060 (0x0060 - 0x0000)
+struct WBP_WixiaComputer_C_UpdateUnlockDisplayText final
+{
+public:
+	struct FSBZHackableDisplayText                NewDisplayText;                                    // 0x0000(0x0060)(BlueprintVisible, BlueprintReadOnly, Parm)
+};
+DUMPER7_ASSERTS_WBP_WixiaComputer_C_UpdateUnlockDisplayText;
+
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateHackingTimerProcessName
+// 0x0018 (0x0018 - 0x0000)
+struct WBP_WixiaComputer_C_updateHackingTimerProcessName final
+{
+public:
+	class FText                                   InText;                                            // 0x0000(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
+};
+DUMPER7_ASSERTS_WBP_WixiaComputer_C_updateHackingTimerProcessName;
+
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateHackingProgress
+// 0x0004 (0x0004 - 0x0000)
+struct WBP_WixiaComputer_C_updateHackingProgress final
+{
+public:
+	int32                                         progress;                                          // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_WBP_WixiaComputer_C_updateHackingProgress;
+
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateKeypadPossibleCodes
+// 0x0010 (0x0010 - 0x0000)
+struct WBP_WixiaComputer_C_updateKeypadPossibleCodes final
+{
+public:
+	TArray<int32>                                 codes;                                             // 0x0000(0x0010)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
+};
+DUMPER7_ASSERTS_WBP_WixiaComputer_C_updateKeypadPossibleCodes;
+
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateInformation
+// 0x0048 (0x0048 - 0x0000)
+struct WBP_WixiaComputer_C_updateInformation final
+{
+public:
+	class FText                                   main;                                              // 0x0000(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
+	class FText                                   secondary;                                         // 0x0018(0x0018)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm)
+	class FText                                   additional;                                        // 0x0030(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
+};
+DUMPER7_ASSERTS_WBP_WixiaComputer_C_updateInformation;
+
 // Function WBP_WixiaComputer.WBP_WixiaComputer_C.ExecuteUbergraph_WBP_WixiaComputer
 // 0x01B8 (0x01B8 - 0x0000)
 struct WBP_WixiaComputer_C_ExecuteUbergraph_WBP_WixiaComputer final
@@ -50,71 +115,6 @@ public:
 	bool                                          CallFunc_IsValid_ReturnValue;                      // 0x01B0(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_WBP_WixiaComputer_C_ExecuteUbergraph_WBP_WixiaComputer;
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateInformation
-// 0x0048 (0x0048 - 0x0000)
-struct WBP_WixiaComputer_C_updateInformation final
-{
-public:
-	class FText                                   main;                                              // 0x0000(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
-	class FText                                   secondary;                                         // 0x0018(0x0018)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm)
-	class FText                                   additional;                                        // 0x0030(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
-};
-DUMPER7_ASSERTS_WBP_WixiaComputer_C_updateInformation;
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateKeypadPossibleCodes
-// 0x0010 (0x0010 - 0x0000)
-struct WBP_WixiaComputer_C_updateKeypadPossibleCodes final
-{
-public:
-	TArray<int32>                                 codes;                                             // 0x0000(0x0010)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
-};
-DUMPER7_ASSERTS_WBP_WixiaComputer_C_updateKeypadPossibleCodes;
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateHackingProgress
-// 0x0004 (0x0004 - 0x0000)
-struct WBP_WixiaComputer_C_updateHackingProgress final
-{
-public:
-	int32                                         progress;                                          // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_WBP_WixiaComputer_C_updateHackingProgress;
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateHackingTimerProcessName
-// 0x0018 (0x0018 - 0x0000)
-struct WBP_WixiaComputer_C_updateHackingTimerProcessName final
-{
-public:
-	class FText                                   InText;                                            // 0x0000(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
-};
-DUMPER7_ASSERTS_WBP_WixiaComputer_C_updateHackingTimerProcessName;
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.UpdateUnlockDisplayText
-// 0x0060 (0x0060 - 0x0000)
-struct WBP_WixiaComputer_C_UpdateUnlockDisplayText final
-{
-public:
-	struct FSBZHackableDisplayText                NewDisplayText;                                    // 0x0000(0x0060)(BlueprintVisible, BlueprintReadOnly, Parm)
-};
-DUMPER7_ASSERTS_WBP_WixiaComputer_C_UpdateUnlockDisplayText;
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.UpdateSuccessText
-// 0x0018 (0x0018 - 0x0000)
-struct WBP_WixiaComputer_C_UpdateSuccessText final
-{
-public:
-	class FText                                   InText;                                            // 0x0000(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
-};
-DUMPER7_ASSERTS_WBP_WixiaComputer_C_UpdateSuccessText;
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.UpdateEmailDisplayText
-// 0x0060 (0x0060 - 0x0000)
-struct WBP_WixiaComputer_C_UpdateEmailDisplayText final
-{
-public:
-	struct FSBZHackableDisplayText                DisplayText;                                       // 0x0000(0x0060)(BlueprintVisible, BlueprintReadOnly, Parm)
-};
-DUMPER7_ASSERTS_WBP_WixiaComputer_C_UpdateEmailDisplayText;
 
 // Function WBP_WixiaComputer.WBP_WixiaComputer_C.HideAllWidgetsButOne
 // 0x0008 (0x0008 - 0x0000)

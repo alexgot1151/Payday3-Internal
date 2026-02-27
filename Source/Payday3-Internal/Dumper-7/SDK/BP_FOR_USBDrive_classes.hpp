@@ -11,8 +11,8 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
-#include "BP_LocationBase_classes.hpp"
 #include "AkAudio_structs.hpp"
+#include "BP_LocationBase_classes.hpp"
 
 
 namespace SDK
@@ -27,8 +27,8 @@ public:
 	class USBZAIObjectiveComponent*               SBZAIObjective;                                    // 0x0370(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_BP_FOR_USBDrive(int32 EntryPoint);
 	void OnStateChanged(int32 OldState, int32 NewState, bool bDoCosmetics);
+	void ExecuteUbergraph_BP_FOR_USBDrive(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

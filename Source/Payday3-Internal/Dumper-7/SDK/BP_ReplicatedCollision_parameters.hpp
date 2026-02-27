@@ -17,6 +17,26 @@
 namespace SDK::Params
 {
 
+// Function BP_ReplicatedCollision.BP_ReplicatedCollision_C.OnStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct BP_ReplicatedCollision_C_OnStateChanged final
+{
+public:
+	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ReplicatedCollision_C_OnStateChanged;
+
+// Function BP_ReplicatedCollision.BP_ReplicatedCollision_C.ReactToCloset
+// 0x0002 (0x0002 - 0x0000)
+struct BP_ReplicatedCollision_C_ReactToCloset final
+{
+public:
+	bool                                          bActorsInCloset;                                   // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ReplicatedCollision_C_ReactToCloset;
+
 // Function BP_ReplicatedCollision.BP_ReplicatedCollision_C.ExecuteUbergraph_BP_ReplicatedCollision
 // 0x0138 (0x0138 - 0x0000)
 struct BP_ReplicatedCollision_C_ExecuteUbergraph_BP_ReplicatedCollision final
@@ -34,26 +54,6 @@ public:
 	bool                                          CallFunc_Not_PreBool_ReturnValue;                  // 0x0136(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_BP_ReplicatedCollision_C_ExecuteUbergraph_BP_ReplicatedCollision;
-
-// Function BP_ReplicatedCollision.BP_ReplicatedCollision_C.ReactToCloset
-// 0x0002 (0x0002 - 0x0000)
-struct BP_ReplicatedCollision_C_ReactToCloset final
-{
-public:
-	bool                                          bActorsInCloset;                                   // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ReplicatedCollision_C_ReactToCloset;
-
-// Function BP_ReplicatedCollision.BP_ReplicatedCollision_C.OnStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct BP_ReplicatedCollision_C_OnStateChanged final
-{
-public:
-	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ReplicatedCollision_C_OnStateChanged;
 
 }
 

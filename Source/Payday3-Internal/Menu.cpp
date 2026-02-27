@@ -7,8 +7,95 @@
 #include "Features/ESP/ESP.hpp"
 #include "Menu.hpp"
 
+std::string CreateMultiSelectPreviewText(const std::vector<std::pair<bool, const char*>>& vecInput, const char* szUnique){
+    std::string sReturned = "";
+
+    static auto fnAppend = [](std::string& sText, bool bAppend, const char* szAppendText) {
+        if (!bAppend)
+            return;
+
+        if (sText.size())
+            sText += ", ";
+
+        sText += szAppendText;
+    };
+
+    for(const auto& pairEntry : vecInput)
+        fnAppend(sReturned, pairEntry.first, pairEntry.second);
+    
+    return std::format("{}###{}", (!sReturned.size()) ? "None" : sReturned, szUnique);
+}
+
+void Hotkey(const char* szLabel, Menu::Hotkey_t& bind){
+    const auto id = ImGui::GetID(szLabel);
+    ImGui::PushID(id);
+
+    ImGui::TextUnformatted(szLabel);
+
+    ImGui::SameLine();
+    static const char* aTypes[] = { "Off", "On", "Hold", "Hold Off", "Toggle" };
+    int iItem = static_cast<int>(bind.m_eType);
+    ImGui::Combo("", &iItem, aTypes, IM_ARRAYSIZE(aTypes));
+    bind.m_eType = static_cast<Menu::Hotkey_t::EType>(iItem);
+
+    if(bind.m_eType != Menu::Hotkey_t::EType::AlwaysOff && bind.m_eType != Menu::Hotkey_t::EType::AlwaysOn){
+        ImGui::SameLine();
+        if(ImGui::GetActiveID() == id){
+            ImGui::PushStyleColor(ImGuiCol_Button, ImGui::GetColorU32(ImGuiCol_ButtonActive));
+            ImGui::Button("...");
+            ImGui::PopStyleColor();
+
+            ImGui::GetCurrentContext()->ActiveIdAllowOverlap = true;
+            ImGui::SetActiveID(id, ImGui::GetCurrentWindow());
+            if((!ImGui::IsItemHovered() && ImGui::GetIO().MouseClicked[0]) || bind.SetToPressedKey())
+                ImGui::ClearActiveID();
+        } else if(ImGui::Button(bind.ToString()))
+            ImGui::SetActiveID(id, ImGui::GetCurrentWindow());
+    }
+
+    ImGui::PopID();
+}
+
+
 void CheatConfig::Aimbot_t::Draw(){
-    ImGui::Checkbox("Silent Aim", &m_bSilentAim);
+    ImGui::Checkbox("Enabled", &m_bEnabled);
+    if(!m_bEnabled)
+        return;
+
+    ImGui::SliderFloat("Aim FOV", &m_flAimFOV, 0.f, 180.f, "%0.0f");
+
+    static const char* aSortingItems[]{ "Smart", "FOV", "Threat" };
+    ImGui::Combo("Sorting Method", reinterpret_cast<int*>(&m_eSorting), aSortingItems, IM_ARRAYSIZE(aSortingItems));
+
+    static std::string sTargetsPreview = CreateMultiSelectPreviewText({
+        { m_bGuards, "Guards" },
+        { m_bSpecials, "Specials" },
+        { m_bFBIVan, "FBI Van" },
+        { m_bCivilians, "Civilians" },
+    }, "Targets");
+
+    if(ImGui::BeginCombo("Targets", sTargetsPreview.c_str()))
+    {
+        ImGui::PushItemFlag(ImGuiItemFlags_AutoClosePopups, false);
+        
+        if (ImGui::Selectable("Guards", &m_bGuards) ||
+            ImGui::Selectable("Specials", &m_bSpecials) ||
+            ImGui::Selectable("FBI Van", &m_bFBIVan) ||
+            ImGui::Selectable("Civilians", &m_bCivilians)) {
+            sTargetsPreview = CreateMultiSelectPreviewText({
+                { m_bGuards, "Guards" },
+                { m_bSpecials, "Specials" },
+                { m_bFBIVan, "FBI Van" },
+                { m_bCivilians, "Civilians" },
+            }, "Targets");
+        }
+            
+        ImGui::PopItemFlag();
+        ImGui::EndCombo();
+    }
+
+    ImGui::Checkbox("Aim Through Walls", &m_bThroughWalls);
+    ImGui::Checkbox("Loud Only", &m_bDisableInStealth);
 }
 
 void DrawEnemyESPSection(const char* szType, ESP::EnemyESP& stSettings)
@@ -60,27 +147,10 @@ void CheatConfig::Visuals_t::Draw(){
 #endif
 }
 
-std::string CreateMultiSelectPreviewText(const std::vector<std::pair<bool, const char*>>& vecInput, const char* szUnique){
-    std::string sReturned = "";
-
-    static auto fnAppend = [](std::string& sText, bool bAppend, const char* szAppendText) {
-        if (!bAppend)
-            return;
-
-        if (sText.size())
-            sText += ", ";
-
-        sText += szAppendText;
-    };
-
-    for(const auto& pairEntry : vecInput)
-        fnAppend(sReturned, pairEntry.first, pairEntry.second);
-    
-    return std::format("{}###{}", (!sReturned.size()) ? "None" : sReturned, szUnique);
-}
 
 void CheatConfig::Misc_t::Draw(){
-    ImGui::Checkbox("Client Move", &m_bClientMove);
+    Hotkey("Client Move", m_keyClientMove);
+
 
     static std::string sRemovalsPreview = CreateMultiSelectPreviewText({
         { m_bNoSpread, "No Spread" },
@@ -106,6 +176,30 @@ void CheatConfig::Misc_t::Draw(){
                 { m_bInstantInteraction, "Instant Interaction" },
                 { m_bInstantMinigame, "Instant Minigame" }
             }, "Removals");
+        }
+            
+        ImGui::PopItemFlag();
+        ImGui::EndCombo();
+    }
+
+    static std::string sBuffsPreview = CreateMultiSelectPreviewText({
+        { m_bSpeedBuff, "Speed" },
+        { m_bDamageBuff, "Damage" },
+        { m_bArmorBuff, "Armor" }
+    }, "Buffs");
+
+    if(ImGui::BeginCombo("Buffs", sBuffsPreview.c_str()))
+    {
+        ImGui::PushItemFlag(ImGuiItemFlags_AutoClosePopups, false);
+        
+        if (ImGui::Selectable("Speed", &m_bSpeedBuff) ||
+            ImGui::Selectable("Damage", &m_bDamageBuff) ||
+            ImGui::Selectable("Armor", &m_bArmorBuff)) {
+            sBuffsPreview = CreateMultiSelectPreviewText({
+                { m_bSpeedBuff, "Speed" },
+                { m_bDamageBuff, "Damage" },
+                { m_bArmorBuff, "Armor" }
+            }, "Buffs");
         }
             
         ImGui::PopItemFlag();
@@ -152,6 +246,8 @@ namespace Menu
 
     void PreDraw()
     {
+        CheatConfig::Get().m_misc.m_keyClientMove.UpdateState();
+
         SDK::UWorld* pGWorld = SDK::UWorld::GetWorld();
         if (!pGWorld)
             return;

@@ -11,8 +11,8 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
-#include "Starbreeze_classes.hpp"
 #include "AnimGraphRuntime_structs.hpp"
+#include "Starbreeze_classes.hpp"
 
 
 namespace SDK
@@ -49,9 +49,9 @@ public:
 	struct FAnimNode_Root                         AnimGraphNode_Root;                                // 0x0EE8(0x0048)()
 
 public:
-	void ExecuteUbergraph_ABP_TPPlayerLinkedBase(int32 EntryPoint);
-	void AnimGraph(struct FPoseLink* AnimGraph_0);
 	void FullBodyAction(const struct FPoseLink& InPose, struct FPoseLink* FullBodyAction_0);
+	void AnimGraph(struct FPoseLink* AnimGraph_0);
+	void ExecuteUbergraph_ABP_TPPlayerLinkedBase(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

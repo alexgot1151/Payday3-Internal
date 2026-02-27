@@ -32,16 +32,16 @@ public:
 	bool                                          phaseThroughPlayersWhenMoving;                     // 0x05F8(0x0001)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor)
 
 public:
-	void ExecuteUbergraph_BP_interactableDoor_Base(int32 EntryPoint);
-	void onOpenAnimFinished();
-	void onOpenAnimStarted();
-	void setBreachedMeshVisibility(bool breached);
-	void initToValidPosition(ESBZGateState oldState);
-	void onOpenAnimUpdateTick(float alpha);
-	void onDoorBreached(ESBZGateState oldState, ESBZGateState newState);
-	void OnStateChanged(ESBZGateState OldState, ESBZGateState NewState, bool bIsInitialStateChange);
-	void open__UpdateFunc();
 	void open__FinishedFunc();
+	void open__UpdateFunc();
+	void OnStateChanged(ESBZGateState OldState, ESBZGateState NewState, bool bIsInitialStateChange);
+	void onDoorBreached(ESBZGateState oldState, ESBZGateState newState);
+	void onOpenAnimUpdateTick(float alpha);
+	void initToValidPosition(ESBZGateState oldState);
+	void setBreachedMeshVisibility(bool breached);
+	void onOpenAnimStarted();
+	void onOpenAnimFinished();
+	void ExecuteUbergraph_BP_interactableDoor_Base(int32 EntryPoint);
 	void getDoorSimpleState(ESBZGateState state, EdoorStateSimple* simpleState);
 	void canDoorAnimate(ESBZGateState oldState, ESBZGateState newState, bool* canAnimate);
 

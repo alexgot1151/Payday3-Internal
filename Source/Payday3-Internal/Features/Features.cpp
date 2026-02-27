@@ -18,9 +18,11 @@ void InstantInteraction(SDK::USBZPlayerInteractorComponent* pInteractor){
 
     if(auto pOwner = pInteraction->GetOwner(); pOwner && pOwner->IsA(SDK::ASBZBagItem::StaticClass()))
         return;
+        
 
     pInteractor->Server_CompleteInteraction(pInteraction, pInteractor->InteractId);
-    pInteractor->Multicast_CompletedInteraction(pInteraction, false);
+    if(!Cheat::g_bIsSoloGame) // Makes the instant interaction look smoother in multiplayer
+        pInteractor->Multicast_CompletedInteraction(pInteraction, false);
 
     // Dirty hack to prevent completing the interaction multiple times.
     timeInteractLast = std::chrono::steady_clock::now();
@@ -133,16 +135,70 @@ void RestoreWeaponRecoil(SDK::USBZRangedWeaponData* pWeaponData){
     pWeaponData->RecoilData->GunKickXY.SpeedDeflect = itrEntry->second.m_flGunSpeedDeflect;
 }
 
+void OverrideMethLabInteractables(){
+    if(Cheat::g_iMethLabIndex <= 0 || Cheat::g_iMethLabIndex > SDK::UObject::GObjects->Num())
+        return;
+
+    auto pLab = reinterpret_cast<SDK::ASBZCookingStation*>(SDK::UObject::GObjects->GetByIndex(Cheat::g_iMethLabIndex));
+    if(!pLab || !pLab->IsA(SDK::ASBZCookingStation::StaticClass()))
+        return;
+
+    int iIngredientNum = reinterpret_cast<uint64_t*>(pLab->Pad_540)[2];
+    int iActiveIngredient = -1;
+    
+    static uint64_t iIngredientCode = 0;
+    uint64_t iCurrentIngredientCode = reinterpret_cast<uint64_t**>(pLab->Pad_540)[3][0];
+    if(iIngredientCode != iCurrentIngredientCode){
+        std::cout << std::hex << iCurrentIngredientCode << std::dec << '\n';
+        iIngredientCode = iCurrentIngredientCode;
+    }
+    switch(iCurrentIngredientCode){
+    case 0x1: //1 - 213
+        iActiveIngredient = (iIngredientNum == 0) ? 1 : (iIngredientNum == 1) ? 0 : 2;
+        break;
+    case 0x2: //2 - 312
+        iActiveIngredient = (iIngredientNum == 0) ? 2 : (iIngredientNum == 1) ? 0 : 1;
+        break;
+    case 0x100000000: //100000000 - 123
+        iActiveIngredient = (iIngredientNum == 0) ? 0 : (iIngredientNum == 1) ? 1 : 2;
+        break;
+    case 0x100000002: //100000002 - 321
+        iActiveIngredient = (iIngredientNum == 0) ? 2 : (iIngredientNum == 1) ? 1 : 0;
+        break;
+    case 0x200000000: //200000000 - 132
+        iActiveIngredient = (iIngredientNum == 0) ? 0 : (iIngredientNum == 1) ? 2 : 1;
+        break;
+    case 0x200000001: //200000001 - 231
+        iActiveIngredient = (iIngredientNum == 0) ? 1 : (iIngredientNum == 1) ? 2 : 0;
+        break;
+    default:
+        break;
+    }
+
+    for(int i = 0; i < pLab->IngredientInteractableArray.Num(); ++i){
+        auto pInteractable = pLab->IngredientInteractableArray[i];
+        pInteractable->SetLocalEnabled(i == iActiveIngredient);
+    }
+}
+
+
+
 void Cheat::OnPlayerControllerTick(){
     SDK::UWorld* pGWorld = SDK::UWorld::GetWorld();
 	if (!pGWorld)
 		return;
 
-    g_bIsSoloGame = SDK::USBZOnlineFunctionLibrary::IsSoloGame(pGWorld);
-
-	auto pGameInstance = reinterpret_cast<SDK::USBZGameInstance*>(pGWorld->OwningGameInstance);
+    auto pGameInstance = reinterpret_cast<SDK::USBZGameInstance*>(pGWorld->OwningGameInstance);
 	if (!pGameInstance || !pGameInstance->IsA(SDK::USBZGameInstance::StaticClass()))
 		return;
+
+    SDK::USBZWorldRuntime* pWorldRuntime = reinterpret_cast<SDK::USBZWorldRuntime*>(SDK::USBZWorldRuntime::GetWorldRuntime(pGWorld));
+    if (!pWorldRuntime)
+        return;
+
+    //OverrideMethLabInteractables();
+
+    g_bIsSoloGame = SDK::USBZOnlineFunctionLibrary::IsSoloGame(pGWorld);
 
     if(!g_bDidBackupWeaponData)
         g_bDidBackupWeaponData = BackupWeaponData(pGameInstance);
@@ -154,6 +210,8 @@ void Cheat::OnPlayerControllerTick(){
 	auto pLocalPlayerController = reinterpret_cast<SDK::ASBZPlayerController*>(pULocalPlayer->PlayerController);
 	if (!pLocalPlayerController || !pLocalPlayerController->IsA(SDK::ASBZPlayerController::StaticClass()))
 		return;
+    
+    //pLocalPlayerController->ServerChangeName(SDK::FString(L"Omegaware PD3"));
 
 	auto pLocalPlayer = reinterpret_cast<SDK::ASBZPlayerCharacter*>(pLocalPlayerController->AcknowledgedPawn);
 	if (!pLocalPlayer || !pLocalPlayer->IsA(SDK::ASBZPlayerCharacter::StaticClass()))
@@ -170,6 +228,72 @@ void Cheat::OnPlayerControllerTick(){
 		if (CheatConfig::Get().m_misc.m_bInstantMinigame)
 			InstantMinigame(pPlayerState);
 	}
+
+    if (pLocalPlayer->PlayerAbilitySystem)
+    {
+        static SDK::FGameplayTag tagDummy{
+            SDK::UKismetStringLibrary::Conv_StringToName(L"")
+        };
+
+        auto pAbilitySystem = pLocalPlayer->PlayerAbilitySystem;
+        auto& aAbilities = pAbilitySystem->ActivatableAbilities.Items;
+
+        static bool bDidHaveSpeedBuff = false;
+        bool bSpeedBuff = CheatConfig::Get().m_misc.m_bSpeedBuff;
+        if(bSpeedBuff)
+            pAbilitySystem->Server_SetSpeedBuffTime(tagDummy, 99999.f);
+        else if(bDidHaveSpeedBuff)
+            pAbilitySystem->Server_ResetSpeedBuffTime();
+        bDidHaveSpeedBuff = bSpeedBuff;
+
+        static bool bDidHaveDamageBuff = false;
+        bool bDamageBuff = CheatConfig::Get().m_misc.m_bDamageBuff;
+        if(bDamageBuff)
+            pAbilitySystem->Server_SetDamageBuffTime(tagDummy, 99999.f);
+        else if(bDidHaveDamageBuff)
+            pAbilitySystem->Server_ResetDamageBuffTime();
+        bDidHaveDamageBuff = bDamageBuff;
+
+        static bool bDidHaveArmorBuff = false;
+        bool bArmorBuff = CheatConfig::Get().m_misc.m_bArmorBuff;
+        if(bArmorBuff)
+            pAbilitySystem->Server_SetMitigationBuffTime(tagDummy, 99999.f);
+        else if(bDidHaveArmorBuff)
+            pAbilitySystem->Server_ResetMitigationBuffTime();
+        bDidHaveArmorBuff = bArmorBuff;
+
+        //pAbilitySystem->Server
+        static auto nameDefault__GA_Fire_C = SDK::UKismetStringLibrary::Conv_StringToName(L"Default__GA_Fire_C");
+        static auto nameDefault__GA_Reload_C = SDK::UKismetStringLibrary::Conv_StringToName(L"Default__GA_Reload_C");
+        static auto nameDefault__GA_Run_C = SDK::UKismetStringLibrary::Conv_StringToName(L"Default__GA_Run_C");
+        for (int i = 0; i < aAbilities.Num(); ++i) {
+            if (!aAbilities.IsValidIndex(i))
+                continue;
+
+            auto pAbility = aAbilities[i].Ability;
+            if (!pAbility)
+                continue;
+
+            pAbilitySystem->Client_UnblockAbility(aAbilities[i].Handle);
+
+            if (pAbility->Name == nameDefault__GA_Fire_C){
+                Cheat::g_iFireAbilityHandle = aAbilities[i].Handle.Handle;
+            }
+            if (pAbility->Name == nameDefault__GA_Run_C){
+                //pAbilitySystem->ServerSetInputPressed(aAbilities[i].Handle);
+                //pAbilitySystem->ClientTryActivateAbility(aAbilities[i].Handle);
+            }
+
+            if (pAbility->Name == nameDefault__GA_Reload_C){
+                
+                //pAbilitySystem->ServerCancelAbility(aAbilities[i].Handle, pAbility->CurrentActivationInfo);
+            }
+
+            //GetCurrentMontage()
+            //pAbilitySystem->ServerSetInputPressed(aAbilities[i].Handle);
+            //pAbilitySystem->ClientTryActivateAbility(aAbilities[i].Handle);
+        }
+    }
 
 	if (pLocalPlayer->FPCameraAttachment && pLocalPlayer->FPCameraAttachment->EquippedWeaponData){
 		if (pLocalPlayer->FPCameraAttachment->EquippedWeaponData->IsA(SDK::USBZRangedWeaponData::StaticClass())){
@@ -199,11 +323,15 @@ void Cheat::OnPlayerControllerTick(){
     if (!pMovementComponent)
         return;
 
-    if(CheatConfig::Get().m_misc.m_bClientMove){
+    //pMovementComponent->Server_StartTraversal()
+    if(CheatConfig::Get().m_misc.m_keyClientMove.GetState()){
         if (pLocalPlayer->GetActorEnableCollision())
             pLocalPlayer->SetActorEnableCollision(false);
 
         pMovementComponent->MovementMode = SDK::EMovementMode::MOVE_Flying;
+        pMovementComponent->BrakingDecelerationFlying = 10000.f;
+        pMovementComponent->MaxFlySpeed = 10000.f;
+        pMovementComponent->Velocity = pMovementComponent->Acceleration;
     }
     else if(!pLocalPlayer->GetActorEnableCollision()){
         pLocalPlayer->SetActorEnableCollision(true);

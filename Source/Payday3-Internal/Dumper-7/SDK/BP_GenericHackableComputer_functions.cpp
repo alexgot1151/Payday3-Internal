@@ -17,21 +17,25 @@
 namespace SDK
 {
 
-// Function BP_GenericHackableComputer.BP_GenericHackableComputer_C.ExecuteUbergraph_BP_GenericHackableComputer
-// (Final, UbergraphFunction, HasDefaults)
+// Function BP_GenericHackableComputer.BP_GenericHackableComputer_C.BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature
+// (BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZBaseInteractableComponent*    Interactable                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZInteractorComponent*          Interactor                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    bIsLocallyControlledInteractor                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_GenericHackableComputer_C::ExecuteUbergraph_BP_GenericHackableComputer(int32 EntryPoint)
+void ABP_GenericHackableComputer_C::BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_GenericHackableComputer_C", "ExecuteUbergraph_BP_GenericHackableComputer");
+		Func = Class->GetFunction("BP_GenericHackableComputer_C", "BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature");
 
-	Params::BP_GenericHackableComputer_C_ExecuteUbergraph_BP_GenericHackableComputer Parms{};
+	Params::BP_GenericHackableComputer_C_BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.Interactable = Interactable;
+	Parms.Interactor = Interactor;
+	Parms.bIsLocallyControlledInteractor = bIsLocallyControlledInteractor;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -61,25 +65,21 @@ void ABP_GenericHackableComputer_C::BndEvt__BP_GenericHackableComputer_Interacta
 }
 
 
-// Function BP_GenericHackableComputer.BP_GenericHackableComputer_C.BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature
-// (BlueprintEvent)
+// Function BP_GenericHackableComputer.BP_GenericHackableComputer_C.ExecuteUbergraph_BP_GenericHackableComputer
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// class USBZBaseInteractableComponent*    Interactable                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class USBZInteractorComponent*          Interactor                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// bool                                    bIsLocallyControlledInteractor                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_GenericHackableComputer_C::BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor)
+void ABP_GenericHackableComputer_C::ExecuteUbergraph_BP_GenericHackableComputer(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_GenericHackableComputer_C", "BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature");
+		Func = Class->GetFunction("BP_GenericHackableComputer_C", "ExecuteUbergraph_BP_GenericHackableComputer");
 
-	Params::BP_GenericHackableComputer_C_BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature Parms{};
+	Params::BP_GenericHackableComputer_C_ExecuteUbergraph_BP_GenericHackableComputer Parms{};
 
-	Parms.Interactable = Interactable;
-	Parms.Interactor = Interactor;
-	Parms.bIsLocallyControlledInteractor = bIsLocallyControlledInteractor;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

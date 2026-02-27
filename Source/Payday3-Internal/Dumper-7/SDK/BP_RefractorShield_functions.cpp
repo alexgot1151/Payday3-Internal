@@ -17,6 +17,20 @@
 namespace SDK
 {
 
+// Function BP_RefractorShield.BP_RefractorShield_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
+
+void ABP_RefractorShield_C::ReceiveBeginPlay()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_RefractorShield_C", "ReceiveBeginPlay");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
 // Function BP_RefractorShield.BP_RefractorShield_C.ExecuteUbergraph_BP_RefractorShield
 // (Final, UbergraphFunction)
 // Parameters:
@@ -34,20 +48,6 @@ void ABP_RefractorShield_C::ExecuteUbergraph_BP_RefractorShield(int32 EntryPoint
 	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_RefractorShield.BP_RefractorShield_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
-
-void ABP_RefractorShield_C::ReceiveBeginPlay()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_RefractorShield_C", "ReceiveBeginPlay");
-
-	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function BP_Order_Civilian_CallInvestigator.BP_Order_Civilian_CallInvestigator_C.ExecuteUbergraph_BP_Order_Civilian_CallInvestigator
-// (Final, UbergraphFunction)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UBP_Order_Civilian_CallInvestigator_C::ExecuteUbergraph_BP_Order_Civilian_CallInvestigator(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Order_Civilian_CallInvestigator_C", "ExecuteUbergraph_BP_Order_Civilian_CallInvestigator");
-
-	Params::BP_Order_Civilian_CallInvestigator_C_ExecuteUbergraph_BP_Order_Civilian_CallInvestigator Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function BP_Order_Civilian_CallInvestigator.BP_Order_Civilian_CallInvestigator_C.OnStartedBP
 // (Event, Public, BlueprintEvent)
 // Parameters:
@@ -52,6 +32,26 @@ void UBP_Order_Civilian_CallInvestigator_C::OnStartedBP(class APawn* Pawn)
 	Params::BP_Order_Civilian_CallInvestigator_C_OnStartedBP Parms{};
 
 	Parms.Pawn = Pawn;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_Order_Civilian_CallInvestigator.BP_Order_Civilian_CallInvestigator_C.ExecuteUbergraph_BP_Order_Civilian_CallInvestigator
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UBP_Order_Civilian_CallInvestigator_C::ExecuteUbergraph_BP_Order_Civilian_CallInvestigator(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Order_Civilian_CallInvestigator_C", "ExecuteUbergraph_BP_Order_Civilian_CallInvestigator");
+
+	Params::BP_Order_Civilian_CallInvestigator_C_ExecuteUbergraph_BP_Order_Civilian_CallInvestigator Parms{};
+
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

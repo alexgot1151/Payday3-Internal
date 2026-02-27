@@ -12,8 +12,8 @@
 
 #include "Engine_structs.hpp"
 #include "CoreUObject_structs.hpp"
-#include "AkAudio_structs.hpp"
 #include "Starbreeze_classes.hpp"
+#include "AkAudio_structs.hpp"
 
 
 namespace SDK
@@ -44,11 +44,11 @@ public:
 	class UClass*                                 OpenNavAreaClass;                                  // 0x0360(0x0008)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_BP_ElevatorDoor(int32 EntryPoint);
-	void ReactToCloset(bool bActorsInCloset, bool bDoCosmetics);
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
-	void Open_Doors_No_Cosmetics(bool bOpen);
 	void OpenDoors_Internal(bool bOpen);
+	void Open_Doors_No_Cosmetics(bool bOpen);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void ReactToCloset(bool bActorsInCloset, bool bDoCosmetics);
+	void ExecuteUbergraph_BP_ElevatorDoor(int32 EntryPoint);
 	void OpenTimeline__SwitchDoor__EventFunc();
 	void OpenTimeline__UpdateFunc();
 	void OpenTimeline__FinishedFunc();

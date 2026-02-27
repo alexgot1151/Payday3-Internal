@@ -28,9 +28,9 @@ public:
 	TMulticastInlineDelegate<void()>              LureTriggered;                                     // 0x0380(0x0010)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, BlueprintAssignable, BlueprintCallable)
 
 public:
-	void ExecuteUbergraph_BP_Lure_Radio(int32 EntryPoint);
-	void OnActiveStateChanged(bool bIsActive, bool bDoCosmetics);
 	void BndEvt__BP_Lure_Radio_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void OnActiveStateChanged(bool bIsActive, bool bDoCosmetics);
+	void ExecuteUbergraph_BP_Lure_Radio(int32 EntryPoint);
 
 public:
 	static class UClass* StaticClass()

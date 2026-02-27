@@ -36,8 +36,8 @@ public:
 	class UTextBlock*                             CodeText;                                          // 0x02E8(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
 
 public:
-	void SetCodeText(const class FText& InText);
 	void SetBackgroundColor(ESBZModuleActorState CurrentState);
+	void SetCodeText(const class FText& InText);
 
 public:
 	static class UClass* StaticClass()

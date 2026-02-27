@@ -10,14 +10,24 @@
 
 #include "Basic.hpp"
 
-#include "AkAudio_structs.hpp"
 #include "Starbreeze_structs.hpp"
 #include "GameplayTags_structs.hpp"
 #include "CoreUObject_structs.hpp"
+#include "AkAudio_structs.hpp"
 
 
 namespace SDK::Params
 {
+
+// Function CH_Cloaker.CH_Cloaker_C.BP_OnHeistStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct CH_Cloaker_C_BP_OnHeistStateChanged final
+{
+public:
+	EPD3HeistState                                OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	EPD3HeistState                                NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_CH_Cloaker_C_BP_OnHeistStateChanged;
 
 // Function CH_Cloaker.CH_Cloaker_C.ExecuteUbergraph_CH_Cloaker
 // 0x0130 (0x0130 - 0x0000)
@@ -60,16 +70,6 @@ public:
 	bool                                          CallFunc_IsDedicatedServer_ReturnValue_1;          // 0x0129(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_CH_Cloaker_C_ExecuteUbergraph_CH_Cloaker;
-
-// Function CH_Cloaker.CH_Cloaker_C.BP_OnHeistStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct CH_Cloaker_C_BP_OnHeistStateChanged final
-{
-public:
-	EPD3HeistState                                OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	EPD3HeistState                                NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_CH_Cloaker_C_BP_OnHeistStateChanged;
 
 }
 

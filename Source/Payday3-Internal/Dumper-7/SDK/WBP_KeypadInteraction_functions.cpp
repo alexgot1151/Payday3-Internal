@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function WBP_KeypadInteraction.WBP_KeypadInteraction_C.SetCodeText
-// (Public, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// const class FText&                      InText                                                 (BlueprintVisible, BlueprintReadOnly, Parm)
-
-void UWBP_KeypadInteraction_C::SetCodeText(const class FText& InText)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_KeypadInteraction_C", "SetCodeText");
-
-	Params::WBP_KeypadInteraction_C_SetCodeText Parms{};
-
-	Parms.InText = std::move(InText);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function WBP_KeypadInteraction.WBP_KeypadInteraction_C.SetBackgroundColor
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
@@ -52,6 +32,26 @@ void UWBP_KeypadInteraction_C::SetBackgroundColor(ESBZModuleActorState CurrentSt
 	Params::WBP_KeypadInteraction_C_SetBackgroundColor Parms{};
 
 	Parms.CurrentState = CurrentState;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_KeypadInteraction.WBP_KeypadInteraction_C.SetCodeText
+// (Public, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// const class FText&                      InText                                                 (BlueprintVisible, BlueprintReadOnly, Parm)
+
+void UWBP_KeypadInteraction_C::SetCodeText(const class FText& InText)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_KeypadInteraction_C", "SetCodeText");
+
+	Params::WBP_KeypadInteraction_C_SetCodeText Parms{};
+
+	Parms.InText = std::move(InText);
 
 	UObject::ProcessEvent(Func, &Parms);
 }
