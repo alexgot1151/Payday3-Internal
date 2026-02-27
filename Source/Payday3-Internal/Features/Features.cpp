@@ -336,7 +336,7 @@ void Cheat::OnPlayerControllerTick(){
         if(CheatConfig::Get().m_misc.m_keyClientMoveTeleport.Pressed()){
             SDK::FVector vecPoint = pLocalPlayer->K2_GetActorLocation();
             SDK::FSBZMinimalAgilityTraversalTrajectory trajectory{
-                vecPoint, vecPoint, vecPoint, vecPoint, 1000, SDK::ESBZAgilityTraversalType::VaultLowFast, false, false
+                vecPoint, vecPoint, vecPoint, vecPoint, std::numeric_limits<int16_t>::max(), SDK::ESBZAgilityTraversalType::VaultLowFast, false, false
             };
 
             pMovementComponent->Server_StartTraversal(trajectory);
