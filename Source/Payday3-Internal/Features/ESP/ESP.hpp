@@ -18,13 +18,20 @@ namespace ESP
         bool m_bHealth = false;
         bool m_bArmor = false;
         bool m_bName = false;
-        bool m_bFlags = false;
+        bool m_bFlags = true;
         bool m_bSkeleton = false;
-        bool m_bOutline = false;
-        bool m_bWasOutlineActive = true;
+        bool m_bOutline = true;
         std::string m_sPreviewText = "None";
 
         void UpdatePreviewText();
+    };
+
+    struct CivilianESP{
+        bool m_bBox = true;
+        bool m_bFlags = true;
+        bool m_bSkeleton = false;
+        bool m_bOutline = true;
+        bool m_bOnlyWhenSpecial = true;
     };
 
     struct Config {
@@ -32,6 +39,7 @@ namespace ESP
 
         EnemyESP m_stNormalEnemies{};
         EnemyESP m_stSpecialEnemies{};
+        CivilianESP m_stCivilians{};
 
         bool bDebugSkeleton = false;
         bool bDebugDrawBoneIndices = false;

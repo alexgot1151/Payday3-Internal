@@ -168,11 +168,11 @@ namespace Cheat{
         const auto& actors1 = pGWorld->PersistentLevel->Actors;
         if(stConfig.m_bFBIVan){
             for(int i = 0; i < actors1.Num(); ++i){
-                if(!actors1.IsValidIndex(i) || !actors1[i])
+                if(!actors1.IsValidIndex(i))
                     continue;
 
                 auto pVan = reinterpret_cast<SDK::ABP_Van_FBI_C*>(actors1[i]);
-                if(!pVan->IsA(SDK::ABP_Van_FBI_C::StaticClass()))
+                if(!pVan || !pVan->IsA(SDK::ABP_Van_FBI_C::StaticClass()))
                     continue;
 
                 auto pMesh = pVan->AntennaHitMeshComponent;

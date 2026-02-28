@@ -1,4 +1,6 @@
 #include <map>
+#include <span>
+#include <array>
 #include <imgui.h>
 #include <imgui_internal.h>
 #include "Dumper-7/SDK.hpp"
@@ -7,23 +9,57 @@
 #include "Features/ESP/ESP.hpp"
 #include "Menu.hpp"
 
-std::string CreateMultiSelectPreviewText(const std::vector<std::pair<bool, const char*>>& vecInput, const char* szUnique){
-    std::string sReturned = "";
+void MultiSelectInternal(const char* szLabel, std::string& sPreviewText, std::span<std::tuple<const char*, const char*, bool&>> aEntries){
+    if(!sPreviewText.size()){
+        sPreviewText = "";
 
-    static auto fnAppend = [](std::string& sText, bool bAppend, const char* szAppendText) {
-        if (!bAppend)
-            return;
+        for(const auto& tupleEntry : aEntries){
+            if(!std::get<2>(tupleEntry))
+                continue;
 
-        if (sText.size())
-            sText += ", ";
+            if(sPreviewText.size())
+                sPreviewText += ", ";
+            
+            sPreviewText += std::get<1>(tupleEntry);
+        }
+        
+        sPreviewText = std::format("{}###{}", (!sPreviewText.size()) ? "None" : sPreviewText, szLabel);
+    }
 
-        sText += szAppendText;
-    };
+    if(!ImGui::BeginCombo(szLabel, sPreviewText.c_str()))
+        return;
 
-    for(const auto& pairEntry : vecInput)
-        fnAppend(sReturned, pairEntry.first, pairEntry.second);
+    ImGui::PushItemFlag(ImGuiItemFlags_AutoClosePopups, false);
     
-    return std::format("{}###{}", (!sReturned.size()) ? "None" : sReturned, szUnique);
+    bool bChanged = false;
+    for(const auto& tupleEntry : aEntries)
+        bChanged |= ImGui::Selectable(std::get<0>(tupleEntry), &std::get<2>(tupleEntry));
+
+    ImGui::PopItemFlag();
+    ImGui::EndCombo();
+
+    if(!bChanged)
+        return;
+
+    sPreviewText = "";
+
+    for(const auto& tupleEntry : aEntries){
+        if(!std::get<2>(tupleEntry))
+            continue;
+
+        if(sPreviewText.size())
+            sPreviewText += ", ";
+        
+        sPreviewText += std::get<1>(tupleEntry);
+    }
+    
+    sPreviewText = std::format("{}###{}", (!sPreviewText.size()) ? "None" : sPreviewText, szLabel);
+};
+
+#define MultiSelect(szLabel, aData) { \
+    static std::string sMultiSelectPreview{};\
+    static auto aMultiSelectData = std::to_array<std::tuple<const char*, const char*, bool&>>aData;\
+    MultiSelectInternal(szLabel, sMultiSelectPreview, aMultiSelectData);\
 }
 
 void Hotkey(const char* szLabel, Menu::Hotkey_t& bind){
@@ -46,6 +82,7 @@ void Hotkey(const char* szLabel, Menu::Hotkey_t& bind){
             ImGui::PushStyleColor(ImGuiCol_Button, ImGui::GetColorU32(ImGuiCol_ButtonActive));
             ImGui::Button("...");
             ImGui::PopStyleColor();
+            ImGui::SetKeyOwner(ImGuiKey_Escape, id);
 
             ImGui::GetCurrentContext()->ActiveIdAllowOverlap = true;
             ImGui::SetActiveID(id, ImGui::GetCurrentWindow());
@@ -69,32 +106,12 @@ void CheatConfig::Aimbot_t::Draw(){
     static const char* aSortingItems[]{ "Smart", "FOV", "Threat" };
     ImGui::Combo("Sorting Method", reinterpret_cast<int*>(&m_eSorting), aSortingItems, IM_ARRAYSIZE(aSortingItems));
 
-    static std::string sTargetsPreview = CreateMultiSelectPreviewText({
-        { m_bGuards, "Guards" },
-        { m_bSpecials, "Specials" },
-        { m_bFBIVan, "FBI Van" },
-        { m_bCivilians, "Civilians" },
-    }, "Targets");
-
-    if(ImGui::BeginCombo("Targets", sTargetsPreview.c_str()))
-    {
-        ImGui::PushItemFlag(ImGuiItemFlags_AutoClosePopups, false);
-        
-        if (ImGui::Selectable("Guards", &m_bGuards) ||
-            ImGui::Selectable("Specials", &m_bSpecials) ||
-            ImGui::Selectable("FBI Van", &m_bFBIVan) ||
-            ImGui::Selectable("Civilians", &m_bCivilians)) {
-            sTargetsPreview = CreateMultiSelectPreviewText({
-                { m_bGuards, "Guards" },
-                { m_bSpecials, "Specials" },
-                { m_bFBIVan, "FBI Van" },
-                { m_bCivilians, "Civilians" },
-            }, "Targets");
-        }
-            
-        ImGui::PopItemFlag();
-        ImGui::EndCombo();
-    }
+    MultiSelect("Targets", ({
+        {"Guards", "Guards", m_bGuards},
+        {"Specials", "Specials", m_bSpecials},
+        {"FBI Van", "Van", m_bFBIVan},
+        {"Civilians", "Civs", m_bCivilians}
+    }));
 
     ImGui::Checkbox("Aim Through Walls", &m_bThroughWalls);
     ImGui::Checkbox("Loud Only", &m_bDisableInStealth);
@@ -150,64 +167,31 @@ void CheatConfig::Visuals_t::Draw(){
 }
 
 
+
+
 void CheatConfig::Misc_t::Draw(){
     Hotkey("Client Move", m_keyClientMove);
     Hotkey("Client Move Teleport", m_keyClientMoveTeleport);
+    Hotkey("Client Move Faster", m_keyClientMoveFaster);
 
+    MultiSelect("Removals", ({
+        {"No Spread", "Spread", m_bNoSpread},
+        {"No Recoil", "Recoil", m_bNoRecoil},
+        {"Instant Interaction", "Interact", m_bInstantInteraction},
+        {"Instant Minigame", "Minigame", m_bInstantMinigame},
+        {"Instant Reload", "Reload", m_bInstantReload}
+    }));
 
-    static std::string sRemovalsPreview = CreateMultiSelectPreviewText({
-        { m_bNoSpread, "No Spread" },
-        { m_bNoRecoil, "No Recoil" },
-        { m_bNoCameraShake, "No Camera Shake" },
-        { m_bInstantInteraction, "Instant Interaction" },
-        { m_bInstantMinigame, "Instant Minigame" }
-    }, "Removals");
+    MultiSelect("Camera Modifiers", ({
+        {"Disable Shake", "Shake", m_bNoCameraShake},
+        {"Disable Tilt", "Tilt", m_bNoCameraTilt}
+    }));
 
-    if(ImGui::BeginCombo("Removals", sRemovalsPreview.c_str()))
-    {
-        ImGui::PushItemFlag(ImGuiItemFlags_AutoClosePopups, false);
-        
-        if (ImGui::Selectable("No Spread", &m_bNoSpread) ||
-            ImGui::Selectable("No Recoil", &m_bNoRecoil) ||
-            ImGui::Selectable("No Camera Shake", &m_bNoCameraShake) ||
-            ImGui::Selectable("Instant Interaction", &m_bInstantInteraction) ||
-            ImGui::Selectable("Instant Minigame", &m_bInstantMinigame)) {
-            sRemovalsPreview = CreateMultiSelectPreviewText({
-                { m_bNoSpread, "No Spread" },
-                { m_bNoRecoil, "No Recoil" },
-                { m_bNoCameraShake, "No Camera Shake" },
-                { m_bInstantInteraction, "Instant Interaction" },
-                { m_bInstantMinigame, "Instant Minigame" }
-            }, "Removals");
-        }
-            
-        ImGui::PopItemFlag();
-        ImGui::EndCombo();
-    }
-
-    static std::string sBuffsPreview = CreateMultiSelectPreviewText({
-        { m_bSpeedBuff, "Speed" },
-        { m_bDamageBuff, "Damage" },
-        { m_bArmorBuff, "Armor" }
-    }, "Buffs");
-
-    if(ImGui::BeginCombo("Buffs", sBuffsPreview.c_str()))
-    {
-        ImGui::PushItemFlag(ImGuiItemFlags_AutoClosePopups, false);
-        
-        if (ImGui::Selectable("Speed", &m_bSpeedBuff) ||
-            ImGui::Selectable("Damage", &m_bDamageBuff) ||
-            ImGui::Selectable("Armor", &m_bArmorBuff)) {
-            sBuffsPreview = CreateMultiSelectPreviewText({
-                { m_bSpeedBuff, "Speed" },
-                { m_bDamageBuff, "Damage" },
-                { m_bArmorBuff, "Armor" }
-            }, "Buffs");
-        }
-            
-        ImGui::PopItemFlag();
-        ImGui::EndCombo();
-    }
+    MultiSelect("Buffs", ({
+        {"Speed", "Speed", m_bSpeedBuff},
+        {"Damage", "Damage", m_bDamageBuff},
+        {"Armor", "Armor", m_bArmorBuff}
+    }));
 }
 
 namespace Menu
@@ -251,6 +235,7 @@ namespace Menu
     {
         CheatConfig::Get().m_misc.m_keyClientMove.UpdateState();
         CheatConfig::Get().m_misc.m_keyClientMoveTeleport.UpdateState();
+        CheatConfig::Get().m_misc.m_keyClientMoveFaster.UpdateState();
 
         SDK::UWorld* pGWorld = SDK::UWorld::GetWorld();
         if (!pGWorld)

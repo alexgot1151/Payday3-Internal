@@ -215,16 +215,11 @@ namespace Menu{
         };
 
         bool SetToPressedKey(){
-            if (ImGui::IsKeyPressed(ImGuiKey_Escape)) {
-                m_eKeyCode = ImGuiKey_None;
-                return true;
-            }
-
             for(int i = ImGuiKey_NamedKey_BEGIN; i < ImGuiKey_NamedKey_END; ++i){
                 if(!ImGui::IsKeyPressed(static_cast<ImGuiKey>(i)))
                     continue;
 
-                m_eKeyCode = static_cast<ImGuiKey>(i);
+                m_eKeyCode = (static_cast<ImGuiKey>(i) == ImGuiKey_Escape) ? ImGuiKey_None : static_cast<ImGuiKey>(i);
                 return true;
             }
 
@@ -268,14 +263,18 @@ struct CheatConfig{
     struct Misc_t {
         Menu::Hotkey_t m_keyClientMove{ ImGuiKey_MouseX2, Menu::Hotkey_t::EType::Hold };
         Menu::Hotkey_t m_keyClientMoveTeleport{ ImGuiKey_MouseX1, Menu::Hotkey_t::EType::Hold, true };
+        Menu::Hotkey_t m_keyClientMoveFaster{ ImGuiKey_LeftShift, Menu::Hotkey_t::EType::Hold, true };
         bool m_bNoSpread = true;
         bool m_bNoRecoil = true;
-        bool m_bNoCameraShake = true;
         bool m_bInstantInteraction = true;
         bool m_bInstantMinigame = true;
+        bool m_bInstantReload = true;
         bool m_bSpeedBuff = true;
         bool m_bDamageBuff = true;
         bool m_bArmorBuff = true;
+
+        bool m_bNoCameraShake = true;
+        bool m_bNoCameraTilt = true;
     
 
         void Draw();

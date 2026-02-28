@@ -477,6 +477,31 @@ namespace ESP
         pDrawList->AddText(vec2TextPos, IM_COL32(255, 255, 255, 200), sCharacterName.c_str());
     };
 
+    void DrawCarryableFlags(ImDrawList* pDrawList, SDK::AActor* pActor, ImVec4 vec4ScreenBox, float& flFlagsOffset){
+        static auto nameBP_CarriedBlueKeycard_C = SDK::UKismetStringLibrary::Conv_StringToName(L"BP_CarriedBlueKeycard_C");
+        static auto nameBP_CarriedRedKeycard_C = SDK::UKismetStringLibrary::Conv_StringToName(L"BP_CarriedRedKeycard_C");
+        static auto nameBP_CarriedFakeID_C = SDK::UKismetStringLibrary::Conv_StringToName(L"BP_CarriedFakeID_C");
+        static auto nameBP_CarriedHackablePhone_C = SDK::UKismetStringLibrary::Conv_StringToName(L"BP_CarriedHackablePhone_C");
+
+        auto& aChildren = pActor->Children;
+        for(int i = 0; i < aChildren.Num(); i++){
+            auto pChild = reinterpret_cast<SDK::ASBZCarriedStaticInteractionActor*>(aChildren[i]);
+            if(!pChild || !pChild->IsA(SDK::ASBZCarriedStaticInteractionActor::StaticClass()))
+                continue;
+
+            auto nameItem = pChild->Class->Name;
+            pDrawList->AddText(
+                ImVec2(vec4ScreenBox.z + 5.f, vec4ScreenBox.y + flFlagsOffset),
+                IM_COL32(0, 255, 0, 255),
+                ((nameItem == nameBP_CarriedBlueKeycard_C) ? "Blue Keycard" :
+                (nameItem == nameBP_CarriedRedKeycard_C) ? "Red Keycard" :
+                (nameItem == nameBP_CarriedFakeID_C) ? "Fake ID" :
+                (nameItem == nameBP_CarriedHackablePhone_C) ? "Phone" :
+                nameItem.ToString()).c_str());
+            flFlagsOffset += 15.f;
+        }
+    }
+
     void DrawEnemyESP(ImDrawList* pDrawList, SDK::APlayerController* pPlayerController, SDK::ACH_BaseCop_C* pGuard, EActorType eType, EnemyESP& stSettings){
         pGuard->Multicast_SetMarked(stSettings.m_bOutline);
 
@@ -515,30 +540,8 @@ namespace ESP
             if (!stSettings.m_bFlags)
                 return;
             
-            float flFlagsOffset = 0.f;
-
-            auto& aGuardChildren = pGuard->Children;
-            for(int i = 0; i < aGuardChildren.Num(); i++){
-                SDK::AActor* pChildObj = aGuardChildren[i];
-                if(!pChildObj)
-                    continue;
-
-                if (DetermineActorType(pChildObj) != EActorType::ObjectiveItem)
-                    continue;
-    
-                
-                pDrawList->AddText(
-                    ImVec2(vec4ScreenBox.z + 5.f, vec4ScreenBox.y + flFlagsOffset),
-                    IM_COL32(0, 255, 0, 255),
-                    (pChildObj->IsA(SDK::ABP_CarriedBlueKeycard_C::StaticClass()) ? "Blue Keycard" : 
-                        pChildObj->IsA(SDK::ABP_CarriedRedKeycard_C::StaticClass()) ? "Red Keycard" :
-                        //pChildObj->IsA(SDK::ABP_CarriedHackablePhone_C::StaticClass()) ? "Phone" :
-                        pChildObj->IsA(SDK::ABP_CarriedFakeID_C::StaticClass()) ? "Fake ID" :
-                        pChildObj->Name.ToString()).c_str()
-                );
-                
-                flFlagsOffset += 15.f;
-            }
+            float flFlagsOffset = 0.f;            
+            DrawCarryableFlags(pDrawList, pGuard, vec4ScreenBox, flFlagsOffset);
         }  
     };
 
@@ -551,8 +554,64 @@ namespace ESP
             auto vec4ScreenBox = optScreenBox.value();
             DrawName(pDrawList, vec4ScreenBox, pItem, eType);
         }
-    }
+    };
 
+    void DrawCivilianESP(ImDrawList* pDrawList, SDK::APlayerController* pPlayerController, SDK::ACH_BaseCivilian_C* pCivilian, CivilianESP& stSettings){
+        static auto nameCH_Civilian_Employee_Male_01_C = SDK::UKismetStringLibrary::Conv_StringToName(L"CH_Civilian_Bank_Manager_male_01_C");
+        static auto nameCH_Civilian_Employee_Female_01_C = SDK::UKismetStringLibrary::Conv_StringToName(L"CH_Civilian_Bank_Manager_female_01_C");
+        static auto nameCH_Civilian_PH_VIP_C = SDK::UKismetStringLibrary::Conv_StringToName(L"CH_Civilian_PH_VIP_C");
+
+        auto nameCiv = pCivilian->Class->Name;
+        bool bIsVIP = nameCiv == nameCH_Civilian_Employee_Male_01_C || nameCiv == nameCH_Civilian_Employee_Female_01_C || nameCiv == nameCH_Civilian_PH_VIP_C;
+        bool bShouldDraw = true;
+        if(stSettings.m_bOnlyWhenSpecial){
+            bShouldDraw = false;
+
+            auto& aChildren = pCivilian->Children;
+            for(int i = 0; i < aChildren.Num(); i++){
+                auto pChild = reinterpret_cast<SDK::ASBZCarriedStaticInteractionActor*>(aChildren[i]);
+                if(!pChild || !pChild->IsA(SDK::ASBZCarriedStaticInteractionActor::StaticClass()))
+                    continue;
+
+                bShouldDraw = true;
+                break;
+            }
+
+            bShouldDraw |= bIsVIP;
+        }
+
+        pCivilian->Multicast_SetMarked(stSettings.m_bOutline && bShouldDraw);
+        
+        SDK::USkeletalMeshComponent* pSkeletalMesh = pCivilian->Mesh;
+        if (!pSkeletalMesh || !bShouldDraw)
+            return;
+
+        // Draw ESP features
+        if (stSettings.m_bSkeleton) {
+            DrawSkeleton(pSkeletalMesh, pPlayerController, pDrawList);
+            DrawDebugSkeleton(pSkeletalMesh, pPlayerController, pDrawList);
+        }
+        
+        if (auto optScreenBox = CalculateScreenBoxForGuard(pSkeletalMesh, pPlayerController, pCivilian); optScreenBox.has_value())
+        {
+            auto vec4ScreenBox = optScreenBox.value();
+            if (stSettings.m_bBox){
+                pDrawList->AddRect(ImVec2(vec4ScreenBox.x - 1, vec4ScreenBox.y - 1), ImVec2(vec4ScreenBox.z + 1, vec4ScreenBox.w + 1), IM_COL32(30, 30, 30, 55), 0.0f, 0, 2.0f);
+                pDrawList->AddRect(ImVec2(vec4ScreenBox.x, vec4ScreenBox.y), ImVec2(vec4ScreenBox.z, vec4ScreenBox.w), IM_COL32(255, 0, 0, 255), 0.0f, 0, 2.0f);
+            }
+
+            if (!stSettings.m_bFlags)
+                return;
+            
+            float flFlagsOffset = 0.f;
+            if(bIsVIP){
+                pDrawList->AddText(ImVec2(vec4ScreenBox.z + 5.f, vec4ScreenBox.y + flFlagsOffset), IM_COL32(0, 200, 255, 255), "VIP");
+                flFlagsOffset += 15.f;
+            }
+
+            DrawCarryableFlags(pDrawList, pCivilian, vec4ScreenBox, flFlagsOffset);
+        }  
+    };
 
     bool ShouldSkipActor(SDK::AActor* pActor, EActorType eType){
         switch(eType){
@@ -600,6 +659,9 @@ namespace ESP
     }
 
     void Render(SDK::UWorld* pGWorld, SDK::APlayerController* pPlayerController) {
+        if(!Cheat::g_bIsInGame)
+            return;
+            
         SDK::USBZWorldRuntime* pWorldRuntime = reinterpret_cast<SDK::USBZWorldRuntime*>(SDK::USBZWorldRuntime::GetWorldRuntime(pGWorld));
         if (!pWorldRuntime || !pGWorld->PersistentLevel || !pGWorld->PersistentLevel->Actors)
             return;
@@ -650,9 +712,6 @@ namespace ESP
             SDK::FVector2D vec2ScreenLocation;
             if (!pActor)
                 continue;
-
-            
-            
             if(!pPlayerController->ProjectWorldLocationToScreen(pActor->K2_GetActorLocation(), &vec2ScreenLocation, false))
                 continue;
 
@@ -674,6 +733,10 @@ namespace ESP
             case EActorType::ObjectiveItem:
             case EActorType::InteractableItem:
                 DrawInteractableESP(pDrawList, pPlayerController, reinterpret_cast<SDK::ASBZInteractionActor*>(pActor), infoActor.m_eType);
+                break;
+
+            case EActorType::Civilian:
+                DrawCivilianESP(pDrawList, pPlayerController, reinterpret_cast<SDK::ACH_BaseCivilian_C*>(pActor), GetConfig().m_stCivilians);
                 break;
 
             default:
@@ -711,9 +774,6 @@ namespace ESP
                 pCamera->OutlineAsset->ColorIndex = 3;
             pCamera->OutlineComponent->Multicast_SetActiveReplicated(pCamera->OutlineAsset);
         }
-
-        GetConfig().m_stNormalEnemies.m_bWasOutlineActive = GetConfig().m_stNormalEnemies.m_bOutline;
-        GetConfig().m_stSpecialEnemies.m_bWasOutlineActive = GetConfig().m_stSpecialEnemies.m_bOutline;
     }
 
     void RenderDebugESP(SDK::ULevel* pPersistentLevel, SDK::APlayerController* pPlayerController) {

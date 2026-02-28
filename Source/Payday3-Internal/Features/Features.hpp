@@ -15,6 +15,8 @@ namespace Cheat {
     inline bool g_bIsSoloGame = false;
     inline bool g_bIsInGame = false;
     inline bool g_bIsInStealth = false;
+    inline bool g_bForceMoveForTeleport = false;
+    inline uint64_t g_iMovePacketsSentContiguously = 0;
     inline int32_t g_iFireAbilityHandle = 0;
     inline int32_t g_iMethLabIndex = -1;
 

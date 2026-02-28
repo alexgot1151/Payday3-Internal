@@ -267,7 +267,6 @@ void Cheat::OnPlayerControllerTick(){
             pAbilitySystem->Server_ResetMitigationBuffTime();
         bDidHaveArmorBuff = bArmorBuff;
 
-        //pAbilitySystem->Server
         static auto nameDefault__GA_Fire_C = SDK::UKismetStringLibrary::Conv_StringToName(L"Default__GA_Fire_C");
         static auto nameDefault__GA_Reload_C = SDK::UKismetStringLibrary::Conv_StringToName(L"Default__GA_Reload_C");
         static auto nameDefault__GA_Run_C = SDK::UKismetStringLibrary::Conv_StringToName(L"Default__GA_Run_C");
@@ -327,31 +326,70 @@ void Cheat::OnPlayerControllerTick(){
     SDK::USBZPlayerMovementComponent* pMovementComponent = reinterpret_cast<SDK::USBZPlayerMovementComponent*>(pLocalPlayer->GetComponentByClass(SDK::USBZPlayerMovementComponent::StaticClass()));
     if (!pMovementComponent)
         return;
-
-    //pMovementComponent->Server_StartTraversal()
+    
+    static std::chrono::time_point<std::chrono::steady_clock> timeTeleportLast = std::chrono::steady_clock::now();
     if(CheatConfig::Get().m_misc.m_keyClientMove.GetState()){
         if (pLocalPlayer->GetActorEnableCollision())
             pLocalPlayer->SetActorEnableCollision(false);
 
-        if(CheatConfig::Get().m_misc.m_keyClientMoveTeleport.Pressed()){
+        //static std::chrono::time_point<std::chrono::high_resolution_clock> timeLastTeleported
+        
+        if(CheatConfig::Get().m_misc.m_keyClientMoveTeleport.GetState() && !g_bIsSoloGame && std::chrono::steady_clock::now() - timeTeleportLast > g_durationPing){
             SDK::FVector vecPoint = pLocalPlayer->K2_GetActorLocation();
             SDK::FSBZMinimalAgilityTraversalTrajectory trajectory{
                 vecPoint, vecPoint, vecPoint, vecPoint, std::numeric_limits<int16_t>::max(), SDK::ESBZAgilityTraversalType::VaultLowFast, false, false
             };
 
             pMovementComponent->Server_StartTraversal(trajectory);
+            g_bForceMoveForTeleport = true;
+            timeTeleportLast = std::chrono::steady_clock::now();
         }
 
         pMovementComponent->MovementMode = SDK::EMovementMode::MOVE_Flying;
         pMovementComponent->BrakingDecelerationFlying = 10000.f;
         pMovementComponent->MaxFlySpeed = 10000.f;
-        pMovementComponent->Velocity = pMovementComponent->Acceleration;
+        pMovementComponent->Velocity = pMovementComponent->GetLastInputVector() * (CheatConfig::Get().m_misc.m_keyClientMoveFaster.GetState() ? 1800.f : 900.f);
+
+        if(pMovementComponent->CharacterMovementState == SDK::ESBZCharacterMovementState::Sliding)
+            pMovementComponent->Server_StopSlide();
     }
     else if(!pLocalPlayer->GetActorEnableCollision()){
         pLocalPlayer->SetActorEnableCollision(true);
         pMovementComponent->MovementMode = SDK::EMovementMode::MOVE_Walking;
+        pMovementComponent->Velocity = SDK::FVector{};
     }
 
     if(CheatConfig::Get().m_misc.m_bNoCameraShake)
 	    pLocalPlayerController->PlayerCameraManager->StopAllCameraShakes(true);
+
+    if(pLocalPlayer->TiltCameraModifier){
+        if(CheatConfig::Get().m_misc.m_bNoCameraTilt)
+            pLocalPlayer->TiltCameraModifier->DisableModifier(true);  
+        else if(pLocalPlayer->TiltCameraModifier->IsDisabled())
+            pLocalPlayer->TiltCameraModifier->EnableModifier();
+    }
+
+    if(pLocalPlayer->FPCameraAttachment){
+        auto pCameraComponent = pLocalPlayer->FPCameraAttachment;
+        if(pCameraComponent->EquippedWeaponData && pCameraComponent->EquippedWeaponData->IsA(SDK::USBZRangedWeaponData::StaticClass())){
+            
+            auto pRangedWeaponData = reinterpret_cast<SDK::USBZRangedWeaponData*>(pCameraComponent->EquippedWeaponData);
+            
+            if(pRangedWeaponData->FireData && pRangedWeaponData->FireData->IsA(SDK::USBZPlayerWeaponFireData::StaticClass())){
+                auto pFireData = reinterpret_cast<SDK::USBZPlayerWeaponFireData*>(pRangedWeaponData->FireData);
+                
+                //pFireData->AmmoLoadedMax = pFireData->AmmoPerReload = 999.f;
+                //pFireData->AmmoInventoryMax = 99999.f;
+            }
+        }
+
+        if(pCameraComponent->EquippedWeapon && pCameraComponent->EquippedWeapon->IsA(SDK::ASBZWeapon::StaticClass())){
+            auto pWeapon = pCameraComponent->EquippedWeapon;
+            
+            //pWeapon->bIsReloading = false;
+        }
+    }
+
+    if(pLocalPlayer->LastLocalReloadMontage)
+        pLocalPlayer->LastLocalReloadMontage->RateScale = CheatConfig::Get().m_misc.m_bInstantReload ? 10000000.f : 1.f;
 }

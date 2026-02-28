@@ -217,9 +217,18 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()) || pObject->IsA(SDK::APlayerController::StaticClass()) || pObject->IsA(SDK::APlayerCameraManager::StaticClass()) || pObject->IsA(SDK::UCharacterMovementComponent::StaticClass()))
 	{
 		if(pFunction->Name == nameServerMovePacked){
-			if(!CheatConfig::Get().m_misc.m_keyClientMove.GetState()) 
-				UObjectProcessEvent_o(pObject, pFunction, pParams);
+			if(CheatConfig::Get().m_misc.m_keyClientMove.GetState()){
+				if(Cheat::g_bForceMoveForTeleport && Cheat::g_iMovePacketsSentContiguously > 3)
+					Cheat::g_bForceMoveForTeleport = false;
 
+				if(!Cheat::g_bForceMoveForTeleport){
+					Cheat::g_iMovePacketsSentContiguously = 0;
+					return;
+				}
+			}
+
+			Cheat::g_iMovePacketsSentContiguously++;
+			UObjectProcessEvent_o(pObject, pFunction, pParams);
 			return;
 		}
 	}
@@ -400,49 +409,6 @@ void MainLoop()
 		}
 
 		Cheat::g_bIsInGame = true;
-		
-		SDK::ASBZPlayerCharacter* pLocalPlayerPawn = reinterpret_cast<SDK::ASBZPlayerCharacter*>(pLocalPlayerController->AcknowledgedPawn);
-		if (!pLocalPlayerPawn || !pLocalPlayerPawn->IsA(SDK::ASBZPlayerCharacter::StaticClass()))
-			continue;
-
-		SDK::USBZPlayerMovementComponent* pMovementComponent = reinterpret_cast<SDK::USBZPlayerMovementComponent*>(pLocalPlayerPawn->GetComponentByClass(SDK::USBZPlayerMovementComponent::StaticClass()));
-		if (!pMovementComponent)
-			continue;
-
-		auto* pAbilitySystem = pLocalPlayerPawn->PlayerAbilitySystem;
-		if (pAbilitySystem){
-
-		}
-
-
-		/** 
-		if(pLocalPlayerPawn->FPCameraAttachment){
-			auto pCameraComponent = pLocalPlayerPawn->FPCameraAttachment;
-			if(pCameraComponent->EquippedWeaponData && pCameraComponent->EquippedWeaponData->IsA(SDK::USBZRangedWeaponData::StaticClass())){
-				
-				auto pRangedWeaponData = reinterpret_cast<SDK::USBZRangedWeaponData*>(pCameraComponent->EquippedWeaponData);
-				if(pRangedWeaponData->FireData && pRangedWeaponData->FireData->IsA(SDK::USBZPlayerWeaponFireData::StaticClass())){
-					auto pFireData = reinterpret_cast<SDK::USBZPlayerWeaponFireData*>(pRangedWeaponData->FireData);
-					
-					//pFireData->AmmoLoadedMax = pFireData->AmmoPerReload = 999.f;
-					//pFireData->AmmoInventoryMax = 99999.f;
-				}
-			}
-
-			if(pCameraComponent->EquippedWeapon && pCameraComponent->EquippedWeapon->IsA(SDK::ASBZWeapon::StaticClass())){
-				auto pWeapon = pCameraComponent->EquippedWeapon;
-				//pWeapon->bIsReloading = false;
-			}
-		}
-
-		if(pLocalPlayerPawn->SBZPlayerState){
-			auto pPlayerState = pLocalPlayerPawn->SBZPlayerState;
-			//pPlayerState->ReloadEndTime = 0.f;
-		}
-		*/
-
-		pLocalPlayerPawn->CarryTiltDegrees = 0.0f;
-		pLocalPlayerPawn->CarryTiltSpeed = 10000.0f;
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
