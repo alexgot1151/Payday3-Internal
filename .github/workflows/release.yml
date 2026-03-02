@@ -33,16 +33,28 @@ jobs:
     - name: Build project (Release)
       run: xmake build Payday3-Internal
 
-    - name: Package artifacts
+    - name: Package Release artifacts (DLL + PDB)
       run: |
         mkdir release-package
         xcopy /E /I Build\Release release-package\
         echo "Build completed on $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" > release-package\BUILD_INFO.txt
       shell: pwsh
 
-    - name: Create ZIP archive
+    - name: Package UC artifacts (Source + DLL + PDB)
+      run: |
+        mkdir uc-package
+        xcopy /E /I Build\Release uc-package\Build\Release\
+        xcopy /E /I Source uc-package\Source\
+        xcopy /Y xmake.lua uc-package\
+        xcopy /Y README.md uc-package\
+        xcopy /Y LICENSE uc-package\
+        echo "Build completed on $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" > uc-package\BUILD_INFO.txt
+      shell: pwsh
+
+    - name: Create ZIP archives
       run: |
         Compress-Archive -Path release-package\* -DestinationPath Payday3-Internal-Release.zip
+        Compress-Archive -Path uc-package\* -DestinationPath Payday3-Internal-UC.zip
       shell: pwsh
 
     - name: Get version
@@ -65,15 +77,20 @@ jobs:
         prerelease: false
         files: |
           Payday3-Internal-Release.zip
+          Payday3-Internal-UC.zip
         body: |
           ## Payday3-Internal ${{ steps.get_version.outputs.VERSION }}
+          
+          ### Packages
+          - **Payday3-Internal-Release.zip** - Contains DLL + PDB (for users)
+          - **Payday3-Internal-UC.zip** - Contains Source + DLL + PDB (for developers)
           
           ### Changes
           - Built with xmake in release mode
           - Windows x64 architecture
           
           ### Installation
-          1. Download `Payday3-Internal-Release.zip`
+          1. Download `Payday3-Internal-Release.zip` (or `Payday3-Internal-UC.zip` if you want the source)
           2. Extract the archive
           3. Follow the instructions in README.md
           

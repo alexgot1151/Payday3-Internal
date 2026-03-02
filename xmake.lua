@@ -2,6 +2,9 @@ add_rules("mode.debug", "mode.release")
 
 if is_mode("debug") then
     set_symbols("debug", "edit")
+elseif is_mode("release") then
+    set_symbols("debug")
+    set_strip("all")
 end
 
 option("avx2")
