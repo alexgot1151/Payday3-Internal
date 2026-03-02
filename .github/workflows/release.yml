@@ -43,11 +43,8 @@ jobs:
     - name: Package UC artifacts (Source + DLL + PDB)
       run: |
         mkdir uc-package
+        git archive HEAD | tar -x -C uc-package
         xcopy /E /I Build\Release uc-package\Build\Release\
-        xcopy /E /I Source uc-package\Source\
-        xcopy /Y xmake.lua uc-package\
-        xcopy /Y README.md uc-package\
-        xcopy /Y LICENSE uc-package\
         echo "Build completed on $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" > uc-package\BUILD_INFO.txt
       shell: pwsh
 
