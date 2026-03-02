@@ -264,18 +264,29 @@ struct CheatConfig{
         Menu::Hotkey_t m_keyClientMove{ ImGuiKey_MouseX2, Menu::Hotkey_t::EType::Hold };
         Menu::Hotkey_t m_keyClientMoveTeleport{ ImGuiKey_MouseX1, Menu::Hotkey_t::EType::Hold, true };
         Menu::Hotkey_t m_keyClientMoveFaster{ ImGuiKey_LeftShift, Menu::Hotkey_t::EType::Hold, true };
+        bool m_bClientMoveAutoTeleport = true;
+        float m_flClientMoveBaseSpeed = 1000.f;
+
         bool m_bNoSpread = true;
         bool m_bNoRecoil = true;
+        bool m_bNoFallDamage = true;
         bool m_bInstantInteraction = true;
         bool m_bInstantMinigame = true;
         bool m_bInstantReload = true;
+        bool m_bInstantMelee = true;
         bool m_bSpeedBuff = true;
         bool m_bDamageBuff = true;
         bool m_bArmorBuff = true;
 
         bool m_bNoCameraShake = true;
         bool m_bNoCameraTilt = true;
-    
+        float m_flCameraFOV = 90.f;
+
+        bool m_bMoreBullets = true;
+        int32_t m_iMoreBullets = 20;
+
+        bool m_bSuperToss = true;
+        float m_flSuperToss = 2000.f;
 
         void Draw();
     };

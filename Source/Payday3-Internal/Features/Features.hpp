@@ -33,5 +33,17 @@ namespace Cheat {
 
     inline std::optional<TargetInfo_t> g_stTargetInfo{};
 
+    struct MethLabInfo_t{
+        int8_t m_iCorrectChoice = -1;
+        int8_t m_iAnnouncedLab = -1;
+        SDK::ESBZCookingState m_eOldState = SDK::ESBZCookingState::ESBZCookingState_MAX;
+        bool m_bDidMu = false;
+        bool m_bDidCs = false;
+        bool m_bDidHcl = false; 
+        std::chrono::time_point<std::chrono::steady_clock> m_timeAnnounced = std::chrono::steady_clock::now();
+    };
+
+    inline MethLabInfo_t g_stMethLabInfo{};
+
     void OnPlayerControllerTick();
 };

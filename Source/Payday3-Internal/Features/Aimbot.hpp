@@ -34,12 +34,13 @@ namespace Cheat{
                 return{};
             
             auto pHuman = reinterpret_cast<SDK::ACH_BaseHumanAI_C*>(pActor);
-            if(!pHuman->bIsAlive || !pHuman->bCanBeDamaged)
+            if(!pHuman->bIsAlive || !pHuman->bCanBeDamaged || !pHuman->bIsDeathAllowed || pHuman->bActorEnableIgnoredCollision || !pHuman->bActorEnableCollision)
                 return{};
+
 
             SDK::FVector vecTargetPosition = pHuman->Mesh->GetSocketLocation(nameHead);
             SDK::FVector vecAimPosition = vecTargetPosition;
-            SDK::FRotator rotAimRotation{};
+            SDK::FRotator rotAimRotation = SDK::UKismetMathLibrary::FindLookAtRotation(SDK::FVector{}, pHuman->GetVelocity()).Normalize();
             bool bIsCloaker = false;
             bool bIsSniperOrTaser = false;
             bool bIsGrenadierOrTechie = false;
@@ -53,7 +54,7 @@ namespace Cheat{
             if(flFOV > stConfig.m_flAimFOV)
                 return{};
             
-            if(pHuman->IsA(SDK::ACH_BaseCivilian_C::StaticClass())){
+            if(pHuman->IsA(SDK::ACH_BaseCivilian_C::StaticClass()) || pHuman->bIsSurrendered){
                 if(!stConfig.m_bCivilians)
                     return{};
 
@@ -93,7 +94,7 @@ namespace Cheat{
                 bIsDozer = true;
 
                 vecAimPosition = vecTargetPosition + (SDK::UKismetMathLibrary::GetForwardVector((pHuman->Mesh->GetSocketRotation(nameHead) + SDK::FRotator(0.f, 90.f, 0.f)).Normalize()) * 50.f);
-                rotAimRotation = SDK::UKismetMathLibrary::FindLookAtRotation(vecAimPosition, vecTargetPosition);
+                rotAimRotation = SDK::UKismetMathLibrary::FindLookAtRotation(vecAimPosition, vecTargetPosition).Normalize();
             }
             else if(pHuman->IsA(SDK::ACH_SWAT_SHIELD_C::StaticClass())){
                 if(!stConfig.m_bSpecials)

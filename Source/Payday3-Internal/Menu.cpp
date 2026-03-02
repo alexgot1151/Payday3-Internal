@@ -117,33 +117,31 @@ void CheatConfig::Aimbot_t::Draw(){
     ImGui::Checkbox("Loud Only", &m_bDisableInStealth);
 }
 
-void DrawEnemyESPSection(const char* szType, ESP::EnemyESP& stSettings)
-{
-    if(!ImGui::BeginCombo(szType, std::format("{}###{}", stSettings.m_sPreviewText, szType).c_str()))
-        return;
-
-    ImGui::PushItemFlag(ImGuiItemFlags_AutoClosePopups, false);
-    if (ImGui::Selectable("Box", &stSettings.m_bBox) ||
-        ImGui::Selectable("Health", &stSettings.m_bHealth) ||
-        ImGui::Selectable("Armor", &stSettings.m_bArmor) ||
-        ImGui::Selectable("Name", &stSettings.m_bName) ||
-        ImGui::Selectable("Flags", &stSettings.m_bFlags) ||
-        ImGui::Selectable("Skeleton", &stSettings.m_bSkeleton) ||
-        ImGui::Selectable("Outline", &stSettings.m_bOutline))
-        stSettings.UpdatePreviewText();
-    ImGui::PopItemFlag();
-
-    ImGui::EndCombo();
-}
-
 void CheatConfig::Visuals_t::Draw(){
     auto& espConfig = ESP::GetConfig();
     ImGui::Checkbox("Enable ESP", &espConfig.bESP);
     if (espConfig.bESP) {
         ImGui::Indent();
 
-        DrawEnemyESPSection("Normal Enemies", espConfig.m_stNormalEnemies);
-        DrawEnemyESPSection("Special Enemies", espConfig.m_stSpecialEnemies);
+        MultiSelect("Normal Enemies", ({
+            {"Box", "B", espConfig.m_stNormalEnemies.m_bBox},
+            {"Health", "H", espConfig.m_stNormalEnemies.m_bHealth},
+            {"Armor", "A", espConfig.m_stNormalEnemies.m_bArmor},
+            {"Name", "N", espConfig.m_stNormalEnemies.m_bName},
+            {"Flags", "F", espConfig.m_stNormalEnemies.m_bFlags},
+            {"Skeleton", "S", espConfig.m_stNormalEnemies.m_bSkeleton},
+            {"Outline", "O", espConfig.m_stNormalEnemies.m_bOutline}
+        }));
+
+        MultiSelect("Special Enemies", ({
+            {"Box", "B", espConfig.m_stSpecialEnemies.m_bBox},
+            {"Health", "H", espConfig.m_stSpecialEnemies.m_bHealth},
+            {"Armor", "A", espConfig.m_stSpecialEnemies.m_bArmor},
+            {"Name", "N", espConfig.m_stSpecialEnemies.m_bName},
+            {"Flags", "F", espConfig.m_stSpecialEnemies.m_bFlags},
+            {"Skeleton", "S", espConfig.m_stSpecialEnemies.m_bSkeleton},
+            {"Outline", "O", espConfig.m_stSpecialEnemies.m_bOutline}
+        }));
 
 #ifdef _DEBUG
         ImGui::Checkbox("Debug Draw Bone Indices", &espConfig.bDebugDrawBoneIndices);
@@ -171,15 +169,24 @@ void CheatConfig::Visuals_t::Draw(){
 
 void CheatConfig::Misc_t::Draw(){
     Hotkey("Client Move", m_keyClientMove);
-    Hotkey("Client Move Teleport", m_keyClientMoveTeleport);
-    Hotkey("Client Move Faster", m_keyClientMoveFaster);
+    if(m_keyClientMove.m_eType != Menu::Hotkey_t::EType::AlwaysOff){
+        ImGui::Indent();
+        Hotkey("Teleport", m_keyClientMoveTeleport);
+        Hotkey("Move Faster", m_keyClientMoveFaster);
+        ImGui::SliderFloat("Speed###ClientMoveSpeed", &m_flClientMoveBaseSpeed, 500.f, 5000.f);
+        ImGui::Checkbox("Auto Teleport", &m_bClientMoveAutoTeleport);
+        ImGui::Unindent();
+    }
+    
 
     MultiSelect("Removals", ({
         {"No Spread", "Spread", m_bNoSpread},
         {"No Recoil", "Recoil", m_bNoRecoil},
+        {"No Fall Damage", "Fall", m_bNoFallDamage},
         {"Instant Interaction", "Interact", m_bInstantInteraction},
         {"Instant Minigame", "Minigame", m_bInstantMinigame},
-        {"Instant Reload", "Reload", m_bInstantReload}
+        {"Instant Reload", "Reload", m_bInstantReload},
+        {"Instant Melee", "Melee", m_bInstantMelee}
     }));
 
     MultiSelect("Camera Modifiers", ({
@@ -187,11 +194,25 @@ void CheatConfig::Misc_t::Draw(){
         {"Disable Tilt", "Tilt", m_bNoCameraTilt}
     }));
 
+    ImGui::SliderFloat("Camera FOV", &m_flCameraFOV, 0.f, 150.f, "%0.0f");
+
     MultiSelect("Buffs", ({
         {"Speed", "Speed", m_bSpeedBuff},
         {"Damage", "Damage", m_bDamageBuff},
         {"Armor", "Armor", m_bArmorBuff}
     }));
+
+    ImGui::Checkbox("More Bullets", &m_bMoreBullets);
+    if(m_bMoreBullets){
+        ImGui::SameLine();
+        ImGui::SliderInt("###More Bullets Count", &m_iMoreBullets, 1, 100, "%d", ImGuiSliderFlags_AlwaysClamp);
+    }
+
+    ImGui::Checkbox("Super Toss", &m_bSuperToss);
+    if(m_bSuperToss){
+        ImGui::SameLine();
+        ImGui::SliderFloat("###Super Toss Speed", &m_flSuperToss, 1000.f, 5000.f);
+    }
 }
 
 namespace Menu

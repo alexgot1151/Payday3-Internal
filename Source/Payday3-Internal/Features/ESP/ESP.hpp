@@ -21,9 +21,6 @@ namespace ESP
         bool m_bFlags = true;
         bool m_bSkeleton = false;
         bool m_bOutline = true;
-        std::string m_sPreviewText = "None";
-
-        void UpdatePreviewText();
     };
 
     struct CivilianESP{

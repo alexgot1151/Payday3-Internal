@@ -192,33 +192,6 @@ std::optional<ImVec4> CalculateScreenBoxUsingBounds(SDK::APlayerController* pPla
 namespace ESP
 {
     // ESP Configuration
-    
-    void EnemyESP::UpdatePreviewText(){
-        m_sPreviewText = "";
-
-        auto fnAppend = [](std::string& sText, const char* szAppendText, bool bAppend) {
-            if (!bAppend)
-                return;
-
-            if (sText.size())
-                sText += ", ";
-
-            sText += szAppendText;
-        };
-
-        fnAppend(m_sPreviewText, "Box", m_bBox);
-        fnAppend(m_sPreviewText, "Health", m_bHealth);
-        fnAppend(m_sPreviewText, "Armor", m_bArmor);
-        fnAppend(m_sPreviewText, "Name", m_bName);
-        fnAppend(m_sPreviewText, "Flags", m_bFlags);
-        fnAppend(m_sPreviewText, "Skeleton", m_bSkeleton);
-        fnAppend(m_sPreviewText, "Outline", m_bOutline);
-
-        if (!m_sPreviewText.size())
-            m_sPreviewText = "None";
-    };
-
-
     enum class EActorType{
         // tazer mine, objective items, ammo boxes, fbi van, drones
         Other,
@@ -503,6 +476,7 @@ namespace ESP
     }
 
     void DrawEnemyESP(ImDrawList* pDrawList, SDK::APlayerController* pPlayerController, SDK::ACH_BaseCop_C* pGuard, EActorType eType, EnemyESP& stSettings){
+        static auto nameCH_SecurityGuard_Lead_C = SDK::UKismetStringLibrary::Conv_StringToName(L"CH_SecurityGuard_Lead_C"); 
         pGuard->Multicast_SetMarked(stSettings.m_bOutline);
 
         SDK::USkeletalMeshComponent* pSkeletalMesh = pGuard->Mesh;
@@ -542,6 +516,11 @@ namespace ESP
             
             float flFlagsOffset = 0.f;            
             DrawCarryableFlags(pDrawList, pGuard, vec4ScreenBox, flFlagsOffset);
+
+            if(pGuard->Class->Name == nameCH_SecurityGuard_Lead_C){
+                pDrawList->AddText(ImVec2(vec4ScreenBox.z + 5.f, vec4ScreenBox.y + flFlagsOffset), IM_COL32(0, 255, 0, 255), "Lead");
+                flFlagsOffset += 15.f;
+            }
         }  
     };
 
@@ -661,9 +640,12 @@ namespace ESP
     void Render(SDK::UWorld* pGWorld, SDK::APlayerController* pPlayerController) {
         if(!Cheat::g_bIsInGame)
             return;
-            
+
         SDK::USBZWorldRuntime* pWorldRuntime = reinterpret_cast<SDK::USBZWorldRuntime*>(SDK::USBZWorldRuntime::GetWorldRuntime(pGWorld));
         if (!pWorldRuntime || !pGWorld->PersistentLevel || !pGWorld->PersistentLevel->Actors)
+            return;
+
+        if(!pPlayerController->PlayerCameraManager)
             return;
 
         SDK::FRotator rotCameraRotation = pPlayerController->PlayerCameraManager->GetCameraRotation().Normalize();

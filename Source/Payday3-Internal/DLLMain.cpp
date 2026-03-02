@@ -147,6 +147,11 @@ using UObjectProcessEvent_t = void(*)(const SDK::UObject*, class SDK::UFunction*
 UObjectProcessEvent_t UObjectProcessEvent_o = nullptr;
 void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* pFunction, void* pParams)
 {
+	if(!Cheat::g_bIsInGame){
+		UObjectProcessEvent_o(pObject, pFunction, pParams);
+		return;
+	}
+
 	if(pObject->IsA(SDK::UKismetStringLibrary::StaticClass())){
 		UObjectProcessEvent_o(pObject, pFunction, pParams);
 		return;
@@ -238,7 +243,7 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 	if(pObject->IsA(SDK::USBZActionInputWidget::StaticClass())){
 		static auto nameMaskOn = SDK::UKismetStringLibrary::Conv_StringToName(L"MaskOn");
 		auto pWidget = reinterpret_cast<const SDK::USBZActionInputWidget*>(pObject);
-		if(pFunction->Name == nameOnActionPressed && pWidget->ActionName == nameMaskOn){
+		if(pFunction->Name == nameOnActionPressed && pWidget->ActionName == nameMaskOn && !Cheat::g_bIsInStealth){
 			//std::cout << "ActionPressed: " << pWidget->ActionName.ToString() << '\n';
 			g_bAttemptedToShoot = true;
 		}
@@ -253,12 +258,31 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 UObjectProcessEvent_t UObjectProcessEventPlayer_o = nullptr;
 void UObjectProcessEventPlayer_hk(const SDK::UObject* pObject, class SDK::UFunction* pFunction, void* pParams)
 {
+	if(!Cheat::g_bIsInGame){
+		UObjectProcessEventPlayer_o(pObject, pFunction, pParams);
+		return;
+	}
+
 	if(Menu::g_eCallTraceArea == Menu::ECallTraceArea::PlayerController)
 		RecordProcessEventCall(pObject, pFunction, pParams);
-
+	
 	static auto nameReceiveTick = SDK::UKismetStringLibrary::Conv_StringToName(L"ReceiveTick");
-	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()) && pFunction->Name == nameReceiveTick)
-		Cheat::OnPlayerControllerTick();
+	static auto nameServer_ThrowBag = SDK::UKismetStringLibrary::Conv_StringToName(L"Server_ThrowBag");
+	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass())){
+		if(pFunction->Name == nameReceiveTick)
+			Cheat::OnPlayerControllerTick();
+		else if(pFunction->Name == nameServer_ThrowBag){
+			auto pPlayer = reinterpret_cast<const SDK::ACH_PlayerBase_C*>(pObject);
+
+			if(CheatConfig::Get().m_misc.m_bSuperToss && pPlayer->Controller && pPlayer->Controller->IsA(SDK::APlayerController::StaticClass())){
+				auto pController = reinterpret_cast<SDK::APlayerController*>(pPlayer->Controller);
+				if(pController->PlayerCameraManager){
+					auto& params = *reinterpret_cast<SDK::Params::SBZCharacter_Server_ThrowBag*>(pParams);
+					params.ReplicatedVelocity = SDK::UKismetMathLibrary::GetForwardVector(pController->PlayerCameraManager->GetCameraRotation()) * CheatConfig::Get().m_misc.m_flSuperToss;
+				}
+			}
+		}
+	}
 		
 	UObjectProcessEventPlayer_o(pObject, pFunction, pParams);
 }
@@ -275,7 +299,7 @@ void ULocalPlayerGetViewPoint_hk(SDK::ULocalPlayer* _this, SDK::FMinimalViewInfo
 		return;
 
 	OutViewInfo->Location = g_vecOriginalLocation;
-	OutViewInfo->Rotation = g_rotOriginalRotation;
+	OutViewInfo->Rotation = g_rotOriginalRotation;	
 }
 
 using APlayerControllerGetPlayerViewPoint_t = void(*)(SDK::APlayerController*, SDK::FVector*, SDK::FRotator*);
@@ -368,6 +392,7 @@ inline void HookFunction(const std::string& sName, void* pFunction, void* pDetou
 
 void MainLoop()
 {	
+	#define ContinueLoop {std::this_thread::sleep_for(std::chrono::milliseconds(100)); continue;}
 	while (!GetAsyncKeyState(UNLOAD_KEY) && !GetAsyncKeyState(UNLOAD_KEY_ALT))
     {
 		if (GetAsyncKeyState(CONSOLE_KEY) & 0x1)
@@ -376,25 +401,25 @@ void MainLoop()
 		// Do frame independent work here
 		SDK::UWorld* pGWorld = SDK::UWorld::GetWorld();
 		if (!pGWorld)
-			continue;
+			ContinueLoop
 
 		if (!UObjectProcessEvent_o)
 			HookFunction("UObjectProcessEvent", SDK::InSDKUtils::GetVirtualFunction<void*>(pGWorld, SDK::Offsets::ProcessEventIdx), reinterpret_cast<void*>(&UObjectProcessEvent_hk), reinterpret_cast<void**>(&UObjectProcessEvent_o));
 
 		SDK::UGameInstance* pGameInstance = pGWorld->OwningGameInstance;
 		if (!pGameInstance)
-			continue;
+			ContinueLoop
 
 		SDK::ULocalPlayer* pLocalPlayer = pGameInstance->LocalPlayers[0];
 		if (!pLocalPlayer)
-			continue;
+			ContinueLoop
 
 		if (!ULocalPlayerGetViewPoint_o)
 			HookFunction("ULocalPlayerGetViewPoint", SDK::InSDKUtils::GetVirtualFunction<void*>(pLocalPlayer, 0x50), reinterpret_cast<void*>(&ULocalPlayerGetViewPoint_hk), reinterpret_cast<void**>(&ULocalPlayerGetViewPoint_o));
 	
 		SDK::APlayerController* pLocalPlayerControllerBase = pLocalPlayer->PlayerController;
 		if (!pLocalPlayerControllerBase)
-			continue;
+			ContinueLoop
 
 		if (!APlayerControllerGetPlayerViewPoint_o)
 			HookFunction("APlayerControllerGetPlayerViewPoint", SDK::InSDKUtils::GetVirtualFunction<void*>(pLocalPlayerControllerBase, 0xED), reinterpret_cast<void*>(&APlayerControllerGetPlayerViewPoint_hk), reinterpret_cast<void**>(&APlayerControllerGetPlayerViewPoint_o));
@@ -405,13 +430,29 @@ void MainLoop()
 		SDK::ASBZPlayerController* pLocalPlayerController = reinterpret_cast<SDK::ASBZPlayerController*>(pLocalPlayerControllerBase);
 		if (!pLocalPlayerController || !pLocalPlayerController->IsA(SDK::ASBZPlayerController::StaticClass())){
 			Cheat::g_bIsInGame = false;
-			continue;
+			ContinueLoop
 		}
 
-		Cheat::g_bIsInGame = true;
+		auto pGameState = reinterpret_cast<SDK::APD3HeistGameState*>(pGWorld->GameState);
+		if(!pGameState || !pGameState->IsA(SDK::APD3HeistGameState::StaticClass())){
+			Cheat::g_bIsInGame = false;
+			ContinueLoop
+		}
+
+		auto pGameStateMachine = SDK::USBZGameStateMachineFunctionLibrary::GetGameStateMachine(pGWorld);
+		auto eMachineState = SDK::USBZGameStateMachineFunctionLibrary::GetGameStateMachineState(pGWorld);
+		if(!pGameStateMachine){
+			Cheat::g_bIsInGame = false;
+			ContinueLoop
+		}
+
+		Cheat::g_bIsInStealth = pGameState->CurrentHeistState == SDK::EPD3HeistState::Stealth || pGameState->CurrentHeistState == SDK::EPD3HeistState::Search;
+		Cheat::g_bIsInGame = eMachineState == SDK::ESBZGameStateMachineState::SM_ActionPhase;
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
+
+	#undef ContinueLoop
 }
 
 bool VerifyGameVersion()

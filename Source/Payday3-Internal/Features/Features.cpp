@@ -45,6 +45,9 @@ struct WeaponDataBackupEntry_t{
     float m_flFireSpreadMinCap;
     float m_flFireSpreadCap;
     float m_flFireSpreadIncrease;
+
+    // Fire
+    uint32_t m_iProjectilesPerFiredRound;
 };
 
 bool g_bDidBackupWeaponData = false;
@@ -76,7 +79,7 @@ bool BackupWeaponData(SDK::USBZGameInstance* pGame){
             if(!pWeaponData->IsA(SDK::USBZRangedWeaponData::StaticClass()))
                 continue;
 
-            if(!pWeaponData->SpreadData || !pWeaponData->RecoilData)
+            if(!pWeaponData->SpreadData || !pWeaponData->RecoilData || !pWeaponData->FireData)
                 return false;
 
             g_mapWeaponDataBackup.try_emplace(std::hash<std::string>{}(pWeaponData->Name.ToString().substr(14)), WeaponDataBackupEntry_t{
@@ -86,7 +89,8 @@ bool BackupWeaponData(SDK::USBZGameInstance* pGame){
                 .m_flFireSpreadStart = pWeaponData->SpreadData->FireSpreadStart,
                 .m_flFireSpreadMinCap = pWeaponData->SpreadData->FireSpreadMinCap,
                 .m_flFireSpreadCap = pWeaponData->SpreadData->FireSpreadCap,
-                .m_flFireSpreadIncrease = pWeaponData->SpreadData->FireSpreadIncrease
+                .m_flFireSpreadIncrease = pWeaponData->SpreadData->FireSpreadIncrease,
+                .m_iProjectilesPerFiredRound = pWeaponData->FireData->ProjectilesPerFiredRound
             });
         }
     }
@@ -135,6 +139,130 @@ void RestoreWeaponRecoil(SDK::USBZRangedWeaponData* pWeaponData){
     pWeaponData->RecoilData->GunKickXY.SpeedDeflect = itrEntry->second.m_flGunSpeedDeflect;
 }
 
+void RestoreWeaponFire(SDK::USBZRangedWeaponData* pWeaponData){
+    if(!pWeaponData || !g_bDidBackupWeaponData)
+        return;
+
+    auto pEquippable = pWeaponData->EquippableClass.Get();
+    if(!pEquippable)
+        return;
+
+    std::string sName = pEquippable->Name.ToString().substr(16);
+    sName.resize(sName.size() - 2);
+
+    auto itrEntry = g_mapWeaponDataBackup.find(std::hash<std::string>{}(sName));
+    if(itrEntry == g_mapWeaponDataBackup.end() || !pWeaponData->FireData)
+        return;
+
+    pWeaponData->FireData->ProjectilesPerFiredRound = itrEntry->second.m_iProjectilesPerFiredRound;
+}
+
+void LookForMethLabDialog(SDK::APD3HeistGameState* pGameState){
+    if(!pGameState->DialogManager){
+        Cheat::g_stMethLabInfo.m_iAnnouncedLab = -1;
+        return;
+    }
+
+    // Muriatic Acid
+    static auto namesha_rmk02_19 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_19");
+    static auto namesha_rmk02_16 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_16");
+    
+    // Caustic Soda
+    static auto namesha_rmk02_29 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_29");
+    static auto namesha_rmk02_17 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_17");
+    
+    // Hcl
+    static auto namesha_rmk02_21 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_21");
+    static auto namesha_rmk02_18 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_18");
+    
+    // STOP
+    static auto namesha_rmk02_25 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_25");
+    
+    if(Cheat::g_stMethLabInfo.m_iCorrectChoice != -1){
+        switch(Cheat::g_stMethLabInfo.m_iCorrectChoice){
+        case(0):
+            Cheat::g_stMethLabInfo.m_bDidMu = true;
+            break;
+        case(1):
+            Cheat::g_stMethLabInfo.m_bDidCs = true;
+            break;
+        case(2):
+            Cheat::g_stMethLabInfo.m_bDidHcl = true;
+            break;
+        }
+
+        Cheat::g_stMethLabInfo.m_iAnnouncedLab = -1;
+        return;
+    }
+    
+    auto& aActiveDialogs = pGameState->DialogManager->ActiveDialogs;
+    for(int i = 0; i < aActiveDialogs.Num(); ++i){
+        auto pDialog = aActiveDialogs[i].First;
+        if(!pDialog)
+            continue;
+
+        auto& nameDialog = pDialog->Name;
+        int8_t iChosenLab = -1;
+        if(nameDialog == namesha_rmk02_19 || nameDialog == namesha_rmk02_16){
+            iChosenLab = 0;
+            if(Cheat::g_stMethLabInfo.m_bDidMu)
+                continue;
+        }else if(nameDialog == namesha_rmk02_29 || nameDialog == namesha_rmk02_17){
+            iChosenLab = 1;
+            if(Cheat::g_stMethLabInfo.m_bDidMu)
+                continue;
+        }else if(nameDialog == namesha_rmk02_21 || nameDialog == namesha_rmk02_18){
+            iChosenLab = 2;
+            if(Cheat::g_stMethLabInfo.m_bDidMu)
+                continue;
+        }else if(nameDialog == namesha_rmk02_25){
+            iChosenLab = -1;
+
+            if(Cheat::g_stMethLabInfo.m_iAnnouncedLab != -1){
+                uint8_t iRemaining = 3;
+                if(Cheat::g_stMethLabInfo.m_bDidMu)
+                    iRemaining--;
+
+                if(Cheat::g_stMethLabInfo.m_bDidCs);
+                    iRemaining--;
+
+                if(Cheat::g_stMethLabInfo.m_bDidHcl)
+                    iRemaining--;
+
+                if(iRemaining == 2){
+                    switch(Cheat::g_stMethLabInfo.m_iAnnouncedLab){
+                    case(0):
+                        Cheat::g_stMethLabInfo.m_iCorrectChoice = Cheat::g_stMethLabInfo.m_bDidCs ? 2 : 1;
+                        break;
+                    case(1):
+                        Cheat::g_stMethLabInfo.m_iCorrectChoice = Cheat::g_stMethLabInfo.m_bDidMu ? 2 : 0;
+                        break;
+                    case(2):
+                        Cheat::g_stMethLabInfo.m_iCorrectChoice = Cheat::g_stMethLabInfo.m_bDidCs ? 0 : 1;
+                        break;
+                    }
+                    
+                    Cheat::g_stMethLabInfo.m_iAnnouncedLab = -1;
+                    return;
+                }
+                
+            }
+        }else
+            continue;
+
+        if(Cheat::g_stMethLabInfo.m_iAnnouncedLab != iChosenLab){
+            Cheat::g_stMethLabInfo.m_iAnnouncedLab = iChosenLab;
+            Cheat::g_stMethLabInfo.m_timeAnnounced = std::chrono::steady_clock::now();
+        }		
+    }
+
+    if(Cheat::g_stMethLabInfo.m_iAnnouncedLab == -1 || std::chrono::steady_clock::now() - Cheat::g_stMethLabInfo.m_timeAnnounced < std::chrono::seconds(5))
+        return;
+
+    Cheat::g_stMethLabInfo.m_iCorrectChoice = Cheat::g_stMethLabInfo.m_iAnnouncedLab;
+    Cheat::g_stMethLabInfo.m_iAnnouncedLab = -1;
+}
+
 void OverrideMethLabInteractables(){
     if(Cheat::g_iMethLabIndex <= 0 || Cheat::g_iMethLabIndex > SDK::UObject::GObjects->Num())
         return;
@@ -143,41 +271,25 @@ void OverrideMethLabInteractables(){
     if(!pLab || !pLab->IsA(SDK::ASBZCookingStation::StaticClass()))
         return;
 
-    int iIngredientNum = reinterpret_cast<uint64_t*>(pLab->Pad_540)[2];
-    int iActiveIngredient = -1;
+    if(pLab->CurrentState == SDK::ESBZCookingState::UnderCooked)
+        Cheat::g_stMethLabInfo.m_bDidMu = Cheat::g_stMethLabInfo.m_bDidCs = Cheat::g_stMethLabInfo.m_bDidHcl = false;
     
-    static uint64_t iIngredientCode = 0;
-    uint64_t iCurrentIngredientCode = reinterpret_cast<uint64_t**>(pLab->Pad_540)[3][0];
-    if(iIngredientCode != iCurrentIngredientCode){
-        std::cout << std::hex << iCurrentIngredientCode << std::dec << '\n';
-        iIngredientCode = iCurrentIngredientCode;
-    }
-    switch(iCurrentIngredientCode){
-    case 0x1: //1 - 213
-        iActiveIngredient = (iIngredientNum == 0) ? 1 : (iIngredientNum == 1) ? 0 : 2;
-        break;
-    case 0x2: //2 - 312
-        iActiveIngredient = (iIngredientNum == 0) ? 2 : (iIngredientNum == 1) ? 0 : 1;
-        break;
-    case 0x100000000: //100000000 - 123
-        iActiveIngredient = (iIngredientNum == 0) ? 0 : (iIngredientNum == 1) ? 1 : 2;
-        break;
-    case 0x100000002: //100000002 - 321
-        iActiveIngredient = (iIngredientNum == 0) ? 2 : (iIngredientNum == 1) ? 1 : 0;
-        break;
-    case 0x200000000: //200000000 - 132
-        iActiveIngredient = (iIngredientNum == 0) ? 0 : (iIngredientNum == 1) ? 2 : 1;
-        break;
-    case 0x200000001: //200000001 - 231
-        iActiveIngredient = (iIngredientNum == 0) ? 1 : (iIngredientNum == 1) ? 2 : 0;
-        break;
-    default:
-        break;
+    if(pLab->CurrentState != Cheat::g_stMethLabInfo.m_eOldState)
+        Cheat::g_stMethLabInfo.m_iCorrectChoice = Cheat::g_stMethLabInfo.m_iAnnouncedLab = -1;
+    Cheat::g_stMethLabInfo.m_eOldState = pLab->CurrentState;
+
+    if(Cheat::g_stMethLabInfo.m_iCorrectChoice == -1){
+        if(Cheat::g_stMethLabInfo.m_bDidCs && Cheat::g_stMethLabInfo.m_bDidHcl)
+            Cheat::g_stMethLabInfo.m_iCorrectChoice = 0;
+        else if(Cheat::g_stMethLabInfo.m_bDidMu && Cheat::g_stMethLabInfo.m_bDidHcl)
+            Cheat::g_stMethLabInfo.m_iCorrectChoice = 1;
+        else if(Cheat::g_stMethLabInfo.m_bDidCs && Cheat::g_stMethLabInfo.m_bDidMu)
+            Cheat::g_stMethLabInfo.m_iCorrectChoice = 2;
     }
 
     for(int i = 0; i < pLab->IngredientInteractableArray.Num(); ++i){
         auto pInteractable = pLab->IngredientInteractableArray[i];
-        pInteractable->SetLocalEnabled(i == iActiveIngredient);
+        pInteractable->SetLocalEnabled(i == Cheat::g_stMethLabInfo.m_iCorrectChoice);
     }
 }
 
@@ -198,10 +310,9 @@ void Cheat::OnPlayerControllerTick(){
 
     auto pGameState = reinterpret_cast<SDK::APD3HeistGameState*>(pGWorld->GameState);
     if(pGameState && pGameState->IsA(SDK::APD3HeistGameState::StaticClass())){
-        g_bIsInStealth = pGameState->CurrentHeistState == SDK::EPD3HeistState::Stealth || pGameState->CurrentHeistState == SDK::EPD3HeistState::Search;
+        //LookForMethLabDialog(pGameState);
+        //OverrideMethLabInteractables();
     }
-
-    //OverrideMethLabInteractables();
 
     g_bIsSoloGame = SDK::USBZOnlineFunctionLibrary::IsSoloGame(pGWorld);
 
@@ -215,12 +326,18 @@ void Cheat::OnPlayerControllerTick(){
 	auto pLocalPlayerController = reinterpret_cast<SDK::ASBZPlayerController*>(pULocalPlayer->PlayerController);
 	if (!pLocalPlayerController || !pLocalPlayerController->IsA(SDK::ASBZPlayerController::StaticClass()))
 		return;
+
+    if(SDK::USBZSettingsFunctionsVideo::GetCameraVerticalFieldOfView(pGWorld) != CheatConfig::Get().m_misc.m_flCameraFOV)
+        SDK::USBZSettingsFunctionsVideo::SetCameraVerticalFieldOfView(pGWorld, CheatConfig::Get().m_misc.m_flCameraFOV);
     
     //pLocalPlayerController->ServerChangeName(SDK::FString(L"Omegaware PD3"));
 
 	auto pLocalPlayer = reinterpret_cast<SDK::ASBZPlayerCharacter*>(pLocalPlayerController->AcknowledgedPawn);
 	if (!pLocalPlayer || !pLocalPlayer->IsA(SDK::ASBZPlayerCharacter::StaticClass()))
 		return;
+
+    if(CheatConfig::Get().m_misc.m_bNoFallDamage)
+        pLocalPlayer->FallingStartHeight = pLocalPlayer->K2_GetActorLocation().Z;
 
     if(CheatConfig::Get().m_misc.m_bInstantInteraction)
         InstantInteraction(pLocalPlayer->Interactor);
@@ -320,6 +437,16 @@ void Cheat::OnPlayerControllerTick(){
                 else if(pRecoilData->ViewKick.SpeedDeflect == 0.f && pRecoilData->GunKickXY.SpeedDeflect == 0.f)
                     RestoreWeaponRecoil(pWeaponData);
             }
+
+            if(pWeaponData->FireData){
+                auto pFireData = pWeaponData->FireData;
+                //pFireData->RoundsPerMinute = 99999.f; // Rapid fire (not worth it)
+                //pFireData->MaximumPenetrationCount = std::numeric_limits<uint32_t>::max(); // Shoot through walls (Laggy af with more bullets)
+                if(CheatConfig::Get().m_misc.m_bMoreBullets)
+                    pFireData->ProjectilesPerFiredRound = CheatConfig::Get().m_misc.m_iMoreBullets;
+                else
+                    RestoreWeaponFire(pWeaponData);
+            }
 		}
 	}
 
@@ -332,8 +459,6 @@ void Cheat::OnPlayerControllerTick(){
         if (pLocalPlayer->GetActorEnableCollision())
             pLocalPlayer->SetActorEnableCollision(false);
 
-        //static std::chrono::time_point<std::chrono::high_resolution_clock> timeLastTeleported
-        
         if(CheatConfig::Get().m_misc.m_keyClientMoveTeleport.GetState() && !g_bIsSoloGame && std::chrono::steady_clock::now() - timeTeleportLast > g_durationPing){
             SDK::FVector vecPoint = pLocalPlayer->K2_GetActorLocation();
             SDK::FSBZMinimalAgilityTraversalTrajectory trajectory{
@@ -348,15 +473,26 @@ void Cheat::OnPlayerControllerTick(){
         pMovementComponent->MovementMode = SDK::EMovementMode::MOVE_Flying;
         pMovementComponent->BrakingDecelerationFlying = 10000.f;
         pMovementComponent->MaxFlySpeed = 10000.f;
-        pMovementComponent->Velocity = pMovementComponent->GetLastInputVector() * (CheatConfig::Get().m_misc.m_keyClientMoveFaster.GetState() ? 1800.f : 900.f);
-
-        if(pMovementComponent->CharacterMovementState == SDK::ESBZCharacterMovementState::Sliding)
-            pMovementComponent->Server_StopSlide();
+        float flFlySpeed = CheatConfig::Get().m_misc.m_flClientMoveBaseSpeed;
+        if(CheatConfig::Get().m_misc.m_keyClientMoveFaster.GetState())
+            flFlySpeed *= 2.f;
+        pMovementComponent->Velocity = pMovementComponent->GetLastInputVector() * flFlySpeed;
     }
     else if(!pLocalPlayer->GetActorEnableCollision()){
         pLocalPlayer->SetActorEnableCollision(true);
         pMovementComponent->MovementMode = SDK::EMovementMode::MOVE_Walking;
         pMovementComponent->Velocity = SDK::FVector{};
+
+        if(!g_bIsSoloGame && CheatConfig::Get().m_misc.m_bClientMoveAutoTeleport){
+            SDK::FVector vecPoint = pLocalPlayer->K2_GetActorLocation();
+            SDK::FSBZMinimalAgilityTraversalTrajectory trajectory{
+                vecPoint, vecPoint, vecPoint, vecPoint, std::numeric_limits<int16_t>::max(), SDK::ESBZAgilityTraversalType::VaultLowFast, false, false
+            };
+
+            pMovementComponent->Server_StartTraversal(trajectory);
+            g_bForceMoveForTeleport = true;
+            timeTeleportLast = std::chrono::steady_clock::now();
+        }
     }
 
     if(CheatConfig::Get().m_misc.m_bNoCameraShake)
@@ -369,27 +505,25 @@ void Cheat::OnPlayerControllerTick(){
             pLocalPlayer->TiltCameraModifier->EnableModifier();
     }
 
-    if(pLocalPlayer->FPCameraAttachment){
-        auto pCameraComponent = pLocalPlayer->FPCameraAttachment;
-        if(pCameraComponent->EquippedWeaponData && pCameraComponent->EquippedWeaponData->IsA(SDK::USBZRangedWeaponData::StaticClass())){
-            
-            auto pRangedWeaponData = reinterpret_cast<SDK::USBZRangedWeaponData*>(pCameraComponent->EquippedWeaponData);
-            
-            if(pRangedWeaponData->FireData && pRangedWeaponData->FireData->IsA(SDK::USBZPlayerWeaponFireData::StaticClass())){
-                auto pFireData = reinterpret_cast<SDK::USBZPlayerWeaponFireData*>(pRangedWeaponData->FireData);
-                
-                //pFireData->AmmoLoadedMax = pFireData->AmmoPerReload = 999.f;
-                //pFireData->AmmoInventoryMax = 99999.f;
-            }
-        }
 
-        if(pCameraComponent->EquippedWeapon && pCameraComponent->EquippedWeapon->IsA(SDK::ASBZWeapon::StaticClass())){
-            auto pWeapon = pCameraComponent->EquippedWeapon;
-            
-            //pWeapon->bIsReloading = false;
+    static auto nameSBZFireKickBackCameraModifier = SDK::UKismetStringLibrary::Conv_StringToName(L"SBZFireKickBackCameraModifier");
+    if(pLocalPlayerController->PlayerCameraManager && pLocalPlayerController->PlayerCameraManager->IsA(SDK::ASBZPlayerCameraManager::StaticClass())){
+        auto pCameraManager = reinterpret_cast<SDK::ASBZPlayerCameraManager*>(pLocalPlayerController->PlayerCameraManager);
+        for(int i = 0; i < pCameraManager->SBZCameraModifierList.Num(); ++i){
+            auto pModifier = pCameraManager->SBZCameraModifierList[i];
+            if(!pModifier || pModifier->Name != nameSBZFireKickBackCameraModifier)
+                continue;
+
+            if(CheatConfig::Get().m_misc.m_bNoCameraShake)
+                pModifier->DisableModifier(true);
+            else if(pModifier->IsDisabled())
+                pModifier->EnableModifier();
         }
-    }
+    }   
 
     if(pLocalPlayer->LastLocalReloadMontage)
         pLocalPlayer->LastLocalReloadMontage->RateScale = CheatConfig::Get().m_misc.m_bInstantReload ? 10000000.f : 1.f;
+
+    if(pLocalPlayer->CurrentMeleeMontage)
+        pLocalPlayer->CurrentMeleeMontage->RateScale = CheatConfig::Get().m_misc.m_bInstantMelee ? 10000000.f : 1.f;
 }
