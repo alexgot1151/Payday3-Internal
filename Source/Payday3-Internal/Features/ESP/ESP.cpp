@@ -10,6 +10,7 @@
 #include "ESP.hpp"
 #include "../Features.hpp"
 #include "../../Menu.hpp"
+#include "../../Features/FNames.hpp"
 
 #undef min
 #undef max
@@ -751,32 +752,89 @@ namespace ESP
                 pCamera->OutlineAsset->ColorIndex = 3;
             pCamera->OutlineComponent->Multicast_SetActiveReplicated(pCamera->OutlineAsset);
         }
+
+        // Other ESP
+        UC::TArray<SDK::ULevel*> vecLevels = pGWorld->Levels;
+        for (SDK::ULevel* pLevel : vecLevels) {
+            if (!pLevel || !pLevel->Actors)
+                continue;
+
+            for (SDK::AActor* pActor : pLevel->Actors) {
+                if (!pActor)
+                    continue;
+
+                std::vector<SDK::FName> lootNames = {
+                    FNames::BP_QRPhone_C,
+                    FNames::BP_BlueKeycard_C,
+                    FNames::BP_RedKeycard_C,
+                    FNames::BP_RFIDTagBlue_C,
+                    FNames::BP_DAT_C4Explosive_01_Pickup_C,
+                };
+
+                SDK::FName actorName = pActor->Class->Name;
+
+                if (std::find(lootNames.begin(), lootNames.end(), actorName) == lootNames.end())
+                    continue;
+
+                SDK::FVector2D vec2ScreenLocation;
+                if (!pPlayerController->ProjectWorldLocationToScreen(pActor->K2_GetActorLocation(), &vec2ScreenLocation, false))
+                    continue;
+
+                pDrawList->AddText(
+                    ImVec2(vec2ScreenLocation.X, vec2ScreenLocation.Y),
+                    IM_COL32(0, 255, 0, 255),
+                    ((actorName == FNames::BP_QRPhone_C) ? "Phone" :
+                    (actorName == FNames::BP_BlueKeycard_C) ? "Blue Keycard" :
+                    (actorName == FNames::BP_RedKeycard_C) ? "Red Keycard" :
+                    (actorName == FNames::BP_RFIDTagBlue_C) ? "RFID Tag" :
+                    (actorName == FNames::BP_DAT_C4Explosive_01_Pickup_C) ? "C4" :
+                    actorName.ToString()).c_str());
+            }
+        }
     }
 
     void RenderDebugESP(SDK::ULevel* pPersistentLevel, SDK::APlayerController* pPlayerController) {
         if (!GetConfig().bDebugESP)
             return;
 
+        SDK::APlayerCameraManager* pCameraManager = pPlayerController->PlayerCameraManager;
+        if (!pCameraManager)
+            return;
+
         ImDrawList* pDrawList = ImGui::GetBackgroundDrawList();
 
-        for (SDK::AActor* pActor : pPersistentLevel->Actors) {
-            if (!pActor)
+        SDK::UWorld* pGWorld = SDK::UWorld::GetWorld();
+        if (!pGWorld)
+            return;
+
+        UC::TArray<SDK::ULevel*> vecLevels = pGWorld->Levels;
+        for (SDK::ULevel* pLevel : vecLevels) {
+            if (!pLevel || !pLevel->Actors)
                 continue;
 
-            SDK::FVector ActorLocation = pActor->K2_GetActorLocation();
-            SDK::FVector2D ScreenLocation;
+            for (SDK::AActor* pActor : pLevel->Actors) {
+                if (!pActor)
+                    continue;
 
-            if (!pPlayerController->ProjectWorldLocationToScreen(ActorLocation, &ScreenLocation, false))
-                continue;
+                float distance = pCameraManager->GetDistanceTo(pActor);
+                if (distance > 1000.f)
+                    continue;
 
-            char szName[64];
-            for (SDK::UStruct* pStruct = static_cast<SDK::UStruct*>(pActor->Class); pStruct != nullptr; pStruct = static_cast<SDK::UStruct*>(pStruct->SuperStruct)) {
+                SDK::FVector ActorLocation = pActor->K2_GetActorLocation();
+                SDK::FVector2D ScreenLocation;
 
-                szName[pStruct->Name.GetRawString().copy(szName, 63)] = '\0';
+                if (!pPlayerController->ProjectWorldLocationToScreen(ActorLocation, &ScreenLocation, false))
+                    continue;
 
-                ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
-                pDrawList->AddText({ScreenLocation.X - vecTextSize.x / 2, ScreenLocation.Y - 8.f}, IM_COL32(255, 0, 0, 255), szName);
-                ScreenLocation.Y += vecTextSize.y + 2.f;
+                char szName[64];
+                for (SDK::UStruct* pStruct = static_cast<SDK::UStruct*>(pActor->Class); pStruct != nullptr; pStruct = static_cast<SDK::UStruct*>(pStruct->SuperStruct)) {
+
+                    szName[pStruct->Name.GetRawString().copy(szName, 63)] = '\0';
+
+                    ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+                    pDrawList->AddText({ScreenLocation.X - vecTextSize.x / 2, ScreenLocation.Y - 8.f}, IM_COL32(255, 0, 0, 255), szName);
+                    ScreenLocation.Y += vecTextSize.y + 2.f;
+                }
             }
         }
     }
