@@ -42,3 +42,8 @@ target("Payday3-Internal")
     add_syslinks("d3d12", "dxgi")
 
     add_links("user32", "minhook.x64", "imgui")
+
+target("Injector")
+    set_languages("c++latest")
+    set_kind("binary")
+    add_files("Source/Injector/**.cpp")
