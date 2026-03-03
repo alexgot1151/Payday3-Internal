@@ -170,7 +170,7 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 		return;
 	}
 
-	if(nameClass == FNames::SBZCookingStation)
+	if(nameClass == FNames::SBZCookingStation || nameSuper == FNames::SBZCookingStation)
 		Cheat::g_iMethLabIndex = pObject->Index;
 		
 	if(nameSuper == FNames::SBZKeypad){
@@ -234,6 +234,13 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 		return;
 	}
 
+	if(nameSuper == FNames::CH_PlayerBase_C && nameFunction == FNames::ClientMoveResponsePacked){
+		
+		//Cheat::g_vecLastUpdatedLocation = GetLocalPlayer()->K2_GetActorLocation();
+		UObjectProcessEvent_o(pObject, pFunction, pParams);
+		return;
+	}
+
 	if(nameSuper == FNames::SBZActionInputWidget){
 		auto pWidget = reinterpret_cast<const SDK::USBZActionInputWidget*>(pObject);
 		if(nameFunction == FNames::OnActionPressed && pWidget->ActionName == FNames::MaskOn){
@@ -266,7 +273,6 @@ void UObjectProcessEventPlayer_hk(const SDK::UObject* pObject, class SDK::UFunct
 	if(Menu::g_eCallTraceArea == Menu::ECallTraceArea::PlayerController)
 		RecordProcessEventCall(pObject, pFunction, pParams);
 
-	//std::cout << pObject->Class->SuperStruct->GetName() << '\n' << pObject->Class->SuperStruct->Class->GetName() << "\n\n\n";
 	if(pObject->Class->SuperStruct->Name == FNames::CH_PlayerBase_C){
 		if(pFunction->Name == FNames::ReceiveTick)
 			Cheat::OnPlayerControllerTick();

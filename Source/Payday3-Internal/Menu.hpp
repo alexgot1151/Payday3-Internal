@@ -194,10 +194,10 @@ namespace Menu{
                 m_bActive = true;
                 break;
             case EType::Hold:
-                m_bActive = ImGui::IsKeyDown(m_eKeyCode);
+                m_bActive = ImGui::IsKeyDown(m_eKeyCode) && m_eKeyCode != ImGuiKey_None;
                 break;
             case EType::HoldOff:
-                m_bActive = !ImGui::IsKeyDown(m_eKeyCode);
+                m_bActive = !ImGui::IsKeyDown(m_eKeyCode) || m_eKeyCode != ImGuiKey_None;
                 break;
             case EType::Toggle:
                 if(m_bPressedThisFrame)

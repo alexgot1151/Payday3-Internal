@@ -19,6 +19,7 @@ namespace FNames{
         fn(SBZActionInputWidget) \
         fn(SBZKeypad) \
         fn(SBZCookingStation) \
+        fn(ClientMoveResponsePacked) \
     
     #define DefineFName(name) inline SDK::FName name{};
     ForEachFName(DefineFName)

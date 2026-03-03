@@ -19,6 +19,8 @@ namespace Cheat {
     inline uint64_t g_iMovePacketsSentContiguously = 0;
     inline int32_t g_iFireAbilityHandle = 0;
     inline int32_t g_iMethLabIndex = -1;
+    inline bool g_bWasMethLabDisabled = true;
+    inline SDK::FVector g_vecLastUpdatedLocation{};
 
     inline bool g_bShouldBeAiming = true;
     struct TargetInfo_t{
@@ -40,6 +42,7 @@ namespace Cheat {
         bool m_bDidMu = false;
         bool m_bDidCs = false;
         bool m_bDidHcl = false; 
+        bool m_bWasDisabled = true;
         std::chrono::time_point<std::chrono::steady_clock> m_timeAnnounced = std::chrono::steady_clock::now();
     };
 

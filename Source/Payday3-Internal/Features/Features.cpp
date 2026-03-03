@@ -215,7 +215,7 @@ void LookForMethLabDialog(SDK::APD3HeistGameState* pGameState){
     static auto namesha_rmk02_16 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_16");
     
     // Caustic Soda
-    static auto namesha_rmk02_29 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_29");
+    static auto namesha_rmk02_27 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_27");
     static auto namesha_rmk02_17 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_17");
     
     // Hcl
@@ -224,24 +224,14 @@ void LookForMethLabDialog(SDK::APD3HeistGameState* pGameState){
     
     // STOP
     static auto namesha_rmk02_25 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_25");
-    
-    if(Cheat::g_stMethLabInfo.m_iCorrectChoice != -1){
-        switch(Cheat::g_stMethLabInfo.m_iCorrectChoice){
-        case(0):
-            Cheat::g_stMethLabInfo.m_bDidMu = true;
-            break;
-        case(1):
-            Cheat::g_stMethLabInfo.m_bDidCs = true;
-            break;
-        case(2):
-            Cheat::g_stMethLabInfo.m_bDidHcl = true;
-            break;
-        }
 
-        Cheat::g_stMethLabInfo.m_iAnnouncedLab = -1;
+    // Confirm
+    static auto namesha_rmk02_29 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_29");
+    static auto namesha_rmk02_24 = SDK::UKismetStringLibrary::Conv_StringToName(L"sha_rmk02_24");
+
+    if(Cheat::g_stMethLabInfo.m_iCorrectChoice != -1)
         return;
-    }
-    
+
     auto& aActiveDialogs = pGameState->DialogManager->ActiveDialogs;
     for(int i = 0; i < aActiveDialogs.Num(); ++i){
         auto pDialog = aActiveDialogs[i].First;
@@ -254,13 +244,13 @@ void LookForMethLabDialog(SDK::APD3HeistGameState* pGameState){
             iChosenLab = 0;
             if(Cheat::g_stMethLabInfo.m_bDidMu)
                 continue;
-        }else if(nameDialog == namesha_rmk02_29 || nameDialog == namesha_rmk02_17){
+        }else if(nameDialog == namesha_rmk02_27 || nameDialog == namesha_rmk02_17){
             iChosenLab = 1;
-            if(Cheat::g_stMethLabInfo.m_bDidMu)
+            if(Cheat::g_stMethLabInfo.m_bDidCs)
                 continue;
         }else if(nameDialog == namesha_rmk02_21 || nameDialog == namesha_rmk02_18){
             iChosenLab = 2;
-            if(Cheat::g_stMethLabInfo.m_bDidMu)
+            if(Cheat::g_stMethLabInfo.m_bDidHcl)
                 continue;
         }else if(nameDialog == namesha_rmk02_25){
             iChosenLab = -1;
@@ -294,16 +284,18 @@ void LookForMethLabDialog(SDK::APD3HeistGameState* pGameState){
                 }
                 
             }
-        }else
-            continue;
+        }else if((nameDialog == namesha_rmk02_29 || nameDialog == namesha_rmk02_24) && Cheat::g_stMethLabInfo.m_iAnnouncedLab != -1){
+            Cheat::g_stMethLabInfo.m_iCorrectChoice = Cheat::g_stMethLabInfo.m_iAnnouncedLab;
+            Cheat::g_stMethLabInfo.m_iAnnouncedLab = -1;
+        }
 
-        if(Cheat::g_stMethLabInfo.m_iAnnouncedLab != iChosenLab){
+        if(Cheat::g_stMethLabInfo.m_iAnnouncedLab != iChosenLab && iChosenLab != -1){
             Cheat::g_stMethLabInfo.m_iAnnouncedLab = iChosenLab;
             Cheat::g_stMethLabInfo.m_timeAnnounced = std::chrono::steady_clock::now();
         }		
     }
 
-    if(Cheat::g_stMethLabInfo.m_iAnnouncedLab == -1 || std::chrono::steady_clock::now() - Cheat::g_stMethLabInfo.m_timeAnnounced < std::chrono::seconds(5))
+    if(Cheat::g_stMethLabInfo.m_iAnnouncedLab == -1 || std::chrono::steady_clock::now() - Cheat::g_stMethLabInfo.m_timeAnnounced < std::chrono::seconds(12))
         return;
 
     Cheat::g_stMethLabInfo.m_iCorrectChoice = Cheat::g_stMethLabInfo.m_iAnnouncedLab;
@@ -318,16 +310,8 @@ void OverrideMethLabInteractables(){
     if(!pLab || !pLab->IsA(SDK::ASBZCookingStation::StaticClass()))
         return;
 
-    if(pLab->CurrentState == SDK::ESBZCookingState::UnderCooked)
+    if(pLab->CurrentState != SDK::ESBZCookingState::WaitingForIngredients)
         Cheat::g_stMethLabInfo.m_bDidMu = Cheat::g_stMethLabInfo.m_bDidCs = Cheat::g_stMethLabInfo.m_bDidHcl = false;
-    
-    if(pLab->CurrentState != Cheat::g_stMethLabInfo.m_eOldState){
-        Cheat::g_stMethLabInfo.m_iCorrectChoice = Cheat::g_stMethLabInfo.m_iAnnouncedLab = -1;
-        std::cout << "FIXSHIT\n";
-    }
-        
-
-    Cheat::g_stMethLabInfo.m_eOldState = pLab->CurrentState;
 
     if(Cheat::g_stMethLabInfo.m_iCorrectChoice == -1){
         if(Cheat::g_stMethLabInfo.m_bDidCs && Cheat::g_stMethLabInfo.m_bDidHcl)
@@ -338,12 +322,40 @@ void OverrideMethLabInteractables(){
             Cheat::g_stMethLabInfo.m_iCorrectChoice = 2;
     }
 
+    bool bDisabled = false;
     for(int i = 0; i < pLab->IngredientInteractableArray.Num(); ++i){
         auto pInteractable = pLab->IngredientInteractableArray[i];
         pInteractable->SetLocalEnabled(i == Cheat::g_stMethLabInfo.m_iCorrectChoice);
-    }
-}
 
+        if(!pInteractable->bInteractionEnabled)
+            bDisabled = true;
+    }
+
+
+
+    if(bDisabled && !Cheat::g_stMethLabInfo.m_bWasDisabled){
+        if(Cheat::g_stMethLabInfo.m_iCorrectChoice != -1){
+            switch(Cheat::g_stMethLabInfo.m_iCorrectChoice){
+            case(0):
+                Cheat::g_stMethLabInfo.m_bDidMu = true;
+                break;
+            case(1):
+                Cheat::g_stMethLabInfo.m_bDidCs = true;
+                break;
+            case(2):
+                Cheat::g_stMethLabInfo.m_bDidHcl = true;
+                break;
+            }
+
+            Cheat::g_stMethLabInfo.m_iAnnouncedLab = -1;
+        }
+
+        Cheat::g_stMethLabInfo.m_iCorrectChoice = Cheat::g_stMethLabInfo.m_iAnnouncedLab = -1;
+    }
+        
+    
+    Cheat::g_stMethLabInfo.m_bWasDisabled = bDisabled;
+}
 
 
 void Cheat::OnPlayerControllerTick(){
@@ -381,7 +393,7 @@ void Cheat::OnPlayerControllerTick(){
     if(SDK::USBZSettingsFunctionsVideo::GetCameraVerticalFieldOfView(pGWorld) != CheatConfig::Get().m_misc.m_flCameraFOV)
         SDK::USBZSettingsFunctionsVideo::SetCameraVerticalFieldOfView(pGWorld, CheatConfig::Get().m_misc.m_flCameraFOV);
     
-    //pLocalPlayerController->ServerChangeName(SDK::FString(L"Omegaware PD3"));
+    //pLocalPlayerController->ServerChangeName(SDK::FString(LR"()"));
 
 	auto pLocalPlayer = reinterpret_cast<SDK::ASBZPlayerCharacter*>(pLocalPlayerController->AcknowledgedPawn);
 	if (!pLocalPlayer || !pLocalPlayer->IsA(SDK::ASBZPlayerCharacter::StaticClass()))
@@ -523,6 +535,19 @@ void Cheat::OnPlayerControllerTick(){
             timeTeleportLast = std::chrono::steady_clock::now();
         }
     }
+
+    /**
+     *     else if(pLocalPlayer->GetLastKnownRoom() != pLocalPlayer->GetCurrentRoom_Implementation() && pLocalPlayer->GetCurrentRoom_Implementation()){
+        SDK::FVector vecPoint = pLocalPlayer->K2_GetActorLocation();
+        SDK::FSBZMinimalAgilityTraversalTrajectory trajectory{
+            vecPoint, vecPoint, vecPoint, vecPoint, std::numeric_limits<int16_t>::max(), SDK::ESBZAgilityTraversalType::VaultLowFast, false, false
+        };
+
+        pMovementComponent->Server_StartTraversal(trajectory);
+        g_bForceMoveForTeleport = true;
+        timeTeleportLast = std::chrono::steady_clock::now();
+    }
+     */
 
     if(CheatConfig::Get().m_misc.m_bNoCameraShake)
 	    pLocalPlayerController->PlayerCameraManager->StopAllCameraShakes(true);
