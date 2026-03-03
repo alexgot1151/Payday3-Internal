@@ -186,7 +186,8 @@ void CheatConfig::Misc_t::Draw(){
         {"Instant Interaction", "Interact", m_bInstantInteraction},
         {"Instant Minigame", "Minigame", m_bInstantMinigame},
         {"Instant Reload", "Reload", m_bInstantReload},
-        {"Instant Melee", "Melee", m_bInstantMelee}
+        {"Instant Melee", "Melee", m_bInstantMelee},
+        {"Auto Pistol", "Auto", m_bAutoPistol}
     }));
 
     MultiSelect("Camera Modifiers", ({
@@ -202,12 +203,15 @@ void CheatConfig::Misc_t::Draw(){
         {"Armor", "Armor", m_bArmorBuff}
     }));
 
+    static const char* aRapidFireOptions[]{ "Disabled", "Steady", "Rapid" };
+    ImGui::Combo("Rapid Fire", &m_iRapidFire, aRapidFireOptions, IM_ARRAYSIZE(aRapidFireOptions));
+
     ImGui::Checkbox("More Bullets", &m_bMoreBullets);
     if(m_bMoreBullets){
         ImGui::SameLine();
         ImGui::SliderInt("###More Bullets Count", &m_iMoreBullets, 1, 100, "%d", ImGuiSliderFlags_AlwaysClamp);
     }
-
+    
     ImGui::Checkbox("Super Toss", &m_bSuperToss);
     if(m_bSuperToss){
         ImGui::SameLine();

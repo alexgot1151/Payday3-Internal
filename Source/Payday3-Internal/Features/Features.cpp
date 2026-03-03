@@ -48,6 +48,8 @@ struct WeaponDataBackupEntry_t{
 
     // Fire
     uint32_t m_iProjectilesPerFiredRound;
+    float m_flRoundsPerMinute;
+    SDK::ESBZFireMode m_eFireMode;
 };
 
 bool g_bDidBackupWeaponData = false;
@@ -90,7 +92,9 @@ bool BackupWeaponData(SDK::USBZGameInstance* pGame){
                 .m_flFireSpreadMinCap = pWeaponData->SpreadData->FireSpreadMinCap,
                 .m_flFireSpreadCap = pWeaponData->SpreadData->FireSpreadCap,
                 .m_flFireSpreadIncrease = pWeaponData->SpreadData->FireSpreadIncrease,
-                .m_iProjectilesPerFiredRound = pWeaponData->FireData->ProjectilesPerFiredRound
+                .m_iProjectilesPerFiredRound = pWeaponData->FireData->ProjectilesPerFiredRound,
+                .m_flRoundsPerMinute = pWeaponData->FireData->RoundsPerMinute,
+                .m_eFireMode = pWeaponData->FireData->FireMode
             });
         }
     }
@@ -98,46 +102,6 @@ bool BackupWeaponData(SDK::USBZGameInstance* pGame){
     return true;
 }
 
-void RestoreWeaponSpread(SDK::USBZRangedWeaponData* pWeaponData){
-    if(!pWeaponData || !g_bDidBackupWeaponData)
-        return;
-
-    auto pEquippable = pWeaponData->EquippableClass.Get();
-    if(!pEquippable)
-        return;
-
-    std::string sName = pEquippable->Name.ToString().substr(16);
-    sName.resize(sName.size() - 2);
-
-    auto itrEntry = g_mapWeaponDataBackup.find(std::hash<std::string>{}(sName));
-    if(itrEntry == g_mapWeaponDataBackup.end() || !pWeaponData->SpreadData)
-        return;
-    
-    pWeaponData->SpreadData->InnerClusterSpreadMultiplier = itrEntry->second.m_flInnerClusterSpreadMultiplier;
-    pWeaponData->SpreadData->FireSpreadStart = itrEntry->second.m_flFireSpreadStart;
-    pWeaponData->SpreadData->FireSpreadMinCap = itrEntry->second.m_flFireSpreadMinCap;
-    pWeaponData->SpreadData->FireSpreadCap = itrEntry->second.m_flFireSpreadCap;
-    pWeaponData->SpreadData->FireSpreadIncrease = itrEntry->second.m_flFireSpreadIncrease;
-}
-
-void RestoreWeaponRecoil(SDK::USBZRangedWeaponData* pWeaponData){
-    if(!pWeaponData || !g_bDidBackupWeaponData)
-        return;
-
-    auto pEquippable = pWeaponData->EquippableClass.Get();
-    if(!pEquippable)
-        return;
-
-    std::string sName = pEquippable->Name.ToString().substr(16);
-    sName.resize(sName.size() - 2);
-
-    auto itrEntry = g_mapWeaponDataBackup.find(std::hash<std::string>{}(sName));
-    if(itrEntry == g_mapWeaponDataBackup.end() || !pWeaponData->RecoilData)
-        return;
-    
-    pWeaponData->RecoilData->ViewKick.SpeedDeflect = itrEntry->second.m_flViewSpeedDeflect;
-    pWeaponData->RecoilData->GunKickXY.SpeedDeflect = itrEntry->second.m_flGunSpeedDeflect;
-}
 
 void RestoreWeaponFire(SDK::USBZRangedWeaponData* pWeaponData){
     if(!pWeaponData || !g_bDidBackupWeaponData)
@@ -155,6 +119,89 @@ void RestoreWeaponFire(SDK::USBZRangedWeaponData* pWeaponData){
         return;
 
     pWeaponData->FireData->ProjectilesPerFiredRound = itrEntry->second.m_iProjectilesPerFiredRound;
+}
+
+WeaponDataBackupEntry_t* GetWeaponBackupData(SDK::USBZRangedWeaponData* pWeaponData){
+    if(!pWeaponData || !g_bDidBackupWeaponData)
+        return{};
+
+    auto pEquippable = pWeaponData->EquippableClass.Get();
+    if(!pEquippable)
+        return{};
+
+    std::string sName = pEquippable->Name.ToString().substr(16);
+    sName.resize(sName.size() - 2);
+
+    auto itrEntry = g_mapWeaponDataBackup.find(std::hash<std::string>{}(sName));
+    if(itrEntry == g_mapWeaponDataBackup.end())
+        return{};
+
+    return &itrEntry->second;
+}
+
+void ModifyWeaponData(SDK::USBZRangedWeaponData* pWeaponData){
+    auto pBackupData = GetWeaponBackupData(pWeaponData);
+    if(!pBackupData)
+        return;
+
+    if(pWeaponData->RecoilData){
+        auto pRecoil = pWeaponData->RecoilData;
+        if(CheatConfig::Get().m_misc.m_bNoRecoil)
+            pRecoil->ViewKick.SpeedDeflect = pRecoil->GunKickXY.SpeedDeflect = 0.f;
+        else if(pRecoil->ViewKick.SpeedDeflect == 0.f && pRecoil->GunKickXY.SpeedDeflect == 0.f){
+            pWeaponData->RecoilData->ViewKick.SpeedDeflect = pBackupData->m_flViewSpeedDeflect;
+            pWeaponData->RecoilData->GunKickXY.SpeedDeflect = pBackupData->m_flGunSpeedDeflect;
+        }
+    }
+
+    if(pWeaponData->SpreadData){
+        auto pSpread = pWeaponData->SpreadData;
+
+        if(CheatConfig::Get().m_misc.m_bNoSpread)
+            pSpread->InnerClusterSpreadMultiplier = pSpread->FireSpreadStart = pSpread->FireSpreadMinCap = pSpread->FireSpreadCap = pSpread->FireSpreadIncrease = 0.f;
+        else if(pSpread->InnerClusterSpreadMultiplier == 0.f && pSpread->FireSpreadStart == 0.f && pSpread->FireSpreadMinCap == 0.f && pSpread->FireSpreadCap == 0.f && pSpread->FireSpreadIncrease == 0.f){
+            pSpread->InnerClusterSpreadMultiplier = pBackupData->m_flInnerClusterSpreadMultiplier;
+            pSpread->FireSpreadStart = pBackupData->m_flFireSpreadStart;
+            pSpread->FireSpreadMinCap = pBackupData->m_flFireSpreadMinCap;
+            pSpread->FireSpreadCap = pBackupData->m_flFireSpreadCap;
+            pSpread->FireSpreadIncrease = pBackupData->m_flFireSpreadIncrease;
+        }	
+    }
+
+    if(!pWeaponData->FireData)
+        return;
+
+    auto pFire = pWeaponData->FireData;
+    if(CheatConfig::Get().m_misc.m_bMoreBullets)
+        pFire->ProjectilesPerFiredRound = CheatConfig::Get().m_misc.m_iMoreBullets;
+    else
+        pFire->ProjectilesPerFiredRound = pBackupData->m_iProjectilesPerFiredRound;
+
+    pFire->StartFireMinBuildup = 0.f;
+
+    if(pWeaponData->TargetingData)
+        pWeaponData->TargetingData->TargetingTransitionTime = 0.f;
+    
+    switch(CheatConfig::Get().m_misc.m_iRapidFire){
+    case 1:
+        pFire->RoundsPerMinute = std::max(500.f, pBackupData->m_flRoundsPerMinute);
+        break;
+
+    case 2:
+        pFire->RoundsPerMinute = std::numeric_limits<float>::infinity();
+        break;
+
+    default:
+        pFire->RoundsPerMinute = pBackupData->m_flRoundsPerMinute;
+        break;
+    }
+
+    if(CheatConfig::Get().m_misc.m_bAutoPistol)
+        pFire->FireMode = SDK::ESBZFireMode::Auto;
+    else
+        pFire->FireMode = pBackupData->m_eFireMode;
+
+    //pFireData->MaximumPenetrationCount = std::numeric_limits<uint32_t>::max(); // Shoot through walls (Laggy af with more bullets)        
 }
 
 void LookForMethLabDialog(SDK::APD3HeistGameState* pGameState){
@@ -274,8 +321,12 @@ void OverrideMethLabInteractables(){
     if(pLab->CurrentState == SDK::ESBZCookingState::UnderCooked)
         Cheat::g_stMethLabInfo.m_bDidMu = Cheat::g_stMethLabInfo.m_bDidCs = Cheat::g_stMethLabInfo.m_bDidHcl = false;
     
-    if(pLab->CurrentState != Cheat::g_stMethLabInfo.m_eOldState)
+    if(pLab->CurrentState != Cheat::g_stMethLabInfo.m_eOldState){
         Cheat::g_stMethLabInfo.m_iCorrectChoice = Cheat::g_stMethLabInfo.m_iAnnouncedLab = -1;
+        std::cout << "FIXSHIT\n";
+    }
+        
+
     Cheat::g_stMethLabInfo.m_eOldState = pLab->CurrentState;
 
     if(Cheat::g_stMethLabInfo.m_iCorrectChoice == -1){
@@ -359,7 +410,7 @@ void Cheat::OnPlayerControllerTick(){
 
         auto pAbilitySystem = pLocalPlayer->PlayerAbilitySystem;
         auto& aAbilities = pAbilitySystem->ActivatableAbilities.Items;
-
+        
         static bool bDidHaveSpeedBuff = false;
         bool bSpeedBuff = CheatConfig::Get().m_misc.m_bSpeedBuff;
         if(bSpeedBuff)
@@ -419,35 +470,13 @@ void Cheat::OnPlayerControllerTick(){
 	if (pLocalPlayer->FPCameraAttachment && pLocalPlayer->FPCameraAttachment->EquippedWeaponData){
 		if (pLocalPlayer->FPCameraAttachment->EquippedWeaponData->IsA(SDK::USBZRangedWeaponData::StaticClass())){
 			auto pWeaponData = reinterpret_cast<SDK::USBZRangedWeaponData*>(pLocalPlayer->FPCameraAttachment->EquippedWeaponData);
-		
-			if (pWeaponData->SpreadData){
-                // No Spread
-				auto pSpreadData = pWeaponData->SpreadData;
-                if(CheatConfig::Get().m_misc.m_bNoSpread)
-                    pSpreadData->InnerClusterSpreadMultiplier = pSpreadData->FireSpreadStart = pSpreadData->FireSpreadMinCap = pSpreadData->FireSpreadCap = pSpreadData->FireSpreadIncrease = 0.f;
-                else if(pSpreadData->InnerClusterSpreadMultiplier == 0.f && pSpreadData->FireSpreadStart == 0.f && pSpreadData->FireSpreadMinCap == 0.f && pSpreadData->FireSpreadCap == 0.f && pSpreadData->FireSpreadIncrease == 0.f)
-                    RestoreWeaponSpread(pWeaponData);				
-			}
-
-            if(pWeaponData->RecoilData){
-                // No Recoil
-                auto pRecoilData = pWeaponData->RecoilData;
-                if(CheatConfig::Get().m_misc.m_bNoRecoil)
-                    pRecoilData->ViewKick.SpeedDeflect = pRecoilData->GunKickXY.SpeedDeflect = 0.f;
-                else if(pRecoilData->ViewKick.SpeedDeflect == 0.f && pRecoilData->GunKickXY.SpeedDeflect == 0.f)
-                    RestoreWeaponRecoil(pWeaponData);
-            }
-
-            if(pWeaponData->FireData){
-                auto pFireData = pWeaponData->FireData;
-                //pFireData->RoundsPerMinute = 99999.f; // Rapid fire (not worth it)
-                //pFireData->MaximumPenetrationCount = std::numeric_limits<uint32_t>::max(); // Shoot through walls (Laggy af with more bullets)
-                if(CheatConfig::Get().m_misc.m_bMoreBullets)
-                    pFireData->ProjectilesPerFiredRound = CheatConfig::Get().m_misc.m_iMoreBullets;
-                else
-                    RestoreWeaponFire(pWeaponData);
-            }
+            ModifyWeaponData(pWeaponData);
 		}
+
+        if(pLocalPlayer->FPCameraAttachment->EquippedWeapon->IsA(SDK::ASBZRangedWeapon::StaticClass())){
+            auto pWeapon = reinterpret_cast<SDK::ASBZRangedWeapon*>(pLocalPlayer->FPCameraAttachment->EquippedWeapon);
+
+        }
 	}
 
     SDK::USBZPlayerMovementComponent* pMovementComponent = reinterpret_cast<SDK::USBZPlayerMovementComponent*>(pLocalPlayer->GetComponentByClass(SDK::USBZPlayerMovementComponent::StaticClass()));
@@ -504,7 +533,6 @@ void Cheat::OnPlayerControllerTick(){
         else if(pLocalPlayer->TiltCameraModifier->IsDisabled())
             pLocalPlayer->TiltCameraModifier->EnableModifier();
     }
-
 
     static auto nameSBZFireKickBackCameraModifier = SDK::UKismetStringLibrary::Conv_StringToName(L"SBZFireKickBackCameraModifier");
     if(pLocalPlayerController->PlayerCameraManager && pLocalPlayerController->PlayerCameraManager->IsA(SDK::ASBZPlayerCameraManager::StaticClass())){

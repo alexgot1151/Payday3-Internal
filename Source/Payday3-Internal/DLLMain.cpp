@@ -17,6 +17,7 @@
 #include "Menu.hpp"
 #include "Dumper-7/SDK.hpp"
 #include "Features/Features.hpp"
+#include "Features/FNames.hpp"
 #include <intrin.h>
 
 #pragma intrinsic(_ReturnAddress)
@@ -147,12 +148,12 @@ using UObjectProcessEvent_t = void(*)(const SDK::UObject*, class SDK::UFunction*
 UObjectProcessEvent_t UObjectProcessEvent_o = nullptr;
 void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* pFunction, void* pParams)
 {
-	if(!Cheat::g_bIsInGame){
-		UObjectProcessEvent_o(pObject, pFunction, pParams);
-		return;
-	}
+	auto nameObject = pObject->Name;
+	auto nameClass = pObject->Class->Name;
+	auto nameSuper = pObject->Class->SuperStruct->Name;
+	auto nameFunction = pFunction->Name;
 
-	if(pObject->IsA(SDK::UKismetStringLibrary::StaticClass())){
+	if(!Cheat::g_bIsInGame || pObject->Name == FNames::KismetStringLibrary){
 		UObjectProcessEvent_o(pObject, pFunction, pParams);
 		return;
 	}
@@ -160,26 +161,19 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 	if(Menu::g_eCallTraceArea == Menu::ECallTraceArea::UObject)
 		RecordProcessEventCall(pObject, pFunction, pParams);
 
-	static auto nameServerMovePacked = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerMovePacked");
-	static auto nameGA_Fire_C = SDK::UKismetStringLibrary::Conv_StringToName(L"GA_Fire_C");
-	static auto nameK2_CommitExecute = SDK::UKismetStringLibrary::Conv_StringToName(L"K2_CommitExecute");
-
-	static auto nameClientPlayForceFeedback_Internal = SDK::UKismetStringLibrary::Conv_StringToName(L"ClientPlayForceFeedback_Internal");
-	if (pFunction->Name == nameClientPlayForceFeedback_Internal)
+	if(nameFunction == FNames::ClientPlayForceFeedback_Internal)
 		return;
 
-	static auto nameServerTryActivateAbility = SDK::UKismetStringLibrary::Conv_StringToName(L"ServerTryActivateAbility");
-	if(pFunction->Name == nameServerTryActivateAbility){
+	if(nameFunction == FNames::ServerTryActivateAbility){
 		UObjectProcessEvent_o(pObject, pFunction, pParams);
 		auto& params = *reinterpret_cast<SDK::Params::AbilitySystemComponent_ServerTryActivateAbility*>(pParams);	
 		return;
 	}
 
-	if(pObject->IsA(SDK::ASBZCookingStation::StaticClass()))
+	if(nameClass == FNames::SBZCookingStation)
 		Cheat::g_iMethLabIndex = pObject->Index;
-	
-	if(pObject->IsA(SDK::ASBZKeypadBase::StaticClass()))
-	{
+		
+	if(nameSuper == FNames::SBZKeypad){
 		auto pKeypad = reinterpret_cast<SDK::ASBZKeypadBase*>(const_cast<SDK::UObject*>(pObject));
 		
 		uint8_t iActiveKey = 0;
@@ -218,36 +212,42 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 		UObjectProcessEvent_o(pObject, pFunction, pParams);
 		return;
 	}
-
-	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass()) || pObject->IsA(SDK::APlayerController::StaticClass()) || pObject->IsA(SDK::APlayerCameraManager::StaticClass()) || pObject->IsA(SDK::UCharacterMovementComponent::StaticClass()))
-	{
-		if(pFunction->Name == nameServerMovePacked){
-			if(CheatConfig::Get().m_misc.m_keyClientMove.GetState()){
-				if(Cheat::g_bForceMoveForTeleport && Cheat::g_iMovePacketsSentContiguously > 3)
-					Cheat::g_bForceMoveForTeleport = false;
-
-				if(!Cheat::g_bForceMoveForTeleport){
-					Cheat::g_iMovePacketsSentContiguously = 0;
-					return;
-				}
-			}
-
-			Cheat::g_iMovePacketsSentContiguously++;
-			UObjectProcessEvent_o(pObject, pFunction, pParams);
-			return;
-		}
+	
+	if(!pObject->Class || !pObject->Class->SuperStruct){
+		UObjectProcessEvent_o(pObject, pFunction, pParams);
+		return;
 	}
 
-	static auto nameOnActionPressed = SDK::UKismetStringLibrary::Conv_StringToName(L"OnActionPressed");
-	static auto nameOnActionReleased = SDK::UKismetStringLibrary::Conv_StringToName(L"OnActionReleased");
-	if(pObject->IsA(SDK::USBZActionInputWidget::StaticClass())){
-		static auto nameMaskOn = SDK::UKismetStringLibrary::Conv_StringToName(L"MaskOn");
-		auto pWidget = reinterpret_cast<const SDK::USBZActionInputWidget*>(pObject);
-		if(pFunction->Name == nameOnActionPressed && pWidget->ActionName == nameMaskOn && !Cheat::g_bIsInStealth){
-			//std::cout << "ActionPressed: " << pWidget->ActionName.ToString() << '\n';
-			g_bAttemptedToShoot = true;
+	if(nameSuper == FNames::CH_PlayerBase_C && nameFunction == FNames::ServerMovePacked){
+		if(CheatConfig::Get().m_misc.m_keyClientMove.GetState()){
+			if(Cheat::g_bForceMoveForTeleport && Cheat::g_iMovePacketsSentContiguously > 3)
+				Cheat::g_bForceMoveForTeleport = false;
+
+			if(!Cheat::g_bForceMoveForTeleport){
+				Cheat::g_iMovePacketsSentContiguously = 0;
+				return;
+			}
 		}
-		else if(pFunction->Name == nameOnActionReleased){
+
+		Cheat::g_iMovePacketsSentContiguously++;
+		UObjectProcessEvent_o(pObject, pFunction, pParams);
+		return;
+	}
+
+	if(nameSuper == FNames::SBZActionInputWidget){
+		auto pWidget = reinterpret_cast<const SDK::USBZActionInputWidget*>(pObject);
+		if(nameFunction == FNames::OnActionPressed && pWidget->ActionName == FNames::MaskOn){
+			//std::cout << "ActionPressed: " << pWidget->ActionName.ToString() << '\n';
+			if(!Cheat::g_bIsInStealth)
+				g_bAttemptedToShoot = true;
+			
+			auto pLocalPlayer = GetLocalPlayer();
+			if(pLocalPlayer && pLocalPlayer->SBZPlayerState && pLocalPlayer->PlayerAbilitySystem && CheatConfig::Get().m_misc.m_bInstantInteraction){
+				if(!pLocalPlayer->SBZPlayerState->bIsMaskOn)
+					pLocalPlayer->PlayerAbilitySystem->Server_MaskOn();
+			}
+		}
+		else if(nameFunction == FNames::OnActionReleased){
 			//std::cout << "ActionReleased: " << pWidget->ActionName.ToString() << '\n';
 		}
 	}
@@ -258,20 +258,19 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 UObjectProcessEvent_t UObjectProcessEventPlayer_o = nullptr;
 void UObjectProcessEventPlayer_hk(const SDK::UObject* pObject, class SDK::UFunction* pFunction, void* pParams)
 {
-	if(!Cheat::g_bIsInGame){
+	if(!Cheat::g_bIsInGame || !pObject->Class || !pObject->Class->SuperStruct){
 		UObjectProcessEventPlayer_o(pObject, pFunction, pParams);
 		return;
 	}
 
 	if(Menu::g_eCallTraceArea == Menu::ECallTraceArea::PlayerController)
 		RecordProcessEventCall(pObject, pFunction, pParams);
-	
-	static auto nameReceiveTick = SDK::UKismetStringLibrary::Conv_StringToName(L"ReceiveTick");
-	static auto nameServer_ThrowBag = SDK::UKismetStringLibrary::Conv_StringToName(L"Server_ThrowBag");
-	if(pObject->IsA(SDK::ACH_PlayerBase_C::StaticClass())){
-		if(pFunction->Name == nameReceiveTick)
+
+	//std::cout << pObject->Class->SuperStruct->GetName() << '\n' << pObject->Class->SuperStruct->Class->GetName() << "\n\n\n";
+	if(pObject->Class->SuperStruct->Name == FNames::CH_PlayerBase_C){
+		if(pFunction->Name == FNames::ReceiveTick)
 			Cheat::OnPlayerControllerTick();
-		else if(pFunction->Name == nameServer_ThrowBag){
+		else if(pFunction->Name == FNames::Server_ThrowBag){
 			auto pPlayer = reinterpret_cast<const SDK::ACH_PlayerBase_C*>(pObject);
 
 			if(CheatConfig::Get().m_misc.m_bSuperToss && pPlayer->Controller && pPlayer->Controller->IsA(SDK::APlayerController::StaticClass())){
@@ -403,7 +402,9 @@ void MainLoop()
 		if (!pGWorld)
 			ContinueLoop
 
-		if (!UObjectProcessEvent_o)
+		FNames::Initialize();
+
+		if (!UObjectProcessEvent_o && !FNames::KismetStringLibrary.IsNone())
 			HookFunction("UObjectProcessEvent", SDK::InSDKUtils::GetVirtualFunction<void*>(pGWorld, SDK::Offsets::ProcessEventIdx), reinterpret_cast<void*>(&UObjectProcessEvent_hk), reinterpret_cast<void**>(&UObjectProcessEvent_o));
 
 		SDK::UGameInstance* pGameInstance = pGWorld->OwningGameInstance;
