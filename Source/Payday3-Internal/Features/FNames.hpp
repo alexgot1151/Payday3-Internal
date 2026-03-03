@@ -19,6 +19,11 @@ namespace FNames{
         fn(SBZActionInputWidget) \
         fn(SBZKeypad) \
         fn(SBZCookingStation) \
+        fn(BP_QRPhone_C) \
+        fn(BP_BlueKeycard_C) \
+        fn(BP_RedKeycard_C) \
+        fn(BP_RFIDTagBlue_C) \
+        fn(BP_DAT_C4Explosive_01_Pickup_C) \
         fn(ClientMoveResponsePacked) \
     
     #define DefineFName(name) inline SDK::FName name{};
@@ -27,7 +32,7 @@ namespace FNames{
 
 
     inline bool g_bIsFullyInitialized = false;
-    void Initialize(){
+    inline void Initialize(){
         if(g_bIsFullyInitialized)
             return;
 
