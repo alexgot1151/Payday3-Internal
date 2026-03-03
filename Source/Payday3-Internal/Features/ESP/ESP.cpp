@@ -732,12 +732,7 @@ namespace ESP
 
         auto pAbilitySystem = pLocalPlayer->PlayerAbilitySystem;
         if (!pAbilitySystem)
-            return;
-
-        auto& aAbilities = pAbilitySystem->ActivatableAbilities.Items;
-
-        auto pReloadAbility = GetAbilitySpec(pAbilitySystem, SDK::UKismetStringLibrary::Conv_StringToName(L"Default__GA_Reload_C"));
-        auto pFireAbility = GetAbilitySpec(pAbilitySystem, SDK::UKismetStringLibrary::Conv_StringToName(L"Default__GA_Fire_C"));
+            return;        
 
         auto& aCameras = pWorldRuntime->AllSecurityCameras->Objects;
         for (int i = 0; i < aCameras.Num(); ++i) {
