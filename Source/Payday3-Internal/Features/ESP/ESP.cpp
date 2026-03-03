@@ -769,6 +769,9 @@ namespace ESP
                     FNames::BP_RedKeycard_C,
                     FNames::BP_RFIDTagBlue_C,
                     FNames::BP_DAT_C4Explosive_01_Pickup_C,
+                    FNames::BP_Meth_CausticSoda_C,
+                    FNames::BP_Meth_MuriaticAcid_C,
+                    FNames::BP_Meth_HydrogenChloride_C
                 };
 
                 SDK::FName actorName = pActor->Class->Name;
@@ -780,6 +783,7 @@ namespace ESP
                 if (!pPlayerController->ProjectWorldLocationToScreen(pActor->K2_GetActorLocation(), &vec2ScreenLocation, false))
                     continue;
 
+
                 pDrawList->AddText(
                     ImVec2(vec2ScreenLocation.X, vec2ScreenLocation.Y),
                     IM_COL32(0, 255, 0, 255),
@@ -788,6 +792,9 @@ namespace ESP
                     (actorName == FNames::BP_RedKeycard_C) ? "Red Keycard" :
                     (actorName == FNames::BP_RFIDTagBlue_C) ? "RFID Tag" :
                     (actorName == FNames::BP_DAT_C4Explosive_01_Pickup_C) ? "C4" :
+                    (actorName == FNames::BP_Meth_CausticSoda_C) ? "Caustic Soda" :
+                    (actorName == FNames::BP_Meth_MuriaticAcid_C) ? "Muriatic Acid" :
+                    (actorName == FNames::BP_Meth_HydrogenChloride_C) ? "Hydrogen Chloride" :
                     actorName.ToString()).c_str());
             }
         }
