@@ -54,3 +54,15 @@ namespace ESP
     void Render(SDK::UWorld* pGWorld, SDK::APlayerController* pPlayerController);
     void RenderDebugESP(SDK::ULevel* pPersistentLevel, SDK::APlayerController* pPlayerController);
 }
+
+namespace LootESP
+{
+    struct Config {
+        bool bESP = false;
+    };
+
+    inline Config& GetConfig() {
+        static Config config{};
+        return config;
+    }
+}

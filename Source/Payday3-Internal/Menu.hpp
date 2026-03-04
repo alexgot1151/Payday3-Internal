@@ -298,6 +298,9 @@ struct CheatConfig{
 
     Misc_t m_misc{};
 
+    bool Save() const;
+    bool Load();
+
     static CheatConfig& Get(){
         static CheatConfig config{};
         return config;

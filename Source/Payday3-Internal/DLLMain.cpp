@@ -509,6 +509,9 @@ DWORD WINAPI MainThread(LPVOID lpParam)
 	bool bOriginalVisibility = Globals::g_upConsole->GetVisibility();
 	bInitSuccess &= VerifyGameVersion();
 
+	if (!CheatConfig::Get().Load())
+		Utils::LogDebug("Config load skipped or failed, using in-memory defaults.");
+
 	(bInitSuccess) ? Utils::LogDebug("Initialization successful") : Utils::LogError("Initialization failed!");
 
 	std::this_thread::sleep_for(std::chrono::seconds(5));
