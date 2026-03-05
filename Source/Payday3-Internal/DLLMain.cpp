@@ -422,14 +422,14 @@ void MainLoop()
 			ContinueLoop
 
 		if (!ULocalPlayerGetViewPoint_o)
-			HookFunction("ULocalPlayerGetViewPoint", SDK::InSDKUtils::GetVirtualFunction<void*>(pLocalPlayer, 0x50), reinterpret_cast<void*>(&ULocalPlayerGetViewPoint_hk), reinterpret_cast<void**>(&ULocalPlayerGetViewPoint_o));
+			HookFunction("ULocalPlayerGetViewPoint", SDK::InSDKUtils::GetVirtualFunction<void*>(pLocalPlayer, ULOCALPLAYER_GETVIEWPOINT_INDEX), reinterpret_cast<void*>(&ULocalPlayerGetViewPoint_hk), reinterpret_cast<void**>(&ULocalPlayerGetViewPoint_o));
 	
 		SDK::APlayerController* pLocalPlayerControllerBase = pLocalPlayer->PlayerController;
 		if (!pLocalPlayerControllerBase)
 			ContinueLoop
 
 		if (!APlayerControllerGetPlayerViewPoint_o)
-			HookFunction("APlayerControllerGetPlayerViewPoint", SDK::InSDKUtils::GetVirtualFunction<void*>(pLocalPlayerControllerBase, 0xED), reinterpret_cast<void*>(&APlayerControllerGetPlayerViewPoint_hk), reinterpret_cast<void**>(&APlayerControllerGetPlayerViewPoint_o));
+			HookFunction("APlayerControllerGetPlayerViewPoint", SDK::InSDKUtils::GetVirtualFunction<void*>(pLocalPlayerControllerBase, APLAYERCONTROLLER_GETPLAYERVIEWPOINT_INDEX), reinterpret_cast<void*>(&APlayerControllerGetPlayerViewPoint_hk), reinterpret_cast<void**>(&APlayerControllerGetPlayerViewPoint_o));
 
 		if(!UObjectProcessEventPlayer_o)
 			HookFunction("UObjectProcessEventPlayer", SDK::InSDKUtils::GetVirtualFunction<void*>(pLocalPlayerControllerBase, SDK::Offsets::ProcessEventIdx), reinterpret_cast<void*>(&UObjectProcessEventPlayer_hk), reinterpret_cast<void**>(&UObjectProcessEventPlayer_o));

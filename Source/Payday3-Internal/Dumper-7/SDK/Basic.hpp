@@ -487,7 +487,6 @@ public:
 		return TextData->TextSource.ToString();
 	}
 };
-DUMPER7_ASSERTS_FText;
 
 // Predefined struct FWeakObjectPtr
 // 0x0008 (0x0008 - 0x0000)
