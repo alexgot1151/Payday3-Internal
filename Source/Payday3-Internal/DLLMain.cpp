@@ -517,7 +517,8 @@ DWORD WINAPI MainThread(LPVOID lpParam)
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 	Globals::g_upConsole->SetVisibility(bOriginalVisibility);
 
-	MainLoop();
+	if (bInitSuccess)
+		MainLoop();
 	Utils::LogDebug("Unloading...");
 
 	// Shutdown DirectX 12 hook
