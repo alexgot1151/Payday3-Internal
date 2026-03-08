@@ -58,7 +58,7 @@ namespace ESP
 namespace LootESP
 {
     struct Config {
-        bool bESP = false;
+        bool bLootESP = false;
     };
 
     inline Config& GetConfig() {

@@ -756,7 +756,7 @@ namespace ESP
         // Other ESP
         UC::TArray<SDK::ULevel*> vecLevels = pGWorld->Levels;
         for (SDK::ULevel* pLevel : vecLevels) {
-            if (!pLevel || !pLevel->Actors || !LootESP::GetConfig().bESP)
+            if (!pLevel || !pLevel->Actors || !LootESP::GetConfig().bLootESP)
                 continue;
 
             for (SDK::AActor* pActor : pLevel->Actors) {

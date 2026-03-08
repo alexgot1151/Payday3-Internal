@@ -11,6 +11,9 @@
 
 // Includes the entire SDK. Include files directly for faster compilation!
 
+#pragma warning(push)
+#pragma warning(disable : 4369)
+
 #include "SDK/Basic.hpp"
 #include "SDK/CoreUObject_structs.hpp"
 #include "SDK/CoreUObject_classes.hpp"
@@ -1823,3 +1826,4 @@
 #include "SDK/BP_UVLightPlayer_classes.hpp"
 #include "SDK/WidgetPanel_classes.hpp"
 #include "SDK/BP_SingleCableBox_classes.hpp"
+#pragma warning(pop)

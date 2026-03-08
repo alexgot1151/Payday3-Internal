@@ -301,7 +301,7 @@ bool CheatConfig::Save() const
     WriteBool("esp.debug.esp", espConfig.bDebugESP);
 
     LootESP::Config& lootespConfig = LootESP::GetConfig();
-    WriteBool("lootesp.enabled", lootespConfig.bESP);
+    WriteBool("lootesp.enabled", lootespConfig.bLootESP);
 
     if (fileConfig.fail())
     {
@@ -510,7 +510,7 @@ bool CheatConfig::Load()
     m_misc.m_keyClientMoveFaster.m_bPressedThisFrame = false;
 
     auto& lootespConfig = LootESP::GetConfig();
-    ReadBool("lootesp.enabled", lootespConfig.bESP);
+    ReadBool("lootesp.enabled", lootespConfig.bLootESP);
 
     Utils::LogDebug(std::format("Config loaded: {}", pathConfig.string()));
     return true;
@@ -581,9 +581,9 @@ void CheatConfig::Visuals_t::Draw(){
         ImGui::Unindent();
     }
 
-    auto& lootespConfig = ESP::GetConfig();
-    ImGui::Checkbox("Enable Loot ESP", &lootespConfig.bESP);
-    if (lootespConfig.bESP) {
+    auto& lootespConfig = LootESP::GetConfig();
+    ImGui::Checkbox("Enable Loot ESP", &lootespConfig.bLootESP);
+    if (lootespConfig.bLootESP) {
         // Loot ESP options
     }
 
