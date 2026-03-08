@@ -43,6 +43,8 @@ target("Payday3-Internal")
 
     add_links("user32", "minhook.x64", "imgui")
 
+    add_cxflags("/wd4369")
+
 target("Injector")
     set_languages("c++latest")
     set_kind("binary")
