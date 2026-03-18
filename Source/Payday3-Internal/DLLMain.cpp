@@ -18,13 +18,14 @@
 #include "Dumper-7/SDK.hpp"
 #include "Features/Features.hpp"
 #include "Features/FNames.hpp"
-#include <intrin.h>
 
+#include <intrin.h>
 #pragma intrinsic(_ReturnAddress)
+
+#include "Utils/UEOffsets.hpp"
 
 #undef min
 #undef max
-
 
 namespace Globals {
 #ifdef _DEBUG
@@ -46,6 +47,44 @@ bool Init()
 	Globals::g_upConsole = std::make_unique<Console>(Globals::g_bDebug, consoleTitle.c_str());
 	if (!Globals::g_upConsole)
 		return false;
+
+	Utils::LogDebug("Attempting to acquire offsets this may take a moment...");
+	std::chrono::time_point offsetStartTime = std::chrono::high_resolution_clock::now();
+
+	std::optional<UEOffsets::Offsets> result = UEOffsets::Scan();
+	if (!result) {
+		Globals::g_upConsole->SetVisibility(true);
+		Utils::LogError("Offset auto updating failed! Using fallback offsets. The internal may not work correctly or may even crash!");
+		std::this_thread::sleep_for(std::chrono::seconds(3));
+	} else {
+		const UEOffsets::Offsets& offsets = result.value();
+		SDK::Offsets::GObjects = offsets.GObjects;
+		SDK::Offsets::AppendString = offsets.AppendString;
+		SDK::Offsets::GNames = offsets.GNames;
+		SDK::Offsets::GWorld = offsets.GWorld;
+		SDK::Offsets::ProcessEvent = offsets.ProcessEvent;
+		SDK::Offsets::ProcessEventIdx = offsets.ProcessEventIdx;
+
+		Utils::LogDebug("Offsets updated successfully:");
+		Utils::LogDebug(std::format("GObjects: 0x{:08X}", offsets.GObjects));
+		Utils::LogDebug(std::format("AppendString: 0x{:08X}", offsets.AppendString));
+		Utils::LogDebug(std::format("GNames: 0x{:08X}", offsets.GNames));
+		Utils::LogDebug(std::format("GWorld: 0x{:08X}", offsets.GWorld));
+		Utils::LogDebug(std::format("ProcessEvent: 0x{:08X}", offsets.ProcessEvent));
+		Utils::LogDebug(std::format("ProcessEventIdx: 0x{:08X}", offsets.ProcessEventIdx));
+	}
+	std::chrono::time_point offsetEndTime = std::chrono::high_resolution_clock::now();
+
+	// Offset acquisition took 00:00:00:00 hh/mm/ss/ms
+	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(offsetEndTime - offsetStartTime);
+	auto hours = std::chrono::duration_cast<std::chrono::hours>(duration);
+	duration -= hours;
+	auto minutes = std::chrono::duration_cast<std::chrono::minutes>(duration);
+	duration -= minutes;
+	auto seconds = std::chrono::duration_cast<std::chrono::seconds>(duration);
+	duration -= seconds;
+	auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(duration);
+	Utils::LogDebug(std::format("Offset acquisition took {:02}:{:02}:{:02}:{:03} hh/mm/ss/ms", hours.count(), minutes.count(), seconds.count(), milliseconds.count()));
 
 	SDK::UWorld* pGWorld = SDK::UWorld::GetWorld();
 	if (!pGWorld) {
@@ -72,7 +111,7 @@ bool Init()
 	}
 
 	int32_t iFramerateLimit = SDK::USBZSettingsFunctionsVideo::GetFramerateLimit(pGWorld);
-	Utils::LogDebug("GWorld pointer acquired: " + std::to_string(reinterpret_cast<uint64_t>(pGWorld)));
+	Utils::LogDebug(std::format("GWorld pointer acquired: 0x{:016X}", reinterpret_cast<uint64_t>(pGWorld)));
 
 	if (MH_Initialize() != MH_OK) {
 		Globals::g_upConsole->SetVisibility(true);
