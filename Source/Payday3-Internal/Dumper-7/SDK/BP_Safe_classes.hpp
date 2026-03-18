@@ -38,10 +38,10 @@ public:
 	TScriptInterface<class ICableConnectionInterface_C> NewVar_0;                                    // 0x0328(0x0010)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor)
 
 public:
-	void SpawnItemInContainer(class UClass* WhatShould_Spawn, class ABP_RoomSpawnController_C* RoomControllerRef, class AActor** SpawnedActor);
-	void OnRep_Open();
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
 	void ExecuteUbergraph_BP_Safe(int32 EntryPoint);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void OnRep_Open();
+	void SpawnItemInContainer(class UClass* WhatShould_Spawn, class ABP_RoomSpawnController_C* RoomControllerRef, class AActor** SpawnedActor);
 
 public:
 	static class UClass* StaticClass()

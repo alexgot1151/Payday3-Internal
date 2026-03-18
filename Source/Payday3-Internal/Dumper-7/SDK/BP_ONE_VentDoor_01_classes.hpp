@@ -37,16 +37,16 @@ public:
 	class ASBZBagTriggerVolume*                   bagTriggerVolume;                                  // 0x0330(0x0008)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void setInteraction(bool enabled);
-	void rotateDoorCollisionAroundBase(float InputPin);
-	void rotateAroundAxis(const struct FVector2D& pivot, const struct FVector2D& point, float angle, struct FVector2D* rotatedPoint);
-	void UserConstructionScript();
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
-	void BndEvt__BP_ReplicatedBinaryActorVent_SBZInteractable_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void BndEvt__BP_ONE_VentDoor_01_SBZInteractable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void BndEvt__BP_ONE_VentDoor_01_bagTriggerVolume_K2Node_ComponentBoundEvent_0_SBZBagEnteredDelegate__DelegateSignature(class ASBZBagTriggerVolume* Volume, class ASBZBagItem* Bag, const struct FSBZBagHandle& Handle);
-	void BndEvt__BP_ONE_VentDoor_01_binaryState_bagRecieved_K2Node_ComponentBoundEvent_4_SBZBinaryStateChangedSignature__DelegateSignature(bool bState_0, bool bDoCosmetics);
 	void ExecuteUbergraph_BP_ONE_VentDoor_01(int32 EntryPoint);
+	void BndEvt__BP_ONE_VentDoor_01_binaryState_bagRecieved_K2Node_ComponentBoundEvent_4_SBZBinaryStateChangedSignature__DelegateSignature(bool bState_0, bool bDoCosmetics);
+	void BndEvt__BP_ONE_VentDoor_01_bagTriggerVolume_K2Node_ComponentBoundEvent_0_SBZBagEnteredDelegate__DelegateSignature(class ASBZBagTriggerVolume* Volume, class ASBZBagItem* Bag, const struct FSBZBagHandle& Handle);
+	void BndEvt__BP_ONE_VentDoor_01_SBZInteractable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void BndEvt__BP_ReplicatedBinaryActorVent_SBZInteractable_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void UserConstructionScript();
+	void rotateAroundAxis(const struct FVector2D& pivot, const struct FVector2D& point, float angle, struct FVector2D* rotatedPoint);
+	void rotateDoorCollisionAroundBase(float InputPin);
+	void setInteraction(bool enabled);
 
 public:
 	static class UClass* StaticClass()

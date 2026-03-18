@@ -42,12 +42,12 @@ public:
 	class UStaticMeshComponent*                   Stand;                                             // 0x05F8(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void BP_OnStateChanged(ESBZBreachingEquipmentState OldState, ESBZBreachingEquipmentState NewState, bool bDoCosmetics);
-	void ReceiveBeginPlay();
-	void BP_PartAdded(int32 Amount);
-	void BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
-	void BP_OnBolted(int32 Amount, int32 BoltIndex);
 	void ExecuteUbergraph_BP_ThermalLance(int32 EntryPoint);
+	void BP_OnBolted(int32 Amount, int32 BoltIndex);
+	void BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
+	void BP_PartAdded(int32 Amount);
+	void ReceiveBeginPlay();
+	void BP_OnStateChanged(ESBZBreachingEquipmentState OldState, ESBZBreachingEquipmentState NewState, bool bDoCosmetics);
 	void SetAnimationPosition();
 
 	struct FVector GetInteractionMarkerLocation() const;

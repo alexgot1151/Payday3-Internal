@@ -17,12 +17,12 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass CH_ArmedCop.CH_ArmedCop_C
-// 0x0010 (0x1D10 - 0x1D00)
+// 0x0010 (0x1D20 - 0x1D10)
 class ACH_ArmedCop_C final : public ACH_BaseCop_C
 {
 public:
-	class USBZShoutTargetComponent*               SBZShoutTarget;                                    // 0x1D00(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
-	class UStaticMeshComponent*                   Hat;                                               // 0x1D08(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	class USBZShoutTargetComponent*               SBZShoutTarget;                                    // 0x1D10(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	class UStaticMeshComponent*                   Hat;                                               // 0x1D18(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
 	static class UClass* StaticClass()

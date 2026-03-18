@@ -11,8 +11,8 @@
 #include "Basic.hpp"
 
 #include "Struct_NameLocationAndSpawn_structs.hpp"
-#include "CoreUObject_structs.hpp"
 #include "Enum_HackingResultOnDone_structs.hpp"
+#include "CoreUObject_structs.hpp"
 #include "Engine_structs.hpp"
 
 

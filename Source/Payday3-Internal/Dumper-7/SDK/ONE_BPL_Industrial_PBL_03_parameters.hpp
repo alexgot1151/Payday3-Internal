@@ -16,27 +16,6 @@
 namespace SDK::Params
 {
 
-// Function ONE_BPL_Industrial_PBL_03.ONE_BPL_Industrial_PBL_03_C.SetStateFunction
-// 0x0002 (0x0002 - 0x0000)
-struct ONE_BPL_Industrial_PBL_03_C_SetStateFunction final
-{
-public:
-	Enum_LampStages                               State_0;                                           // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          K2Node_SwitchEnum_CmpSuccess;                      // 0x0001(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_ONE_BPL_Industrial_PBL_03_C_SetStateFunction;
-
-// Function ONE_BPL_Industrial_PBL_03.ONE_BPL_Industrial_PBL_03_C.OnStateChanged
-// 0x000C (0x000C - 0x0000)
-struct ONE_BPL_Industrial_PBL_03_C_OnStateChanged final
-{
-public:
-	int32                                         OldState;                                          // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         NewState;                                          // 0x0004(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bDoCosmetics;                                      // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_ONE_BPL_Industrial_PBL_03_C_OnStateChanged;
-
 // Function ONE_BPL_Industrial_PBL_03.ONE_BPL_Industrial_PBL_03_C.ExecuteUbergraph_ONE_BPL_Industrial_PBL_03
 // 0x0010 (0x0010 - 0x0000)
 struct ONE_BPL_Industrial_PBL_03_C_ExecuteUbergraph_ONE_BPL_Industrial_PBL_03 final
@@ -49,6 +28,27 @@ public:
 	bool                                          K2Node_SwitchInteger_CmpSuccess;                   // 0x000D(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_ONE_BPL_Industrial_PBL_03_C_ExecuteUbergraph_ONE_BPL_Industrial_PBL_03;
+
+// Function ONE_BPL_Industrial_PBL_03.ONE_BPL_Industrial_PBL_03_C.OnStateChanged
+// 0x000C (0x000C - 0x0000)
+struct ONE_BPL_Industrial_PBL_03_C_OnStateChanged final
+{
+public:
+	int32                                         OldState;                                          // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         NewState;                                          // 0x0004(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bDoCosmetics;                                      // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_ONE_BPL_Industrial_PBL_03_C_OnStateChanged;
+
+// Function ONE_BPL_Industrial_PBL_03.ONE_BPL_Industrial_PBL_03_C.SetStateFunction
+// 0x0002 (0x0002 - 0x0000)
+struct ONE_BPL_Industrial_PBL_03_C_SetStateFunction final
+{
+public:
+	Enum_LampStages                               State_0;                                           // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          K2Node_SwitchEnum_CmpSuccess;                      // 0x0001(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_ONE_BPL_Industrial_PBL_03_C_SetStateFunction;
 
 }
 

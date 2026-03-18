@@ -47,10 +47,10 @@ public:
 	class UNiagaraDataInterfaceArrayBool*         NewVar_0;                                          // 0x07B0(0x0008)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void UserConstructionScript();
-	void ReceiveBeginPlay();
-	void BndEvt__BP_EscapeVan_SBZSecuredBagVisualize_K2Node_ComponentBoundEvent_0_SBZSecuredBagVisualizeBagAddedSignature__DelegateSignature(const class USBZBagType* BagType);
 	void ExecuteUbergraph_BP_EscapeVan(int32 EntryPoint);
+	void BndEvt__BP_EscapeVan_SBZSecuredBagVisualize_K2Node_ComponentBoundEvent_0_SBZSecuredBagVisualizeBagAddedSignature__DelegateSignature(const class USBZBagType* BagType);
+	void ReceiveBeginPlay();
+	void UserConstructionScript();
 
 public:
 	static class UClass* StaticClass()

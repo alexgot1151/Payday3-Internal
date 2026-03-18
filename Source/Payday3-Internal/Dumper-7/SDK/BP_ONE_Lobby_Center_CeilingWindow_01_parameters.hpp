@@ -18,38 +18,6 @@
 namespace SDK::Params
 {
 
-// Function BP_ONE_Lobby_Center_CeilingWindow_01.BP_ONE_Lobby_Center_CeilingWindow_01_C.UserConstructionScript
-// 0x000C (0x000C - 0x0000)
-struct BP_ONE_Lobby_Center_CeilingWindow_01_C_UserConstructionScript final
-{
-public:
-	struct FVector                                CallFunc_Multiply_VectorVector_ReturnValue;        // 0x0000(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_ONE_Lobby_Center_CeilingWindow_01_C_UserConstructionScript;
-
-// Function BP_ONE_Lobby_Center_CeilingWindow_01.BP_ONE_Lobby_Center_CeilingWindow_01_C.BndEvt__BP_CHU_RectangularSkylight_SBZPropDamage_K2Node_ComponentBoundEvent_0_SBZPropDamageHitsSignature__DelegateSignature
-// 0x0028 (0x0028 - 0x0000)
-struct BP_ONE_Lobby_Center_CeilingWindow_01_C_BndEvt__BP_CHU_RectangularSkylight_SBZPropDamage_K2Node_ComponentBoundEvent_0_SBZPropDamageHitsSignature__DelegateSignature final
-{
-public:
-	class UActorComponent*                        PoolComponent;                                     // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         Hits;                                              // 0x0008(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bDoCosmetics;                                      // 0x000C(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	uint8                                         Pad_D[0x3];                                        // 0x000D(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
-	struct FSBZPropDamageContext                  DamageContext;                                     // 0x0010(0x0018)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ONE_Lobby_Center_CeilingWindow_01_C_BndEvt__BP_CHU_RectangularSkylight_SBZPropDamage_K2Node_ComponentBoundEvent_0_SBZPropDamageHitsSignature__DelegateSignature;
-
-// Function BP_ONE_Lobby_Center_CeilingWindow_01.BP_ONE_Lobby_Center_CeilingWindow_01_C.OnStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct BP_ONE_Lobby_Center_CeilingWindow_01_C_OnStateChanged final
-{
-public:
-	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ONE_Lobby_Center_CeilingWindow_01_C_OnStateChanged;
-
 // Function BP_ONE_Lobby_Center_CeilingWindow_01.BP_ONE_Lobby_Center_CeilingWindow_01_C.ExecuteUbergraph_BP_ONE_Lobby_Center_CeilingWindow_01
 // 0x0060 (0x0060 - 0x0000)
 struct BP_ONE_Lobby_Center_CeilingWindow_01_C_ExecuteUbergraph_BP_ONE_Lobby_Center_CeilingWindow_01 final
@@ -73,6 +41,38 @@ public:
 	int32                                         CallFunc_PostAkEvent_ReturnValue;                  // 0x005C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_ONE_Lobby_Center_CeilingWindow_01_C_ExecuteUbergraph_BP_ONE_Lobby_Center_CeilingWindow_01;
+
+// Function BP_ONE_Lobby_Center_CeilingWindow_01.BP_ONE_Lobby_Center_CeilingWindow_01_C.OnStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct BP_ONE_Lobby_Center_CeilingWindow_01_C_OnStateChanged final
+{
+public:
+	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ONE_Lobby_Center_CeilingWindow_01_C_OnStateChanged;
+
+// Function BP_ONE_Lobby_Center_CeilingWindow_01.BP_ONE_Lobby_Center_CeilingWindow_01_C.BndEvt__BP_CHU_RectangularSkylight_SBZPropDamage_K2Node_ComponentBoundEvent_0_SBZPropDamageHitsSignature__DelegateSignature
+// 0x0028 (0x0028 - 0x0000)
+struct BP_ONE_Lobby_Center_CeilingWindow_01_C_BndEvt__BP_CHU_RectangularSkylight_SBZPropDamage_K2Node_ComponentBoundEvent_0_SBZPropDamageHitsSignature__DelegateSignature final
+{
+public:
+	class UActorComponent*                        PoolComponent;                                     // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         Hits;                                              // 0x0008(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bDoCosmetics;                                      // 0x000C(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	uint8                                         Pad_D[0x3];                                        // 0x000D(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
+	struct FSBZPropDamageContext                  DamageContext;                                     // 0x0010(0x0018)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ONE_Lobby_Center_CeilingWindow_01_C_BndEvt__BP_CHU_RectangularSkylight_SBZPropDamage_K2Node_ComponentBoundEvent_0_SBZPropDamageHitsSignature__DelegateSignature;
+
+// Function BP_ONE_Lobby_Center_CeilingWindow_01.BP_ONE_Lobby_Center_CeilingWindow_01_C.UserConstructionScript
+// 0x000C (0x000C - 0x0000)
+struct BP_ONE_Lobby_Center_CeilingWindow_01_C_UserConstructionScript final
+{
+public:
+	struct FVector                                CallFunc_Multiply_VectorVector_ReturnValue;        // 0x0000(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_ONE_Lobby_Center_CeilingWindow_01_C_UserConstructionScript;
 
 }
 

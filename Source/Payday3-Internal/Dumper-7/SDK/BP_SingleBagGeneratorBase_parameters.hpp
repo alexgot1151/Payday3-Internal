@@ -17,35 +17,6 @@
 namespace SDK::Params
 {
 
-// Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.setBinaryState
-// 0x0001 (0x0001 - 0x0000)
-struct BP_SingleBagGeneratorBase_C_setBinaryState final
-{
-public:
-	bool                                          state;                                             // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_SingleBagGeneratorBase_C_setBinaryState;
-
-// Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.BndEvt__BP_SingleBagGeneratorBase_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature
-// 0x0018 (0x0018 - 0x0000)
-struct BP_SingleBagGeneratorBase_C_BndEvt__BP_SingleBagGeneratorBase_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature final
-{
-public:
-	class USBZBaseInteractableComponent*          Interactable_0;                                    // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_SingleBagGeneratorBase_C_BndEvt__BP_SingleBagGeneratorBase_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature;
-
-// Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.ReceiveEndPlay
-// 0x0001 (0x0001 - 0x0000)
-struct BP_SingleBagGeneratorBase_C_ReceiveEndPlay final
-{
-public:
-	EEndPlayReason                                EndPlayReason;                                     // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_SingleBagGeneratorBase_C_ReceiveEndPlay;
-
 // Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.ExecuteUbergraph_BP_SingleBagGeneratorBase
 // 0x00B0 (0x00B0 - 0x0000)
 struct BP_SingleBagGeneratorBase_C_ExecuteUbergraph_BP_SingleBagGeneratorBase final
@@ -75,6 +46,35 @@ public:
 	bool                                          CallFunc_IsValid_ReturnValue;                      // 0x00A8(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_BP_SingleBagGeneratorBase_C_ExecuteUbergraph_BP_SingleBagGeneratorBase;
+
+// Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.ReceiveEndPlay
+// 0x0001 (0x0001 - 0x0000)
+struct BP_SingleBagGeneratorBase_C_ReceiveEndPlay final
+{
+public:
+	EEndPlayReason                                EndPlayReason;                                     // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_SingleBagGeneratorBase_C_ReceiveEndPlay;
+
+// Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.BndEvt__BP_SingleBagGeneratorBase_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature
+// 0x0018 (0x0018 - 0x0000)
+struct BP_SingleBagGeneratorBase_C_BndEvt__BP_SingleBagGeneratorBase_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature final
+{
+public:
+	class USBZBaseInteractableComponent*          Interactable_0;                                    // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_SingleBagGeneratorBase_C_BndEvt__BP_SingleBagGeneratorBase_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature;
+
+// Function BP_SingleBagGeneratorBase.BP_SingleBagGeneratorBase_C.setBinaryState
+// 0x0001 (0x0001 - 0x0000)
+struct BP_SingleBagGeneratorBase_C_setBinaryState final
+{
+public:
+	bool                                          state;                                             // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_SingleBagGeneratorBase_C_setBinaryState;
 
 }
 

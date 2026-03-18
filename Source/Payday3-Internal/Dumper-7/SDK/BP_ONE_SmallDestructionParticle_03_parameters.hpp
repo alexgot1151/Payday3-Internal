@@ -17,17 +17,6 @@
 namespace SDK::Params
 {
 
-// Function BP_ONE_SmallDestructionParticle_03.BP_ONE_SmallDestructionParticle_03_C.BndEvt__BP_CactusPot_01_A_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
-// 0x0034 (0x0034 - 0x0000)
-struct BP_ONE_SmallDestructionParticle_03_C_BndEvt__BP_CactusPot_01_A_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature final
-{
-public:
-	ESBZCosmeticDestructionType                   Type;                                              // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_1[0x3];                                        // 0x0001(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
-	struct FSBZCosmeticDestructionContext         HitContext;                                        // 0x0004(0x0030)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ONE_SmallDestructionParticle_03_C_BndEvt__BP_CactusPot_01_A_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature;
-
 // Function BP_ONE_SmallDestructionParticle_03.BP_ONE_SmallDestructionParticle_03_C.ExecuteUbergraph_BP_ONE_SmallDestructionParticle_03
 // 0x0068 (0x0068 - 0x0000)
 struct BP_ONE_SmallDestructionParticle_03_C_ExecuteUbergraph_BP_ONE_SmallDestructionParticle_03 final
@@ -45,6 +34,17 @@ public:
 	int32                                         CallFunc_PostEvent_ReturnValue;                    // 0x0064(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_ONE_SmallDestructionParticle_03_C_ExecuteUbergraph_BP_ONE_SmallDestructionParticle_03;
+
+// Function BP_ONE_SmallDestructionParticle_03.BP_ONE_SmallDestructionParticle_03_C.BndEvt__BP_CactusPot_01_A_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
+// 0x0034 (0x0034 - 0x0000)
+struct BP_ONE_SmallDestructionParticle_03_C_BndEvt__BP_CactusPot_01_A_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature final
+{
+public:
+	ESBZCosmeticDestructionType                   Type;                                              // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_1[0x3];                                        // 0x0001(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
+	struct FSBZCosmeticDestructionContext         HitContext;                                        // 0x0004(0x0030)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ONE_SmallDestructionParticle_03_C_BndEvt__BP_CactusPot_01_A_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature;
 
 }
 

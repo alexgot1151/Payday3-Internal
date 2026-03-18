@@ -37,6 +37,20 @@ void UWBP_UI_Results_StayAsParty_C::ExecuteUbergraph_WBP_UI_Results_StayAsParty(
 }
 
 
+// Function WBP_UI_Results_StayAsParty.WBP_UI_Results_StayAsParty_C.Setup
+// (BlueprintCallable, BlueprintEvent)
+
+void UWBP_UI_Results_StayAsParty_C::Setup()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_UI_Results_StayAsParty_C", "Setup");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
 // Function WBP_UI_Results_StayAsParty.WBP_UI_Results_StayAsParty_C.OnStayAsPartyStateUpdated
 // (Event, Protected, BlueprintEvent)
 // Parameters:
@@ -182,26 +196,6 @@ void UWBP_UI_Results_StayAsParty_C::OnRestartStarted(float InNewTime)
 	Params::WBP_UI_Results_StayAsParty_C_OnRestartStarted Parms{};
 
 	Parms.InNewTime = InNewTime;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_UI_Results_StayAsParty.WBP_UI_Results_StayAsParty_C.OnSetup
-// (Event, Public, HasOutParams, BlueprintEvent)
-// Parameters:
-// const TArray<class ASBZPlayerState*>&   PlayerStateArray                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
-
-void UWBP_UI_Results_StayAsParty_C::OnSetup(const TArray<class ASBZPlayerState*>& PlayerStateArray)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_UI_Results_StayAsParty_C", "OnSetup");
-
-	Params::WBP_UI_Results_StayAsParty_C_OnSetup Parms{};
-
-	Parms.PlayerStateArray = std::move(PlayerStateArray);
 
 	UObject::ProcessEvent(Func, &Parms);
 }

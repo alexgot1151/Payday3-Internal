@@ -17,49 +17,6 @@
 namespace SDK::Params
 {
 
-// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.UserConstructionScript
-// 0x00D0 (0x00D0 - 0x0000)
-struct BP_One_Step_Animated_Button_C_UserConstructionScript final
-{
-public:
-	float                                         CallFunc_Conv_IntToFloat_ReturnValue;              // 0x0000(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_4[0xC];                                        // 0x0004(0x000C)(Fixing Size After Last Property [ Dumper-7 ])
-	struct FTransform                             CallFunc_GetTransform_ReturnValue;                 // 0x0010(0x0030)(ConstParm, IsPlainOldData, NoDestructor)
-	struct FHitResult                             CallFunc_K2_SetWorldTransform_SweepHitResult;      // 0x0040(0x0090)(IsPlainOldData, NoDestructor, ContainsInstancedReference)
-};
-DUMPER7_ASSERTS_BP_One_Step_Animated_Button_C_UserConstructionScript;
-
-// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature
-// 0x0018 (0x0018 - 0x0000)
-struct BP_One_Step_Animated_Button_C_BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature final
-{
-public:
-	class USBZBaseInteractableComponent*          Interactable_0;                                    // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_One_Step_Animated_Button_C_BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature;
-
-// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature
-// 0x0018 (0x0018 - 0x0000)
-struct BP_One_Step_Animated_Button_C_BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature final
-{
-public:
-	class USBZBaseInteractableComponent*          Interactable_0;                                    // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_One_Step_Animated_Button_C_BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature;
-
-// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.setBinaryState
-// 0x0001 (0x0001 - 0x0000)
-struct BP_One_Step_Animated_Button_C_setBinaryState final
-{
-public:
-	bool                                          state;                                             // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_One_Step_Animated_Button_C_setBinaryState;
-
 // Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.ExecuteUbergraph_BP_One_Step_Animated_Button
 // 0x0060 (0x0060 - 0x0000)
 struct BP_One_Step_Animated_Button_C_ExecuteUbergraph_BP_One_Step_Animated_Button final
@@ -85,6 +42,49 @@ public:
 	bool                                          K2Node_Event_state;                                // 0x0059(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_BP_One_Step_Animated_Button_C_ExecuteUbergraph_BP_One_Step_Animated_Button;
+
+// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.setBinaryState
+// 0x0001 (0x0001 - 0x0000)
+struct BP_One_Step_Animated_Button_C_setBinaryState final
+{
+public:
+	bool                                          state;                                             // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_One_Step_Animated_Button_C_setBinaryState;
+
+// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature
+// 0x0018 (0x0018 - 0x0000)
+struct BP_One_Step_Animated_Button_C_BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature final
+{
+public:
+	class USBZBaseInteractableComponent*          Interactable_0;                                    // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_One_Step_Animated_Button_C_BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature;
+
+// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature
+// 0x0018 (0x0018 - 0x0000)
+struct BP_One_Step_Animated_Button_C_BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature final
+{
+public:
+	class USBZBaseInteractableComponent*          Interactable_0;                                    // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_One_Step_Animated_Button_C_BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature;
+
+// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.UserConstructionScript
+// 0x00D0 (0x00D0 - 0x0000)
+struct BP_One_Step_Animated_Button_C_UserConstructionScript final
+{
+public:
+	float                                         CallFunc_Conv_IntToFloat_ReturnValue;              // 0x0000(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_4[0xC];                                        // 0x0004(0x000C)(Fixing Size After Last Property [ Dumper-7 ])
+	struct FTransform                             CallFunc_GetTransform_ReturnValue;                 // 0x0010(0x0030)(ConstParm, IsPlainOldData, NoDestructor)
+	struct FHitResult                             CallFunc_K2_SetWorldTransform_SweepHitResult;      // 0x0040(0x0090)(IsPlainOldData, NoDestructor, ContainsInstancedReference)
+};
+DUMPER7_ASSERTS_BP_One_Step_Animated_Button_C_UserConstructionScript;
 
 }
 

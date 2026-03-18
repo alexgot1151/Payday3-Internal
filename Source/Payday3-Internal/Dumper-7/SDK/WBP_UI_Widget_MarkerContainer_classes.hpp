@@ -19,18 +19,21 @@ namespace SDK
 {
 
 // WidgetBlueprintGeneratedClass WBP_UI_Widget_MarkerContainer.WBP_UI_Widget_MarkerContainer_C
-// 0x0020 (0x02D0 - 0x02B0)
+// 0x0030 (0x02F0 - 0x02C0)
 class UWBP_UI_Widget_MarkerContainer_C final : public USBZMarkerWidgetContainer
 {
 public:
-	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x02B0(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
-	class UCanvasPanel*                           CanvasPanel_0;                                     // 0x02B8(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
-	class UImage*                                 Image_82;                                          // 0x02C0(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
-	class UTextBlock*                             TextBlock_61;                                      // 0x02C8(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
+	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x02C0(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
+	class UWidgetAnimation*                       Appear;                                            // 0x02C8(0x0008)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, IsPlainOldData, RepSkip, NoDestructor, HasGetValueTypeHash)
+	class UCanvasPanel*                           CanvasPanel_0;                                     // 0x02D0(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
+	class UImage*                                 Image_82;                                          // 0x02D8(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
+	class UTextBlock*                             TextBlock_61;                                      // 0x02E0(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
+	class UTextBlock*                             WaypointInfoText;                                  // 0x02E8(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
 
 public:
 	void ExecuteUbergraph_WBP_UI_Widget_MarkerContainer(int32 EntryPoint);
 	void BP_OnInsideVolumeChanged(bool bInsideVolume, const class USBZMarkerDataAsset* MarkerDataAsset);
+	void BP_ShouldShowMarkerText(bool bShowMarkerText, class UObject* DataObject);
 
 public:
 	static class UClass* StaticClass()

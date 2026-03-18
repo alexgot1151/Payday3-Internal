@@ -17,7 +17,7 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass CH_ONE_Insider.CH_ONE_Insider_C
-// 0x0000 (0x1D40 - 0x1D40)
+// 0x0000 (0x1D50 - 0x1D50)
 class ACH_ONE_Insider_C final : public ACH_BaseRegularCivilian_C
 {
 public:

@@ -10,7 +10,6 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "UMG_classes.hpp"
 
 
@@ -18,19 +17,12 @@ namespace SDK
 {
 
 // WidgetBlueprintGeneratedClass WBP_ComputerNonActive.WBP_ComputerNonActive_C
-// 0x0028 (0x02B8 - 0x0290)
+// 0x0010 (0x02A0 - 0x0290)
 class UWBP_ComputerNonActive_C final : public UUserWidget
 {
 public:
-	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x0290(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
-	class UWidgetAnimation*                       Screensaver;                                       // 0x0298(0x0008)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, IsPlainOldData, RepSkip, NoDestructor, HasGetValueTypeHash)
-	class UImage*                                 Image_77;                                          // 0x02A0(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
-	class UImage*                                 Image_87;                                          // 0x02A8(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
-	class UInvalidationBox*                       InvalidationBox_0;                                 // 0x02B0(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
-
-public:
-	void Construct();
-	void ExecuteUbergraph_WBP_ComputerNonActive(int32 EntryPoint);
+	class UImage*                                 Image_77;                                          // 0x0290(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
+	class UInvalidationBox*                       InvalidationBox_0;                                 // 0x0298(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
 
 public:
 	static class UClass* StaticClass()

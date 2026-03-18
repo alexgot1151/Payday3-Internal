@@ -14,15 +14,6 @@
 namespace SDK::Params
 {
 
-// Function WBP_UI_Widget_PlayerLabel.WBP_UI_Widget_PlayerLabel_C.PreConstruct
-// 0x0001 (0x0001 - 0x0000)
-struct WBP_UI_Widget_PlayerLabel_C_PreConstruct final
-{
-public:
-	bool                                          IsDesignTime;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_WBP_UI_Widget_PlayerLabel_C_PreConstruct;
-
 // Function WBP_UI_Widget_PlayerLabel.WBP_UI_Widget_PlayerLabel_C.ExecuteUbergraph_WBP_UI_Widget_PlayerLabel
 // 0x0008 (0x0008 - 0x0000)
 struct WBP_UI_Widget_PlayerLabel_C_ExecuteUbergraph_WBP_UI_Widget_PlayerLabel final
@@ -32,6 +23,15 @@ public:
 	bool                                          K2Node_Event_IsDesignTime;                         // 0x0004(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_WBP_UI_Widget_PlayerLabel_C_ExecuteUbergraph_WBP_UI_Widget_PlayerLabel;
+
+// Function WBP_UI_Widget_PlayerLabel.WBP_UI_Widget_PlayerLabel_C.PreConstruct
+// 0x0001 (0x0001 - 0x0000)
+struct WBP_UI_Widget_PlayerLabel_C_PreConstruct final
+{
+public:
+	bool                                          IsDesignTime;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_WBP_UI_Widget_PlayerLabel_C_PreConstruct;
 
 }
 

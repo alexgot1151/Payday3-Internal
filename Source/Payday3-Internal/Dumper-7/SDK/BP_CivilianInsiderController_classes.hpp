@@ -18,17 +18,17 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass BP_CivilianInsiderController.BP_CivilianInsiderController_C
-// 0x0010 (0x06A0 - 0x0690)
+// 0x0010 (0x06B0 - 0x06A0)
 class ABP_CivilianInsiderController_C final : public ASBZAIController
 {
 public:
-	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x0690(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
-	class USBZAIVisualDetectionComponent*         SBZAIVisualDetection;                              // 0x0698(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x06A0(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
+	class USBZAIVisualDetectionComponent*         SBZAIVisualDetection;                              // 0x06A8(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ReceivePossess(class APawn* PossessedPawn);
-	void BP_OnCurrentEnemyAssigned();
 	void ExecuteUbergraph_BP_CivilianInsiderController(int32 EntryPoint);
+	void BP_OnCurrentEnemyAssigned();
+	void ReceivePossess(class APawn* PossessedPawn);
 
 public:
 	static class UClass* StaticClass()

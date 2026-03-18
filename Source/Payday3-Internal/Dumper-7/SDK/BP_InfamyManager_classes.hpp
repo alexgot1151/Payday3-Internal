@@ -17,7 +17,7 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass BP_InfamyManager.BP_InfamyManager_C
-// 0x0000 (0x0128 - 0x0128)
+// 0x0000 (0x0140 - 0x0140)
 class UBP_InfamyManager_C final : public USBZInfamyManager
 {
 public:

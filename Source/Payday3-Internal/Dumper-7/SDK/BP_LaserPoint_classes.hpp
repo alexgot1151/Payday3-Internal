@@ -25,9 +25,9 @@ public:
 	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x05A0(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
 
 public:
-	void ReceiveBeginPlay();
-	void ReceiveActorBeginOverlap_1(class AActor* OtherActor);
 	void ExecuteUbergraph_BP_LaserPoint(int32 EntryPoint);
+	void ReceiveActorBeginOverlap_1(class AActor* OtherActor);
+	void ReceiveBeginPlay();
 
 public:
 	static class UClass* StaticClass()

@@ -17,34 +17,6 @@
 namespace SDK::Params
 {
 
-// Function BP_CosmeticLapTopWithScreen.BP_CosmeticLapTopWithScreen_C.UserConstructionScript
-// 0x002C (0x002C - 0x0000)
-struct BP_CosmeticLapTopWithScreen_C_UserConstructionScript final
-{
-public:
-	struct FVector                                CallFunc_Conv_LinearColorToVector_ReturnValue;     // 0x0000(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_Conv_BoolToFloat_ReturnValue;             // 0x000C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_Conv_BoolToFloat_ReturnValue_1;           // 0x0010(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_Conv_BoolToFloat_ReturnValue_2;           // 0x0014(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_Conv_IntToFloat_ReturnValue;              // 0x0018(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_Conv_IntToFloat_ReturnValue_1;            // 0x001C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_Conv_IntToFloat_ReturnValue_2;            // 0x0020(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_Conv_BoolToFloat_ReturnValue_3;           // 0x0024(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_Conv_IntToFloat_ReturnValue_3;            // 0x0028(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_CosmeticLapTopWithScreen_C_UserConstructionScript;
-
-// Function BP_CosmeticLapTopWithScreen.BP_CosmeticLapTopWithScreen_C.BndEvt__bp_screen_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
-// 0x0034 (0x0034 - 0x0000)
-struct BP_CosmeticLapTopWithScreen_C_BndEvt__bp_screen_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature final
-{
-public:
-	ESBZCosmeticDestructionType                   Type;                                              // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_1[0x3];                                        // 0x0001(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
-	struct FSBZCosmeticDestructionContext         HitContext;                                        // 0x0004(0x0030)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_CosmeticLapTopWithScreen_C_BndEvt__bp_screen_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature;
-
 // Function BP_CosmeticLapTopWithScreen.BP_CosmeticLapTopWithScreen_C.ExecuteUbergraph_BP_CosmeticLapTopWithScreen
 // 0x0058 (0x0058 - 0x0000)
 struct BP_CosmeticLapTopWithScreen_C_ExecuteUbergraph_BP_CosmeticLapTopWithScreen final
@@ -62,6 +34,34 @@ public:
 	bool                                          K2Node_SwitchInteger_CmpSuccess;                   // 0x0050(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_BP_CosmeticLapTopWithScreen_C_ExecuteUbergraph_BP_CosmeticLapTopWithScreen;
+
+// Function BP_CosmeticLapTopWithScreen.BP_CosmeticLapTopWithScreen_C.BndEvt__bp_screen_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
+// 0x0034 (0x0034 - 0x0000)
+struct BP_CosmeticLapTopWithScreen_C_BndEvt__bp_screen_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature final
+{
+public:
+	ESBZCosmeticDestructionType                   Type;                                              // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_1[0x3];                                        // 0x0001(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
+	struct FSBZCosmeticDestructionContext         HitContext;                                        // 0x0004(0x0030)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_CosmeticLapTopWithScreen_C_BndEvt__bp_screen_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature;
+
+// Function BP_CosmeticLapTopWithScreen.BP_CosmeticLapTopWithScreen_C.UserConstructionScript
+// 0x002C (0x002C - 0x0000)
+struct BP_CosmeticLapTopWithScreen_C_UserConstructionScript final
+{
+public:
+	struct FVector                                CallFunc_Conv_LinearColorToVector_ReturnValue;     // 0x0000(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_Conv_BoolToFloat_ReturnValue;             // 0x000C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_Conv_BoolToFloat_ReturnValue_1;           // 0x0010(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_Conv_BoolToFloat_ReturnValue_2;           // 0x0014(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_Conv_IntToFloat_ReturnValue;              // 0x0018(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_Conv_IntToFloat_ReturnValue_1;            // 0x001C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_Conv_IntToFloat_ReturnValue_2;            // 0x0020(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_Conv_BoolToFloat_ReturnValue_3;           // 0x0024(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_Conv_IntToFloat_ReturnValue_3;            // 0x0028(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_CosmeticLapTopWithScreen_C_UserConstructionScript;
 
 }
 

@@ -10,9 +10,9 @@
 
 #include "Basic.hpp"
 
+#include "E_CodeGuessedStatus_structs.hpp"
 #include "Engine_structs.hpp"
 #include "UMG_classes.hpp"
-#include "E_CodeGuessedStatus_structs.hpp"
 
 
 namespace SDK
@@ -39,10 +39,10 @@ public:
 	class ABP_KeyPad_C*                           Keypad;                                            // 0x02F8(0x0008)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	struct FLinearColor GetBrushColor_0();
-	class FText Get_CodeText_Text_0();
-	void SetKeypad(class ABP_KeyPad_C* Keypad_0);
 	void ExecuteUbergraph_WBP_KeypadUVLightInteraction(int32 EntryPoint);
+	void SetKeypad(class ABP_KeyPad_C* Keypad_0);
+	class FText Get_CodeText_Text_0();
+	struct FLinearColor GetBrushColor_0();
 
 public:
 	static class UClass* StaticClass()

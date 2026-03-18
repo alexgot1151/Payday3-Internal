@@ -17,73 +17,21 @@
 namespace SDK
 {
 
-// Function BP_RoomSpawnController.BP_RoomSpawnController_C.NewFunction_0
-// (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
+// Function BP_RoomSpawnController.BP_RoomSpawnController_C.ExecuteUbergraph_BP_RoomSpawnController
+// (Final, UbergraphFunction)
 // Parameters:
-// TArray<class AActor*>&                  Array                                                  (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
-// class UClass*                           WhatShould_Spawn                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_RoomSpawnController_C::NewFunction_0(TArray<class AActor*>& Array, class UClass* WhatShould_Spawn)
+void ABP_RoomSpawnController_C::ExecuteUbergraph_BP_RoomSpawnController(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_RoomSpawnController_C", "NewFunction_0");
+		Func = Class->GetFunction("BP_RoomSpawnController_C", "ExecuteUbergraph_BP_RoomSpawnController");
 
-	Params::BP_RoomSpawnController_C_NewFunction_0 Parms{};
+	Params::BP_RoomSpawnController_C_ExecuteUbergraph_BP_RoomSpawnController Parms{};
 
-	Parms.Array = std::move(Array);
-	Parms.WhatShould_Spawn = WhatShould_Spawn;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-	Array = std::move(Parms.Array);
-}
-
-
-// Function BP_RoomSpawnController.BP_RoomSpawnController_C.UserConstructionScript
-// (Event, Public, BlueprintCallable, BlueprintEvent)
-
-void ABP_RoomSpawnController_C::UserConstructionScript()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_RoomSpawnController_C", "UserConstructionScript");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_RoomSpawnController.BP_RoomSpawnController_C.SpawnRedCardInRoom
-// (BlueprintCallable, BlueprintEvent)
-
-void ABP_RoomSpawnController_C::SpawnRedCardInRoom()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_RoomSpawnController_C", "SpawnRedCardInRoom");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_RoomSpawnController.BP_RoomSpawnController_C.BindRedCardEvent
-// (BlueprintCallable, BlueprintEvent)
-// Parameters:
-// class ABP_RedKeycard_C*                 CardRef                                                (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_RoomSpawnController_C::BindRedCardEvent(class ABP_RedKeycard_C* CardRef)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_RoomSpawnController_C", "BindRedCardEvent");
-
-	Params::BP_RoomSpawnController_C_BindRedCardEvent Parms{};
-
-	Parms.CardRef = CardRef;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -111,23 +59,75 @@ void ABP_RoomSpawnController_C::OnCardPickupEvent(class ASBZInteractionActor* In
 }
 
 
-// Function BP_RoomSpawnController.BP_RoomSpawnController_C.ExecuteUbergraph_BP_RoomSpawnController
-// (Final, UbergraphFunction)
+// Function BP_RoomSpawnController.BP_RoomSpawnController_C.BindRedCardEvent
+// (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class ABP_RedKeycard_C*                 CardRef                                                (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_RoomSpawnController_C::ExecuteUbergraph_BP_RoomSpawnController(int32 EntryPoint)
+void ABP_RoomSpawnController_C::BindRedCardEvent(class ABP_RedKeycard_C* CardRef)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_RoomSpawnController_C", "ExecuteUbergraph_BP_RoomSpawnController");
+		Func = Class->GetFunction("BP_RoomSpawnController_C", "BindRedCardEvent");
 
-	Params::BP_RoomSpawnController_C_ExecuteUbergraph_BP_RoomSpawnController Parms{};
+	Params::BP_RoomSpawnController_C_BindRedCardEvent Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.CardRef = CardRef;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_RoomSpawnController.BP_RoomSpawnController_C.SpawnRedCardInRoom
+// (BlueprintCallable, BlueprintEvent)
+
+void ABP_RoomSpawnController_C::SpawnRedCardInRoom()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_RoomSpawnController_C", "SpawnRedCardInRoom");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_RoomSpawnController.BP_RoomSpawnController_C.UserConstructionScript
+// (Event, Public, BlueprintCallable, BlueprintEvent)
+
+void ABP_RoomSpawnController_C::UserConstructionScript()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_RoomSpawnController_C", "UserConstructionScript");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_RoomSpawnController.BP_RoomSpawnController_C.NewFunction_0
+// (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// TArray<class AActor*>&                  Array                                                  (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
+// class UClass*                           WhatShould_Spawn                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_RoomSpawnController_C::NewFunction_0(TArray<class AActor*>& Array, class UClass* WhatShould_Spawn)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_RoomSpawnController_C", "NewFunction_0");
+
+	Params::BP_RoomSpawnController_C_NewFunction_0 Parms{};
+
+	Parms.Array = std::move(Array);
+	Parms.WhatShould_Spawn = WhatShould_Spawn;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+	Array = std::move(Parms.Array);
 }
 
 }

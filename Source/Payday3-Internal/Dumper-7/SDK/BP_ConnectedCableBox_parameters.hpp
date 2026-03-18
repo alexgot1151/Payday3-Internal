@@ -17,131 +17,6 @@
 namespace SDK::Params
 {
 
-// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.focusUpdate
-// 0x0044 (0x0044 - 0x0000)
-struct BP_ConnectedCableBox_C_focusUpdate final
-{
-public:
-	bool                                          add;                                               // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	uint8                                         Pad_1[0x3];                                        // 0x0001(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
-	int32                                         index;                                             // 0x0004(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         Temp_int_Variable;                                 // 0x0008(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          CallFunc_LessEqual_IntInt_ReturnValue;             // 0x000C(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-	uint8                                         Pad_D[0x3];                                        // 0x000D(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
-	int32                                         CallFunc_Add_IntInt_ReturnValue;                   // 0x0010(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         Temp_float_Variable;                               // 0x0014(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         Temp_int_Variable_1;                               // 0x0018(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          CallFunc_LessEqual_IntInt_ReturnValue_1;           // 0x001C(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-	uint8                                         Pad_1D[0x3];                                       // 0x001D(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
-	int32                                         CallFunc_Add_IntInt_ReturnValue_1;                 // 0x0020(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         Temp_float_Variable_1;                             // 0x0024(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         Temp_int_Variable_2;                               // 0x0028(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          CallFunc_Greater_IntInt_ReturnValue;               // 0x002C(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          Temp_bool_Variable;                                // 0x002D(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-	uint8                                         Pad_2E[0x2];                                       // 0x002E(0x0002)(Fixing Size After Last Property [ Dumper-7 ])
-	int32                                         Temp_int_Variable_3;                               // 0x0030(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          CallFunc_EqualEqual_IntInt_ReturnValue;            // 0x0034(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          CallFunc_EqualEqual_IntInt_ReturnValue_1;          // 0x0035(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-	uint8                                         Pad_36[0x2];                                       // 0x0036(0x0002)(Fixing Size After Last Property [ Dumper-7 ])
-	float                                         K2Node_Select_Default;                             // 0x0038(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         CallFunc_Add_IntInt_ReturnValue_2;                 // 0x003C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         CallFunc_Subtract_IntInt_ReturnValue;              // 0x0040(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_ConnectedCableBox_C_focusUpdate;
-
-// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.UserConstructionScript
-// 0x0020 (0x0020 - 0x0000)
-struct BP_ConnectedCableBox_C_UserConstructionScript final
-{
-public:
-	float                                         Temp_float_Variable;                               // 0x0000(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_4[0x4];                                        // 0x0004(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
-	class UMaterialInstanceDynamic*               CallFunc_CreateDynamicMaterialInstance_ReturnValue; // 0x0008(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         Temp_float_Variable_1;                             // 0x0010(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          Temp_bool_Variable;                                // 0x0014(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-	uint8                                         Pad_15[0x3];                                       // 0x0015(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
-	float                                         K2Node_Select_Default;                             // 0x0018(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_ConnectedCableBox_C_UserConstructionScript;
-
-// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BP_OpenDoor
-// 0x0001 (0x0001 - 0x0000)
-struct BP_ConnectedCableBox_C_BP_OpenDoor final
-{
-public:
-	bool                                          bDoCosmetics;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BP_OpenDoor;
-
-// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BP_UpdateModelNumber
-// 0x0018 (0x0018 - 0x0000)
-struct BP_ConnectedCableBox_C_BP_UpdateModelNumber final
-{
-public:
-	class FText                                   ModelNumberText;                                   // 0x0000(0x0018)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
-};
-DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BP_UpdateModelNumber;
-
-// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BP_FlipSwitch
-// 0x0008 (0x0008 - 0x0000)
-struct BP_ConnectedCableBox_C_BP_FlipSwitch final
-{
-public:
-	int32                                         Index_0;                                           // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bDoCosmetics;                                      // 0x0004(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bReset;                                            // 0x0005(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BP_FlipSwitch;
-
-// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BP_OnComplete
-// 0x0001 (0x0001 - 0x0000)
-struct BP_ConnectedCableBox_C_BP_OnComplete final
-{
-public:
-	bool                                          bWasSuccess;                                       // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BP_OnComplete;
-
-// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_2_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature
-// 0x0010 (0x0010 - 0x0000)
-struct BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_2_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature final
-{
-public:
-	const class USBZBaseInteractableComponent*    InteractableComponent;                             // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_2_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature;
-
-// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_1_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature
-// 0x0010 (0x0010 - 0x0000)
-struct BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_1_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature final
-{
-public:
-	const class USBZBaseInteractableComponent*    InteractableComponent;                             // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_1_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature;
-
-// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_3_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature
-// 0x0010 (0x0010 - 0x0000)
-struct BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_3_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature final
-{
-public:
-	const class USBZBaseInteractableComponent*    InteractableComponent;                             // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_3_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature;
-
-// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_4_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature
-// 0x0010 (0x0010 - 0x0000)
-struct BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_4_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature final
-{
-public:
-	const class USBZBaseInteractableComponent*    InteractableComponent;                             // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_4_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature;
-
 // Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.ExecuteUbergraph_BP_ConnectedCableBox
 // 0x0238 (0x0238 - 0x0000)
 struct BP_ConnectedCableBox_C_ExecuteUbergraph_BP_ConnectedCableBox final
@@ -203,6 +78,131 @@ public:
 	bool                                          K2Node_ComponentBoundEvent_bInNewState_1;          // 0x0230(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_BP_ConnectedCableBox_C_ExecuteUbergraph_BP_ConnectedCableBox;
+
+// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_4_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature
+// 0x0010 (0x0010 - 0x0000)
+struct BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_4_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature final
+{
+public:
+	const class USBZBaseInteractableComponent*    InteractableComponent;                             // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_4_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature;
+
+// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_3_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature
+// 0x0010 (0x0010 - 0x0000)
+struct BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_3_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature final
+{
+public:
+	const class USBZBaseInteractableComponent*    InteractableComponent;                             // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_3_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature;
+
+// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_1_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature
+// 0x0010 (0x0010 - 0x0000)
+struct BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_1_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature final
+{
+public:
+	const class USBZBaseInteractableComponent*    InteractableComponent;                             // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_1_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature;
+
+// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_2_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature
+// 0x0010 (0x0010 - 0x0000)
+struct BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_2_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature final
+{
+public:
+	const class USBZBaseInteractableComponent*    InteractableComponent;                             // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_2_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature;
+
+// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BP_OnComplete
+// 0x0001 (0x0001 - 0x0000)
+struct BP_ConnectedCableBox_C_BP_OnComplete final
+{
+public:
+	bool                                          bWasSuccess;                                       // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BP_OnComplete;
+
+// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BP_FlipSwitch
+// 0x0008 (0x0008 - 0x0000)
+struct BP_ConnectedCableBox_C_BP_FlipSwitch final
+{
+public:
+	int32                                         Index_0;                                           // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bDoCosmetics;                                      // 0x0004(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bReset;                                            // 0x0005(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BP_FlipSwitch;
+
+// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BP_UpdateModelNumber
+// 0x0018 (0x0018 - 0x0000)
+struct BP_ConnectedCableBox_C_BP_UpdateModelNumber final
+{
+public:
+	class FText                                   ModelNumberText;                                   // 0x0000(0x0018)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
+};
+DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BP_UpdateModelNumber;
+
+// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.BP_OpenDoor
+// 0x0001 (0x0001 - 0x0000)
+struct BP_ConnectedCableBox_C_BP_OpenDoor final
+{
+public:
+	bool                                          bDoCosmetics;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ConnectedCableBox_C_BP_OpenDoor;
+
+// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.UserConstructionScript
+// 0x0020 (0x0020 - 0x0000)
+struct BP_ConnectedCableBox_C_UserConstructionScript final
+{
+public:
+	float                                         Temp_float_Variable;                               // 0x0000(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_4[0x4];                                        // 0x0004(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
+	class UMaterialInstanceDynamic*               CallFunc_CreateDynamicMaterialInstance_ReturnValue; // 0x0008(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         Temp_float_Variable_1;                             // 0x0010(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          Temp_bool_Variable;                                // 0x0014(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+	uint8                                         Pad_15[0x3];                                       // 0x0015(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
+	float                                         K2Node_Select_Default;                             // 0x0018(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_ConnectedCableBox_C_UserConstructionScript;
+
+// Function BP_ConnectedCableBox.BP_ConnectedCableBox_C.focusUpdate
+// 0x0044 (0x0044 - 0x0000)
+struct BP_ConnectedCableBox_C_focusUpdate final
+{
+public:
+	bool                                          add;                                               // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	uint8                                         Pad_1[0x3];                                        // 0x0001(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
+	int32                                         index;                                             // 0x0004(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         Temp_int_Variable;                                 // 0x0008(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          CallFunc_LessEqual_IntInt_ReturnValue;             // 0x000C(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+	uint8                                         Pad_D[0x3];                                        // 0x000D(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
+	int32                                         CallFunc_Add_IntInt_ReturnValue;                   // 0x0010(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         Temp_float_Variable;                               // 0x0014(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         Temp_int_Variable_1;                               // 0x0018(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          CallFunc_LessEqual_IntInt_ReturnValue_1;           // 0x001C(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+	uint8                                         Pad_1D[0x3];                                       // 0x001D(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
+	int32                                         CallFunc_Add_IntInt_ReturnValue_1;                 // 0x0020(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         Temp_float_Variable_1;                             // 0x0024(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         Temp_int_Variable_2;                               // 0x0028(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          CallFunc_Greater_IntInt_ReturnValue;               // 0x002C(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          Temp_bool_Variable;                                // 0x002D(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+	uint8                                         Pad_2E[0x2];                                       // 0x002E(0x0002)(Fixing Size After Last Property [ Dumper-7 ])
+	int32                                         Temp_int_Variable_3;                               // 0x0030(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          CallFunc_EqualEqual_IntInt_ReturnValue;            // 0x0034(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          CallFunc_EqualEqual_IntInt_ReturnValue_1;          // 0x0035(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+	uint8                                         Pad_36[0x2];                                       // 0x0036(0x0002)(Fixing Size After Last Property [ Dumper-7 ])
+	float                                         K2Node_Select_Default;                             // 0x0038(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         CallFunc_Add_IntInt_ReturnValue_2;                 // 0x003C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         CallFunc_Subtract_IntInt_ReturnValue;              // 0x0040(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_ConnectedCableBox_C_focusUpdate;
 
 }
 

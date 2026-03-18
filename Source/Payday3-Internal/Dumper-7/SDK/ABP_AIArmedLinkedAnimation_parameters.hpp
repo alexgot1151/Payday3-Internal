@@ -16,15 +16,14 @@
 namespace SDK::Params
 {
 
-// Function ABP_AIArmedLinkedAnimation.ABP_AIArmedLinkedAnimation_C.FullBodyAction
-// 0x0020 (0x0020 - 0x0000)
-struct ABP_AIArmedLinkedAnimation_C_FullBodyAction final
+// Function ABP_AIArmedLinkedAnimation.ABP_AIArmedLinkedAnimation_C.ExecuteUbergraph_ABP_AIArmedLinkedAnimation
+// 0x0004 (0x0004 - 0x0000)
+struct ABP_AIArmedLinkedAnimation_C_ExecuteUbergraph_ABP_AIArmedLinkedAnimation final
 {
 public:
-	struct FPoseLink                              InPose;                                            // 0x0000(0x0010)(BlueprintVisible, BlueprintReadOnly, Parm, NoDestructor)
-	struct FPoseLink                              FullBodyAction_0;                                  // 0x0010(0x0010)(Parm, OutParm, NoDestructor)
+	int32                                         EntryPoint;                                        // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
-DUMPER7_ASSERTS_ABP_AIArmedLinkedAnimation_C_FullBodyAction;
+DUMPER7_ASSERTS_ABP_AIArmedLinkedAnimation_C_ExecuteUbergraph_ABP_AIArmedLinkedAnimation;
 
 // Function ABP_AIArmedLinkedAnimation.ABP_AIArmedLinkedAnimation_C.AnimGraph
 // 0x0010 (0x0010 - 0x0000)
@@ -35,14 +34,15 @@ public:
 };
 DUMPER7_ASSERTS_ABP_AIArmedLinkedAnimation_C_AnimGraph;
 
-// Function ABP_AIArmedLinkedAnimation.ABP_AIArmedLinkedAnimation_C.ExecuteUbergraph_ABP_AIArmedLinkedAnimation
-// 0x0004 (0x0004 - 0x0000)
-struct ABP_AIArmedLinkedAnimation_C_ExecuteUbergraph_ABP_AIArmedLinkedAnimation final
+// Function ABP_AIArmedLinkedAnimation.ABP_AIArmedLinkedAnimation_C.FullBodyAction
+// 0x0020 (0x0020 - 0x0000)
+struct ABP_AIArmedLinkedAnimation_C_FullBodyAction final
 {
 public:
-	int32                                         EntryPoint;                                        // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	struct FPoseLink                              InPose;                                            // 0x0000(0x0010)(BlueprintVisible, BlueprintReadOnly, Parm, NoDestructor)
+	struct FPoseLink                              FullBodyAction_0;                                  // 0x0010(0x0010)(Parm, OutParm, NoDestructor)
 };
-DUMPER7_ASSERTS_ABP_AIArmedLinkedAnimation_C_ExecuteUbergraph_ABP_AIArmedLinkedAnimation;
+DUMPER7_ASSERTS_ABP_AIArmedLinkedAnimation_C_FullBodyAction;
 
 }
 

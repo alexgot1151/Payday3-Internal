@@ -46,10 +46,10 @@ public:
 	bool                                          ExplInteractible3Complete;                         // 0x0519(0x0001)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor)
 
 public:
-	void spawnExplosionVFX(bool doCosmetics);
-	void onServerOnChargesChanged(int32 NewCount);
-	void onAllChargesPlaced();
 	void ExecuteUbergraph_BP_BaseExplodingWall(int32 EntryPoint);
+	void onAllChargesPlaced();
+	void onServerOnChargesChanged(int32 NewCount);
+	void spawnExplosionVFX(bool doCosmetics);
 	void ReceiveBeginPlay();
 	void BP_EnabledChanged(bool bEnabled, bool bDoCosmetics);
 	void BndEvt__BP_TestExplodingWall_SBZExplosiveInteractable2_K2Node_ComponentBoundEvent_5_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);

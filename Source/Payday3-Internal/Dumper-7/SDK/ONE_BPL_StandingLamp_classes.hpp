@@ -33,8 +33,8 @@ public:
 	class USceneComponent*                        DefaultSceneRoot;                                  // 0x02E0(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void BndEvt__BPL_StandingLamp_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature(ESBZCosmeticDestructionType Type, const struct FSBZCosmeticDestructionContext& HitContext);
 	void ExecuteUbergraph_ONE_BPL_StandingLamp(int32 EntryPoint);
+	void BndEvt__BPL_StandingLamp_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature(ESBZCosmeticDestructionType Type, const struct FSBZCosmeticDestructionContext& HitContext);
 
 public:
 	static class UClass* StaticClass()

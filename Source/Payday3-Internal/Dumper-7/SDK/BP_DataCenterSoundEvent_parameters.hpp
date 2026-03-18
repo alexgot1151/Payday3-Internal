@@ -16,27 +16,6 @@
 namespace SDK::Params
 {
 
-// Function BP_DataCenterSoundEvent.BP_DataCenterSoundEvent_C.OnStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct BP_DataCenterSoundEvent_C_OnStateChanged final
-{
-public:
-	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_DataCenterSoundEvent_C_OnStateChanged;
-
-// Function BP_DataCenterSoundEvent.BP_DataCenterSoundEvent_C.OnCompleted
-// 0x0010 (0x0010 - 0x0000)
-struct BP_DataCenterSoundEvent_C_OnCompleted final
-{
-public:
-	EAkCallbackType                               CallbackType;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_1[0x7];                                        // 0x0001(0x0007)(Fixing Size After Last Property [ Dumper-7 ])
-	class UAkCallbackInfo*                        CallbackInfo;                                      // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_DataCenterSoundEvent_C_OnCompleted;
-
 // Function BP_DataCenterSoundEvent.BP_DataCenterSoundEvent_C.ExecuteUbergraph_BP_DataCenterSoundEvent
 // 0x0088 (0x0088 - 0x0000)
 struct BP_DataCenterSoundEvent_C_ExecuteUbergraph_BP_DataCenterSoundEvent final
@@ -71,6 +50,27 @@ public:
 	int32                                         CallFunc_PostEvent_ReturnValue_1;                  // 0x0080(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_DataCenterSoundEvent_C_ExecuteUbergraph_BP_DataCenterSoundEvent;
+
+// Function BP_DataCenterSoundEvent.BP_DataCenterSoundEvent_C.OnCompleted
+// 0x0010 (0x0010 - 0x0000)
+struct BP_DataCenterSoundEvent_C_OnCompleted final
+{
+public:
+	EAkCallbackType                               CallbackType;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_1[0x7];                                        // 0x0001(0x0007)(Fixing Size After Last Property [ Dumper-7 ])
+	class UAkCallbackInfo*                        CallbackInfo;                                      // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_DataCenterSoundEvent_C_OnCompleted;
+
+// Function BP_DataCenterSoundEvent.BP_DataCenterSoundEvent_C.OnStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct BP_DataCenterSoundEvent_C_OnStateChanged final
+{
+public:
+	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_DataCenterSoundEvent_C_OnStateChanged;
 
 }
 

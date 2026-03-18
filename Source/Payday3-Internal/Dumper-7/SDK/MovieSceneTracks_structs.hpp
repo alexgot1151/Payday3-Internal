@@ -60,6 +60,41 @@ enum class EParticleKey : uint8
 	EParticleKey_MAX                         = 3,
 };
 
+// ScriptStruct MovieSceneTracks.TransformParameterNameAndCurves
+// 0x05B0 (0x05B0 - 0x0000)
+struct FTransformParameterNameAndCurves final
+{
+public:
+	class FName                                   ParameterName;                                     // 0x0000(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_C[0x4];                                        // 0x000C(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
+	struct FMovieSceneFloatChannel                Translation[0x3];                                  // 0x0010(0x00A0)(NativeAccessSpecifierPublic)
+	struct FMovieSceneFloatChannel                Rotation[0x3];                                     // 0x01F0(0x00A0)(NativeAccessSpecifierPublic)
+	struct FMovieSceneFloatChannel                Scale[0x3];                                        // 0x03D0(0x00A0)(NativeAccessSpecifierPublic)
+};
+DUMPER7_ASSERTS_FTransformParameterNameAndCurves;
+
+// ScriptStruct MovieSceneTracks.MovieSceneStringChannel
+// 0x0098 (0x00A0 - 0x0008)
+struct FMovieSceneStringChannel final : public FMovieSceneChannel
+{
+public:
+	TArray<struct FFrameNumber>                   Times;                                             // 0x0008(0x0010)(ZeroConstructor, NativeAccessSpecifierPrivate)
+	TArray<class FString>                         Values;                                            // 0x0018(0x0010)(ZeroConstructor, NativeAccessSpecifierPrivate)
+	class FString                                 DefaultValue;                                      // 0x0028(0x0010)(ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
+	bool                                          bHasDefaultValue;                                  // 0x0038(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
+	uint8                                         Pad_39[0x67];                                      // 0x0039(0x0067)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FMovieSceneStringChannel;
+
+// ScriptStruct MovieSceneTracks.MovieSceneObjectPropertyTemplate
+// 0x00C8 (0x0108 - 0x0040)
+struct FMovieSceneObjectPropertyTemplate final : public FMovieScenePropertySectionTemplate
+{
+public:
+	struct FMovieSceneObjectPathChannel           ObjectChannel;                                     // 0x0040(0x00C8)(NativeAccessSpecifierPrivate)
+};
+DUMPER7_ASSERTS_FMovieSceneObjectPropertyTemplate;
+
 // ScriptStruct MovieSceneTracks.ScalarParameterNameAndCurve
 // 0x00B0 (0x00B0 - 0x0000)
 struct FScalarParameterNameAndCurve final
@@ -121,19 +156,6 @@ public:
 };
 DUMPER7_ASSERTS_FColorParameterNameAndCurves;
 
-// ScriptStruct MovieSceneTracks.TransformParameterNameAndCurves
-// 0x05B0 (0x05B0 - 0x0000)
-struct FTransformParameterNameAndCurves final
-{
-public:
-	class FName                                   ParameterName;                                     // 0x0000(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         Pad_C[0x4];                                        // 0x000C(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
-	struct FMovieSceneFloatChannel                Translation[0x3];                                  // 0x0010(0x00A0)(NativeAccessSpecifierPublic)
-	struct FMovieSceneFloatChannel                Rotation[0x3];                                     // 0x01F0(0x00A0)(NativeAccessSpecifierPublic)
-	struct FMovieSceneFloatChannel                Scale[0x3];                                        // 0x03D0(0x00A0)(NativeAccessSpecifierPublic)
-};
-DUMPER7_ASSERTS_FTransformParameterNameAndCurves;
-
 // ScriptStruct MovieSceneTracks.MovieSceneParameterSectionTemplate
 // 0x0060 (0x0080 - 0x0020)
 struct FMovieSceneParameterSectionTemplate : public FMovieSceneEvalTemplate
@@ -148,29 +170,15 @@ public:
 };
 DUMPER7_ASSERTS_FMovieSceneParameterSectionTemplate;
 
-// ScriptStruct MovieSceneTracks.MovieSceneColorKeyStruct
-// 0x0030 (0x0038 - 0x0008)
-struct FMovieSceneColorKeyStruct final : public FMovieSceneKeyStruct
+// ScriptStruct MovieSceneTracks.MovieSceneEventPtrs
+// 0x0028 (0x0028 - 0x0000)
+struct FMovieSceneEventPtrs final
 {
 public:
-	struct FLinearColor                           Color;                                             // 0x0008(0x0010)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	struct FFrameNumber                           Time;                                              // 0x0018(0x0004)(Edit, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         Pad_1C[0x1C];                                      // 0x001C(0x001C)(Fixing Struct Size After Last Property [ Dumper-7 ])
+	class UFunction*                              Function;                                          // 0x0000(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	TFieldPath<class FProperty>                   BoundObjectProperty;                               // 0x0008(0x0020)(HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
-DUMPER7_ASSERTS_FMovieSceneColorKeyStruct;
-
-// ScriptStruct MovieSceneTracks.MovieSceneStringChannel
-// 0x0098 (0x00A0 - 0x0008)
-struct FMovieSceneStringChannel final : public FMovieSceneChannel
-{
-public:
-	TArray<struct FFrameNumber>                   Times;                                             // 0x0008(0x0010)(ZeroConstructor, NativeAccessSpecifierPrivate)
-	TArray<class FString>                         Values;                                            // 0x0018(0x0010)(ZeroConstructor, NativeAccessSpecifierPrivate)
-	class FString                                 DefaultValue;                                      // 0x0028(0x0010)(ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
-	bool                                          bHasDefaultValue;                                  // 0x0038(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
-	uint8                                         Pad_39[0x67];                                      // 0x0039(0x0067)(Fixing Struct Size After Last Property [ Dumper-7 ])
-};
-DUMPER7_ASSERTS_FMovieSceneStringChannel;
+DUMPER7_ASSERTS_FMovieSceneEventPtrs;
 
 // ScriptStruct MovieSceneTracks.MovieSceneEventParameters
 // 0x0030 (0x0030 - 0x0000)
@@ -215,6 +223,35 @@ public:
 };
 DUMPER7_ASSERTS_FMovieSceneEventSectionTemplate;
 
+// ScriptStruct MovieSceneTracks.MovieSceneParticleChannel
+// 0x0000 (0x0098 - 0x0098)
+struct FMovieSceneParticleChannel final : public FMovieSceneByteChannel
+{
+};
+DUMPER7_ASSERTS_FMovieSceneParticleChannel;
+
+// ScriptStruct MovieSceneTracks.MovieSceneParticleSectionTemplate
+// 0x0098 (0x00B8 - 0x0020)
+struct FMovieSceneParticleSectionTemplate final : public FMovieSceneEvalTemplate
+{
+public:
+	struct FMovieSceneParticleChannel             ParticleKeys;                                      // 0x0020(0x0098)(NativeAccessSpecifierPublic)
+};
+DUMPER7_ASSERTS_FMovieSceneParticleSectionTemplate;
+
+// ScriptStruct MovieSceneTracks.MovieScene3DTransformKeyStruct
+// 0x0040 (0x0048 - 0x0008)
+struct FMovieScene3DTransformKeyStruct final : public FMovieSceneKeyStruct
+{
+public:
+	struct FVector                                Location;                                          // 0x0008(0x000C)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	struct FRotator                               Rotation;                                          // 0x0014(0x000C)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic)
+	struct FVector                                Scale;                                             // 0x0020(0x000C)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	struct FFrameNumber                           Time;                                              // 0x002C(0x0004)(Edit, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_30[0x18];                                      // 0x0030(0x0018)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FMovieScene3DTransformKeyStruct;
+
 // ScriptStruct MovieSceneTracks.MovieSceneVectorKeyStructBase
 // 0x0020 (0x0028 - 0x0008)
 struct FMovieSceneVectorKeyStructBase : public FMovieSceneKeyStruct
@@ -225,58 +262,23 @@ public:
 };
 DUMPER7_ASSERTS_FMovieSceneVectorKeyStructBase;
 
-// ScriptStruct MovieSceneTracks.MovieSceneVector4KeyStruct
-// 0x0018 (0x0040 - 0x0028)
-struct FMovieSceneVector4KeyStruct final : public FMovieSceneVectorKeyStructBase
+// ScriptStruct MovieSceneTracks.MovieSceneVector2DKeyStruct
+// 0x0008 (0x0030 - 0x0028)
+struct FMovieSceneVector2DKeyStruct final : public FMovieSceneVectorKeyStructBase
 {
 public:
-	uint8                                         Pad_28[0x8];                                       // 0x0028(0x0008)(Fixing Size After Last Property [ Dumper-7 ])
-	struct FVector4                               Vector;                                            // 0x0030(0x0010)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	struct FVector2D                              Vector;                                            // 0x0028(0x0008)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
-DUMPER7_ASSERTS_FMovieSceneVector4KeyStruct;
+DUMPER7_ASSERTS_FMovieSceneVector2DKeyStruct;
 
-// ScriptStruct MovieSceneTracks.MovieSceneVectorKeyStruct
-// 0x0010 (0x0038 - 0x0028)
-struct FMovieSceneVectorKeyStruct final : public FMovieSceneVectorKeyStructBase
+// ScriptStruct MovieSceneTracks.MovieSceneAudioSectionTemplate
+// 0x0008 (0x0028 - 0x0020)
+struct FMovieSceneAudioSectionTemplate final : public FMovieSceneEvalTemplate
 {
 public:
-	struct FVector                                Vector;                                            // 0x0028(0x000C)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         Pad_34[0x4];                                       // 0x0034(0x0004)(Fixing Struct Size After Last Property [ Dumper-7 ])
+	class UMovieSceneAudioSection*                AudioSection;                                      // 0x0020(0x0008)(ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
-DUMPER7_ASSERTS_FMovieSceneVectorKeyStruct;
-
-// ScriptStruct MovieSceneTracks.MovieSceneActorReferenceKey
-// 0x0030 (0x0030 - 0x0000)
-struct FMovieSceneActorReferenceKey final
-{
-public:
-	struct FMovieSceneObjectBindingID             Object;                                            // 0x0000(0x0018)(Edit, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	class FName                                   ComponentName;                                     // 0x0018(0x000C)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	class FName                                   SocketName;                                        // 0x0024(0x000C)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-};
-DUMPER7_ASSERTS_FMovieSceneActorReferenceKey;
-
-// ScriptStruct MovieSceneTracks.MovieSceneActorReferenceData
-// 0x00B0 (0x00B8 - 0x0008)
-struct FMovieSceneActorReferenceData final : public FMovieSceneChannel
-{
-public:
-	TArray<struct FFrameNumber>                   KeyTimes;                                          // 0x0008(0x0010)(ZeroConstructor, NativeAccessSpecifierPrivate)
-	struct FMovieSceneActorReferenceKey           DefaultValue;                                      // 0x0018(0x0030)(NoDestructor, NativeAccessSpecifierPrivate)
-	TArray<struct FMovieSceneActorReferenceKey>   KeyValues;                                         // 0x0048(0x0010)(ZeroConstructor, NativeAccessSpecifierPrivate)
-	uint8                                         Pad_58[0x60];                                      // 0x0058(0x0060)(Fixing Struct Size After Last Property [ Dumper-7 ])
-};
-DUMPER7_ASSERTS_FMovieSceneActorReferenceData;
-
-// ScriptStruct MovieSceneTracks.MovieSceneActorReferenceSectionTemplate
-// 0x00D8 (0x00F8 - 0x0020)
-struct FMovieSceneActorReferenceSectionTemplate final : public FMovieSceneEvalTemplate
-{
-public:
-	struct FMovieScenePropertySectionData         PropertyData;                                      // 0x0020(0x0020)(NativeAccessSpecifierPrivate)
-	struct FMovieSceneActorReferenceData          ActorReferenceData;                                // 0x0040(0x00B8)(NativeAccessSpecifierPrivate)
-};
-DUMPER7_ASSERTS_FMovieSceneActorReferenceSectionTemplate;
+DUMPER7_ASSERTS_FMovieSceneAudioSectionTemplate;
 
 // ScriptStruct MovieSceneTracks.MovieScene3DPathSectionTemplate
 // 0x00C0 (0x00E0 - 0x0020)
@@ -303,19 +305,6 @@ public:
 	uint32                                        Mask;                                              // 0x0000(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
 };
 DUMPER7_ASSERTS_FMovieSceneTransformMask;
-
-// ScriptStruct MovieSceneTracks.MovieScene3DTransformKeyStruct
-// 0x0040 (0x0048 - 0x0008)
-struct FMovieScene3DTransformKeyStruct final : public FMovieSceneKeyStruct
-{
-public:
-	struct FVector                                Location;                                          // 0x0008(0x000C)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	struct FRotator                               Rotation;                                          // 0x0014(0x000C)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic)
-	struct FVector                                Scale;                                             // 0x0020(0x000C)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	struct FFrameNumber                           Time;                                              // 0x002C(0x0004)(Edit, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         Pad_30[0x18];                                      // 0x0030(0x0018)(Fixing Struct Size After Last Property [ Dumper-7 ])
-};
-DUMPER7_ASSERTS_FMovieScene3DTransformKeyStruct;
 
 // ScriptStruct MovieSceneTracks.MovieScene3DScaleKeyStruct
 // 0x0028 (0x0030 - 0x0008)
@@ -350,14 +339,54 @@ public:
 };
 DUMPER7_ASSERTS_FMovieScene3DLocationKeyStruct;
 
-// ScriptStruct MovieSceneTracks.MovieSceneAudioSectionTemplate
-// 0x0008 (0x0028 - 0x0020)
-struct FMovieSceneAudioSectionTemplate final : public FMovieSceneEvalTemplate
+// ScriptStruct MovieSceneTracks.MovieSceneActorReferenceKey
+// 0x0030 (0x0030 - 0x0000)
+struct FMovieSceneActorReferenceKey final
 {
 public:
-	class UMovieSceneAudioSection*                AudioSection;                                      // 0x0020(0x0008)(ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	struct FMovieSceneObjectBindingID             Object;                                            // 0x0000(0x0018)(Edit, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class FName                                   ComponentName;                                     // 0x0018(0x000C)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class FName                                   SocketName;                                        // 0x0024(0x000C)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
-DUMPER7_ASSERTS_FMovieSceneAudioSectionTemplate;
+DUMPER7_ASSERTS_FMovieSceneActorReferenceKey;
+
+// ScriptStruct MovieSceneTracks.MovieSceneActorReferenceData
+// 0x00B0 (0x00B8 - 0x0008)
+struct FMovieSceneActorReferenceData final : public FMovieSceneChannel
+{
+public:
+	TArray<struct FFrameNumber>                   KeyTimes;                                          // 0x0008(0x0010)(ZeroConstructor, NativeAccessSpecifierPrivate)
+	struct FMovieSceneActorReferenceKey           DefaultValue;                                      // 0x0018(0x0030)(NoDestructor, NativeAccessSpecifierPrivate)
+	TArray<struct FMovieSceneActorReferenceKey>   KeyValues;                                         // 0x0048(0x0010)(ZeroConstructor, NativeAccessSpecifierPrivate)
+	uint8                                         Pad_58[0x60];                                      // 0x0058(0x0060)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FMovieSceneActorReferenceData;
+
+// ScriptStruct MovieSceneTracks.MovieSceneBoolPropertySectionTemplate
+// 0x0090 (0x00D0 - 0x0040)
+struct FMovieSceneBoolPropertySectionTemplate : public FMovieScenePropertySectionTemplate
+{
+public:
+	struct FMovieSceneBoolChannel                 BoolCurve;                                         // 0x0040(0x0090)(Protected, NativeAccessSpecifierProtected)
+};
+DUMPER7_ASSERTS_FMovieSceneBoolPropertySectionTemplate;
+
+// ScriptStruct MovieSceneTracks.MovieSceneVisibilitySectionTemplate
+// 0x0000 (0x00D0 - 0x00D0)
+struct FMovieSceneVisibilitySectionTemplate final : public FMovieSceneBoolPropertySectionTemplate
+{
+};
+DUMPER7_ASSERTS_FMovieSceneVisibilitySectionTemplate;
+
+// ScriptStruct MovieSceneTracks.MovieSceneActorReferenceSectionTemplate
+// 0x00D8 (0x00F8 - 0x0020)
+struct FMovieSceneActorReferenceSectionTemplate final : public FMovieSceneEvalTemplate
+{
+public:
+	struct FMovieScenePropertySectionData         PropertyData;                                      // 0x0020(0x0020)(NativeAccessSpecifierPrivate)
+	struct FMovieSceneActorReferenceData          ActorReferenceData;                                // 0x0040(0x00B8)(NativeAccessSpecifierPrivate)
+};
+DUMPER7_ASSERTS_FMovieSceneActorReferenceSectionTemplate;
 
 // ScriptStruct MovieSceneTracks.MovieSceneCameraAnimSectionData
 // 0x0020 (0x0020 - 0x0000)
@@ -456,6 +485,37 @@ public:
 };
 DUMPER7_ASSERTS_FMovieSceneCameraShakeSectionTemplate;
 
+// ScriptStruct MovieSceneTracks.MovieSceneVectorKeyStruct
+// 0x0010 (0x0038 - 0x0028)
+struct FMovieSceneVectorKeyStruct final : public FMovieSceneVectorKeyStructBase
+{
+public:
+	struct FVector                                Vector;                                            // 0x0028(0x000C)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_34[0x4];                                       // 0x0034(0x0004)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FMovieSceneVectorKeyStruct;
+
+// ScriptStruct MovieSceneTracks.MovieSceneColorKeyStruct
+// 0x0030 (0x0038 - 0x0008)
+struct FMovieSceneColorKeyStruct final : public FMovieSceneKeyStruct
+{
+public:
+	struct FLinearColor                           Color;                                             // 0x0008(0x0010)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	struct FFrameNumber                           Time;                                              // 0x0018(0x0004)(Edit, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_1C[0x1C];                                      // 0x001C(0x001C)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FMovieSceneColorKeyStruct;
+
+// ScriptStruct MovieSceneTracks.MovieSceneVector4KeyStruct
+// 0x0018 (0x0040 - 0x0028)
+struct FMovieSceneVector4KeyStruct final : public FMovieSceneVectorKeyStructBase
+{
+public:
+	uint8                                         Pad_28[0x8];                                       // 0x0028(0x0008)(Fixing Size After Last Property [ Dumper-7 ])
+	struct FVector4                               Vector;                                            // 0x0030(0x0010)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+};
+DUMPER7_ASSERTS_FMovieSceneVector4KeyStruct;
+
 // ScriptStruct MovieSceneTracks.MovieSceneColorSectionTemplate
 // 0x0288 (0x02C8 - 0x0040)
 struct FMovieSceneColorSectionTemplate final : public FMovieScenePropertySectionTemplate
@@ -466,16 +526,6 @@ public:
 	uint8                                         Pad_2C1[0x7];                                      // 0x02C1(0x0007)(Fixing Struct Size After Last Property [ Dumper-7 ])
 };
 DUMPER7_ASSERTS_FMovieSceneColorSectionTemplate;
-
-// ScriptStruct MovieSceneTracks.MovieSceneEventPtrs
-// 0x0028 (0x0028 - 0x0000)
-struct FMovieSceneEventPtrs final
-{
-public:
-	class UFunction*                              Function;                                          // 0x0000(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	TFieldPath<class FProperty>                   BoundObjectProperty;                               // 0x0008(0x0020)(HasGetValueTypeHash, NativeAccessSpecifierPublic)
-};
-DUMPER7_ASSERTS_FMovieSceneEventPtrs;
 
 // ScriptStruct MovieSceneTracks.MovieSceneEvent
 // 0x0028 (0x0028 - 0x0000)
@@ -538,15 +588,6 @@ public:
 };
 DUMPER7_ASSERTS_FMovieSceneMaterialParameterCollectionTemplate;
 
-// ScriptStruct MovieSceneTracks.MovieSceneObjectPropertyTemplate
-// 0x00C8 (0x0108 - 0x0040)
-struct FMovieSceneObjectPropertyTemplate final : public FMovieScenePropertySectionTemplate
-{
-public:
-	struct FMovieSceneObjectPathChannel           ObjectChannel;                                     // 0x0040(0x00C8)(NativeAccessSpecifierPrivate)
-};
-DUMPER7_ASSERTS_FMovieSceneObjectPropertyTemplate;
-
 // ScriptStruct MovieSceneTracks.MovieSceneComponentMaterialSectionTemplate
 // 0x0008 (0x0088 - 0x0080)
 struct FMovieSceneComponentMaterialSectionTemplate final : public FMovieSceneParameterSectionTemplate
@@ -563,22 +604,6 @@ struct FMovieSceneParticleParameterSectionTemplate final : public FMovieScenePar
 {
 };
 DUMPER7_ASSERTS_FMovieSceneParticleParameterSectionTemplate;
-
-// ScriptStruct MovieSceneTracks.MovieSceneParticleChannel
-// 0x0000 (0x0098 - 0x0098)
-struct FMovieSceneParticleChannel final : public FMovieSceneByteChannel
-{
-};
-DUMPER7_ASSERTS_FMovieSceneParticleChannel;
-
-// ScriptStruct MovieSceneTracks.MovieSceneParticleSectionTemplate
-// 0x0098 (0x00B8 - 0x0020)
-struct FMovieSceneParticleSectionTemplate final : public FMovieSceneEvalTemplate
-{
-public:
-	struct FMovieSceneParticleChannel             ParticleKeys;                                      // 0x0020(0x0098)(NativeAccessSpecifierPublic)
-};
-DUMPER7_ASSERTS_FMovieSceneParticleSectionTemplate;
 
 // ScriptStruct MovieSceneTracks.MovieScenePrimitiveMaterialTemplate
 // 0x00D0 (0x00F0 - 0x0020)
@@ -599,15 +624,6 @@ public:
 	struct FMovieSceneStringChannel               StringCurve;                                       // 0x0040(0x00A0)(Protected, NativeAccessSpecifierProtected)
 };
 DUMPER7_ASSERTS_FMovieSceneStringPropertySectionTemplate;
-
-// ScriptStruct MovieSceneTracks.MovieSceneBoolPropertySectionTemplate
-// 0x0090 (0x00D0 - 0x0040)
-struct FMovieSceneBoolPropertySectionTemplate : public FMovieScenePropertySectionTemplate
-{
-public:
-	struct FMovieSceneBoolChannel                 BoolCurve;                                         // 0x0040(0x0090)(Protected, NativeAccessSpecifierProtected)
-};
-DUMPER7_ASSERTS_FMovieSceneBoolPropertySectionTemplate;
 
 // ScriptStruct MovieSceneTracks.MovieSceneSkeletalAnimationParams
 // 0x00D8 (0x00D8 - 0x0000)
@@ -677,22 +693,6 @@ public:
 	class UMovieSceneLevelVisibilitySection*      Section;                                           // 0x0000(0x0008)(ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
 DUMPER7_ASSERTS_FLevelVisibilityComponentData;
-
-// ScriptStruct MovieSceneTracks.MovieSceneVector2DKeyStruct
-// 0x0008 (0x0030 - 0x0028)
-struct FMovieSceneVector2DKeyStruct final : public FMovieSceneVectorKeyStructBase
-{
-public:
-	struct FVector2D                              Vector;                                            // 0x0028(0x0008)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-};
-DUMPER7_ASSERTS_FMovieSceneVector2DKeyStruct;
-
-// ScriptStruct MovieSceneTracks.MovieSceneVisibilitySectionTemplate
-// 0x0000 (0x00D0 - 0x00D0)
-struct FMovieSceneVisibilitySectionTemplate final : public FMovieSceneBoolPropertySectionTemplate
-{
-};
-DUMPER7_ASSERTS_FMovieSceneVisibilitySectionTemplate;
 
 }
 

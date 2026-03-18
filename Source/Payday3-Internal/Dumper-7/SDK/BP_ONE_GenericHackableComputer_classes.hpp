@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "Starbreeze_structs.hpp"
+#include "Engine_structs.hpp"
 #include "BP_GenericHackableComputer_classes.hpp"
 
 
@@ -28,12 +28,12 @@ public:
 	struct FSBZHackableDisplayText                displayTextLoud;                                   // 0x0578(0x0060)(Edit, BlueprintVisible, DisableEditOnInstance)
 
 public:
-	void goLoud();
-	void BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature(bool bState, bool bDoCosmetics);
-	void K2_OnReset();
 	void ExecuteUbergraph_BP_ONE_GenericHackableComputer(int32 EntryPoint);
 	void BP_OnHackingStarted(const class FText& ProcessText);
 	void BP_OnStateChanged(ESBZHackableActorState OldState, ESBZHackableActorState NewState);
+	void K2_OnReset();
+	void BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature(bool bState, bool bDoCosmetics);
+	void goLoud();
 
 public:
 	static class UClass* StaticClass()

@@ -17,20 +17,6 @@
 namespace SDK
 {
 
-// Function CH_BaseCivilian.CH_BaseCivilian_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
-
-void ACH_BaseCivilian_C::ReceiveBeginPlay()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("CH_BaseCivilian_C", "ReceiveBeginPlay");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
 // Function CH_BaseCivilian.CH_BaseCivilian_C.ExecuteUbergraph_CH_BaseCivilian
 // (Final, UbergraphFunction)
 // Parameters:
@@ -48,6 +34,20 @@ void ACH_BaseCivilian_C::ExecuteUbergraph_CH_BaseCivilian(int32 EntryPoint)
 	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function CH_BaseCivilian.CH_BaseCivilian_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
+
+void ACH_BaseCivilian_C::ReceiveBeginPlay()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("CH_BaseCivilian_C", "ReceiveBeginPlay");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

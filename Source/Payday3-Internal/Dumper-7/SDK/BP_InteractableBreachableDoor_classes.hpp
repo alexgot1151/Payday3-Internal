@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "BP_InteractableUnBreachableSingleDoor_classes.hpp"
+#include "Engine_structs.hpp"
 
 
 namespace SDK
@@ -27,8 +27,8 @@ public:
 	class USBZPropDamageComponent*                BreachPropDamge;                                   // 0x0680(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void setBreachedMeshVisibility(bool breached_0);
 	void ExecuteUbergraph_BP_InteractableBreachableDoor(int32 EntryPoint);
+	void setBreachedMeshVisibility(bool breached_0);
 
 public:
 	static class UClass* StaticClass()

@@ -10,6 +10,7 @@
 
 #include "Basic.hpp"
 
+#include "Engine_structs.hpp"
 #include "BP_WheeledVehicle_Base_classes.hpp"
 
 
@@ -18,9 +19,17 @@ namespace SDK
 
 // BlueprintGeneratedClass BP_SwatVan.BP_SwatVan_C
 // 0x0000 (0x0720 - 0x0720)
-#pragma pack(push, 0x1)
-class alignas(0x10) ABP_SwatVan_C : public ABP_WheeledVehicle_Base_C
+class ABP_SwatVan_C : public ABP_WheeledVehicle_Base_C
 {
+public:
+	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x0718(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
+
+public:
+	void ExecuteUbergraph_BP_SwatVan(int32 EntryPoint);
+	void SWAT_On_Spline_End_Reached(class ASBZWheeledVehicle* Vehicle, class ASBZSpline* Spline);
+	void BndEvt__BP_Sedan_FirstResponders_Base_SplineFollowingComponent_K2Node_ComponentBoundEvent_0_SBZVehicleOnStarted__DelegateSignature();
+	void ReceiveBeginPlay();
+
 public:
 	static class UClass* StaticClass()
 	{
@@ -35,7 +44,6 @@ public:
 		return GetDefaultObjImpl<ABP_SwatVan_C>();
 	}
 };
-#pragma pack(pop)
 DUMPER7_ASSERTS_ABP_SwatVan_C;
 
 }

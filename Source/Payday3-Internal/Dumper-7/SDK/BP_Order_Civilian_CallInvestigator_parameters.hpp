@@ -16,15 +16,6 @@
 namespace SDK::Params
 {
 
-// Function BP_Order_Civilian_CallInvestigator.BP_Order_Civilian_CallInvestigator_C.OnStartedBP
-// 0x0008 (0x0008 - 0x0000)
-struct BP_Order_Civilian_CallInvestigator_C_OnStartedBP final
-{
-public:
-	class APawn*                                  Pawn;                                              // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_Order_Civilian_CallInvestigator_C_OnStartedBP;
-
 // Function BP_Order_Civilian_CallInvestigator.BP_Order_Civilian_CallInvestigator_C.ExecuteUbergraph_BP_Order_Civilian_CallInvestigator
 // 0x0028 (0x0028 - 0x0000)
 struct BP_Order_Civilian_CallInvestigator_C_ExecuteUbergraph_BP_Order_Civilian_CallInvestigator final
@@ -38,6 +29,15 @@ public:
 	bool                                          K2Node_DynamicCast_bSuccess;                       // 0x0020(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_BP_Order_Civilian_CallInvestigator_C_ExecuteUbergraph_BP_Order_Civilian_CallInvestigator;
+
+// Function BP_Order_Civilian_CallInvestigator.BP_Order_Civilian_CallInvestigator_C.OnStartedBP
+// 0x0008 (0x0008 - 0x0000)
+struct BP_Order_Civilian_CallInvestigator_C_OnStartedBP final
+{
+public:
+	class APawn*                                  Pawn;                                              // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_Order_Civilian_CallInvestigator_C_OnStartedBP;
 
 // Function BP_Order_Civilian_CallInvestigator.BP_Order_Civilian_CallInvestigator_C.ExecPredicate
 // 0x0040 (0x0040 - 0x0000)

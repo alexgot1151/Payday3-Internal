@@ -27,9 +27,9 @@ public:
 	class FText                                   secondaryText;                                     // 0x0680(0x0018)(Edit, BlueprintVisible, DisableEditOnInstance)
 
 public:
-	void updateWidget();
-	void ReceiveBeginPlay();
 	void ExecuteUbergraph_dynamicSignComponent(int32 EntryPoint);
+	void ReceiveBeginPlay();
+	void updateWidget();
 
 public:
 	static class UClass* StaticClass()

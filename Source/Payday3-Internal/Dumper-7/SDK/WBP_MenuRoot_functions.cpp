@@ -37,6 +37,48 @@ void UWBP_MenuRoot_C::ExecuteUbergraph_WBP_MenuRoot(int32 EntryPoint)
 }
 
 
+// Function WBP_MenuRoot.WBP_MenuRoot_C.BndEvt__WBP_MenuRoot_Contracts_LargetTextButton_K2Node_ComponentBoundEvent_6_OnMenuButtonStateChanged__DelegateSignature
+// (BlueprintEvent)
+// Parameters:
+// class USBZMenuButton*                   Button                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    bIsEnabled_0                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void UWBP_MenuRoot_C::BndEvt__WBP_MenuRoot_Contracts_LargetTextButton_K2Node_ComponentBoundEvent_6_OnMenuButtonStateChanged__DelegateSignature(class USBZMenuButton* Button, bool bIsEnabled_0)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_MenuRoot_C", "BndEvt__WBP_MenuRoot_Contracts_LargetTextButton_K2Node_ComponentBoundEvent_6_OnMenuButtonStateChanged__DelegateSignature");
+
+	Params::WBP_MenuRoot_C_BndEvt__WBP_MenuRoot_Contracts_LargetTextButton_K2Node_ComponentBoundEvent_6_OnMenuButtonStateChanged__DelegateSignature Parms{};
+
+	Parms.Button = Button;
+	Parms.bIsEnabled_0 = bIsEnabled_0;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_MenuRoot.WBP_MenuRoot_C.BndEvt__WBP_MenuRoot_Contracts_LargetTextButton_K2Node_ComponentBoundEvent_3_OnMenuButtonSelected__DelegateSignature
+// (BlueprintEvent)
+// Parameters:
+// class USBZMenuButton*                   Button                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_MenuRoot_C::BndEvt__WBP_MenuRoot_Contracts_LargetTextButton_K2Node_ComponentBoundEvent_3_OnMenuButtonSelected__DelegateSignature(class USBZMenuButton* Button)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_MenuRoot_C", "BndEvt__WBP_MenuRoot_Contracts_LargetTextButton_K2Node_ComponentBoundEvent_3_OnMenuButtonSelected__DelegateSignature");
+
+	Params::WBP_MenuRoot_C_BndEvt__WBP_MenuRoot_Contracts_LargetTextButton_K2Node_ComponentBoundEvent_3_OnMenuButtonSelected__DelegateSignature Parms{};
+
+	Parms.Button = Button;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function WBP_MenuRoot.WBP_MenuRoot_C.PreConstruct
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
@@ -52,6 +94,26 @@ void UWBP_MenuRoot_C::PreConstruct(bool IsDesignTime)
 	Params::WBP_MenuRoot_C_PreConstruct Parms{};
 
 	Parms.IsDesignTime = IsDesignTime;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_MenuRoot.WBP_MenuRoot_C.BndEvt__WBP_UI_MainMenu_CrimeNet_HeistOnline_LargetTextButton_K2Node_ComponentBoundEvent_9_OnMenuButtonSelected__DelegateSignature
+// (BlueprintEvent)
+// Parameters:
+// class USBZMenuButton*                   Button                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_MenuRoot_C::BndEvt__WBP_UI_MainMenu_CrimeNet_HeistOnline_LargetTextButton_K2Node_ComponentBoundEvent_9_OnMenuButtonSelected__DelegateSignature(class USBZMenuButton* Button)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_MenuRoot_C", "BndEvt__WBP_UI_MainMenu_CrimeNet_HeistOnline_LargetTextButton_K2Node_ComponentBoundEvent_9_OnMenuButtonSelected__DelegateSignature");
+
+	Params::WBP_MenuRoot_C_BndEvt__WBP_UI_MainMenu_CrimeNet_HeistOnline_LargetTextButton_K2Node_ComponentBoundEvent_9_OnMenuButtonSelected__DelegateSignature Parms{};
+
+	Parms.Button = Button;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -97,19 +159,19 @@ void UWBP_MenuRoot_C::BndEvt__WBP_MenuRoot_QuitButton_K2Node_ComponentBoundEvent
 }
 
 
-// Function WBP_MenuRoot.WBP_MenuRoot_C.BndEvt__WBP_UI_MainMenu_CrimeNet_HeistOnline_LargetTextButton_K2Node_ComponentBoundEvent_9_OnMenuButtonSelected__DelegateSignature
+// Function WBP_MenuRoot.WBP_MenuRoot_C.BndEvt__WBP_UI_MainMenu_CrimeNet_Blackmarket_LargetTextButton_K2Node_ComponentBoundEvent_11_OnMenuButtonSelected__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
 // class USBZMenuButton*                   Button                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void UWBP_MenuRoot_C::BndEvt__WBP_UI_MainMenu_CrimeNet_HeistOnline_LargetTextButton_K2Node_ComponentBoundEvent_9_OnMenuButtonSelected__DelegateSignature(class USBZMenuButton* Button)
+void UWBP_MenuRoot_C::BndEvt__WBP_UI_MainMenu_CrimeNet_Blackmarket_LargetTextButton_K2Node_ComponentBoundEvent_11_OnMenuButtonSelected__DelegateSignature(class USBZMenuButton* Button)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_MenuRoot_C", "BndEvt__WBP_UI_MainMenu_CrimeNet_HeistOnline_LargetTextButton_K2Node_ComponentBoundEvent_9_OnMenuButtonSelected__DelegateSignature");
+		Func = Class->GetFunction("WBP_MenuRoot_C", "BndEvt__WBP_UI_MainMenu_CrimeNet_Blackmarket_LargetTextButton_K2Node_ComponentBoundEvent_11_OnMenuButtonSelected__DelegateSignature");
 
-	Params::WBP_MenuRoot_C_BndEvt__WBP_UI_MainMenu_CrimeNet_HeistOnline_LargetTextButton_K2Node_ComponentBoundEvent_9_OnMenuButtonSelected__DelegateSignature Parms{};
+	Params::WBP_MenuRoot_C_BndEvt__WBP_UI_MainMenu_CrimeNet_Blackmarket_LargetTextButton_K2Node_ComponentBoundEvent_11_OnMenuButtonSelected__DelegateSignature Parms{};
 
 	Parms.Button = Button;
 
@@ -177,19 +239,19 @@ void UWBP_MenuRoot_C::OnPlayerKickedFromParty(const class FString& PlayerId)
 }
 
 
-// Function WBP_MenuRoot.WBP_MenuRoot_C.BndEvt__WBP_UI_MainMenu_CrimeNet_Blackmarket_LargetTextButton_K2Node_ComponentBoundEvent_11_OnMenuButtonSelected__DelegateSignature
+// Function WBP_MenuRoot.WBP_MenuRoot_C.BndEvt__WBP_UI_MainMenu_CrimeNet_Loadout_LargetTextButton_K2Node_ComponentBoundEvent_12_OnMenuButtonSelected__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
 // class USBZMenuButton*                   Button                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void UWBP_MenuRoot_C::BndEvt__WBP_UI_MainMenu_CrimeNet_Blackmarket_LargetTextButton_K2Node_ComponentBoundEvent_11_OnMenuButtonSelected__DelegateSignature(class USBZMenuButton* Button)
+void UWBP_MenuRoot_C::BndEvt__WBP_UI_MainMenu_CrimeNet_Loadout_LargetTextButton_K2Node_ComponentBoundEvent_12_OnMenuButtonSelected__DelegateSignature(class USBZMenuButton* Button)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_MenuRoot_C", "BndEvt__WBP_UI_MainMenu_CrimeNet_Blackmarket_LargetTextButton_K2Node_ComponentBoundEvent_11_OnMenuButtonSelected__DelegateSignature");
+		Func = Class->GetFunction("WBP_MenuRoot_C", "BndEvt__WBP_UI_MainMenu_CrimeNet_Loadout_LargetTextButton_K2Node_ComponentBoundEvent_12_OnMenuButtonSelected__DelegateSignature");
 
-	Params::WBP_MenuRoot_C_BndEvt__WBP_UI_MainMenu_CrimeNet_Blackmarket_LargetTextButton_K2Node_ComponentBoundEvent_11_OnMenuButtonSelected__DelegateSignature Parms{};
+	Params::WBP_MenuRoot_C_BndEvt__WBP_UI_MainMenu_CrimeNet_Loadout_LargetTextButton_K2Node_ComponentBoundEvent_12_OnMenuButtonSelected__DelegateSignature Parms{};
 
 	Parms.Button = Button;
 
@@ -212,26 +274,6 @@ void UWBP_MenuRoot_C::OnControlReferencePressed(class FName ActionName)
 	Params::WBP_MenuRoot_C_OnControlReferencePressed Parms{};
 
 	Parms.ActionName = ActionName;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_MenuRoot.WBP_MenuRoot_C.BndEvt__WBP_UI_MainMenu_CrimeNet_Loadout_LargetTextButton_K2Node_ComponentBoundEvent_12_OnMenuButtonSelected__DelegateSignature
-// (BlueprintEvent)
-// Parameters:
-// class USBZMenuButton*                   Button                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UWBP_MenuRoot_C::BndEvt__WBP_UI_MainMenu_CrimeNet_Loadout_LargetTextButton_K2Node_ComponentBoundEvent_12_OnMenuButtonSelected__DelegateSignature(class USBZMenuButton* Button)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_MenuRoot_C", "BndEvt__WBP_UI_MainMenu_CrimeNet_Loadout_LargetTextButton_K2Node_ComponentBoundEvent_12_OnMenuButtonSelected__DelegateSignature");
-
-	Params::WBP_MenuRoot_C_BndEvt__WBP_UI_MainMenu_CrimeNet_Loadout_LargetTextButton_K2Node_ComponentBoundEvent_12_OnMenuButtonSelected__DelegateSignature Parms{};
-
-	Parms.Button = Button;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -277,6 +319,26 @@ void UWBP_MenuRoot_C::BndEvt__WBP_UI_MainMenu_CrimeNet_SocialsButton_K2Node_Comp
 }
 
 
+// Function WBP_MenuRoot.WBP_MenuRoot_C.BndEvt__WBP_UI_MainMenu_CrimeNet_SettingsButton_K2Node_ComponentBoundEvent_15_OnMenuButtonSelected__DelegateSignature
+// (BlueprintEvent)
+// Parameters:
+// class USBZMenuButton*                   Button                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_MenuRoot_C::BndEvt__WBP_UI_MainMenu_CrimeNet_SettingsButton_K2Node_ComponentBoundEvent_15_OnMenuButtonSelected__DelegateSignature(class USBZMenuButton* Button)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_MenuRoot_C", "BndEvt__WBP_UI_MainMenu_CrimeNet_SettingsButton_K2Node_ComponentBoundEvent_15_OnMenuButtonSelected__DelegateSignature");
+
+	Params::WBP_MenuRoot_C_BndEvt__WBP_UI_MainMenu_CrimeNet_SettingsButton_K2Node_ComponentBoundEvent_15_OnMenuButtonSelected__DelegateSignature Parms{};
+
+	Parms.Button = Button;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function WBP_MenuRoot.WBP_MenuRoot_C.BndEvt__WBP_MenuRoot_ChallengesButton_K2Node_ComponentBoundEvent_8_OnMenuButtonStateChanged__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
@@ -294,26 +356,6 @@ void UWBP_MenuRoot_C::BndEvt__WBP_MenuRoot_ChallengesButton_K2Node_ComponentBoun
 
 	Parms.Button = Button;
 	Parms.bIsEnabled_0 = bIsEnabled_0;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_MenuRoot.WBP_MenuRoot_C.BndEvt__WBP_UI_MainMenu_CrimeNet_SettingsButton_K2Node_ComponentBoundEvent_15_OnMenuButtonSelected__DelegateSignature
-// (BlueprintEvent)
-// Parameters:
-// class USBZMenuButton*                   Button                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UWBP_MenuRoot_C::BndEvt__WBP_UI_MainMenu_CrimeNet_SettingsButton_K2Node_ComponentBoundEvent_15_OnMenuButtonSelected__DelegateSignature(class USBZMenuButton* Button)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_MenuRoot_C", "BndEvt__WBP_UI_MainMenu_CrimeNet_SettingsButton_K2Node_ComponentBoundEvent_15_OnMenuButtonSelected__DelegateSignature");
-
-	Params::WBP_MenuRoot_C_BndEvt__WBP_UI_MainMenu_CrimeNet_SettingsButton_K2Node_ComponentBoundEvent_15_OnMenuButtonSelected__DelegateSignature Parms{};
-
-	Parms.Button = Button;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -465,6 +507,26 @@ void UWBP_MenuRoot_C::OnMatchmakingStarted()
 }
 
 
+// Function WBP_MenuRoot.WBP_MenuRoot_C.OnGainedStackFocused
+// (Event, Protected, HasOutParams, BlueprintEvent)
+// Parameters:
+// const class FName&                      PreviousValue                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReferenceParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_MenuRoot_C::OnGainedStackFocused(const class FName& PreviousValue)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_MenuRoot_C", "OnGainedStackFocused");
+
+	Params::WBP_MenuRoot_C_OnGainedStackFocused Parms{};
+
+	Parms.PreviousValue = PreviousValue;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function WBP_MenuRoot.WBP_MenuRoot_C.OnPrivilegeQueried
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
@@ -518,26 +580,6 @@ void UWBP_MenuRoot_C::OnInitialized()
 		Func = Class->GetFunction("WBP_MenuRoot_C", "OnInitialized");
 
 	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function WBP_MenuRoot.WBP_MenuRoot_C.OnGainedStackFocused
-// (Event, Protected, HasOutParams, BlueprintEvent)
-// Parameters:
-// const class FName&                      PreviousValue                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReferenceParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UWBP_MenuRoot_C::OnGainedStackFocused(const class FName& PreviousValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_MenuRoot_C", "OnGainedStackFocused");
-
-	Params::WBP_MenuRoot_C_OnGainedStackFocused Parms{};
-
-	Parms.PreviousValue = PreviousValue;
-
-	UObject::ProcessEvent(Func, &Parms);
 }
 
 
@@ -668,6 +710,29 @@ void UWBP_MenuRoot_C::SetInputEnabled(bool bIsEnabled_0)
 	Parms.bIsEnabled_0 = bIsEnabled_0;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_MenuRoot.WBP_MenuRoot_C.NavigateToNews
+// (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// EUINavigation                           Navigation_0                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class UWidget*                          ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+class UWidget* UWBP_MenuRoot_C::NavigateToNews(EUINavigation Navigation_0)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_MenuRoot_C", "NavigateToNews");
+
+	Params::WBP_MenuRoot_C_NavigateToNews Parms{};
+
+	Parms.Navigation_0 = Navigation_0;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 }
 
 }

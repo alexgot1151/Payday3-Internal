@@ -17,17 +17,23 @@
 namespace SDK
 {
 
-// Function BP_LaserPoint.BP_LaserPoint_C.ReceiveBeginPlay
-// (Event, Public, BlueprintEvent)
+// Function BP_LaserPoint.BP_LaserPoint_C.ExecuteUbergraph_BP_LaserPoint
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void UBP_LaserPoint_C::ReceiveBeginPlay()
+void UBP_LaserPoint_C::ExecuteUbergraph_BP_LaserPoint(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_LaserPoint_C", "ReceiveBeginPlay");
+		Func = Class->GetFunction("BP_LaserPoint_C", "ExecuteUbergraph_BP_LaserPoint");
 
-	UObject::ProcessEvent(Func, nullptr);
+	Params::BP_LaserPoint_C_ExecuteUbergraph_BP_LaserPoint Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
 }
 
 
@@ -51,23 +57,17 @@ void UBP_LaserPoint_C::ReceiveActorBeginOverlap_1(class AActor* OtherActor)
 }
 
 
-// Function BP_LaserPoint.BP_LaserPoint_C.ExecuteUbergraph_BP_LaserPoint
-// (Final, UbergraphFunction)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function BP_LaserPoint.BP_LaserPoint_C.ReceiveBeginPlay
+// (Event, Public, BlueprintEvent)
 
-void UBP_LaserPoint_C::ExecuteUbergraph_BP_LaserPoint(int32 EntryPoint)
+void UBP_LaserPoint_C::ReceiveBeginPlay()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_LaserPoint_C", "ExecuteUbergraph_BP_LaserPoint");
+		Func = Class->GetFunction("BP_LaserPoint_C", "ReceiveBeginPlay");
 
-	Params::BP_LaserPoint_C_ExecuteUbergraph_BP_LaserPoint Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

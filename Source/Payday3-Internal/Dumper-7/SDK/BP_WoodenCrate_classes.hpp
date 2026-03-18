@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "CoreUObject_structs.hpp"
+#include "Engine_structs.hpp"
 #include "Starbreeze_classes.hpp"
 
 
@@ -45,13 +45,13 @@ public:
 	bool                                          binaryReactorState;                                // 0x03A0(0x0001)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor)
 
 public:
-	void setMarking(bool visible);
-	void UserConstructionScript();
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
-	void BndEvt__BP_ReplicatedBinaryActorVent_SBZInteractable_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void BndEvt__BP_WoodenCrate_marked_SBZBinaryState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature(bool bState_0, bool bDoCosmetics);
-	void setBinaryState(bool state);
 	void ExecuteUbergraph_BP_WoodenCrate(int32 EntryPoint);
+	void setBinaryState(bool state);
+	void BndEvt__BP_WoodenCrate_marked_SBZBinaryState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature(bool bState_0, bool bDoCosmetics);
+	void BndEvt__BP_ReplicatedBinaryActorVent_SBZInteractable_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void UserConstructionScript();
+	void setMarking(bool visible);
 
 public:
 	static class UClass* StaticClass()

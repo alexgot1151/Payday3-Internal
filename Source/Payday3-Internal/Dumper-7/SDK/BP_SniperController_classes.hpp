@@ -18,15 +18,15 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass BP_SniperController.BP_SniperController_C
-// 0x0008 (0x0698 - 0x0690)
+// 0x0008 (0x06A8 - 0x06A0)
 class ABP_SniperController_C final : public ASBZAIController
 {
 public:
-	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x0690(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
+	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x06A0(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
 
 public:
-	void ReceivePossess(class APawn* PossessedPawn);
 	void ExecuteUbergraph_BP_SniperController(int32 EntryPoint);
+	void ReceivePossess(class APawn* PossessedPawn);
 
 public:
 	static class UClass* StaticClass()

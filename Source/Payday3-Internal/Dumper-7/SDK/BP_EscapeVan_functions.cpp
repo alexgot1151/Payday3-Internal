@@ -17,31 +17,23 @@
 namespace SDK
 {
 
-// Function BP_EscapeVan.BP_EscapeVan_C.UserConstructionScript
-// (Event, Public, BlueprintCallable, BlueprintEvent)
+// Function BP_EscapeVan.BP_EscapeVan_C.ExecuteUbergraph_BP_EscapeVan
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_EscapeVan_C::UserConstructionScript()
+void ABP_EscapeVan_C::ExecuteUbergraph_BP_EscapeVan(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_EscapeVan_C", "UserConstructionScript");
+		Func = Class->GetFunction("BP_EscapeVan_C", "ExecuteUbergraph_BP_EscapeVan");
 
-	UObject::ProcessEvent(Func, nullptr);
-}
+	Params::BP_EscapeVan_C_ExecuteUbergraph_BP_EscapeVan Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 
-// Function BP_EscapeVan.BP_EscapeVan_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
-
-void ABP_EscapeVan_C::ReceiveBeginPlay()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_EscapeVan_C", "ReceiveBeginPlay");
-
-	UObject::ProcessEvent(Func, nullptr);
+	UObject::ProcessEvent(Func, &Parms);
 }
 
 
@@ -65,23 +57,31 @@ void ABP_EscapeVan_C::BndEvt__BP_EscapeVan_SBZSecuredBagVisualize_K2Node_Compone
 }
 
 
-// Function BP_EscapeVan.BP_EscapeVan_C.ExecuteUbergraph_BP_EscapeVan
-// (Final, UbergraphFunction)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function BP_EscapeVan.BP_EscapeVan_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
 
-void ABP_EscapeVan_C::ExecuteUbergraph_BP_EscapeVan(int32 EntryPoint)
+void ABP_EscapeVan_C::ReceiveBeginPlay()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_EscapeVan_C", "ExecuteUbergraph_BP_EscapeVan");
+		Func = Class->GetFunction("BP_EscapeVan_C", "ReceiveBeginPlay");
 
-	Params::BP_EscapeVan_C_ExecuteUbergraph_BP_EscapeVan Parms{};
+	UObject::ProcessEvent(Func, nullptr);
+}
 
-	Parms.EntryPoint = EntryPoint;
 
-	UObject::ProcessEvent(Func, &Parms);
+// Function BP_EscapeVan.BP_EscapeVan_C.UserConstructionScript
+// (Event, Public, BlueprintCallable, BlueprintEvent)
+
+void ABP_EscapeVan_C::UserConstructionScript()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_EscapeVan_C", "UserConstructionScript");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

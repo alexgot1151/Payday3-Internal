@@ -26,8 +26,8 @@ public:
 	class ABP_KeyPad_C*                           KeyPad;                                            // 0x02C8(0x0008)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, IsPlainOldData, NoDestructor, ExposeOnSpawn, HasGetValueTypeHash)
 
 public:
-	void ReceiveTick(float DeltaSeconds);
 	void ExecuteUbergraph_BP_UVLightPlayer(int32 EntryPoint);
+	void ReceiveTick(float DeltaSeconds);
 
 public:
 	static class UClass* StaticClass()

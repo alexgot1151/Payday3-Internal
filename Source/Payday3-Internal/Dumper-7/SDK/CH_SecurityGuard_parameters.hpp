@@ -11,22 +11,12 @@
 #include "Basic.hpp"
 
 #include "Starbreeze_structs.hpp"
-#include "AkAudio_structs.hpp"
 #include "CoreUObject_structs.hpp"
+#include "AkAudio_structs.hpp"
 
 
 namespace SDK::Params
 {
-
-// Function CH_SecurityGuard.CH_SecurityGuard_C.BP_OnHeistStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct CH_SecurityGuard_C_BP_OnHeistStateChanged final
-{
-public:
-	EPD3HeistState                                OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	EPD3HeistState                                NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_CH_SecurityGuard_C_BP_OnHeistStateChanged;
 
 // Function CH_SecurityGuard.CH_SecurityGuard_C.ExecuteUbergraph_CH_SecurityGuard
 // 0x00A8 (0x00A8 - 0x0000)
@@ -66,6 +56,16 @@ public:
 	bool                                          CallFunc_IsDedicatedServer_ReturnValue_1;          // 0x00A0(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_CH_SecurityGuard_C_ExecuteUbergraph_CH_SecurityGuard;
+
+// Function CH_SecurityGuard.CH_SecurityGuard_C.BP_OnHeistStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct CH_SecurityGuard_C_BP_OnHeistStateChanged final
+{
+public:
+	EPD3HeistState                                OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	EPD3HeistState                                NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_CH_SecurityGuard_C_BP_OnHeistStateChanged;
 
 }
 

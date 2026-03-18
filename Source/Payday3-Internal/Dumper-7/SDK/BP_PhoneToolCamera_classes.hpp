@@ -54,7 +54,6 @@ public:
 		return GetDefaultObjImpl<ABP_PhoneToolCamera_C>();
 	}
 };
-DUMPER7_ASSERTS_ABP_PhoneToolCamera_C;
 
 }
 

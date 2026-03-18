@@ -17,27 +17,6 @@
 namespace SDK::Params
 {
 
-// Function BP_BaseRotatingInteractable.BP_BaseRotatingInteractable_C.UserConstructionScript
-// 0x012C (0x012C - 0x0000)
-struct BP_BaseRotatingInteractable_C_UserConstructionScript final
-{
-public:
-	struct FVector                                CallFunc_Multiply_VectorFloat_ReturnValue;         // 0x0000(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	struct FHitResult                             CallFunc_K2_SetRelativeLocation_SweepHitResult;    // 0x000C(0x0090)(IsPlainOldData, NoDestructor, ContainsInstancedReference)
-	struct FHitResult                             CallFunc_K2_SetRelativeLocation_SweepHitResult_1;  // 0x009C(0x0090)(IsPlainOldData, NoDestructor, ContainsInstancedReference)
-};
-DUMPER7_ASSERTS_BP_BaseRotatingInteractable_C_UserConstructionScript;
-
-// Function BP_BaseRotatingInteractable.BP_BaseRotatingInteractable_C.BP_OnStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct BP_BaseRotatingInteractable_C_BP_OnStateChanged final
-{
-public:
-	bool                                          bNewState;                                         // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmentics;                                     // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_BaseRotatingInteractable_C_BP_OnStateChanged;
-
 // Function BP_BaseRotatingInteractable.BP_BaseRotatingInteractable_C.ExecuteUbergraph_BP_BaseRotatingInteractable
 // 0x00B4 (0x00B4 - 0x0000)
 struct BP_BaseRotatingInteractable_C_ExecuteUbergraph_BP_BaseRotatingInteractable final
@@ -56,6 +35,27 @@ public:
 	struct FHitResult                             CallFunc_K2_SetRelativeRotation_SweepHitResult;    // 0x0024(0x0090)(IsPlainOldData, NoDestructor, ContainsInstancedReference)
 };
 DUMPER7_ASSERTS_BP_BaseRotatingInteractable_C_ExecuteUbergraph_BP_BaseRotatingInteractable;
+
+// Function BP_BaseRotatingInteractable.BP_BaseRotatingInteractable_C.BP_OnStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct BP_BaseRotatingInteractable_C_BP_OnStateChanged final
+{
+public:
+	bool                                          bNewState;                                         // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmentics;                                     // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_BaseRotatingInteractable_C_BP_OnStateChanged;
+
+// Function BP_BaseRotatingInteractable.BP_BaseRotatingInteractable_C.UserConstructionScript
+// 0x012C (0x012C - 0x0000)
+struct BP_BaseRotatingInteractable_C_UserConstructionScript final
+{
+public:
+	struct FVector                                CallFunc_Multiply_VectorFloat_ReturnValue;         // 0x0000(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	struct FHitResult                             CallFunc_K2_SetRelativeLocation_SweepHitResult;    // 0x000C(0x0090)(IsPlainOldData, NoDestructor, ContainsInstancedReference)
+	struct FHitResult                             CallFunc_K2_SetRelativeLocation_SweepHitResult_1;  // 0x009C(0x0090)(IsPlainOldData, NoDestructor, ContainsInstancedReference)
+};
+DUMPER7_ASSERTS_BP_BaseRotatingInteractable_C_UserConstructionScript;
 
 }
 

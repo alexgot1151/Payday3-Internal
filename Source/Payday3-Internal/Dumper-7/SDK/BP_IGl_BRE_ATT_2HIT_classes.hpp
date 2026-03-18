@@ -11,8 +11,8 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
-#include "BPS_GlassHit_VFXData_structs.hpp"
 #include "CoreUObject_structs.hpp"
+#include "BPS_GlassHit_VFXData_structs.hpp"
 #include "BP_AttractorDestructionBase_classes.hpp"
 
 

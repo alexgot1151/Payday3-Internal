@@ -29,12 +29,12 @@ public:
 	TArray<class UStaticMeshComponent*>           chargeMeshes;                                      // 0x0568(0x0010)(Edit, BlueprintVisible, DisableEditOnInstance, ContainsInstancedReference)
 
 public:
-	void createChargeMeshes(bool outline);
-	void UserConstructionScript();
-	void OnThrown();
-	void OnChargesChanged(float ChargesChangeTo, bool bDoCosmetics);
-	void ReceiveBeginPlay();
 	void ExecuteUbergraph_BP_ArmorRepairKit(int32 EntryPoint);
+	void ReceiveBeginPlay();
+	void OnChargesChanged(float ChargesChangeTo, bool bDoCosmetics);
+	void OnThrown();
+	void UserConstructionScript();
+	void createChargeMeshes(bool outline);
 
 public:
 	static class UClass* StaticClass()

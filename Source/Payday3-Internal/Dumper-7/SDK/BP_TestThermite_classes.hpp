@@ -43,9 +43,9 @@ public:
 	bool                                          Block_player;                                      // 0x0418(0x0001)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor)
 
 public:
-	void BP_OnStateChanged(ESBZThermiteBurnState OldState, ESBZThermiteBurnState NewState, bool bDoCosmetics);
-	void BP_OnFlashOver();
 	void ExecuteUbergraph_BP_TestThermite(int32 EntryPoint);
+	void BP_OnFlashOver();
+	void BP_OnStateChanged(ESBZThermiteBurnState OldState, ESBZThermiteBurnState NewState, bool bDoCosmetics);
 	void BP_OnSteamExplosion();
 	void BP_OnThermiteBagOverlapped(bool bIsInitialBag);
 	void BP_OnInterferenceChanged(const bool bInterfered);

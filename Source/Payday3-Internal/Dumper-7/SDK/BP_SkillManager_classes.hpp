@@ -17,7 +17,7 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass BP_SkillManager.BP_SkillManager_C
-// 0x0000 (0x0110 - 0x0110)
+// 0x0000 (0x0128 - 0x0128)
 class UBP_SkillManager_C final : public USBZSkillManager
 {
 public:

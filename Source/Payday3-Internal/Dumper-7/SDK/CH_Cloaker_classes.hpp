@@ -20,19 +20,19 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass CH_Cloaker.CH_Cloaker_C
-// 0x0010 (0x1D10 - 0x1D00)
+// 0x0010 (0x1D20 - 0x1D10)
 class ACH_Cloaker_C final : public ACH_BaseCop_C
 {
 public:
-	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x1D00(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
-	class UNiagaraComponent*                      Niagara;                                           // 0x1D08(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x1D10(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
+	class UNiagaraComponent*                      Niagara;                                           // 0x1D18(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ReceiveBeginPlay();
-	void BP_OnTagReactionPlayed();
-	void BP_OnHeistStateChanged(EPD3HeistState OldState, EPD3HeistState NewState);
-	void BP_OnKill();
 	void ExecuteUbergraph_CH_Cloaker(int32 EntryPoint);
+	void BP_OnKill();
+	void BP_OnHeistStateChanged(EPD3HeistState OldState, EPD3HeistState NewState);
+	void BP_OnTagReactionPlayed();
+	void ReceiveBeginPlay();
 
 public:
 	static class UClass* StaticClass()

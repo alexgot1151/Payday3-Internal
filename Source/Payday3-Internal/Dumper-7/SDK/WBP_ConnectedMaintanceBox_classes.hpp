@@ -38,20 +38,20 @@ public:
 	class UWidgetSwitcher*                        WidgetSwitcher_84;                                 // 0x02F8(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
 
 public:
-	void SetSymbol(int32 Index_0);
-	void SetCompetedText(const class FText& In);
-	void SetDisabledText(const class FText& In);
-	void SetErrorText(const class FText& In);
-	void SetIntroText(const class FText& In);
-	void SetLastConnection(const class FText& InText);
-	void SetFirstConnection(const class FText& InText);
-	void SetModelNumber(const class FText& InText);
-	void showScreenIntro();
-	void showScreenMain();
-	void showScreenError();
-	void showScreenDisabled();
-	void showScreenCompleted();
 	void ExecuteUbergraph_WBP_ConnectedMaintanceBox(int32 EntryPoint);
+	void showScreenCompleted();
+	void showScreenDisabled();
+	void showScreenError();
+	void showScreenMain();
+	void showScreenIntro();
+	void SetModelNumber(const class FText& InText);
+	void SetFirstConnection(const class FText& InText);
+	void SetLastConnection(const class FText& InText);
+	void SetIntroText(const class FText& In);
+	void SetErrorText(const class FText& In);
+	void SetDisabledText(const class FText& In);
+	void SetCompetedText(const class FText& In);
+	void SetSymbol(int32 Index_0);
 
 public:
 	static class UClass* StaticClass()

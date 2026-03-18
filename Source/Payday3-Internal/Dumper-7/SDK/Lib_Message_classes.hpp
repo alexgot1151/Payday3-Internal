@@ -21,9 +21,9 @@ namespace SDK
 class ULib_Message_C final : public UBlueprintFunctionLibrary
 {
 public:
-	void GMessage_Success(const class FString& B, class UObject* __WorldContext);
-	void GMessage_Error(const class FString& B, class UObject* __WorldContext);
 	void GMessage_Warning(const class FString& InString, class UObject* __WorldContext);
+	void GMessage_Error(const class FString& B, class UObject* __WorldContext);
+	void GMessage_Success(const class FString& B, class UObject* __WorldContext);
 
 public:
 	static class UClass* StaticClass()

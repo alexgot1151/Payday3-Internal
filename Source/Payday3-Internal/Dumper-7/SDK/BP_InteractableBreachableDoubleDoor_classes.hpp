@@ -28,8 +28,8 @@ public:
 	class USBZPropDamageComponent*                SBZPropDamage;                                     // 0x06E0(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void setBreachedMeshVisibility(bool breached);
 	void ExecuteUbergraph_BP_InteractableBreachableDoubleDoor(int32 EntryPoint);
+	void setBreachedMeshVisibility(bool breached);
 
 public:
 	static class UClass* StaticClass()

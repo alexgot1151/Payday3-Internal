@@ -17,34 +17,6 @@
 namespace SDK
 {
 
-// Function dynamicSignComponent.dynamicSignComponent_C.updateWidget
-// (BlueprintCallable, BlueprintEvent)
-
-void UdynamicSignComponent_C::updateWidget()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("dynamicSignComponent_C", "updateWidget");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function dynamicSignComponent.dynamicSignComponent_C.ReceiveBeginPlay
-// (Event, Public, BlueprintEvent)
-
-void UdynamicSignComponent_C::ReceiveBeginPlay()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("dynamicSignComponent_C", "ReceiveBeginPlay");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
 // Function dynamicSignComponent.dynamicSignComponent_C.ExecuteUbergraph_dynamicSignComponent
 // (Final, UbergraphFunction)
 // Parameters:
@@ -62,6 +34,34 @@ void UdynamicSignComponent_C::ExecuteUbergraph_dynamicSignComponent(int32 EntryP
 	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function dynamicSignComponent.dynamicSignComponent_C.ReceiveBeginPlay
+// (Event, Public, BlueprintEvent)
+
+void UdynamicSignComponent_C::ReceiveBeginPlay()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("dynamicSignComponent_C", "ReceiveBeginPlay");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function dynamicSignComponent.dynamicSignComponent_C.updateWidget
+// (BlueprintCallable, BlueprintEvent)
+
+void UdynamicSignComponent_C::updateWidget()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("dynamicSignComponent_C", "updateWidget");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

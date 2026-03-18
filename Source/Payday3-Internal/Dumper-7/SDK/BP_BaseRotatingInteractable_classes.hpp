@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "CoreUObject_structs.hpp"
+#include "Engine_structs.hpp"
 #include "Starbreeze_classes.hpp"
 
 
@@ -36,11 +36,11 @@ public:
 	struct FVector                                pivotPoint;                                        // 0x030C(0x000C)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void UserConstructionScript();
-	void MoveTimeLine__FinishedFunc();
-	void MoveTimeLine__UpdateFunc();
-	void BP_OnStateChanged(bool bNewState, bool bDoCosmentics);
 	void ExecuteUbergraph_BP_BaseRotatingInteractable(int32 EntryPoint);
+	void BP_OnStateChanged(bool bNewState, bool bDoCosmentics);
+	void MoveTimeLine__UpdateFunc();
+	void MoveTimeLine__FinishedFunc();
+	void UserConstructionScript();
 
 public:
 	static class UClass* StaticClass()

@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BPCactusPot_01_B.BPCactusPot_01_B_C.ExecuteUbergraph_BPCactusPot_01_B
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABPCactusPot_01_B_C::ExecuteUbergraph_BPCactusPot_01_B(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BPCactusPot_01_B_C", "ExecuteUbergraph_BPCactusPot_01_B");
+
+	Params::BPCactusPot_01_B_C_ExecuteUbergraph_BPCactusPot_01_B Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BPCactusPot_01_B.BPCactusPot_01_B_C.BndEvt__BPCactusPot_01_B_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
 // (HasOutParams, BlueprintEvent)
 // Parameters:
@@ -34,26 +54,6 @@ void ABPCactusPot_01_B_C::BndEvt__BPCactusPot_01_B_SBZCosmeticDestruction_K2Node
 
 	Parms.Type = Type;
 	Parms.HitContext = std::move(HitContext);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BPCactusPot_01_B.BPCactusPot_01_B_C.ExecuteUbergraph_BPCactusPot_01_B
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABPCactusPot_01_B_C::ExecuteUbergraph_BPCactusPot_01_B(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BPCactusPot_01_B_C", "ExecuteUbergraph_BPCactusPot_01_B");
-
-	Params::BPCactusPot_01_B_C_ExecuteUbergraph_BPCactusPot_01_B Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

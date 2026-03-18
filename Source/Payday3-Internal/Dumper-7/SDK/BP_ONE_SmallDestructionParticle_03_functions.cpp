@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BP_ONE_SmallDestructionParticle_03.BP_ONE_SmallDestructionParticle_03_C.ExecuteUbergraph_BP_ONE_SmallDestructionParticle_03
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_ONE_SmallDestructionParticle_03_C::ExecuteUbergraph_BP_ONE_SmallDestructionParticle_03(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_SmallDestructionParticle_03_C", "ExecuteUbergraph_BP_ONE_SmallDestructionParticle_03");
+
+	Params::BP_ONE_SmallDestructionParticle_03_C_ExecuteUbergraph_BP_ONE_SmallDestructionParticle_03 Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BP_ONE_SmallDestructionParticle_03.BP_ONE_SmallDestructionParticle_03_C.BndEvt__BP_CactusPot_01_A_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
 // (HasOutParams, BlueprintEvent)
 // Parameters:
@@ -34,26 +54,6 @@ void ABP_ONE_SmallDestructionParticle_03_C::BndEvt__BP_CactusPot_01_A_SBZCosmeti
 
 	Parms.Type = Type;
 	Parms.HitContext = std::move(HitContext);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_ONE_SmallDestructionParticle_03.BP_ONE_SmallDestructionParticle_03_C.ExecuteUbergraph_BP_ONE_SmallDestructionParticle_03
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_ONE_SmallDestructionParticle_03_C::ExecuteUbergraph_BP_ONE_SmallDestructionParticle_03(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_SmallDestructionParticle_03_C", "ExecuteUbergraph_BP_ONE_SmallDestructionParticle_03");
-
-	Params::BP_ONE_SmallDestructionParticle_03_C_ExecuteUbergraph_BP_ONE_SmallDestructionParticle_03 Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

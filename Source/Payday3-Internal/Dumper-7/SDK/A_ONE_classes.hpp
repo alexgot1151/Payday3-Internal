@@ -36,8 +36,8 @@ public:
 	class ASBZAmbientSound*                       SBZAmbientSound_Birds_ExecuteUbergraph_A_ONE_RefProperty; // 0x0388(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ReceiveBeginPlay();
 	void ExecuteUbergraph_A_ONE(int32 EntryPoint);
+	void ReceiveBeginPlay();
 
 public:
 	static class UClass* StaticClass()

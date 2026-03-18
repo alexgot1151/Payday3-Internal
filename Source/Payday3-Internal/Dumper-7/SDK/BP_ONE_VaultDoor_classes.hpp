@@ -60,18 +60,18 @@ public:
 	TMulticastInlineDelegate<void()>              OnInteractionComplete;                             // 0x03C8(0x0010)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, BlueprintAssignable, BlueprintCallable)
 
 public:
-	void Timeline_Open__FinishedFunc();
-	void Timeline_Open__UpdateFunc();
-	void Timeline_Open__TriggerDoorFX__EventFunc();
-	void Timeline_0__FinishedFunc();
-	void Timeline_0__UpdateFunc();
-	void ReceiveBeginPlay();
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
-	void OpenDoors_Internal(bool bOpen);
-	void BndEvt__BP_ONE_VaultDoor_SBZInteractable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void BndEvt__BP_ONE_VaultDoor_SBZInteractable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void BndEvt__BP_ONE_VaultDoor_SBZInteractable_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
 	void ExecuteUbergraph_BP_ONE_VaultDoor(int32 EntryPoint);
+	void BndEvt__BP_ONE_VaultDoor_SBZInteractable_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void BndEvt__BP_ONE_VaultDoor_SBZInteractable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void BndEvt__BP_ONE_VaultDoor_SBZInteractable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void OpenDoors_Internal(bool bOpen);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void ReceiveBeginPlay();
+	void Timeline_0__UpdateFunc();
+	void Timeline_0__FinishedFunc();
+	void Timeline_Open__TriggerDoorFX__EventFunc();
+	void Timeline_Open__UpdateFunc();
+	void Timeline_Open__FinishedFunc();
 
 public:
 	static class UClass* StaticClass()

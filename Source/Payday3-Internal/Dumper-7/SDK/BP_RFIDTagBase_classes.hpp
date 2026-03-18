@@ -27,8 +27,8 @@ public:
 	class UStaticMeshComponent*                   StaticMesh;                                        // 0x02E0(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void BndEvt__BP_RFIDTagBase_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable_0, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
 	void ExecuteUbergraph_BP_RFIDTagBase(int32 EntryPoint);
+	void BndEvt__BP_RFIDTagBase_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable_0, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
 
 public:
 	static class UClass* StaticClass()

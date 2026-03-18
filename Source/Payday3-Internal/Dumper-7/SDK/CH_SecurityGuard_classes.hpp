@@ -11,9 +11,9 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
-#include "CH_BaseCop_classes.hpp"
 #include "CoreUObject_structs.hpp"
 #include "GameplayTags_structs.hpp"
+#include "CH_BaseCop_classes.hpp"
 #include "Starbreeze_structs.hpp"
 #include "AkAudio_structs.hpp"
 
@@ -22,22 +22,22 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass CH_SecurityGuard.CH_SecurityGuard_C
-// 0x0050 (0x1D50 - 0x1D00)
-class ACH_SecurityGuard_C : public ACH_BaseCop_C
+// 0x0050 (0x1D60 - 0x1D10)
+class ACH_SecurityGuard_C final : public ACH_BaseCop_C
 {
 public:
-	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x1D00(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
-	class USBZShoutTargetComponent*               SBZShoutTarget;                                    // 0x1D08(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
-	class USceneComponent*                        AttachPoint;                                       // 0x1D10(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
-	class USBZAIStimuliReactionComponent*         SBZAIStimuliReaction;                              // 0x1D18(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
-	struct FFloatRange                            SurrenderDelayRange;                               // 0x1D20(0x0010)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	struct FGameplayTagContainer                  SurrenderTagContainer;                             // 0x1D30(0x0020)(Edit, BlueprintVisible, DisableEditOnInstance)
+	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x1D10(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
+	class USBZShoutTargetComponent*               SBZShoutTarget;                                    // 0x1D18(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	class USceneComponent*                        AttachPoint;                                       // 0x1D20(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	class USBZAIStimuliReactionComponent*         SBZAIStimuliReaction;                              // 0x1D28(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	struct FFloatRange                            SurrenderDelayRange;                               // 0x1D30(0x0010)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	struct FGameplayTagContainer                  SurrenderTagContainer;                             // 0x1D40(0x0020)(Edit, BlueprintVisible, DisableEditOnInstance)
 
 public:
-	void ReceiveBeginPlay();
-	void BP_OnHeistStateChanged(EPD3HeistState OldState, EPD3HeistState NewState);
-	void BP_OnKill();
 	void ExecuteUbergraph_CH_SecurityGuard(int32 EntryPoint);
+	void BP_OnKill();
+	void BP_OnHeistStateChanged(EPD3HeistState OldState, EPD3HeistState NewState);
+	void ReceiveBeginPlay();
 
 public:
 	static class UClass* StaticClass()

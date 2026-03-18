@@ -18,99 +18,6 @@
 namespace SDK::Params
 {
 
-// Function BP_Locker_02.BP_Locker_02_C.randomizeSpawnedActorTransform
-// 0x00D0 (0x00D0 - 0x0000)
-struct BP_Locker_02_C_randomizeSpawnedActorTransform final
-{
-public:
-	class AActor*                                 spawnedActor;                                      // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          valid;                                             // 0x0008(0x0001)(Parm, OutParm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	uint8                                         Pad_9[0x7];                                        // 0x0009(0x0007)(Fixing Size After Last Property [ Dumper-7 ])
-	struct FTransform                             transform;                                         // 0x0010(0x0030)(Parm, OutParm, IsPlainOldData, NoDestructor)
-	float                                         CallFunc_RandomFloatInRange_ReturnValue;           // 0x0040(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	struct FVector                                CallFunc_GetActorBounds_Origin;                    // 0x0044(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	struct FVector                                CallFunc_GetActorBounds_BoxExtent;                 // 0x0050(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	struct FRotator                               CallFunc_MakeRotator_ReturnValue;                  // 0x005C(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor)
-	float                                         CallFunc_BreakVector_X;                            // 0x0068(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_BreakVector_Y;                            // 0x006C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_BreakVector_Z;                            // 0x0070(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_FMax_ReturnValue;                         // 0x0074(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_Multiply_FloatFloat_ReturnValue;          // 0x0078(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_Subtract_FloatFloat_ReturnValue;          // 0x007C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_Multiply_FloatFloat_ReturnValue_1;        // 0x0080(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          CallFunc_Greater_FloatFloat_ReturnValue;           // 0x0084(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-	uint8                                         Pad_85[0x3];                                       // 0x0085(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
-	float                                         CallFunc_RandomFloatInRange_ReturnValue_1;         // 0x0088(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_RandomFloatInRange_ReturnValue_2;         // 0x008C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	struct FVector                                CallFunc_MakeVector_ReturnValue;                   // 0x0090(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_9C[0x4];                                       // 0x009C(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
-	struct FTransform                             CallFunc_MakeTransform_ReturnValue;                // 0x00A0(0x0030)(IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_Locker_02_C_randomizeSpawnedActorTransform;
-
-// Function BP_Locker_02.BP_Locker_02_C.setNumber
-// 0x0018 (0x0018 - 0x0000)
-struct BP_Locker_02_C_setNumber final
-{
-public:
-	int32                                         number;                                            // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          CallFunc_GreaterEqual_IntInt_ReturnValue;          // 0x0004(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-	uint8                                         Pad_5[0x3];                                        // 0x0005(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
-	float                                         CallFunc_Conv_IntToFloat_ReturnValue;              // 0x0008(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_C[0x4];                                        // 0x000C(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
-	class UMaterialInstanceDynamic*               CallFunc_CreateDynamicMaterialInstance_ReturnValue; // 0x0010(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_Locker_02_C_setNumber;
-
-// Function BP_Locker_02.BP_Locker_02_C.UserConstructionScript
-// 0x0080 (0x0080 - 0x0000)
-struct BP_Locker_02_C_UserConstructionScript final
-{
-public:
-	struct FTransform                             CallFunc_K2_GetComponentToWorld_ReturnValue;       // 0x0000(0x0030)(IsPlainOldData, NoDestructor)
-	TMap<class USceneComponent*, struct FTransform> K2Node_MakeMap_Map;                              // 0x0030(0x0050)(ContainsInstancedReference)
-};
-DUMPER7_ASSERTS_BP_Locker_02_C_UserConstructionScript;
-
-// Function BP_Locker_02.BP_Locker_02_C.SpawnItemInContainer
-// 0x0018 (0x0018 - 0x0000)
-struct BP_Locker_02_C_SpawnItemInContainer final
-{
-public:
-	class UClass*                                 WhatShould_Spawn;                                  // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class ABP_RoomSpawnController_C*              RoomControllerRef;                                 // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class AActor*                                 SpawnedActor;                                      // 0x0010(0x0008)(Parm, OutParm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_Locker_02_C_SpawnItemInContainer;
-
-// Function BP_Locker_02.BP_Locker_02_C.PopulateSpawnInformationMap
-// 0x0050 (0x0050 - 0x0000)
-struct BP_Locker_02_C_PopulateSpawnInformationMap final
-{
-public:
-	TMap<class USceneComponent*, struct FTransform> InOutSpawnDataMap;                               // 0x0000(0x0050)(Parm, OutParm, ContainsInstancedReference)
-};
-DUMPER7_ASSERTS_BP_Locker_02_C_PopulateSpawnInformationMap;
-
-// Function BP_Locker_02.BP_Locker_02_C.OnActorSpawned
-// 0x0010 (0x0010 - 0x0000)
-struct BP_Locker_02_C_OnActorSpawned final
-{
-public:
-	class AActor*                                 SpawnedActor;                                      // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class USceneComponent*                        AttachParent;                                      // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_Locker_02_C_OnActorSpawned;
-
-// Function BP_Locker_02.BP_Locker_02_C.BP_OnMiniGameSuccess
-// 0x0001 (0x0001 - 0x0000)
-struct BP_Locker_02_C_BP_OnMiniGameSuccess final
-{
-public:
-	bool                                          bDoCosmetics;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_Locker_02_C_BP_OnMiniGameSuccess;
-
 // Function BP_Locker_02.BP_Locker_02_C.ExecuteUbergraph_BP_Locker_02
 // 0x01F0 (0x01F0 - 0x0000)
 struct BP_Locker_02_C_ExecuteUbergraph_BP_Locker_02 final
@@ -142,6 +49,99 @@ public:
 	int32                                         CallFunc_PostEvent_ReturnValue_1;                  // 0x01E4(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_Locker_02_C_ExecuteUbergraph_BP_Locker_02;
+
+// Function BP_Locker_02.BP_Locker_02_C.BP_OnMiniGameSuccess
+// 0x0001 (0x0001 - 0x0000)
+struct BP_Locker_02_C_BP_OnMiniGameSuccess final
+{
+public:
+	bool                                          bDoCosmetics;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_Locker_02_C_BP_OnMiniGameSuccess;
+
+// Function BP_Locker_02.BP_Locker_02_C.OnActorSpawned
+// 0x0010 (0x0010 - 0x0000)
+struct BP_Locker_02_C_OnActorSpawned final
+{
+public:
+	class AActor*                                 SpawnedActor;                                      // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class USceneComponent*                        AttachParent;                                      // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_Locker_02_C_OnActorSpawned;
+
+// Function BP_Locker_02.BP_Locker_02_C.UserConstructionScript
+// 0x0080 (0x0080 - 0x0000)
+struct BP_Locker_02_C_UserConstructionScript final
+{
+public:
+	struct FTransform                             CallFunc_K2_GetComponentToWorld_ReturnValue;       // 0x0000(0x0030)(IsPlainOldData, NoDestructor)
+	TMap<class USceneComponent*, struct FTransform> K2Node_MakeMap_Map;                              // 0x0030(0x0050)(ContainsInstancedReference)
+};
+DUMPER7_ASSERTS_BP_Locker_02_C_UserConstructionScript;
+
+// Function BP_Locker_02.BP_Locker_02_C.setNumber
+// 0x0018 (0x0018 - 0x0000)
+struct BP_Locker_02_C_setNumber final
+{
+public:
+	int32                                         number;                                            // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          CallFunc_GreaterEqual_IntInt_ReturnValue;          // 0x0004(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+	uint8                                         Pad_5[0x3];                                        // 0x0005(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
+	float                                         CallFunc_Conv_IntToFloat_ReturnValue;              // 0x0008(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_C[0x4];                                        // 0x000C(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
+	class UMaterialInstanceDynamic*               CallFunc_CreateDynamicMaterialInstance_ReturnValue; // 0x0010(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_Locker_02_C_setNumber;
+
+// Function BP_Locker_02.BP_Locker_02_C.randomizeSpawnedActorTransform
+// 0x00D0 (0x00D0 - 0x0000)
+struct BP_Locker_02_C_randomizeSpawnedActorTransform final
+{
+public:
+	class AActor*                                 spawnedActor;                                      // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          valid;                                             // 0x0008(0x0001)(Parm, OutParm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	uint8                                         Pad_9[0x7];                                        // 0x0009(0x0007)(Fixing Size After Last Property [ Dumper-7 ])
+	struct FTransform                             transform;                                         // 0x0010(0x0030)(Parm, OutParm, IsPlainOldData, NoDestructor)
+	float                                         CallFunc_RandomFloatInRange_ReturnValue;           // 0x0040(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	struct FVector                                CallFunc_GetActorBounds_Origin;                    // 0x0044(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	struct FVector                                CallFunc_GetActorBounds_BoxExtent;                 // 0x0050(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	struct FRotator                               CallFunc_MakeRotator_ReturnValue;                  // 0x005C(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor)
+	float                                         CallFunc_BreakVector_X;                            // 0x0068(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_BreakVector_Y;                            // 0x006C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_BreakVector_Z;                            // 0x0070(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_FMax_ReturnValue;                         // 0x0074(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_Multiply_FloatFloat_ReturnValue;          // 0x0078(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_Subtract_FloatFloat_ReturnValue;          // 0x007C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_Multiply_FloatFloat_ReturnValue_1;        // 0x0080(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          CallFunc_Greater_FloatFloat_ReturnValue;           // 0x0084(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+	uint8                                         Pad_85[0x3];                                       // 0x0085(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
+	float                                         CallFunc_RandomFloatInRange_ReturnValue_1;         // 0x0088(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_RandomFloatInRange_ReturnValue_2;         // 0x008C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	struct FVector                                CallFunc_MakeVector_ReturnValue;                   // 0x0090(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_9C[0x4];                                       // 0x009C(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
+	struct FTransform                             CallFunc_MakeTransform_ReturnValue;                // 0x00A0(0x0030)(IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_Locker_02_C_randomizeSpawnedActorTransform;
+
+// Function BP_Locker_02.BP_Locker_02_C.PopulateSpawnInformationMap
+// 0x0050 (0x0050 - 0x0000)
+struct BP_Locker_02_C_PopulateSpawnInformationMap final
+{
+public:
+	TMap<class USceneComponent*, struct FTransform> InOutSpawnDataMap;                               // 0x0000(0x0050)(Parm, OutParm, ContainsInstancedReference)
+};
+DUMPER7_ASSERTS_BP_Locker_02_C_PopulateSpawnInformationMap;
+
+// Function BP_Locker_02.BP_Locker_02_C.SpawnItemInContainer
+// 0x0018 (0x0018 - 0x0000)
+struct BP_Locker_02_C_SpawnItemInContainer final
+{
+public:
+	class UClass*                                 WhatShould_Spawn;                                  // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class ABP_RoomSpawnController_C*              RoomControllerRef;                                 // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class AActor*                                 SpawnedActor;                                      // 0x0010(0x0008)(Parm, OutParm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_Locker_02_C_SpawnItemInContainer;
 
 }
 

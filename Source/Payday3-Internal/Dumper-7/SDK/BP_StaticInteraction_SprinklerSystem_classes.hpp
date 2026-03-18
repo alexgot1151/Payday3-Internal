@@ -10,9 +10,9 @@
 
 #include "Basic.hpp"
 
+#include "Engine_structs.hpp"
 #include "Starbreeze_structs.hpp"
 #include "Starbreeze_classes.hpp"
-#include "Engine_structs.hpp"
 
 
 namespace SDK
@@ -33,12 +33,12 @@ public:
 	ESBZThermiteBurnState                         ThermiteState;                                     // 0x0310(0x0001)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void UserConstructionScript();
-	void ReceiveBeginPlay();
-	void OnSabotaged(bool bSabotaged);
-	void BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable_0, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
 	void ExecuteUbergraph_BP_StaticInteraction_SprinklerSystem(int32 EntryPoint);
+	void BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
+	void BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable_0, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void OnSabotaged(bool bSabotaged);
+	void ReceiveBeginPlay();
+	void UserConstructionScript();
 
 public:
 	static class UClass* StaticClass()

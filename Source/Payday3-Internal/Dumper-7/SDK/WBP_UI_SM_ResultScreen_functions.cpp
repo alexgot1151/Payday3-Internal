@@ -37,6 +37,40 @@ void UWBP_UI_SM_ResultScreen_C::ExecuteUbergraph_WBP_UI_SM_ResultScreen(int32 En
 }
 
 
+// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.OnHostDisconnected
+// (BlueprintCallable, BlueprintEvent)
+
+void UWBP_UI_SM_ResultScreen_C::OnHostDisconnected()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "OnHostDisconnected");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.OnMissionResultReady
+// (Event, Public, BlueprintEvent)
+// Parameters:
+// class USBZStateMachineDataResult*       ResultData                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_UI_SM_ResultScreen_C::OnMissionResultReady(class USBZStateMachineDataResult* ResultData)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "OnMissionResultReady");
+
+	Params::WBP_UI_SM_ResultScreen_C_OnMissionResultReady Parms{};
+
+	Parms.ResultData = ResultData;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.OnPartyMergeFinished
 // (Event, Protected, BlueprintEvent)
 // Parameters:
@@ -441,6 +475,26 @@ void UWBP_UI_SM_ResultScreen_C::OnRestartAcceptTimerUpdated(float InNewTime)
 }
 
 
+// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.OnRestartCountdownTimerUpdated
+// (Event, Protected, BlueprintEvent)
+// Parameters:
+// float                                   InNewTime                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_UI_SM_ResultScreen_C::OnRestartCountdownTimerUpdated(float InNewTime)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "OnRestartCountdownTimerUpdated");
+
+	Params::WBP_UI_SM_ResultScreen_C_OnRestartCountdownTimerUpdated Parms{};
+
+	Parms.InNewTime = InNewTime;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.Destruct
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 
@@ -488,26 +542,6 @@ void UWBP_UI_SM_ResultScreen_C::OnRestartExpireTimerUpdated(float InNewTime)
 		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "OnRestartExpireTimerUpdated");
 
 	Params::WBP_UI_SM_ResultScreen_C_OnRestartExpireTimerUpdated Parms{};
-
-	Parms.InNewTime = InNewTime;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.OnRestartCountdownTimerUpdated
-// (Event, Protected, BlueprintEvent)
-// Parameters:
-// float                                   InNewTime                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UWBP_UI_SM_ResultScreen_C::OnRestartCountdownTimerUpdated(float InNewTime)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "OnRestartCountdownTimerUpdated");
-
-	Params::WBP_UI_SM_ResultScreen_C_OnRestartCountdownTimerUpdated Parms{};
 
 	Parms.InNewTime = InNewTime;
 
@@ -1237,8 +1271,22 @@ void UWBP_UI_SM_ResultScreen_C::InitializeTutorialButtons()
 }
 
 
+// Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.SetHeistEndRequest
+// (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
+
+void UWBP_UI_SM_ResultScreen_C::SetHeistEndRequest()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_UI_SM_ResultScreen_C", "SetHeistEndRequest");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
 // Function WBP_UI_SM_ResultScreen.WBP_UI_SM_ResultScreen_C.HasHostDisconnected
-// (Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent, BlueprintPure)
+// (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
 // bool                                    ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor)
 

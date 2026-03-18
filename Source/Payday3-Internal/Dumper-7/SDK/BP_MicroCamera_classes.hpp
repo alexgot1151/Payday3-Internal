@@ -44,7 +44,6 @@ public:
 		return GetDefaultObjImpl<ABP_MicroCamera_C>();
 	}
 };
-DUMPER7_ASSERTS_ABP_MicroCamera_C;
 
 }
 

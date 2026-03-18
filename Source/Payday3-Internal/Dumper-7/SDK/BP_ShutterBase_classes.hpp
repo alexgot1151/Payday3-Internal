@@ -37,13 +37,13 @@ public:
 	float                                         animStartGameTime;                                 // 0x0318(0x0004)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void setShutterCollision(bool open);
-	void SetStateFunction(ESBZVehicleDoorState State, bool animateOpening);
-	void UserConstructionScript();
-	void open_timeline__FinishedFunc();
-	void open_timeline__UpdateFunc();
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
 	void ExecuteUbergraph_BP_ShutterBase(int32 EntryPoint);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void open_timeline__UpdateFunc();
+	void open_timeline__FinishedFunc();
+	void UserConstructionScript();
+	void SetStateFunction(ESBZVehicleDoorState State, bool animateOpening);
+	void setShutterCollision(bool open);
 
 public:
 	static class UClass* StaticClass()

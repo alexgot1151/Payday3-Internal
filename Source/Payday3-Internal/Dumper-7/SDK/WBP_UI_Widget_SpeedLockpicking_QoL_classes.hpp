@@ -19,7 +19,7 @@ namespace SDK
 {
 
 // WidgetBlueprintGeneratedClass WBP_UI_Widget_SpeedLockpicking_QoL.WBP_UI_Widget_SpeedLockpicking_QoL_C
-// 0x00F8 (0x03C8 - 0x02D0)
+// 0x0100 (0x03D0 - 0x02D0)
 class UWBP_UI_Widget_SpeedLockpicking_QoL_C final : public UPD3MiniGameWidgetBase
 {
 public:
@@ -52,32 +52,33 @@ public:
 	float                                         AutoProgressRateIncrease;                          // 0x03B8(0x0004)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	float                                         AutofillTimerDelay;                                // 0x03BC(0x0004)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	struct FTimerHandle                           AutofillStartTimer;                                // 0x03C0(0x0008)(Edit, BlueprintVisible, DisableEditOnInstance, NoDestructor, HasGetValueTypeHash)
+	float                                         MaxFailTimer;                                      // 0x03C8(0x0004)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void PreConstruct(bool IsDesignTime);
-	void OnInteractPressed();
-	void MiniGameStateChanged(EPD3MiniGameState NewState);
-	void OnOwningMiniGameComponent(class USBZMiniGameComponent* MiniGameComponet);
-	void OnMiniGameDifficulty(ESBZDifficulty HeistDifficulty, uint8 MiniGameDifficulty);
-	void TickPinPosition(float DeltaTime);
-	void TickChunks(float DeltaTime);
-	void Construct();
-	void TickProgressBar(float DeltaTime);
-	void TickInteractAnimation(float DeltaTime);
-	void TickPinFail(float DeltaTime);
-	void TickAutoProgress(float DeltaTime);
-	void ToggleAutofill();
-	void TickGlowAnimation();
 	void ExecuteUbergraph_WBP_UI_Widget_SpeedLockpicking_QoL(int32 EntryPoint);
-	void SettingAutofillTimer();
-	void GainProgress(float ProgressIncrease);
-	int32 GetFreeSlot(int32 CurrentIndex);
-	void TryInteraction(bool* bChunkHit, int32* Array_Index);
-	void RemoveSlot(int32 Index_0);
-	void FadeSlot(int32 Index_0);
-	void ActivateSlot(int32 Index_0, ESBZLockChunkState State, const struct FSBZLockChunkConfig& ChunkConfig);
-	void InitChunks_Slot();
+	void TickGlowAnimation();
+	void ToggleAutofill();
+	void TickAutoProgress(float DeltaTime);
+	void TickPinFail(float DeltaTime);
+	void TickInteractAnimation(float DeltaTime);
+	void TickProgressBar(float DeltaTime);
+	void Construct();
+	void TickChunks(float DeltaTime);
+	void TickPinPosition(float DeltaTime);
+	void OnMiniGameDifficulty(ESBZDifficulty HeistDifficulty, uint8 MiniGameDifficulty);
+	void OnOwningMiniGameComponent(class USBZMiniGameComponent* MiniGameComponet);
+	void MiniGameStateChanged(EPD3MiniGameState NewState);
+	void OnInteractPressed();
+	void PreConstruct(bool IsDesignTime);
 	void Tick(const struct FGeometry& MyGeometry, float InDeltaTime);
+	void InitChunks_Slot();
+	void ActivateSlot(int32 Index_0, ESBZLockChunkState State, const struct FSBZLockChunkConfig& ChunkConfig);
+	void FadeSlot(int32 Index_0);
+	void RemoveSlot(int32 Index_0);
+	void TryInteraction(bool* bChunkHit, int32* Array_Index);
+	int32 GetFreeSlot(int32 CurrentIndex);
+	void GainProgress(float ProgressIncrease);
+	void SettingAutofillTimer();
 
 	bool IsChunkInRange(float PinPosition_0, const struct FSBZRuntimeLockChunk& Chunk) const;
 

@@ -35,25 +35,6 @@ enum class ELiveLinkSourceMode : uint8
 	ELiveLinkSourceMode_MAX                  = 3,
 };
 
-// ScriptStruct LiveLinkInterface.LiveLinkTransform
-// 0x0020 (0x0020 - 0x0000)
-struct alignas(0x08) FLiveLinkTransform final
-{
-public:
-	uint8                                         Pad_0[0x20];                                       // 0x0000(0x0020)(Fixing Struct Size After Last Property [ Dumper-7 ])
-};
-DUMPER7_ASSERTS_FLiveLinkTransform;
-
-// ScriptStruct LiveLinkInterface.LiveLinkTime
-// 0x0018 (0x0018 - 0x0000)
-struct FLiveLinkTime final
-{
-public:
-	double                                        WorldTime;                                         // 0x0000(0x0008)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	struct FQualifiedFrameTime                    SceneTime;                                         // 0x0008(0x0010)(Edit, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-};
-DUMPER7_ASSERTS_FLiveLinkTime;
-
 // ScriptStruct LiveLinkInterface.LiveLinkSubjectName
 // 0x000C (0x000C - 0x0000)
 struct FLiveLinkSubjectName final
@@ -62,6 +43,31 @@ public:
 	class FName                                   Name;                                              // 0x0000(0x000C)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
 DUMPER7_ASSERTS_FLiveLinkSubjectName;
+
+// ScriptStruct LiveLinkInterface.LiveLinkSubjectKey
+// 0x001C (0x001C - 0x0000)
+struct FLiveLinkSubjectKey final
+{
+public:
+	struct FGuid                                  Source;                                            // 0x0000(0x0010)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	struct FLiveLinkSubjectName                   SubjectName;                                       // 0x0010(0x000C)(BlueprintVisible, BlueprintReadOnly, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+};
+DUMPER7_ASSERTS_FLiveLinkSubjectKey;
+
+// ScriptStruct LiveLinkInterface.LiveLinkSubjectPreset
+// 0x0040 (0x0040 - 0x0000)
+struct FLiveLinkSubjectPreset final
+{
+public:
+	struct FLiveLinkSubjectKey                    Key;                                               // 0x0000(0x001C)(Edit, EditConst, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_1C[0x4];                                       // 0x001C(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
+	TSubclassOf<class ULiveLinkRole>              Role;                                              // 0x0020(0x0008)(Edit, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class ULiveLinkSubjectSettings*               Settings;                                          // 0x0028(0x0008)(Edit, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class ULiveLinkVirtualSubject*                VirtualSubject;                                    // 0x0030(0x0008)(Edit, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	bool                                          bEnabled;                                          // 0x0038(0x0001)(Edit, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_39[0x7];                                       // 0x0039(0x0007)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FLiveLinkSubjectPreset;
 
 // ScriptStruct LiveLinkInterface.CachedSubjectFrame
 // 0x0160 (0x0160 - 0x0000)
@@ -72,14 +78,53 @@ public:
 };
 DUMPER7_ASSERTS_FCachedSubjectFrame;
 
-// ScriptStruct LiveLinkInterface.LiveLinkBaseStaticData
-// 0x0010 (0x0010 - 0x0000)
-struct FLiveLinkBaseStaticData
+// ScriptStruct LiveLinkInterface.LiveLinkSourceHandle
+// 0x0018 (0x0018 - 0x0000)
+struct alignas(0x08) FLiveLinkSourceHandle final
 {
 public:
-	TArray<class FName>                           PropertyNames;                                     // 0x0000(0x0010)(Edit, BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic)
+	uint8                                         Pad_0[0x18];                                       // 0x0000(0x0018)(Fixing Struct Size After Last Property [ Dumper-7 ])
 };
-DUMPER7_ASSERTS_FLiveLinkBaseStaticData;
+DUMPER7_ASSERTS_FLiveLinkSourceHandle;
+
+// ScriptStruct LiveLinkInterface.LiveLinkBaseBlueprintData
+// 0x0008 (0x0008 - 0x0000)
+struct alignas(0x08) FLiveLinkBaseBlueprintData
+{
+public:
+	uint8                                         Pad_0[0x8];                                        // 0x0000(0x0008)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FLiveLinkBaseBlueprintData;
+
+// ScriptStruct LiveLinkInterface.SubjectFrameHandle
+// 0x0010 (0x0018 - 0x0008)
+struct FSubjectFrameHandle final : public FLiveLinkBaseBlueprintData
+{
+public:
+	uint8                                         Pad_8[0x10];                                       // 0x0008(0x0010)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FSubjectFrameHandle;
+
+// ScriptStruct LiveLinkInterface.LiveLinkTransform
+// 0x0020 (0x0020 - 0x0000)
+struct alignas(0x08) FLiveLinkTransform final
+{
+public:
+	uint8                                         Pad_0[0x20];                                       // 0x0000(0x0020)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FLiveLinkTransform;
+
+// ScriptStruct LiveLinkInterface.SubjectMetadata
+// 0x0070 (0x0070 - 0x0000)
+struct FSubjectMetadata final
+{
+public:
+	TMap<class FName, class FString>              StringMetadata;                                    // 0x0000(0x0050)(Edit, BlueprintVisible, NativeAccessSpecifierPublic)
+	struct FTimecode                              SceneTimecode;                                     // 0x0050(0x0014)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	struct FFrameRate                             SceneFramerate;                                    // 0x0064(0x0008)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_6C[0x4];                                       // 0x006C(0x0004)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FSubjectMetadata;
 
 // ScriptStruct LiveLinkInterface.LiveLinkWorldTime
 // 0x0010 (0x0010 - 0x0000)
@@ -113,14 +158,33 @@ public:
 };
 DUMPER7_ASSERTS_FLiveLinkBaseFrameData;
 
-// ScriptStruct LiveLinkInterface.LiveLinkBaseBlueprintData
-// 0x0008 (0x0008 - 0x0000)
-struct alignas(0x08) FLiveLinkBaseBlueprintData
+// ScriptStruct LiveLinkInterface.LiveLinkAnimationFrameData
+// 0x0010 (0x00B0 - 0x00A0)
+struct FLiveLinkAnimationFrameData final : public FLiveLinkBaseFrameData
 {
 public:
-	uint8                                         Pad_0[0x8];                                        // 0x0000(0x0008)(Fixing Struct Size After Last Property [ Dumper-7 ])
+	TArray<struct FTransform>                     Transforms;                                        // 0x00A0(0x0010)(Edit, BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic)
 };
-DUMPER7_ASSERTS_FLiveLinkBaseBlueprintData;
+DUMPER7_ASSERTS_FLiveLinkAnimationFrameData;
+
+// ScriptStruct LiveLinkInterface.LiveLinkBaseStaticData
+// 0x0010 (0x0010 - 0x0000)
+struct FLiveLinkBaseStaticData
+{
+public:
+	TArray<class FName>                           PropertyNames;                                     // 0x0000(0x0010)(Edit, BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic)
+};
+DUMPER7_ASSERTS_FLiveLinkBaseStaticData;
+
+// ScriptStruct LiveLinkInterface.LiveLinkSkeletonStaticData
+// 0x0020 (0x0030 - 0x0010)
+struct FLiveLinkSkeletonStaticData final : public FLiveLinkBaseStaticData
+{
+public:
+	TArray<class FName>                           BoneNames;                                         // 0x0010(0x0010)(Edit, BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic)
+	TArray<int32>                                 BoneParents;                                       // 0x0020(0x0010)(Edit, BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic)
+};
+DUMPER7_ASSERTS_FLiveLinkSkeletonStaticData;
 
 // ScriptStruct LiveLinkInterface.LiveLinkBasicBlueprintData
 // 0x00B0 (0x00B8 - 0x0008)
@@ -131,31 +195,6 @@ public:
 	struct FLiveLinkBaseFrameData                 FrameData;                                         // 0x0018(0x00A0)(Edit, BlueprintVisible, NativeAccessSpecifierPublic)
 };
 DUMPER7_ASSERTS_FLiveLinkBasicBlueprintData;
-
-// ScriptStruct LiveLinkInterface.LiveLinkSubjectKey
-// 0x001C (0x001C - 0x0000)
-struct FLiveLinkSubjectKey final
-{
-public:
-	struct FGuid                                  Source;                                            // 0x0000(0x0010)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	struct FLiveLinkSubjectName                   SubjectName;                                       // 0x0010(0x000C)(BlueprintVisible, BlueprintReadOnly, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-};
-DUMPER7_ASSERTS_FLiveLinkSubjectKey;
-
-// ScriptStruct LiveLinkInterface.LiveLinkSubjectPreset
-// 0x0040 (0x0040 - 0x0000)
-struct FLiveLinkSubjectPreset final
-{
-public:
-	struct FLiveLinkSubjectKey                    Key;                                               // 0x0000(0x001C)(Edit, EditConst, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         Pad_1C[0x4];                                       // 0x001C(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
-	TSubclassOf<class ULiveLinkRole>              Role;                                              // 0x0020(0x0008)(Edit, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	class ULiveLinkSubjectSettings*               Settings;                                          // 0x0028(0x0008)(Edit, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	class ULiveLinkVirtualSubject*                VirtualSubject;                                    // 0x0030(0x0008)(Edit, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	bool                                          bEnabled;                                          // 0x0038(0x0001)(Edit, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         Pad_39[0x7];                                       // 0x0039(0x0007)(Fixing Struct Size After Last Property [ Dumper-7 ])
-};
-DUMPER7_ASSERTS_FLiveLinkSubjectPreset;
 
 // ScriptStruct LiveLinkInterface.LiveLinkTransformStaticData
 // 0x0008 (0x0018 - 0x0010)
@@ -185,55 +224,6 @@ public:
 	uint8                                         Pad_26[0x2];                                       // 0x0026(0x0002)(Fixing Struct Size After Last Property [ Dumper-7 ])
 };
 DUMPER7_ASSERTS_FLiveLinkCameraStaticData;
-
-// ScriptStruct LiveLinkInterface.LiveLinkSourceHandle
-// 0x0018 (0x0018 - 0x0000)
-struct alignas(0x08) FLiveLinkSourceHandle final
-{
-public:
-	uint8                                         Pad_0[0x18];                                       // 0x0000(0x0018)(Fixing Struct Size After Last Property [ Dumper-7 ])
-};
-DUMPER7_ASSERTS_FLiveLinkSourceHandle;
-
-// ScriptStruct LiveLinkInterface.SubjectFrameHandle
-// 0x0010 (0x0018 - 0x0008)
-struct FSubjectFrameHandle final : public FLiveLinkBaseBlueprintData
-{
-public:
-	uint8                                         Pad_8[0x10];                                       // 0x0008(0x0010)(Fixing Struct Size After Last Property [ Dumper-7 ])
-};
-DUMPER7_ASSERTS_FSubjectFrameHandle;
-
-// ScriptStruct LiveLinkInterface.SubjectMetadata
-// 0x0070 (0x0070 - 0x0000)
-struct FSubjectMetadata final
-{
-public:
-	TMap<class FName, class FString>              StringMetadata;                                    // 0x0000(0x0050)(Edit, BlueprintVisible, NativeAccessSpecifierPublic)
-	struct FTimecode                              SceneTimecode;                                     // 0x0050(0x0014)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	struct FFrameRate                             SceneFramerate;                                    // 0x0064(0x0008)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         Pad_6C[0x4];                                       // 0x006C(0x0004)(Fixing Struct Size After Last Property [ Dumper-7 ])
-};
-DUMPER7_ASSERTS_FSubjectMetadata;
-
-// ScriptStruct LiveLinkInterface.LiveLinkAnimationFrameData
-// 0x0010 (0x00B0 - 0x00A0)
-struct FLiveLinkAnimationFrameData final : public FLiveLinkBaseFrameData
-{
-public:
-	TArray<struct FTransform>                     Transforms;                                        // 0x00A0(0x0010)(Edit, BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic)
-};
-DUMPER7_ASSERTS_FLiveLinkAnimationFrameData;
-
-// ScriptStruct LiveLinkInterface.LiveLinkSkeletonStaticData
-// 0x0020 (0x0030 - 0x0010)
-struct FLiveLinkSkeletonStaticData final : public FLiveLinkBaseStaticData
-{
-public:
-	TArray<class FName>                           BoneNames;                                         // 0x0010(0x0010)(Edit, BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic)
-	TArray<int32>                                 BoneParents;                                       // 0x0020(0x0010)(Edit, BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic)
-};
-DUMPER7_ASSERTS_FLiveLinkSkeletonStaticData;
 
 // ScriptStruct LiveLinkInterface.LiveLinkTransformFrameData
 // 0x0030 (0x00D0 - 0x00A0)
@@ -474,6 +464,16 @@ struct FLiveLinkTimeCode final : public FLiveLinkTimeCode_Base_DEPRECATED
 {
 };
 DUMPER7_ASSERTS_FLiveLinkTimeCode;
+
+// ScriptStruct LiveLinkInterface.LiveLinkTime
+// 0x0018 (0x0018 - 0x0000)
+struct FLiveLinkTime final
+{
+public:
+	double                                        WorldTime;                                         // 0x0000(0x0008)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	struct FQualifiedFrameTime                    SceneTime;                                         // 0x0008(0x0010)(Edit, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+};
+DUMPER7_ASSERTS_FLiveLinkTime;
 
 }
 

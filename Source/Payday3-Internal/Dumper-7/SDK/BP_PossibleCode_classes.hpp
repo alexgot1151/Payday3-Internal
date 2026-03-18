@@ -10,9 +10,9 @@
 
 #include "Basic.hpp"
 
-#include "S_CodePacket_structs.hpp"
 #include "Engine_structs.hpp"
 #include "Starbreeze_classes.hpp"
+#include "S_CodePacket_structs.hpp"
 
 
 namespace SDK

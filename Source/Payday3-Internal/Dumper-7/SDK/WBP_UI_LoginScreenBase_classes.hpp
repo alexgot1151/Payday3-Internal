@@ -39,6 +39,7 @@ public:
 
 public:
 	void ExecuteUbergraph_WBP_UI_LoginScreenBase(int32 EntryPoint);
+	void Destruct();
 	void PreConstruct(bool IsDesignTime);
 	void InitializeLoginMenu();
 	void Construct();

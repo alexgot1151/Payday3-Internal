@@ -18,6 +18,43 @@
 namespace SDK::Params
 {
 
+// Function BP_Sprinkler.BP_Sprinkler_C.ExecuteUbergraph_BP_Sprinkler
+// 0x0010 (0x0010 - 0x0000)
+struct BP_Sprinkler_C_ExecuteUbergraph_BP_Sprinkler final
+{
+public:
+	int32                                         EntryPoint;                                        // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         K2Node_Event_OldState;                             // 0x0004(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         K2Node_Event_NewState;                             // 0x0008(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          K2Node_Event_bDoCosmetics;                         // 0x000C(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_Sprinkler_C_ExecuteUbergraph_BP_Sprinkler;
+
+// Function BP_Sprinkler.BP_Sprinkler_C.OnStateChanged
+// 0x000C (0x000C - 0x0000)
+struct BP_Sprinkler_C_OnStateChanged final
+{
+public:
+	int32                                         OldState;                                          // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         NewState;                                          // 0x0004(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bDoCosmetics;                                      // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_Sprinkler_C_OnStateChanged;
+
+// Function BP_Sprinkler.BP_Sprinkler_C.UserConstructionScript
+// 0x0020 (0x0020 - 0x0000)
+struct BP_Sprinkler_C_UserConstructionScript final
+{
+public:
+	float                                         CallFunc_Subtract_FloatFloat_ReturnValue;          // 0x0000(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	struct FVector                                CallFunc_Multiply_VectorVector_ReturnValue;        // 0x0004(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_FClamp_ReturnValue;                       // 0x0010(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_BreakVector_X;                            // 0x0014(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_BreakVector_Y;                            // 0x0018(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         CallFunc_BreakVector_Z;                            // 0x001C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_Sprinkler_C_UserConstructionScript;
+
 // Function BP_Sprinkler.BP_Sprinkler_C.Sprinkler Management
 // 0x0170 (0x0170 - 0x0000)
 struct BP_Sprinkler_C_Sprinkler_Management final
@@ -49,43 +86,6 @@ public:
 	class UNiagaraComponent*                      CallFunc_SpawnSystemAtLocation_ReturnValue;        // 0x0160(0x0008)(ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_Sprinkler_C_Sprinkler_Management;
-
-// Function BP_Sprinkler.BP_Sprinkler_C.UserConstructionScript
-// 0x0020 (0x0020 - 0x0000)
-struct BP_Sprinkler_C_UserConstructionScript final
-{
-public:
-	float                                         CallFunc_Subtract_FloatFloat_ReturnValue;          // 0x0000(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	struct FVector                                CallFunc_Multiply_VectorVector_ReturnValue;        // 0x0004(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_FClamp_ReturnValue;                       // 0x0010(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_BreakVector_X;                            // 0x0014(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_BreakVector_Y;                            // 0x0018(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         CallFunc_BreakVector_Z;                            // 0x001C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_Sprinkler_C_UserConstructionScript;
-
-// Function BP_Sprinkler.BP_Sprinkler_C.OnStateChanged
-// 0x000C (0x000C - 0x0000)
-struct BP_Sprinkler_C_OnStateChanged final
-{
-public:
-	int32                                         OldState;                                          // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         NewState;                                          // 0x0004(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bDoCosmetics;                                      // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_Sprinkler_C_OnStateChanged;
-
-// Function BP_Sprinkler.BP_Sprinkler_C.ExecuteUbergraph_BP_Sprinkler
-// 0x0010 (0x0010 - 0x0000)
-struct BP_Sprinkler_C_ExecuteUbergraph_BP_Sprinkler final
-{
-public:
-	int32                                         EntryPoint;                                        // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         K2Node_Event_OldState;                             // 0x0004(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         K2Node_Event_NewState;                             // 0x0008(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          K2Node_Event_bDoCosmetics;                         // 0x000C(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_Sprinkler_C_ExecuteUbergraph_BP_Sprinkler;
 
 }
 

@@ -17,23 +17,21 @@
 namespace SDK
 {
 
-// Function WBP_DynamicSign_Interior_01.WBP_DynamicSign_Interior_01_C.setText
-// (BlueprintCallable, BlueprintEvent)
+// Function WBP_DynamicSign_Interior_01.WBP_DynamicSign_Interior_01_C.ExecuteUbergraph_WBP_DynamicSign_Interior_01
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// const class FText&                      primary                                                (BlueprintVisible, BlueprintReadOnly, Parm)
-// const class FText&                      secondary                                              (BlueprintVisible, BlueprintReadOnly, Parm)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void UWBP_DynamicSign_Interior_01_C::setText(const class FText& primary, const class FText& secondary)
+void UWBP_DynamicSign_Interior_01_C::ExecuteUbergraph_WBP_DynamicSign_Interior_01(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_DynamicSign_Interior_01_C", "setText");
+		Func = Class->GetFunction("WBP_DynamicSign_Interior_01_C", "ExecuteUbergraph_WBP_DynamicSign_Interior_01");
 
-	Params::WBP_DynamicSign_Interior_01_C_setText Parms{};
+	Params::WBP_DynamicSign_Interior_01_C_ExecuteUbergraph_WBP_DynamicSign_Interior_01 Parms{};
 
-	Parms.primary = std::move(primary);
-	Parms.secondary = std::move(secondary);
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -59,21 +57,23 @@ void UWBP_DynamicSign_Interior_01_C::PreConstruct(bool IsDesignTime)
 }
 
 
-// Function WBP_DynamicSign_Interior_01.WBP_DynamicSign_Interior_01_C.ExecuteUbergraph_WBP_DynamicSign_Interior_01
-// (Final, UbergraphFunction, HasDefaults)
+// Function WBP_DynamicSign_Interior_01.WBP_DynamicSign_Interior_01_C.setText
+// (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// const class FText&                      primary                                                (BlueprintVisible, BlueprintReadOnly, Parm)
+// const class FText&                      secondary                                              (BlueprintVisible, BlueprintReadOnly, Parm)
 
-void UWBP_DynamicSign_Interior_01_C::ExecuteUbergraph_WBP_DynamicSign_Interior_01(int32 EntryPoint)
+void UWBP_DynamicSign_Interior_01_C::setText(const class FText& primary, const class FText& secondary)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_DynamicSign_Interior_01_C", "ExecuteUbergraph_WBP_DynamicSign_Interior_01");
+		Func = Class->GetFunction("WBP_DynamicSign_Interior_01_C", "setText");
 
-	Params::WBP_DynamicSign_Interior_01_C_ExecuteUbergraph_WBP_DynamicSign_Interior_01 Parms{};
+	Params::WBP_DynamicSign_Interior_01_C_setText Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.primary = std::move(primary);
+	Parms.secondary = std::move(secondary);
 
 	UObject::ProcessEvent(Func, &Parms);
 }

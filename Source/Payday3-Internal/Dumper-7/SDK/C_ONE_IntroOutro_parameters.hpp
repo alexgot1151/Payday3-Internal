@@ -14,15 +14,6 @@
 namespace SDK::Params
 {
 
-// Function C_ONE_IntroOutro.C_ONE_IntroOutro_C.IntroSequenceChanged
-// 0x0001 (0x0001 - 0x0000)
-struct C_ONE_IntroOutro_C_IntroSequenceChanged final
-{
-public:
-	bool                                          bIsStarted;                                        // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_C_ONE_IntroOutro_C_IntroSequenceChanged;
-
 // Function C_ONE_IntroOutro.C_ONE_IntroOutro_C.ExecuteUbergraph_C_ONE_IntroOutro
 // 0x0028 (0x0028 - 0x0000)
 struct C_ONE_IntroOutro_C_ExecuteUbergraph_C_ONE_IntroOutro final
@@ -36,6 +27,15 @@ public:
 	TDelegate<void()>                             K2Node_CreateDelegate_OutputDelegate;              // 0x0014(0x0014)(ZeroConstructor, NoDestructor)
 };
 DUMPER7_ASSERTS_C_ONE_IntroOutro_C_ExecuteUbergraph_C_ONE_IntroOutro;
+
+// Function C_ONE_IntroOutro.C_ONE_IntroOutro_C.IntroSequenceChanged
+// 0x0001 (0x0001 - 0x0000)
+struct C_ONE_IntroOutro_C_IntroSequenceChanged final
+{
+public:
+	bool                                          bIsStarted;                                        // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_C_ONE_IntroOutro_C_IntroSequenceChanged;
 
 }
 

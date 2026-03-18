@@ -17,23 +17,21 @@
 namespace SDK
 {
 
-// Function BP_Laptop_01_A_SmallDestruction.BP_Laptop_01_A_SmallDestruction_C.BndEvt__BP_CashRegister_01_Monitor_SmallDestruction_SBZCosmeticDestruction_1_K2Node_ComponentBoundEvent_5_SBZCosmeticDestructionComponenteSignature__DelegateSignature
-// (HasOutParams, BlueprintEvent)
+// Function BP_Laptop_01_A_SmallDestruction.BP_Laptop_01_A_SmallDestruction_C.ExecuteUbergraph_BP_Laptop_01_A_SmallDestruction
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// ESBZCosmeticDestructionType             Type                                                   (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// const struct FSBZCosmeticDestructionContext&HitContext                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_Laptop_01_A_SmallDestruction_C::BndEvt__BP_CashRegister_01_Monitor_SmallDestruction_SBZCosmeticDestruction_1_K2Node_ComponentBoundEvent_5_SBZCosmeticDestructionComponenteSignature__DelegateSignature(ESBZCosmeticDestructionType Type, const struct FSBZCosmeticDestructionContext& HitContext)
+void ABP_Laptop_01_A_SmallDestruction_C::ExecuteUbergraph_BP_Laptop_01_A_SmallDestruction(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Laptop_01_A_SmallDestruction_C", "BndEvt__BP_CashRegister_01_Monitor_SmallDestruction_SBZCosmeticDestruction_1_K2Node_ComponentBoundEvent_5_SBZCosmeticDestructionComponenteSignature__DelegateSignature");
+		Func = Class->GetFunction("BP_Laptop_01_A_SmallDestruction_C", "ExecuteUbergraph_BP_Laptop_01_A_SmallDestruction");
 
-	Params::BP_Laptop_01_A_SmallDestruction_C_BndEvt__BP_CashRegister_01_Monitor_SmallDestruction_SBZCosmeticDestruction_1_K2Node_ComponentBoundEvent_5_SBZCosmeticDestructionComponenteSignature__DelegateSignature Parms{};
+	Params::BP_Laptop_01_A_SmallDestruction_C_ExecuteUbergraph_BP_Laptop_01_A_SmallDestruction Parms{};
 
-	Parms.Type = Type;
-	Parms.HitContext = std::move(HitContext);
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -61,21 +59,23 @@ void ABP_Laptop_01_A_SmallDestruction_C::BndEvt__BP_CashRegister_01_Monitor_SBZC
 }
 
 
-// Function BP_Laptop_01_A_SmallDestruction.BP_Laptop_01_A_SmallDestruction_C.ExecuteUbergraph_BP_Laptop_01_A_SmallDestruction
-// (Final, UbergraphFunction, HasDefaults)
+// Function BP_Laptop_01_A_SmallDestruction.BP_Laptop_01_A_SmallDestruction_C.BndEvt__BP_CashRegister_01_Monitor_SmallDestruction_SBZCosmeticDestruction_1_K2Node_ComponentBoundEvent_5_SBZCosmeticDestructionComponenteSignature__DelegateSignature
+// (HasOutParams, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// ESBZCosmeticDestructionType             Type                                                   (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// const struct FSBZCosmeticDestructionContext&HitContext                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm, NoDestructor)
 
-void ABP_Laptop_01_A_SmallDestruction_C::ExecuteUbergraph_BP_Laptop_01_A_SmallDestruction(int32 EntryPoint)
+void ABP_Laptop_01_A_SmallDestruction_C::BndEvt__BP_CashRegister_01_Monitor_SmallDestruction_SBZCosmeticDestruction_1_K2Node_ComponentBoundEvent_5_SBZCosmeticDestructionComponenteSignature__DelegateSignature(ESBZCosmeticDestructionType Type, const struct FSBZCosmeticDestructionContext& HitContext)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Laptop_01_A_SmallDestruction_C", "ExecuteUbergraph_BP_Laptop_01_A_SmallDestruction");
+		Func = Class->GetFunction("BP_Laptop_01_A_SmallDestruction_C", "BndEvt__BP_CashRegister_01_Monitor_SmallDestruction_SBZCosmeticDestruction_1_K2Node_ComponentBoundEvent_5_SBZCosmeticDestructionComponenteSignature__DelegateSignature");
 
-	Params::BP_Laptop_01_A_SmallDestruction_C_ExecuteUbergraph_BP_Laptop_01_A_SmallDestruction Parms{};
+	Params::BP_Laptop_01_A_SmallDestruction_C_BndEvt__BP_CashRegister_01_Monitor_SmallDestruction_SBZCosmeticDestruction_1_K2Node_ComponentBoundEvent_5_SBZCosmeticDestructionComponenteSignature__DelegateSignature Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.Type = Type;
+	Parms.HitContext = std::move(HitContext);
 
 	UObject::ProcessEvent(Func, &Parms);
 }

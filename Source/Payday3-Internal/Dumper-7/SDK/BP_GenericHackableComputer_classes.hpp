@@ -36,9 +36,9 @@ public:
 	class FText                                   promptNextSlide;                                   // 0x0550(0x0018)(Edit, BlueprintVisible)
 
 public:
-	void BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
 	void ExecuteUbergraph_BP_GenericHackableComputer(int32 EntryPoint);
+	void BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
 	void BndEvt__BP_GenericHackableComputer_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
 	void BP_UpdateCustomSuccessText(const class FText& SucessText);
 	void BP_DisplayTextIndexChanged(const int32 NewIndex);

@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "CoreUObject_structs.hpp"
+#include "Engine_structs.hpp"
 #include "Starbreeze_classes.hpp"
 #include "AkAudio_structs.hpp"
 
@@ -38,11 +38,11 @@ public:
 	struct FVector                                groundLevel;                                       // 0x0338(0x000C)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void destroyGlass();
-	void UserConstructionScript();
-	void BndEvt__BP_CHU_RectangularSkylight_SBZPropDamage_K2Node_ComponentBoundEvent_0_SBZPropDamageHitsSignature__DelegateSignature(class UActorComponent* PoolComponent, int32 Hits, bool bDoCosmetics, const struct FSBZPropDamageContext& DamageContext);
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
 	void ExecuteUbergraph_BP_ONE_Lobby_Center_CeilingWindow_01(int32 EntryPoint);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void BndEvt__BP_CHU_RectangularSkylight_SBZPropDamage_K2Node_ComponentBoundEvent_0_SBZPropDamageHitsSignature__DelegateSignature(class UActorComponent* PoolComponent, int32 Hits, bool bDoCosmetics, const struct FSBZPropDamageContext& DamageContext);
+	void UserConstructionScript();
+	void destroyGlass();
 
 public:
 	static class UClass* StaticClass()

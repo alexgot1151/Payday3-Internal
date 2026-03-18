@@ -17,66 +17,6 @@
 namespace SDK::Params
 {
 
-// Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.BP_OnStateChanged
-// 0x0001 (0x0001 - 0x0000)
-struct BP_ConnectedMaintenanceBox_C_BP_OnStateChanged final
-{
-public:
-	ESBZMaintenanceBoxState                       NewState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_BP_OnStateChanged;
-
-// Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.BP_UpdateNumberOfConnectedBoxes
-// 0x0004 (0x0004 - 0x0000)
-struct BP_ConnectedMaintenanceBox_C_BP_UpdateNumberOfConnectedBoxes final
-{
-public:
-	int32                                         NumberOfBoxes;                                     // 0x0000(0x0004)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_BP_UpdateNumberOfConnectedBoxes;
-
-// Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.BndEvt__BP_ConnectedMaintenanceBox_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature
-// 0x0018 (0x0018 - 0x0000)
-struct BP_ConnectedMaintenanceBox_C_BndEvt__BP_ConnectedMaintenanceBox_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature final
-{
-public:
-	class USBZBaseInteractableComponent*          Interactable;                                      // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_BndEvt__BP_ConnectedMaintenanceBox_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature;
-
-// Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.BndEvt__BP_ConnectedMaintenanceBox_InteractableComponent_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature
-// 0x0018 (0x0018 - 0x0000)
-struct BP_ConnectedMaintenanceBox_C_BndEvt__BP_ConnectedMaintenanceBox_InteractableComponent_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature final
-{
-public:
-	class USBZBaseInteractableComponent*          Interactable;                                      // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_BndEvt__BP_ConnectedMaintenanceBox_InteractableComponent_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature;
-
-// Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.BP_UpdateColors
-// 0x0018 (0x0018 - 0x0000)
-struct BP_ConnectedMaintenanceBox_C_BP_UpdateColors final
-{
-public:
-	TArray<int32>                                 SequenceArray;                                     // 0x0000(0x0010)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
-	int32                                         NumberOfCompleteCables;                            // 0x0010(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_BP_UpdateColors;
-
-// Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.BndEvt__BP_ConnectedMaintenanceBox_isDeactivated_SBZBinaryState_K2Node_ComponentBoundEvent_1_SBZBinaryStateChangedSignature__DelegateSignature
-// 0x0002 (0x0002 - 0x0000)
-struct BP_ConnectedMaintenanceBox_C_BndEvt__BP_ConnectedMaintenanceBox_isDeactivated_SBZBinaryState_K2Node_ComponentBoundEvent_1_SBZBinaryStateChangedSignature__DelegateSignature final
-{
-public:
-	bool                                          bState;                                            // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_BndEvt__BP_ConnectedMaintenanceBox_isDeactivated_SBZBinaryState_K2Node_ComponentBoundEvent_1_SBZBinaryStateChangedSignature__DelegateSignature;
-
 // Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.ExecuteUbergraph_BP_ConnectedMaintenanceBox
 // 0x0130 (0x0130 - 0x0000)
 struct BP_ConnectedMaintenanceBox_C_ExecuteUbergraph_BP_ConnectedMaintenanceBox final
@@ -129,6 +69,66 @@ public:
 	int32                                         CallFunc_PostEvent_ReturnValue_1;                  // 0x0128(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_ExecuteUbergraph_BP_ConnectedMaintenanceBox;
+
+// Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.BndEvt__BP_ConnectedMaintenanceBox_isDeactivated_SBZBinaryState_K2Node_ComponentBoundEvent_1_SBZBinaryStateChangedSignature__DelegateSignature
+// 0x0002 (0x0002 - 0x0000)
+struct BP_ConnectedMaintenanceBox_C_BndEvt__BP_ConnectedMaintenanceBox_isDeactivated_SBZBinaryState_K2Node_ComponentBoundEvent_1_SBZBinaryStateChangedSignature__DelegateSignature final
+{
+public:
+	bool                                          bState;                                            // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_BndEvt__BP_ConnectedMaintenanceBox_isDeactivated_SBZBinaryState_K2Node_ComponentBoundEvent_1_SBZBinaryStateChangedSignature__DelegateSignature;
+
+// Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.BP_UpdateColors
+// 0x0018 (0x0018 - 0x0000)
+struct BP_ConnectedMaintenanceBox_C_BP_UpdateColors final
+{
+public:
+	TArray<int32>                                 SequenceArray;                                     // 0x0000(0x0010)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
+	int32                                         NumberOfCompleteCables;                            // 0x0010(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_BP_UpdateColors;
+
+// Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.BndEvt__BP_ConnectedMaintenanceBox_InteractableComponent_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature
+// 0x0018 (0x0018 - 0x0000)
+struct BP_ConnectedMaintenanceBox_C_BndEvt__BP_ConnectedMaintenanceBox_InteractableComponent_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature final
+{
+public:
+	class USBZBaseInteractableComponent*          Interactable;                                      // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_BndEvt__BP_ConnectedMaintenanceBox_InteractableComponent_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature;
+
+// Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.BndEvt__BP_ConnectedMaintenanceBox_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature
+// 0x0018 (0x0018 - 0x0000)
+struct BP_ConnectedMaintenanceBox_C_BndEvt__BP_ConnectedMaintenanceBox_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature final
+{
+public:
+	class USBZBaseInteractableComponent*          Interactable;                                      // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_BndEvt__BP_ConnectedMaintenanceBox_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature;
+
+// Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.BP_UpdateNumberOfConnectedBoxes
+// 0x0004 (0x0004 - 0x0000)
+struct BP_ConnectedMaintenanceBox_C_BP_UpdateNumberOfConnectedBoxes final
+{
+public:
+	int32                                         NumberOfBoxes;                                     // 0x0000(0x0004)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_BP_UpdateNumberOfConnectedBoxes;
+
+// Function BP_ConnectedMaintenanceBox.BP_ConnectedMaintenanceBox_C.BP_OnStateChanged
+// 0x0001 (0x0001 - 0x0000)
+struct BP_ConnectedMaintenanceBox_C_BP_OnStateChanged final
+{
+public:
+	ESBZMaintenanceBoxState                       NewState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_ConnectedMaintenanceBox_C_BP_OnStateChanged;
 
 }
 

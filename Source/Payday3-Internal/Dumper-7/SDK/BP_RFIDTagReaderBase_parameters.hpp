@@ -17,37 +17,6 @@
 namespace SDK::Params
 {
 
-// Function BP_RFIDTagReaderBase.BP_RFIDTagReaderBase_C.SetPrimitiveAndVisability
-// 0x0010 (0x0010 - 0x0000)
-struct BP_RFIDTagReaderBase_C_SetPrimitiveAndVisability final
-{
-public:
-	class UPrimitiveComponent*                    StaticMesh_0;                                      // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	float                                         Value;                                             // 0x0008(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          CallFunc_IsValid_ReturnValue;                      // 0x000C(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_RFIDTagReaderBase_C_SetPrimitiveAndVisability;
-
-// Function BP_RFIDTagReaderBase.BP_RFIDTagReaderBase_C.BndEvt__BP_KeycardReaderBase_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature
-// 0x0010 (0x0010 - 0x0000)
-struct BP_RFIDTagReaderBase_C_BndEvt__BP_KeycardReaderBase_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature final
-{
-public:
-	const class USBZBaseInteractableComponent*    InteractableComponent_0;                           // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_RFIDTagReaderBase_C_BndEvt__BP_KeycardReaderBase_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature;
-
-// Function BP_RFIDTagReaderBase.BP_RFIDTagReaderBase_C.BP_OnStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct BP_RFIDTagReaderBase_C_BP_OnStateChanged final
-{
-public:
-	ESBZModuleActorState                          NewState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_RFIDTagReaderBase_C_BP_OnStateChanged;
-
 // Function BP_RFIDTagReaderBase.BP_RFIDTagReaderBase_C.ExecuteUbergraph_BP_RFIDTagReaderBase
 // 0x0040 (0x0040 - 0x0000)
 struct BP_RFIDTagReaderBase_C_ExecuteUbergraph_BP_RFIDTagReaderBase final
@@ -67,6 +36,37 @@ public:
 	int32                                         CallFunc_PostEvent_ReturnValue;                    // 0x003C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_RFIDTagReaderBase_C_ExecuteUbergraph_BP_RFIDTagReaderBase;
+
+// Function BP_RFIDTagReaderBase.BP_RFIDTagReaderBase_C.BP_OnStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct BP_RFIDTagReaderBase_C_BP_OnStateChanged final
+{
+public:
+	ESBZModuleActorState                          NewState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_RFIDTagReaderBase_C_BP_OnStateChanged;
+
+// Function BP_RFIDTagReaderBase.BP_RFIDTagReaderBase_C.BndEvt__BP_KeycardReaderBase_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature
+// 0x0010 (0x0010 - 0x0000)
+struct BP_RFIDTagReaderBase_C_BndEvt__BP_KeycardReaderBase_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature final
+{
+public:
+	const class USBZBaseInteractableComponent*    InteractableComponent_0;                           // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_RFIDTagReaderBase_C_BndEvt__BP_KeycardReaderBase_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature;
+
+// Function BP_RFIDTagReaderBase.BP_RFIDTagReaderBase_C.SetPrimitiveAndVisability
+// 0x0010 (0x0010 - 0x0000)
+struct BP_RFIDTagReaderBase_C_SetPrimitiveAndVisability final
+{
+public:
+	class UPrimitiveComponent*                    StaticMesh_0;                                      // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	float                                         Value;                                             // 0x0008(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          CallFunc_IsValid_ReturnValue;                      // 0x000C(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_RFIDTagReaderBase_C_SetPrimitiveAndVisability;
 
 }
 

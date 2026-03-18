@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function BP_ONE_ExplodingWall.BP_ONE_ExplodingWall_C.spawnExplosionVFX
-// (BlueprintCallable, BlueprintEvent)
-// Parameters:
-// bool                                    doCosmetics                                            (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-
-void ABP_ONE_ExplodingWall_C::spawnExplosionVFX(bool doCosmetics)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_ExplodingWall_C", "spawnExplosionVFX");
-
-	Params::BP_ONE_ExplodingWall_C_spawnExplosionVFX Parms{};
-
-	Parms.doCosmetics = doCosmetics;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function BP_ONE_ExplodingWall.BP_ONE_ExplodingWall_C.ExecuteUbergraph_BP_ONE_ExplodingWall
 // (Final, UbergraphFunction)
 // Parameters:
@@ -52,6 +32,26 @@ void ABP_ONE_ExplodingWall_C::ExecuteUbergraph_BP_ONE_ExplodingWall(int32 EntryP
 	Params::BP_ONE_ExplodingWall_C_ExecuteUbergraph_BP_ONE_ExplodingWall Parms{};
 
 	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_ONE_ExplodingWall.BP_ONE_ExplodingWall_C.spawnExplosionVFX
+// (BlueprintCallable, BlueprintEvent)
+// Parameters:
+// bool                                    doCosmetics                                            (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void ABP_ONE_ExplodingWall_C::spawnExplosionVFX(bool doCosmetics)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_ExplodingWall_C", "spawnExplosionVFX");
+
+	Params::BP_ONE_ExplodingWall_C_spawnExplosionVFX Parms{};
+
+	Parms.doCosmetics = doCosmetics;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function BP_InteractableMoneyPile.BP_InteractableMoneyPile_C.BP_OnChangedToSecondaryType
-// (BlueprintCosmetic, Event, Public, BlueprintEvent)
-// Parameters:
-// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-
-void ABP_InteractableMoneyPile_C::BP_OnChangedToSecondaryType(bool bDoCosmetics)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_InteractableMoneyPile_C", "BP_OnChangedToSecondaryType");
-
-	Params::BP_InteractableMoneyPile_C_BP_OnChangedToSecondaryType Parms{};
-
-	Parms.bDoCosmetics = bDoCosmetics;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function BP_InteractableMoneyPile.BP_InteractableMoneyPile_C.ExecuteUbergraph_BP_InteractableMoneyPile
 // (Final, UbergraphFunction)
 // Parameters:
@@ -52,6 +32,26 @@ void ABP_InteractableMoneyPile_C::ExecuteUbergraph_BP_InteractableMoneyPile(int3
 	Params::BP_InteractableMoneyPile_C_ExecuteUbergraph_BP_InteractableMoneyPile Parms{};
 
 	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_InteractableMoneyPile.BP_InteractableMoneyPile_C.BP_OnChangedToSecondaryType
+// (BlueprintCosmetic, Event, Public, BlueprintEvent)
+// Parameters:
+// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void ABP_InteractableMoneyPile_C::BP_OnChangedToSecondaryType(bool bDoCosmetics)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_InteractableMoneyPile_C", "BP_OnChangedToSecondaryType");
+
+	Params::BP_InteractableMoneyPile_C_BP_OnChangedToSecondaryType Parms{};
+
+	Parms.bDoCosmetics = bDoCosmetics;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

@@ -19,17 +19,6 @@
 namespace SDK::Params
 {
 
-// Function BP_TestThermite.BP_TestThermite_C.BP_OnStateChanged
-// 0x0003 (0x0003 - 0x0000)
-struct BP_TestThermite_C_BP_OnStateChanged final
-{
-public:
-	ESBZThermiteBurnState                         OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	ESBZThermiteBurnState                         NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bDoCosmetics;                                      // 0x0002(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_TestThermite_C_BP_OnStateChanged;
-
 // Function BP_TestThermite.BP_TestThermite_C.ExecuteUbergraph_BP_TestThermite
 // 0x0290 (0x0290 - 0x0000)
 struct BP_TestThermite_C_ExecuteUbergraph_BP_TestThermite final
@@ -114,6 +103,17 @@ public:
 	int32                                         CallFunc_PostEvent_ReturnValue_6;                  // 0x0288(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_TestThermite_C_ExecuteUbergraph_BP_TestThermite;
+
+// Function BP_TestThermite.BP_TestThermite_C.BP_OnStateChanged
+// 0x0003 (0x0003 - 0x0000)
+struct BP_TestThermite_C_BP_OnStateChanged final
+{
+public:
+	ESBZThermiteBurnState                         OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	ESBZThermiteBurnState                         NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bDoCosmetics;                                      // 0x0002(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_TestThermite_C_BP_OnStateChanged;
 
 // Function BP_TestThermite.BP_TestThermite_C.BP_OnThermiteBagOverlapped
 // 0x0001 (0x0001 - 0x0000)

@@ -27,8 +27,8 @@ public:
 	class UTextBlock*                             STATE;                                             // 0x02A8(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
 
 public:
-	void SetState(const class FText& InText);
 	void SetCodeText(const class FText& InText);
+	void SetState(const class FText& InText);
 
 public:
 	static class UClass* StaticClass()

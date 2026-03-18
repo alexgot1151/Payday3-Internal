@@ -16,36 +16,6 @@
 namespace SDK::Params
 {
 
-// Function BP_StaticInteraction_SprinklerSystem.BP_StaticInteraction_SprinklerSystem_C.OnSabotaged
-// 0x0001 (0x0001 - 0x0000)
-struct BP_StaticInteraction_SprinklerSystem_C_OnSabotaged final
-{
-public:
-	bool                                          bSabotaged;                                        // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_StaticInteraction_SprinklerSystem_C_OnSabotaged;
-
-// Function BP_StaticInteraction_SprinklerSystem.BP_StaticInteraction_SprinklerSystem_C.BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature
-// 0x0018 (0x0018 - 0x0000)
-struct BP_StaticInteraction_SprinklerSystem_C_BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature final
-{
-public:
-	class USBZBaseInteractableComponent*          Interactable_0;                                    // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_StaticInteraction_SprinklerSystem_C_BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature;
-
-// Function BP_StaticInteraction_SprinklerSystem.BP_StaticInteraction_SprinklerSystem_C.BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature
-// 0x0010 (0x0010 - 0x0000)
-struct BP_StaticInteraction_SprinklerSystem_C_BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature final
-{
-public:
-	const class USBZBaseInteractableComponent*    InteractableComponent;                             // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_StaticInteraction_SprinklerSystem_C_BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature;
-
 // Function BP_StaticInteraction_SprinklerSystem.BP_StaticInteraction_SprinklerSystem_C.ExecuteUbergraph_BP_StaticInteraction_SprinklerSystem
 // 0x0098 (0x0098 - 0x0000)
 struct BP_StaticInteraction_SprinklerSystem_C_ExecuteUbergraph_BP_StaticInteraction_SprinklerSystem final
@@ -86,6 +56,36 @@ public:
 	int32                                         CallFunc_AddLocalMarker_ReturnValue;               // 0x0094(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_StaticInteraction_SprinklerSystem_C_ExecuteUbergraph_BP_StaticInteraction_SprinklerSystem;
+
+// Function BP_StaticInteraction_SprinklerSystem.BP_StaticInteraction_SprinklerSystem_C.BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature
+// 0x0010 (0x0010 - 0x0000)
+struct BP_StaticInteraction_SprinklerSystem_C_BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature final
+{
+public:
+	const class USBZBaseInteractableComponent*    InteractableComponent;                             // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_StaticInteraction_SprinklerSystem_C_BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature;
+
+// Function BP_StaticInteraction_SprinklerSystem.BP_StaticInteraction_SprinklerSystem_C.BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature
+// 0x0018 (0x0018 - 0x0000)
+struct BP_StaticInteraction_SprinklerSystem_C_BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature final
+{
+public:
+	class USBZBaseInteractableComponent*          Interactable_0;                                    // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class USBZInteractorComponent*                Interactor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bIsLocallyControlledInteractor;                    // 0x0010(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_StaticInteraction_SprinklerSystem_C_BndEvt__BP_StaticInteraction_SprinklerSystem_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature;
+
+// Function BP_StaticInteraction_SprinklerSystem.BP_StaticInteraction_SprinklerSystem_C.OnSabotaged
+// 0x0001 (0x0001 - 0x0000)
+struct BP_StaticInteraction_SprinklerSystem_C_OnSabotaged final
+{
+public:
+	bool                                          bSabotaged;                                        // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_StaticInteraction_SprinklerSystem_C_OnSabotaged;
 
 }
 

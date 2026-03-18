@@ -36,11 +36,11 @@ public:
 	float                                         Glow_Intensity;                                    // 0x0338(0x0004)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void SetInteractive(bool bEnabled);
-	void UserConstructionScript();
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
-	void BndEvt__BP_QRPhone_SBZInteractable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
 	void ExecuteUbergraph_BP_QRPhone(int32 EntryPoint);
+	void BndEvt__BP_QRPhone_SBZInteractable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void UserConstructionScript();
+	void SetInteractive(bool bEnabled);
 
 public:
 	static class UClass* StaticClass()

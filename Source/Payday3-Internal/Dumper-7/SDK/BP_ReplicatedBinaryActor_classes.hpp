@@ -27,9 +27,9 @@ public:
 	class USceneComponent*                        DefaultSceneRoot;                                  // 0x02E8(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
-	void ReceiveBeginPlay();
 	void ExecuteUbergraph_BP_ReplicatedBinaryActor(int32 EntryPoint);
+	void ReceiveBeginPlay();
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
 
 public:
 	static class UClass* StaticClass()

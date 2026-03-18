@@ -17,65 +17,97 @@
 namespace SDK
 {
 
-// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.SetTriggerState
-// (Public, BlueprintCallable, BlueprintEvent)
+// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.ExecuteUbergraph_BP_LA_Civ_Cosmetic_TalkToPlayer_02
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// bool                                    Enable                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::SetTriggerState(bool Enable)
+void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::ExecuteUbergraph_BP_LA_Civ_Cosmetic_TalkToPlayer_02(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "SetTriggerState");
+		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "ExecuteUbergraph_BP_LA_Civ_Cosmetic_TalkToPlayer_02");
 
-	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_SetTriggerState Parms{};
+	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_ExecuteUbergraph_BP_LA_Civ_Cosmetic_TalkToPlayer_02 Parms{};
 
-	Parms.Enable = Enable;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
 
 
-// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.TriggerLA
-// (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
+// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_02_SBZLifeAction_K2Node_ComponentBoundEvent_1_SBZLifeActionEventDelegate__DelegateSignature
+// (BlueprintEvent)
 // Parameters:
 // class ASBZCharacter*                    Character                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class USBZLifeActionSlot*               LASlot                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZLifeActionInstance*           ActionInstance                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZLifeActionSlot*               ActionSlot                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::TriggerLA(class ASBZCharacter* Character, class USBZLifeActionSlot* LASlot)
+void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_02_SBZLifeAction_K2Node_ComponentBoundEvent_1_SBZLifeActionEventDelegate__DelegateSignature(class ASBZCharacter* Character, class USBZLifeActionInstance* ActionInstance, class USBZLifeActionSlot* ActionSlot)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "TriggerLA");
+		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_02_SBZLifeAction_K2Node_ComponentBoundEvent_1_SBZLifeActionEventDelegate__DelegateSignature");
 
-	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_TriggerLA Parms{};
+	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_02_SBZLifeAction_K2Node_ComponentBoundEvent_1_SBZLifeActionEventDelegate__DelegateSignature Parms{};
 
 	Parms.Character = Character;
-	Parms.LASlot = LASlot;
+	Parms.ActionInstance = ActionInstance;
+	Parms.ActionSlot = ActionSlot;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
 
 
-// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.StopLA
-// (Public, BlueprintCallable, BlueprintEvent)
+// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_SBZLifeAction_K2Node_ComponentBoundEvent_3_SBZLifeActionStopEventDelegate__DelegateSignature
+// (BlueprintEvent)
 // Parameters:
 // class ASBZCharacter*                    Character                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class USBZLifeActionSlot*               LASlot                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZLifeActionInstance*           ActionInstance                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZLifeActionSlot*               ActionSlot                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// ESBZLifeActionStopReason                Result                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::StopLA(class ASBZCharacter* Character, class USBZLifeActionSlot* LASlot)
+void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_SBZLifeAction_K2Node_ComponentBoundEvent_3_SBZLifeActionStopEventDelegate__DelegateSignature(class ASBZCharacter* Character, class USBZLifeActionInstance* ActionInstance, class USBZLifeActionSlot* ActionSlot, ESBZLifeActionStopReason Result)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "StopLA");
+		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_SBZLifeAction_K2Node_ComponentBoundEvent_3_SBZLifeActionStopEventDelegate__DelegateSignature");
 
-	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_StopLA Parms{};
+	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_SBZLifeAction_K2Node_ComponentBoundEvent_3_SBZLifeActionStopEventDelegate__DelegateSignature Parms{};
 
 	Parms.Character = Character;
-	Parms.LASlot = LASlot;
+	Parms.ActionInstance = ActionInstance;
+	Parms.ActionSlot = ActionSlot;
+	Parms.Result = Result;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_ExitTrigger_K2Node_ComponentBoundEvent_2_ComponentEndOverlapSignature__DelegateSignature
+// (BlueprintEvent)
+// Parameters:
+// class UPrimitiveComponent*              OverlappedComponent                                    (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class AActor*                           OtherActor                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class UPrimitiveComponent*              OtherComp                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   OtherBodyIndex                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_ExitTrigger_K2Node_ComponentBoundEvent_2_ComponentEndOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_ExitTrigger_K2Node_ComponentBoundEvent_2_ComponentEndOverlapSignature__DelegateSignature");
+
+	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_ExitTrigger_K2Node_ComponentBoundEvent_2_ComponentEndOverlapSignature__DelegateSignature Parms{};
+
+	Parms.OverlappedComponent = OverlappedComponent;
+	Parms.OtherActor = OtherActor;
+	Parms.OtherComp = OtherComp;
+	Parms.OtherBodyIndex = OtherBodyIndex;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -111,97 +143,65 @@ void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::BndEvt__BP_LA_Civ_Cosmetic_TalkToPla
 }
 
 
-// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_ExitTrigger_K2Node_ComponentBoundEvent_2_ComponentEndOverlapSignature__DelegateSignature
-// (BlueprintEvent)
-// Parameters:
-// class UPrimitiveComponent*              OverlappedComponent                                    (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class AActor*                           OtherActor                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class UPrimitiveComponent*              OtherComp                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// int32                                   OtherBodyIndex                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_ExitTrigger_K2Node_ComponentBoundEvent_2_ComponentEndOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_ExitTrigger_K2Node_ComponentBoundEvent_2_ComponentEndOverlapSignature__DelegateSignature");
-
-	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_ExitTrigger_K2Node_ComponentBoundEvent_2_ComponentEndOverlapSignature__DelegateSignature Parms{};
-
-	Parms.OverlappedComponent = OverlappedComponent;
-	Parms.OtherActor = OtherActor;
-	Parms.OtherComp = OtherComp;
-	Parms.OtherBodyIndex = OtherBodyIndex;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_SBZLifeAction_K2Node_ComponentBoundEvent_3_SBZLifeActionStopEventDelegate__DelegateSignature
-// (BlueprintEvent)
+// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.StopLA
+// (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // class ASBZCharacter*                    Character                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class USBZLifeActionInstance*           ActionInstance                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class USBZLifeActionSlot*               ActionSlot                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// ESBZLifeActionStopReason                Result                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZLifeActionSlot*               LASlot                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_SBZLifeAction_K2Node_ComponentBoundEvent_3_SBZLifeActionStopEventDelegate__DelegateSignature(class ASBZCharacter* Character, class USBZLifeActionInstance* ActionInstance, class USBZLifeActionSlot* ActionSlot, ESBZLifeActionStopReason Result)
+void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::StopLA(class ASBZCharacter* Character, class USBZLifeActionSlot* LASlot)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_SBZLifeAction_K2Node_ComponentBoundEvent_3_SBZLifeActionStopEventDelegate__DelegateSignature");
+		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "StopLA");
 
-	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_SBZLifeAction_K2Node_ComponentBoundEvent_3_SBZLifeActionStopEventDelegate__DelegateSignature Parms{};
+	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_StopLA Parms{};
 
 	Parms.Character = Character;
-	Parms.ActionInstance = ActionInstance;
-	Parms.ActionSlot = ActionSlot;
-	Parms.Result = Result;
+	Parms.LASlot = LASlot;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
 
 
-// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_02_SBZLifeAction_K2Node_ComponentBoundEvent_1_SBZLifeActionEventDelegate__DelegateSignature
-// (BlueprintEvent)
+// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.TriggerLA
+// (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // class ASBZCharacter*                    Character                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class USBZLifeActionInstance*           ActionInstance                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class USBZLifeActionSlot*               ActionSlot                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZLifeActionSlot*               LASlot                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_02_SBZLifeAction_K2Node_ComponentBoundEvent_1_SBZLifeActionEventDelegate__DelegateSignature(class ASBZCharacter* Character, class USBZLifeActionInstance* ActionInstance, class USBZLifeActionSlot* ActionSlot)
+void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::TriggerLA(class ASBZCharacter* Character, class USBZLifeActionSlot* LASlot)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_02_SBZLifeAction_K2Node_ComponentBoundEvent_1_SBZLifeActionEventDelegate__DelegateSignature");
+		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "TriggerLA");
 
-	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_BndEvt__BP_LA_Civ_Cosmetic_TalkToPlayer_02_SBZLifeAction_K2Node_ComponentBoundEvent_1_SBZLifeActionEventDelegate__DelegateSignature Parms{};
+	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_TriggerLA Parms{};
 
 	Parms.Character = Character;
-	Parms.ActionInstance = ActionInstance;
-	Parms.ActionSlot = ActionSlot;
+	Parms.LASlot = LASlot;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
 
 
-// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.ExecuteUbergraph_BP_LA_Civ_Cosmetic_TalkToPlayer_02
-// (Final, UbergraphFunction, HasDefaults)
+// Function BP_LA_Civ_Cosmetic_TalkToPlayer_02.BP_LA_Civ_Cosmetic_TalkToPlayer_02_C.SetTriggerState
+// (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    Enable                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::ExecuteUbergraph_BP_LA_Civ_Cosmetic_TalkToPlayer_02(int32 EntryPoint)
+void ABP_LA_Civ_Cosmetic_TalkToPlayer_02_C::SetTriggerState(bool Enable)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "ExecuteUbergraph_BP_LA_Civ_Cosmetic_TalkToPlayer_02");
+		Func = Class->GetFunction("BP_LA_Civ_Cosmetic_TalkToPlayer_02_C", "SetTriggerState");
 
-	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_ExecuteUbergraph_BP_LA_Civ_Cosmetic_TalkToPlayer_02 Parms{};
+	Params::BP_LA_Civ_Cosmetic_TalkToPlayer_02_C_SetTriggerState Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.Enable = Enable;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

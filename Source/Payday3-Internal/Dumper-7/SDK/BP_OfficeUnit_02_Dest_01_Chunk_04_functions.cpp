@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BP_OfficeUnit_02_Dest_01_Chunk_04.BP_OfficeUnit_02_Dest_01_Chunk_04_C.ExecuteUbergraph_BP_OfficeUnit_02_Dest_01_Chunk_04
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_OfficeUnit_02_Dest_01_Chunk_04_C::ExecuteUbergraph_BP_OfficeUnit_02_Dest_01_Chunk_04(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_OfficeUnit_02_Dest_01_Chunk_04_C", "ExecuteUbergraph_BP_OfficeUnit_02_Dest_01_Chunk_04");
+
+	Params::BP_OfficeUnit_02_Dest_01_Chunk_04_C_ExecuteUbergraph_BP_OfficeUnit_02_Dest_01_Chunk_04 Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BP_OfficeUnit_02_Dest_01_Chunk_04.BP_OfficeUnit_02_Dest_01_Chunk_04_C.BndEvt__BP_NeoClassical_Pillar_Destructible_Chunk_01_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
 // (HasOutParams, BlueprintEvent)
 // Parameters:
@@ -34,26 +54,6 @@ void ABP_OfficeUnit_02_Dest_01_Chunk_04_C::BndEvt__BP_NeoClassical_Pillar_Destru
 
 	Parms.Type = Type;
 	Parms.HitContext = std::move(HitContext);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_OfficeUnit_02_Dest_01_Chunk_04.BP_OfficeUnit_02_Dest_01_Chunk_04_C.ExecuteUbergraph_BP_OfficeUnit_02_Dest_01_Chunk_04
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_OfficeUnit_02_Dest_01_Chunk_04_C::ExecuteUbergraph_BP_OfficeUnit_02_Dest_01_Chunk_04(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_OfficeUnit_02_Dest_01_Chunk_04_C", "ExecuteUbergraph_BP_OfficeUnit_02_Dest_01_Chunk_04");
-
-	Params::BP_OfficeUnit_02_Dest_01_Chunk_04_C_ExecuteUbergraph_BP_OfficeUnit_02_Dest_01_Chunk_04 Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

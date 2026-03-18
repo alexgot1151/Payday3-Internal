@@ -15,14 +15,14 @@ namespace SDK::Params
 {
 
 // Function WBP_UI_Widget_LoadingScreen.WBP_UI_Widget_LoadingScreen_C.ExecuteUbergraph_WBP_UI_Widget_LoadingScreen
-// 0x0010 (0x0010 - 0x0000)
+// 0x0018 (0x0018 - 0x0000)
 struct WBP_UI_Widget_LoadingScreen_C_ExecuteUbergraph_WBP_UI_Widget_LoadingScreen final
 {
 public:
 	int32                                         EntryPoint;                                        // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          CallFunc_Play_ReturnValue;                         // 0x0004(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-	uint8                                         Pad_5[0x3];                                        // 0x0005(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
+	uint8                                         Pad_4[0x4];                                        // 0x0004(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
 	class APlayerController*                      CallFunc_GetPlayerController_ReturnValue;          // 0x0008(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          CallFunc_OpenUrl_ReturnValue;                      // 0x0010(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_WBP_UI_Widget_LoadingScreen_C_ExecuteUbergraph_WBP_UI_Widget_LoadingScreen;
 

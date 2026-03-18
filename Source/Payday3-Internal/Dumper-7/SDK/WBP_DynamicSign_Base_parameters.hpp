@@ -14,16 +14,6 @@
 namespace SDK::Params
 {
 
-// Function WBP_DynamicSign_Base.WBP_DynamicSign_Base_C.setText
-// 0x0030 (0x0030 - 0x0000)
-struct WBP_DynamicSign_Base_C_setText final
-{
-public:
-	class FText                                   primary;                                           // 0x0000(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
-	class FText                                   secondary;                                         // 0x0018(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
-};
-DUMPER7_ASSERTS_WBP_DynamicSign_Base_C_setText;
-
 // Function WBP_DynamicSign_Base.WBP_DynamicSign_Base_C.ExecuteUbergraph_WBP_DynamicSign_Base
 // 0x0038 (0x0038 - 0x0000)
 struct WBP_DynamicSign_Base_C_ExecuteUbergraph_WBP_DynamicSign_Base final
@@ -35,6 +25,16 @@ public:
 	class FText                                   K2Node_CustomEvent_secondary;                      // 0x0020(0x0018)()
 };
 DUMPER7_ASSERTS_WBP_DynamicSign_Base_C_ExecuteUbergraph_WBP_DynamicSign_Base;
+
+// Function WBP_DynamicSign_Base.WBP_DynamicSign_Base_C.setText
+// 0x0030 (0x0030 - 0x0000)
+struct WBP_DynamicSign_Base_C_setText final
+{
+public:
+	class FText                                   primary;                                           // 0x0000(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
+	class FText                                   secondary;                                         // 0x0018(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
+};
+DUMPER7_ASSERTS_WBP_DynamicSign_Base_C_setText;
 
 }
 

@@ -17,17 +17,23 @@
 namespace SDK
 {
 
-// Function BP_CopyMachine_01_SCR.BP_CopyMachine_01_SCR_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
+// Function BP_CopyMachine_01_SCR.BP_CopyMachine_01_SCR_C.ExecuteUbergraph_BP_CopyMachine_01_SCR
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_CopyMachine_01_SCR_C::ReceiveBeginPlay()
+void ABP_CopyMachine_01_SCR_C::ExecuteUbergraph_BP_CopyMachine_01_SCR(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_CopyMachine_01_SCR_C", "ReceiveBeginPlay");
+		Func = Class->GetFunction("BP_CopyMachine_01_SCR_C", "ExecuteUbergraph_BP_CopyMachine_01_SCR");
 
-	UObject::ProcessEvent(Func, nullptr);
+	Params::BP_CopyMachine_01_SCR_C_ExecuteUbergraph_BP_CopyMachine_01_SCR Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
 }
 
 
@@ -53,23 +59,17 @@ void ABP_CopyMachine_01_SCR_C::BndEvt__BP_CopyMachine_01_SCR_SBZCosmeticDestruct
 }
 
 
-// Function BP_CopyMachine_01_SCR.BP_CopyMachine_01_SCR_C.ExecuteUbergraph_BP_CopyMachine_01_SCR
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function BP_CopyMachine_01_SCR.BP_CopyMachine_01_SCR_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
 
-void ABP_CopyMachine_01_SCR_C::ExecuteUbergraph_BP_CopyMachine_01_SCR(int32 EntryPoint)
+void ABP_CopyMachine_01_SCR_C::ReceiveBeginPlay()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_CopyMachine_01_SCR_C", "ExecuteUbergraph_BP_CopyMachine_01_SCR");
+		Func = Class->GetFunction("BP_CopyMachine_01_SCR_C", "ReceiveBeginPlay");
 
-	Params::BP_CopyMachine_01_SCR_C_ExecuteUbergraph_BP_CopyMachine_01_SCR Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

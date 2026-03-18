@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "CoreUObject_structs.hpp"
+#include "Engine_structs.hpp"
 #include "Starbreeze_classes.hpp"
 #include "AkAudio_structs.hpp"
 
@@ -39,17 +39,17 @@ public:
 	float                                         spawnAreaRadius;                                   // 0x039C(0x0004)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void randomizeSpawnedActorTransform(class AActor* spawnedActor, bool* valid, struct FTransform* transform);
-	void setNumber(int32 number);
-	void UserConstructionScript();
-	void Open__FinishedFunc();
-	void Open__UpdateFunc();
-	void SpawnItemInContainer(class UClass* WhatShould_Spawn, class ABP_RoomSpawnController_C* RoomControllerRef, class AActor** SpawnedActor);
-	void PopulateSpawnInformationMap(TMap<class USceneComponent*, struct FTransform>* InOutSpawnDataMap);
-	void OnActorSpawned(class AActor* SpawnedActor, class USceneComponent* AttachParent);
-	void BP_OnMiniGameSuccess(bool bDoCosmetics);
-	void ReceiveBeginPlay();
 	void ExecuteUbergraph_BP_Locker_02(int32 EntryPoint);
+	void ReceiveBeginPlay();
+	void BP_OnMiniGameSuccess(bool bDoCosmetics);
+	void OnActorSpawned(class AActor* SpawnedActor, class USceneComponent* AttachParent);
+	void Open__UpdateFunc();
+	void Open__FinishedFunc();
+	void UserConstructionScript();
+	void setNumber(int32 number);
+	void randomizeSpawnedActorTransform(class AActor* spawnedActor, bool* valid, struct FTransform* transform);
+	void PopulateSpawnInformationMap(TMap<class USceneComponent*, struct FTransform>* InOutSpawnDataMap);
+	void SpawnItemInContainer(class UClass* WhatShould_Spawn, class ABP_RoomSpawnController_C* RoomControllerRef, class AActor** SpawnedActor);
 
 public:
 	static class UClass* StaticClass()

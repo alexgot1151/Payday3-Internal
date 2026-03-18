@@ -17,23 +17,21 @@
 namespace SDK
 {
 
-// Function BP_DAT_C4Explosive_01_Pickup.BP_DAT_C4Explosive_01_Pickup_C.OnStateChanged
-// (Event, Protected, BlueprintEvent)
+// Function BP_DAT_C4Explosive_01_Pickup.BP_DAT_C4Explosive_01_Pickup_C.ExecuteUbergraph_BP_DAT_C4Explosive_01_Pickup
+// (Final, UbergraphFunction)
 // Parameters:
-// bool                                    bStateToChangeTo                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_DAT_C4Explosive_01_Pickup_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
+void ABP_DAT_C4Explosive_01_Pickup_C::ExecuteUbergraph_BP_DAT_C4Explosive_01_Pickup(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_DAT_C4Explosive_01_Pickup_C", "OnStateChanged");
+		Func = Class->GetFunction("BP_DAT_C4Explosive_01_Pickup_C", "ExecuteUbergraph_BP_DAT_C4Explosive_01_Pickup");
 
-	Params::BP_DAT_C4Explosive_01_Pickup_C_OnStateChanged Parms{};
+	Params::BP_DAT_C4Explosive_01_Pickup_C_ExecuteUbergraph_BP_DAT_C4Explosive_01_Pickup Parms{};
 
-	Parms.bStateToChangeTo = bStateToChangeTo;
-	Parms.bDoCosmetics = bDoCosmetics;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -63,21 +61,23 @@ void ABP_DAT_C4Explosive_01_Pickup_C::BndEvt__BP_ReplicatedBinaryActorInteractab
 }
 
 
-// Function BP_DAT_C4Explosive_01_Pickup.BP_DAT_C4Explosive_01_Pickup_C.ExecuteUbergraph_BP_DAT_C4Explosive_01_Pickup
-// (Final, UbergraphFunction)
+// Function BP_DAT_C4Explosive_01_Pickup.BP_DAT_C4Explosive_01_Pickup_C.OnStateChanged
+// (Event, Protected, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    bStateToChangeTo                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_DAT_C4Explosive_01_Pickup_C::ExecuteUbergraph_BP_DAT_C4Explosive_01_Pickup(int32 EntryPoint)
+void ABP_DAT_C4Explosive_01_Pickup_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_DAT_C4Explosive_01_Pickup_C", "ExecuteUbergraph_BP_DAT_C4Explosive_01_Pickup");
+		Func = Class->GetFunction("BP_DAT_C4Explosive_01_Pickup_C", "OnStateChanged");
 
-	Params::BP_DAT_C4Explosive_01_Pickup_C_ExecuteUbergraph_BP_DAT_C4Explosive_01_Pickup Parms{};
+	Params::BP_DAT_C4Explosive_01_Pickup_C_OnStateChanged Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.bStateToChangeTo = bStateToChangeTo;
+	Parms.bDoCosmetics = bDoCosmetics;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

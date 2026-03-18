@@ -17,17 +17,6 @@
 namespace SDK::Params
 {
 
-// Function ONE_BPL_StandingLamp.ONE_BPL_StandingLamp_C.BndEvt__BPL_StandingLamp_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
-// 0x0034 (0x0034 - 0x0000)
-struct ONE_BPL_StandingLamp_C_BndEvt__BPL_StandingLamp_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature final
-{
-public:
-	ESBZCosmeticDestructionType                   Type;                                              // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_1[0x3];                                        // 0x0001(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
-	struct FSBZCosmeticDestructionContext         HitContext;                                        // 0x0004(0x0030)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm, NoDestructor)
-};
-DUMPER7_ASSERTS_ONE_BPL_StandingLamp_C_BndEvt__BPL_StandingLamp_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature;
-
 // Function ONE_BPL_StandingLamp.ONE_BPL_StandingLamp_C.ExecuteUbergraph_ONE_BPL_StandingLamp
 // 0x0048 (0x0048 - 0x0000)
 struct ONE_BPL_StandingLamp_C_ExecuteUbergraph_ONE_BPL_StandingLamp final
@@ -41,6 +30,17 @@ public:
 	int32                                         CallFunc_PostEventAtLocation_ReturnValue;          // 0x0044(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_ONE_BPL_StandingLamp_C_ExecuteUbergraph_ONE_BPL_StandingLamp;
+
+// Function ONE_BPL_StandingLamp.ONE_BPL_StandingLamp_C.BndEvt__BPL_StandingLamp_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
+// 0x0034 (0x0034 - 0x0000)
+struct ONE_BPL_StandingLamp_C_BndEvt__BPL_StandingLamp_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature final
+{
+public:
+	ESBZCosmeticDestructionType                   Type;                                              // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_1[0x3];                                        // 0x0001(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
+	struct FSBZCosmeticDestructionContext         HitContext;                                        // 0x0004(0x0030)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm, NoDestructor)
+};
+DUMPER7_ASSERTS_ONE_BPL_StandingLamp_C_BndEvt__BPL_StandingLamp_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature;
 
 }
 

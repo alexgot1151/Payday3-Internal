@@ -17,7 +17,7 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass CH_Civilian_Employee_Female_01.CH_Civilian_Employee_Female_01_C
-// 0x0000 (0x1D40 - 0x1D40)
+// 0x0000 (0x1D50 - 0x1D50)
 class ACH_Civilian_Employee_Female_01_C final : public ACH_BaseEmployeeCivilian_C
 {
 public:

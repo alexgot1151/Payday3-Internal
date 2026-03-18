@@ -17,7 +17,7 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass BP_SecurityRoom.BP_SecurityRoom_C
-// 0x0000 (0x03B8 - 0x03B8)
+// 0x0000 (0x0410 - 0x0410)
 class ABP_SecurityRoom_C final : public ASBZSecurityRoom
 {
 public:

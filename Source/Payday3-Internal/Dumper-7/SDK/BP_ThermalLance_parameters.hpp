@@ -17,46 +17,6 @@
 namespace SDK::Params
 {
 
-// Function BP_ThermalLance.BP_ThermalLance_C.BP_OnStateChanged
-// 0x0003 (0x0003 - 0x0000)
-struct BP_ThermalLance_C_BP_OnStateChanged final
-{
-public:
-	ESBZBreachingEquipmentState                   OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	ESBZBreachingEquipmentState                   NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bDoCosmetics;                                      // 0x0002(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ThermalLance_C_BP_OnStateChanged;
-
-// Function BP_ThermalLance.BP_ThermalLance_C.BP_PartAdded
-// 0x0004 (0x0004 - 0x0000)
-struct BP_ThermalLance_C_BP_PartAdded final
-{
-public:
-	int32                                         Amount;                                            // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_ThermalLance_C_BP_PartAdded;
-
-// Function BP_ThermalLance.BP_ThermalLance_C.BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature
-// 0x0010 (0x0010 - 0x0000)
-struct BP_ThermalLance_C_BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature final
-{
-public:
-	const class USBZBaseInteractableComponent*    InteractableComponent;                             // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ThermalLance_C_BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature;
-
-// Function BP_ThermalLance.BP_ThermalLance_C.BP_OnBolted
-// 0x0008 (0x0008 - 0x0000)
-struct BP_ThermalLance_C_BP_OnBolted final
-{
-public:
-	int32                                         Amount;                                            // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         BoltIndex;                                         // 0x0004(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_ThermalLance_C_BP_OnBolted;
-
 // Function BP_ThermalLance.BP_ThermalLance_C.ExecuteUbergraph_BP_ThermalLance
 // 0x0110 (0x0110 - 0x0000)
 struct BP_ThermalLance_C_ExecuteUbergraph_BP_ThermalLance final
@@ -108,6 +68,46 @@ public:
 	bool                                          CallFunc_NotEqual_ByteByte_ReturnValue;            // 0x0101(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_BP_ThermalLance_C_ExecuteUbergraph_BP_ThermalLance;
+
+// Function BP_ThermalLance.BP_ThermalLance_C.BP_OnBolted
+// 0x0008 (0x0008 - 0x0000)
+struct BP_ThermalLance_C_BP_OnBolted final
+{
+public:
+	int32                                         Amount;                                            // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         BoltIndex;                                         // 0x0004(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_ThermalLance_C_BP_OnBolted;
+
+// Function BP_ThermalLance.BP_ThermalLance_C.BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature
+// 0x0010 (0x0010 - 0x0000)
+struct BP_ThermalLance_C_BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature final
+{
+public:
+	const class USBZBaseInteractableComponent*    InteractableComponent;                             // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ThermalLance_C_BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature;
+
+// Function BP_ThermalLance.BP_ThermalLance_C.BP_PartAdded
+// 0x0004 (0x0004 - 0x0000)
+struct BP_ThermalLance_C_BP_PartAdded final
+{
+public:
+	int32                                         Amount;                                            // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_ThermalLance_C_BP_PartAdded;
+
+// Function BP_ThermalLance.BP_ThermalLance_C.BP_OnStateChanged
+// 0x0003 (0x0003 - 0x0000)
+struct BP_ThermalLance_C_BP_OnStateChanged final
+{
+public:
+	ESBZBreachingEquipmentState                   OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	ESBZBreachingEquipmentState                   NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bDoCosmetics;                                      // 0x0002(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ThermalLance_C_BP_OnStateChanged;
 
 // Function BP_ThermalLance.BP_ThermalLance_C.SetAnimationPosition
 // 0x0004 (0x0004 - 0x0000)

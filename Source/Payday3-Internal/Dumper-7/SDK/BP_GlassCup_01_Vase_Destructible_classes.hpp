@@ -10,9 +10,9 @@
 
 #include "Basic.hpp"
 
+#include "CoreUObject_structs.hpp"
 #include "Engine_structs.hpp"
 #include "Engine_classes.hpp"
-#include "CoreUObject_structs.hpp"
 #include "Starbreeze_structs.hpp"
 
 
@@ -33,8 +33,8 @@ public:
 	struct FVector                                ParticleScale;                                     // 0x02D8(0x000C)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void BndEvt__BP_CactusPot_01_A_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature(ESBZCosmeticDestructionType Type, const struct FSBZCosmeticDestructionContext& HitContext);
 	void ExecuteUbergraph_BP_GlassCup_01_Vase_Destructible(int32 EntryPoint);
+	void BndEvt__BP_CactusPot_01_A_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature(ESBZCosmeticDestructionType Type, const struct FSBZCosmeticDestructionContext& HitContext);
 
 public:
 	static class UClass* StaticClass()

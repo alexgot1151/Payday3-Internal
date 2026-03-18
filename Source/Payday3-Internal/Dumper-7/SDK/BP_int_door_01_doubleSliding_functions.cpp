@@ -17,35 +17,21 @@
 namespace SDK
 {
 
-// Function BP_int_door_01_doubleSliding.BP_int_door_01_doubleSliding_C.UserConstructionScript
-// (Event, Public, BlueprintCallable, BlueprintEvent)
-
-void ABP_int_door_01_doubleSliding_C::UserConstructionScript()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_int_door_01_doubleSliding_C", "UserConstructionScript");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_int_door_01_doubleSliding.BP_int_door_01_doubleSliding_C.initToValidPosition
-// (BlueprintCallable, BlueprintEvent)
+// Function BP_int_door_01_doubleSliding.BP_int_door_01_doubleSliding_C.ExecuteUbergraph_BP_int_door_01_doubleSliding
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// ESBZGateState                           oldState                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_int_door_01_doubleSliding_C::initToValidPosition(ESBZGateState oldState)
+void ABP_int_door_01_doubleSliding_C::ExecuteUbergraph_BP_int_door_01_doubleSliding(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_int_door_01_doubleSliding_C", "initToValidPosition");
+		Func = Class->GetFunction("BP_int_door_01_doubleSliding_C", "ExecuteUbergraph_BP_int_door_01_doubleSliding");
 
-	Params::BP_int_door_01_doubleSliding_C_initToValidPosition Parms{};
+	Params::BP_int_door_01_doubleSliding_C_ExecuteUbergraph_BP_int_door_01_doubleSliding Parms{};
 
-	Parms.oldState = oldState;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -71,23 +57,37 @@ void ABP_int_door_01_doubleSliding_C::onOpenAnimUpdateTick(float alpha)
 }
 
 
-// Function BP_int_door_01_doubleSliding.BP_int_door_01_doubleSliding_C.ExecuteUbergraph_BP_int_door_01_doubleSliding
-// (Final, UbergraphFunction, HasDefaults)
+// Function BP_int_door_01_doubleSliding.BP_int_door_01_doubleSliding_C.initToValidPosition
+// (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// ESBZGateState                           oldState                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_int_door_01_doubleSliding_C::ExecuteUbergraph_BP_int_door_01_doubleSliding(int32 EntryPoint)
+void ABP_int_door_01_doubleSliding_C::initToValidPosition(ESBZGateState oldState)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_int_door_01_doubleSliding_C", "ExecuteUbergraph_BP_int_door_01_doubleSliding");
+		Func = Class->GetFunction("BP_int_door_01_doubleSliding_C", "initToValidPosition");
 
-	Params::BP_int_door_01_doubleSliding_C_ExecuteUbergraph_BP_int_door_01_doubleSliding Parms{};
+	Params::BP_int_door_01_doubleSliding_C_initToValidPosition Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.oldState = oldState;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_int_door_01_doubleSliding.BP_int_door_01_doubleSliding_C.UserConstructionScript
+// (Event, Public, BlueprintCallable, BlueprintEvent)
+
+void ABP_int_door_01_doubleSliding_C::UserConstructionScript()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_int_door_01_doubleSliding_C", "UserConstructionScript");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

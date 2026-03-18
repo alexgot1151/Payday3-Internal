@@ -47,13 +47,13 @@ public:
 	float                                         openAngle;                                         // 0x0378(0x0004)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void setMagneticLock(bool enabled);
-	void Timeline_Open__FinishedFunc();
-	void Timeline_Open__UpdateFunc();
-	void Timeline_Open__openNav__EventFunc();
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
-	void BndEvt__BP_ONE_SecurityGate_magneticLock_SBZBinaryState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature(bool bState_0, bool bDoCosmetics);
 	void ExecuteUbergraph_BP_ONE_SecurityGate(int32 EntryPoint);
+	void BndEvt__BP_ONE_SecurityGate_magneticLock_SBZBinaryState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature(bool bState_0, bool bDoCosmetics);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void Timeline_Open__openNav__EventFunc();
+	void Timeline_Open__UpdateFunc();
+	void Timeline_Open__FinishedFunc();
+	void setMagneticLock(bool enabled);
 
 public:
 	static class UClass* StaticClass()

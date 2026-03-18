@@ -27,8 +27,8 @@ public:
 	class FText                                   secondaryText;                                     // 0x02B0(0x0018)(Edit, BlueprintVisible, DisableEditOnInstance)
 
 public:
-	void setText(const class FText& primary, const class FText& secondary);
 	void ExecuteUbergraph_WBP_DynamicSign_Base(int32 EntryPoint);
+	void setText(const class FText& primary, const class FText& secondary);
 
 public:
 	static class UClass* StaticClass()

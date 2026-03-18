@@ -16,17 +16,6 @@
 namespace SDK::Params
 {
 
-// Function BP_IGL_BRE_NAV_ATT_2HITS.BP_IGL_BRE_NAV_ATT_2HITS_C.OnStateChanged
-// 0x0003 (0x0003 - 0x0000)
-struct BP_IGL_BRE_NAV_ATT_2HITS_C_OnStateChanged final
-{
-public:
-	ESBZGateState                                 OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	ESBZGateState                                 NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bIsInitialStateChange;                             // 0x0002(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_IGL_BRE_NAV_ATT_2HITS_C_OnStateChanged;
-
 // Function BP_IGL_BRE_NAV_ATT_2HITS.BP_IGL_BRE_NAV_ATT_2HITS_C.ExecuteUbergraph_BP_IGL_BRE_NAV_ATT_2HITS
 // 0x0058 (0x0058 - 0x0000)
 struct BP_IGL_BRE_NAV_ATT_2HITS_C_ExecuteUbergraph_BP_IGL_BRE_NAV_ATT_2HITS final
@@ -54,6 +43,17 @@ public:
 	bool                                          K2Node_SwitchInteger_CmpSuccess;                   // 0x0050(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_BP_IGL_BRE_NAV_ATT_2HITS_C_ExecuteUbergraph_BP_IGL_BRE_NAV_ATT_2HITS;
+
+// Function BP_IGL_BRE_NAV_ATT_2HITS.BP_IGL_BRE_NAV_ATT_2HITS_C.OnStateChanged
+// 0x0003 (0x0003 - 0x0000)
+struct BP_IGL_BRE_NAV_ATT_2HITS_C_OnStateChanged final
+{
+public:
+	ESBZGateState                                 OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	ESBZGateState                                 NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bIsInitialStateChange;                             // 0x0002(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_IGL_BRE_NAV_ATT_2HITS_C_OnStateChanged;
 
 // Function BP_IGL_BRE_NAV_ATT_2HITS.BP_IGL_BRE_NAV_ATT_2HITS_C.BndEvt__BP_BreachableWindow_SBZPropDamage_K2Node_ComponentBoundEvent_0_SBZPropDamageHitsSignature__DelegateSignature
 // 0x0028 (0x0028 - 0x0000)

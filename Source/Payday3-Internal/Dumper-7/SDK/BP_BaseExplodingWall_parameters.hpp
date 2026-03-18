@@ -17,24 +17,6 @@
 namespace SDK::Params
 {
 
-// Function BP_BaseExplodingWall.BP_BaseExplodingWall_C.spawnExplosionVFX
-// 0x0001 (0x0001 - 0x0000)
-struct BP_BaseExplodingWall_C_spawnExplosionVFX final
-{
-public:
-	bool                                          doCosmetics;                                       // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_BaseExplodingWall_C_spawnExplosionVFX;
-
-// Function BP_BaseExplodingWall.BP_BaseExplodingWall_C.onServerOnChargesChanged
-// 0x0004 (0x0004 - 0x0000)
-struct BP_BaseExplodingWall_C_onServerOnChargesChanged final
-{
-public:
-	int32                                         NewCount;                                          // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_BaseExplodingWall_C_onServerOnChargesChanged;
-
 // Function BP_BaseExplodingWall.BP_BaseExplodingWall_C.ExecuteUbergraph_BP_BaseExplodingWall
 // 0x00E0 (0x00E0 - 0x0000)
 struct BP_BaseExplodingWall_C_ExecuteUbergraph_BP_BaseExplodingWall final
@@ -84,6 +66,24 @@ public:
 	bool                                          K2Node_DynamicCast_bSuccess;                       // 0x00D8(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_BP_BaseExplodingWall_C_ExecuteUbergraph_BP_BaseExplodingWall;
+
+// Function BP_BaseExplodingWall.BP_BaseExplodingWall_C.onServerOnChargesChanged
+// 0x0004 (0x0004 - 0x0000)
+struct BP_BaseExplodingWall_C_onServerOnChargesChanged final
+{
+public:
+	int32                                         NewCount;                                          // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_BaseExplodingWall_C_onServerOnChargesChanged;
+
+// Function BP_BaseExplodingWall.BP_BaseExplodingWall_C.spawnExplosionVFX
+// 0x0001 (0x0001 - 0x0000)
+struct BP_BaseExplodingWall_C_spawnExplosionVFX final
+{
+public:
+	bool                                          doCosmetics;                                       // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_BaseExplodingWall_C_spawnExplosionVFX;
 
 // Function BP_BaseExplodingWall.BP_BaseExplodingWall_C.BP_EnabledChanged
 // 0x0002 (0x0002 - 0x0000)

@@ -23,19 +23,19 @@ namespace SDK
 class ABP_SwatVan_Spawner_C final : public ABP_SwatVan_C
 {
 public:
-	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x0718(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
-	class UChildActorComponent*                   Spawn_2;                                           // 0x0720(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
-	class UChildActorComponent*                   Spawn_3;                                           // 0x0728(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
-	class UChildActorComponent*                   Spawn1;                                            // 0x0730(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
-	class UChildActorComponent*                   Spawn2;                                            // 0x0738(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
-	class UChildActorComponent*                   SpawnGroup;                                        // 0x0740(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
-	class USBZVehicleSpawnComponent*              SBZVehicleSpawn;                                   // 0x0748(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
-	class ASBZPawnSpawnPredefined*                Spawners;                                          // 0x0750(0x0008)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	struct FPointerToUberGraphFrame               UberGraphFrame_BP_SwatVan_Spawner_C;               // 0x0720(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
+	class UChildActorComponent*                   Spawn_2;                                           // 0x0728(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	class UChildActorComponent*                   Spawn_3;                                           // 0x0730(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	class UChildActorComponent*                   Spawn1;                                            // 0x0738(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	class UChildActorComponent*                   Spawn2;                                            // 0x0740(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	class UChildActorComponent*                   SpawnGroup;                                        // 0x0748(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	class USBZVehicleSpawnComponent*              SBZVehicleSpawn;                                   // 0x0750(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	class ASBZPawnSpawnPredefined*                Spawners;                                          // 0x0758(0x0008)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ReceiveBeginPlay();
-	void PawnSpawned(class APawn* SpawnedPawn, class ASBZCarriedStaticInteractionActor* Spawnedloot);
 	void ExecuteUbergraph_BP_SwatVan_Spawner(int32 EntryPoint);
+	void PawnSpawned(class APawn* SpawnedPawn, class ASBZCarriedStaticInteractionActor* Spawnedloot);
+	void ReceiveBeginPlay();
 
 public:
 	static class UClass* StaticClass()

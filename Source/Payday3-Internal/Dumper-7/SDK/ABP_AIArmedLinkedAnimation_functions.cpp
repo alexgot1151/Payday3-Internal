@@ -17,27 +17,23 @@
 namespace SDK
 {
 
-// Function ABP_AIArmedLinkedAnimation.ABP_AIArmedLinkedAnimation_C.FullBodyAction
-// (HasOutParams, BlueprintCallable)
+// Function ABP_AIArmedLinkedAnimation.ABP_AIArmedLinkedAnimation_C.ExecuteUbergraph_ABP_AIArmedLinkedAnimation
+// (Final, UbergraphFunction)
 // Parameters:
-// const struct FPoseLink&                 InPose                                                 (BlueprintVisible, BlueprintReadOnly, Parm, NoDestructor)
-// struct FPoseLink*                       FullBodyAction_0                                       (Parm, OutParm, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void UABP_AIArmedLinkedAnimation_C::FullBodyAction(const struct FPoseLink& InPose, struct FPoseLink* FullBodyAction_0)
+void UABP_AIArmedLinkedAnimation_C::ExecuteUbergraph_ABP_AIArmedLinkedAnimation(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("ABP_AIArmedLinkedAnimation_C", "FullBodyAction");
+		Func = Class->GetFunction("ABP_AIArmedLinkedAnimation_C", "ExecuteUbergraph_ABP_AIArmedLinkedAnimation");
 
-	Params::ABP_AIArmedLinkedAnimation_C_FullBodyAction Parms{};
+	Params::ABP_AIArmedLinkedAnimation_C_ExecuteUbergraph_ABP_AIArmedLinkedAnimation Parms{};
 
-	Parms.InPose = std::move(InPose);
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (FullBodyAction_0 != nullptr)
-		*FullBodyAction_0 = std::move(Parms.FullBodyAction_0);
 }
 
 
@@ -62,23 +58,27 @@ void UABP_AIArmedLinkedAnimation_C::AnimGraph(struct FPoseLink* AnimGraph_0)
 }
 
 
-// Function ABP_AIArmedLinkedAnimation.ABP_AIArmedLinkedAnimation_C.ExecuteUbergraph_ABP_AIArmedLinkedAnimation
-// (Final, UbergraphFunction)
+// Function ABP_AIArmedLinkedAnimation.ABP_AIArmedLinkedAnimation_C.FullBodyAction
+// (HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// const struct FPoseLink&                 InPose                                                 (BlueprintVisible, BlueprintReadOnly, Parm, NoDestructor)
+// struct FPoseLink*                       FullBodyAction_0                                       (Parm, OutParm, NoDestructor)
 
-void UABP_AIArmedLinkedAnimation_C::ExecuteUbergraph_ABP_AIArmedLinkedAnimation(int32 EntryPoint)
+void UABP_AIArmedLinkedAnimation_C::FullBodyAction(const struct FPoseLink& InPose, struct FPoseLink* FullBodyAction_0)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("ABP_AIArmedLinkedAnimation_C", "ExecuteUbergraph_ABP_AIArmedLinkedAnimation");
+		Func = Class->GetFunction("ABP_AIArmedLinkedAnimation_C", "FullBodyAction");
 
-	Params::ABP_AIArmedLinkedAnimation_C_ExecuteUbergraph_ABP_AIArmedLinkedAnimation Parms{};
+	Params::ABP_AIArmedLinkedAnimation_C_FullBodyAction Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.InPose = std::move(InPose);
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (FullBodyAction_0 != nullptr)
+		*FullBodyAction_0 = std::move(Parms.FullBodyAction_0);
 }
 
 }

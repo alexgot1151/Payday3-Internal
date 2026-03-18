@@ -18,7 +18,7 @@ namespace SDK
 {
 
 // Function WBP_UI_Widget_CollectedBagIcon.WBP_UI_Widget_CollectedBagIcon_C.ExecuteUbergraph_WBP_UI_Widget_CollectedBagIcon
-// (Final, UbergraphFunction)
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
 // int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 

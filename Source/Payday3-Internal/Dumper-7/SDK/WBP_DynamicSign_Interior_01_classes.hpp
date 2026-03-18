@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "WBP_DynamicSign_Base_classes.hpp"
+#include "Engine_structs.hpp"
 #include "UMG_structs.hpp"
 
 
@@ -28,9 +28,9 @@ public:
 	class UTextBlock*                             secondaryTextBlock;                                // 0x02D8(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
 
 public:
-	void setText(const class FText& primary, const class FText& secondary);
-	void PreConstruct(bool IsDesignTime);
 	void ExecuteUbergraph_WBP_DynamicSign_Interior_01(int32 EntryPoint);
+	void PreConstruct(bool IsDesignTime);
+	void setText(const class FText& primary, const class FText& secondary);
 
 public:
 	static class UClass* StaticClass()

@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BPCactusPot_01_A_Smile_SmallDestruction.BPCactusPot_01_A_Smile_SmallDestruction_C.ExecuteUbergraph_BPCactusPot_01_A_Smile_SmallDestruction
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABPCactusPot_01_A_Smile_SmallDestruction_C::ExecuteUbergraph_BPCactusPot_01_A_Smile_SmallDestruction(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BPCactusPot_01_A_Smile_SmallDestruction_C", "ExecuteUbergraph_BPCactusPot_01_A_Smile_SmallDestruction");
+
+	Params::BPCactusPot_01_A_Smile_SmallDestruction_C_ExecuteUbergraph_BPCactusPot_01_A_Smile_SmallDestruction Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BPCactusPot_01_A_Smile_SmallDestruction.BPCactusPot_01_A_Smile_SmallDestruction_C.BndEvt__BP_PlantPot_01_SmallDestruction_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
 // (HasOutParams, BlueprintEvent)
 // Parameters:
@@ -34,26 +54,6 @@ void ABPCactusPot_01_A_Smile_SmallDestruction_C::BndEvt__BP_PlantPot_01_SmallDes
 
 	Parms.Type = Type;
 	Parms.HitContext = std::move(HitContext);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BPCactusPot_01_A_Smile_SmallDestruction.BPCactusPot_01_A_Smile_SmallDestruction_C.ExecuteUbergraph_BPCactusPot_01_A_Smile_SmallDestruction
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABPCactusPot_01_A_Smile_SmallDestruction_C::ExecuteUbergraph_BPCactusPot_01_A_Smile_SmallDestruction(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BPCactusPot_01_A_Smile_SmallDestruction_C", "ExecuteUbergraph_BPCactusPot_01_A_Smile_SmallDestruction");
-
-	Params::BPCactusPot_01_A_Smile_SmallDestruction_C_ExecuteUbergraph_BPCactusPot_01_A_Smile_SmallDestruction Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

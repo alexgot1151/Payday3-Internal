@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function ONE_BPL_StandingLamp.ONE_BPL_StandingLamp_C.ExecuteUbergraph_ONE_BPL_StandingLamp
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void AONE_BPL_StandingLamp_C::ExecuteUbergraph_ONE_BPL_StandingLamp(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("ONE_BPL_StandingLamp_C", "ExecuteUbergraph_ONE_BPL_StandingLamp");
+
+	Params::ONE_BPL_StandingLamp_C_ExecuteUbergraph_ONE_BPL_StandingLamp Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function ONE_BPL_StandingLamp.ONE_BPL_StandingLamp_C.BndEvt__BPL_StandingLamp_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
 // (HasOutParams, BlueprintEvent)
 // Parameters:
@@ -34,26 +54,6 @@ void AONE_BPL_StandingLamp_C::BndEvt__BPL_StandingLamp_SBZCosmeticDestruction_K2
 
 	Parms.Type = Type;
 	Parms.HitContext = std::move(HitContext);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function ONE_BPL_StandingLamp.ONE_BPL_StandingLamp_C.ExecuteUbergraph_ONE_BPL_StandingLamp
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void AONE_BPL_StandingLamp_C::ExecuteUbergraph_ONE_BPL_StandingLamp(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("ONE_BPL_StandingLamp_C", "ExecuteUbergraph_ONE_BPL_StandingLamp");
-
-	Params::ONE_BPL_StandingLamp_C_ExecuteUbergraph_ONE_BPL_StandingLamp Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

@@ -18,11 +18,11 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass PD3_GameInstance.PD3_GameInstance_C
-// 0x0008 (0x0600 - 0x05F8)
+// 0x0008 (0x0608 - 0x0600)
 class UPD3_GameInstance_C final : public USBZGameInstance
 {
 public:
-	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x05F8(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
+	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x0600(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
 
 public:
 	void ExecuteUbergraph_PD3_GameInstance(int32 EntryPoint);

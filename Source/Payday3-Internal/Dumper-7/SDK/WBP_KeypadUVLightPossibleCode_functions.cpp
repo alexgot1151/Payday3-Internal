@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function WBP_KeypadUVLightPossibleCode.WBP_KeypadUVLightPossibleCode_C.SetText
-// (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// int32                                   Value                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UWBP_KeypadUVLightPossibleCode_C::SetText(int32 Value)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_KeypadUVLightPossibleCode_C", "SetText");
-
-	Params::WBP_KeypadUVLightPossibleCode_C_SetText Parms{};
-
-	Parms.Value = Value;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function WBP_KeypadUVLightPossibleCode.WBP_KeypadUVLightPossibleCode_C.SetKeypad
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
@@ -56,6 +36,26 @@ void UWBP_KeypadUVLightPossibleCode_C::SetKeypad(int32 TrueCode, int32 RandomCod
 	Parms.TrueCode = TrueCode;
 	Parms.RandomCode = RandomCode;
 	Parms.ShowTrueCode = ShowTrueCode;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_KeypadUVLightPossibleCode.WBP_KeypadUVLightPossibleCode_C.SetText
+// (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// int32                                   Value                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_KeypadUVLightPossibleCode_C::SetText(int32 Value)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_KeypadUVLightPossibleCode_C", "SetText");
+
+	Params::WBP_KeypadUVLightPossibleCode_C_SetText Parms{};
+
+	Parms.Value = Value;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

@@ -54,9 +54,9 @@ public:
 	struct FLinearColor                           tint;                                              // 0x0380(0x0010)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ReceiveBeginPlay();
-	void BndEvt__BP_Breakable_ATM_01_InteractableComponent_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent_0, bool bInNewState);
 	void ExecuteUbergraph_BP_Breakable_ATM_01(int32 EntryPoint);
+	void BndEvt__BP_Breakable_ATM_01_InteractableComponent_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent_0, bool bInNewState);
+	void ReceiveBeginPlay();
 	void BndEvt__BP_Breakable_ATM_01_InteractableComponent_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
 	void BndEvt__BP_Breakable_ATM_01_InteractableComponent_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
 	void BP_OnStateChanged(ESBZBreakableMachineState OldState, ESBZBreakableMachineState NewState, bool bDoCosmetics);

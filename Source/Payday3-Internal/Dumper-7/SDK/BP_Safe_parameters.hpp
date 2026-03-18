@@ -17,32 +17,6 @@
 namespace SDK::Params
 {
 
-// Function BP_Safe.BP_Safe_C.SpawnItemInContainer
-// 0x0070 (0x0070 - 0x0000)
-struct BP_Safe_C_SpawnItemInContainer final
-{
-public:
-	class UClass*                                 WhatShould_Spawn;                                  // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class ABP_RoomSpawnController_C*              RoomControllerRef;                                 // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class AActor*                                 SpawnedActor;                                      // 0x0010(0x0008)(Parm, OutParm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	struct FVector                                CallFunc_K2_GetComponentLocation_ReturnValue;      // 0x0018(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_24[0xC];                                       // 0x0024(0x000C)(Fixing Size After Last Property [ Dumper-7 ])
-	struct FTransform                             CallFunc_Conv_VectorToTransform_ReturnValue;       // 0x0030(0x0030)(IsPlainOldData, NoDestructor)
-	class AActor*                                 CallFunc_BeginDeferredActorSpawnFromClass_ReturnValue; // 0x0060(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class AActor*                                 CallFunc_FinishSpawningActor_ReturnValue;          // 0x0068(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_Safe_C_SpawnItemInContainer;
-
-// Function BP_Safe.BP_Safe_C.OnStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct BP_Safe_C_OnStateChanged final
-{
-public:
-	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_Safe_C_OnStateChanged;
-
 // Function BP_Safe.BP_Safe_C.ExecuteUbergraph_BP_Safe
 // 0x0038 (0x0038 - 0x0000)
 struct BP_Safe_C_ExecuteUbergraph_BP_Safe final
@@ -58,6 +32,32 @@ public:
 	int32                                         CallFunc_PostAkEvent_ReturnValue;                  // 0x0030(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_Safe_C_ExecuteUbergraph_BP_Safe;
+
+// Function BP_Safe.BP_Safe_C.OnStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct BP_Safe_C_OnStateChanged final
+{
+public:
+	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_Safe_C_OnStateChanged;
+
+// Function BP_Safe.BP_Safe_C.SpawnItemInContainer
+// 0x0070 (0x0070 - 0x0000)
+struct BP_Safe_C_SpawnItemInContainer final
+{
+public:
+	class UClass*                                 WhatShould_Spawn;                                  // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class ABP_RoomSpawnController_C*              RoomControllerRef;                                 // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class AActor*                                 SpawnedActor;                                      // 0x0010(0x0008)(Parm, OutParm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	struct FVector                                CallFunc_K2_GetComponentLocation_ReturnValue;      // 0x0018(0x000C)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_24[0xC];                                       // 0x0024(0x000C)(Fixing Size After Last Property [ Dumper-7 ])
+	struct FTransform                             CallFunc_Conv_VectorToTransform_ReturnValue;       // 0x0030(0x0030)(IsPlainOldData, NoDestructor)
+	class AActor*                                 CallFunc_BeginDeferredActorSpawnFromClass_ReturnValue; // 0x0060(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class AActor*                                 CallFunc_FinishSpawningActor_ReturnValue;          // 0x0068(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_Safe_C_SpawnItemInContainer;
 
 }
 

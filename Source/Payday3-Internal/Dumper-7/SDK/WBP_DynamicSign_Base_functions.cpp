@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function WBP_DynamicSign_Base.WBP_DynamicSign_Base_C.ExecuteUbergraph_WBP_DynamicSign_Base
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_DynamicSign_Base_C::ExecuteUbergraph_WBP_DynamicSign_Base(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_DynamicSign_Base_C", "ExecuteUbergraph_WBP_DynamicSign_Base");
+
+	Params::WBP_DynamicSign_Base_C_ExecuteUbergraph_WBP_DynamicSign_Base Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function WBP_DynamicSign_Base.WBP_DynamicSign_Base_C.setText
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
@@ -34,26 +54,6 @@ void UWBP_DynamicSign_Base_C::setText(const class FText& primary, const class FT
 
 	Parms.primary = std::move(primary);
 	Parms.secondary = std::move(secondary);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_DynamicSign_Base.WBP_DynamicSign_Base_C.ExecuteUbergraph_WBP_DynamicSign_Base
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UWBP_DynamicSign_Base_C::ExecuteUbergraph_WBP_DynamicSign_Base(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_DynamicSign_Base_C", "ExecuteUbergraph_WBP_DynamicSign_Base");
-
-	Params::WBP_DynamicSign_Base_C_ExecuteUbergraph_WBP_DynamicSign_Base Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

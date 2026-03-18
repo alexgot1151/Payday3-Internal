@@ -34,10 +34,10 @@ public:
 	float                                         Emissive_Duration;                                 // 0x0330(0x0004)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void UserConstructionScript();
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
-	void ReceiveBeginPlay();
 	void ExecuteUbergraph_BP_Thermite_Breach(int32 EntryPoint);
+	void ReceiveBeginPlay();
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void UserConstructionScript();
 
 public:
 	static class UClass* StaticClass()

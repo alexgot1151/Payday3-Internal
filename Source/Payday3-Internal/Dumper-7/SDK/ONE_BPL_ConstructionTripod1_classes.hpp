@@ -10,9 +10,9 @@
 
 #include "Basic.hpp"
 
+#include "Enum_LampStages_structs.hpp"
 #include "Engine_structs.hpp"
 #include "Starbreeze_classes.hpp"
-#include "Enum_LampStages_structs.hpp"
 
 
 namespace SDK
@@ -36,9 +36,9 @@ public:
 	Enum_LampStages                               States;                                            // 0x0340(0x0001)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void SetStateFunction(Enum_LampStages States_0);
-	void OnStateChanged(int32 OldState, int32 NewState, bool bDoCosmetics);
 	void ExecuteUbergraph_ONE_BPL_ConstructionTripod1(int32 EntryPoint);
+	void OnStateChanged(int32 OldState, int32 NewState, bool bDoCosmetics);
+	void SetStateFunction(Enum_LampStages States_0);
 
 public:
 	static class UClass* StaticClass()
