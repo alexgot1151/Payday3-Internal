@@ -146,7 +146,6 @@ namespace Menu{
             case ImGuiKey_AppBack: return "App Back";
             case ImGuiKey_AppForward: return "App Forward";
             case ImGuiKey_Oem102: return "\\";
-
             case ImGuiKey_GamepadStart: return "Con Start";
             case ImGuiKey_GamepadBack: return "Con Back";
             case ImGuiKey_GamepadFaceLeft: return "Con X";
@@ -229,6 +228,10 @@ namespace Menu{
 };
 
 struct CheatConfig{
+    struct MultiSelect_t{
+        
+    };
+
     struct Aimbot_t {
         bool m_bEnabled = false;
         float m_flAimFOV = 180.f;

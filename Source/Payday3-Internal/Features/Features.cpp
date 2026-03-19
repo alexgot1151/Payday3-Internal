@@ -2,6 +2,7 @@
 #include "../Menu.hpp" 
 #include "../Dumper-7/SDK.hpp"
 #include "../Utils/Logging.hpp"
+#include "./Misc/ClientMove.hpp"
 
 #undef min
 #undef max
@@ -494,47 +495,8 @@ void Cheat::OnPlayerControllerTick(){
     SDK::USBZPlayerMovementComponent* pMovementComponent = reinterpret_cast<SDK::USBZPlayerMovementComponent*>(pLocalPlayer->GetComponentByClass(SDK::USBZPlayerMovementComponent::StaticClass()));
     if (!pMovementComponent)
         return;
-    
-    static std::chrono::time_point<std::chrono::steady_clock> timeTeleportLast = std::chrono::steady_clock::now();
-    if(CheatConfig::Get().m_misc.m_keyClientMove.GetState()){
-        if (pLocalPlayer->GetActorEnableCollision())
-            pLocalPlayer->SetActorEnableCollision(false);
 
-        if(CheatConfig::Get().m_misc.m_keyClientMoveTeleport.GetState() && !g_bIsSoloGame && std::chrono::steady_clock::now() - timeTeleportLast > g_durationPing){
-            SDK::FVector vecPoint = pLocalPlayer->K2_GetActorLocation();
-            SDK::FSBZMinimalAgilityTraversalTrajectory trajectory{
-                vecPoint, vecPoint, vecPoint, vecPoint, std::numeric_limits<int16_t>::max(), SDK::ESBZAgilityTraversalType::VaultLowFast, false, false
-            };
-
-            pMovementComponent->Server_StartTraversal(trajectory);
-            g_bForceMoveForTeleport = true;
-            timeTeleportLast = std::chrono::steady_clock::now();
-        }
-
-        pMovementComponent->MovementMode = SDK::EMovementMode::MOVE_Flying;
-        pMovementComponent->BrakingDecelerationFlying = 10000.f;
-        pMovementComponent->MaxFlySpeed = 10000.f;
-        float flFlySpeed = CheatConfig::Get().m_misc.m_flClientMoveBaseSpeed;
-        if(CheatConfig::Get().m_misc.m_keyClientMoveFaster.GetState())
-            flFlySpeed *= 2.f;
-        pMovementComponent->Velocity = pMovementComponent->GetLastInputVector() * flFlySpeed;
-    }
-    else if(!pLocalPlayer->GetActorEnableCollision()){
-        pLocalPlayer->SetActorEnableCollision(true);
-        pMovementComponent->MovementMode = SDK::EMovementMode::MOVE_Walking;
-        pMovementComponent->Velocity = SDK::FVector{};
-
-        if(!g_bIsSoloGame && CheatConfig::Get().m_misc.m_bClientMoveAutoTeleport){
-            SDK::FVector vecPoint = pLocalPlayer->K2_GetActorLocation();
-            SDK::FSBZMinimalAgilityTraversalTrajectory trajectory{
-                vecPoint, vecPoint, vecPoint, vecPoint, std::numeric_limits<int16_t>::max(), SDK::ESBZAgilityTraversalType::VaultLowFast, false, false
-            };
-
-            pMovementComponent->Server_StartTraversal(trajectory);
-            g_bForceMoveForTeleport = true;
-            timeTeleportLast = std::chrono::steady_clock::now();
-        }
-    }
+    ClientMove::OnPlayerControllerTick(pLocalPlayer, pMovementComponent);
 
     /**
      *     else if(pLocalPlayer->GetLastKnownRoom() != pLocalPlayer->GetCurrentRoom_Implementation() && pLocalPlayer->GetCurrentRoom_Implementation()){

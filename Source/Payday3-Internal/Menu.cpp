@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string_view>
 #include <unordered_map>
+#include <variant>
 
 #ifndef NOMINMAX
 #define NOMINMAX
@@ -21,6 +22,7 @@
 #include "Config.hpp"
 #include "Utils/Logging.hpp"
 #include "Features/ESP/ESP.hpp"
+#include "Features/Features.hpp"
 #include "Menu.hpp"
 
 namespace
@@ -199,8 +201,9 @@ void Hotkey(const char* szLabel, Menu::Hotkey_t& bind){
     ImGui::PopID();
 }
 
-bool CheatConfig::Save() const
-{
+
+bool CheatConfig::Save() const{
+
     const auto pathConfig = GetConfigPath();
     std::ofstream fileConfig(pathConfig, std::ios::trunc);
     if (!fileConfig.is_open() || fileConfig.fail())
@@ -209,99 +212,103 @@ bool CheatConfig::Save() const
         return false;
     }
 
-    auto WriteBool = [&](const char* szKey, const bool bValue) {
-        fileConfig << szKey << '=' << (bValue ? 1 : 0) << '\n';
-    };
+    auto Write = [&](const char* szKey, const auto& value){
+        using T = std::decay_t<decltype(value)>;
 
-    auto WriteInt = [&](const char* szKey, const int iValue) {
-        fileConfig << szKey << '=' << iValue << '\n';
-    };
-
-    auto WriteFloat = [&](const char* szKey, const float flValue) {
-        fileConfig << szKey << '=' << flValue << '\n';
+        if constexpr(std::is_enum_v<T>){
+            fileConfig << szKey << '=' << static_cast<int>(value) << '\n';
+        }
+        else if constexpr(std::is_integral_v<T> || std::is_floating_point_v<T>){
+            fileConfig << szKey << '=' << value << '\n';
+        }
+        else if constexpr(std::is_same_v<T, bool>){
+            fileConfig << szKey << '=' << (value ? 1 : 0) << '\n';
+        }
+        else if constexpr(std::is_same_v<T, Menu::Hotkey_t>){
+            fileConfig << szKey << ".key=" << static_cast<int>(value.m_eKeyCode) << '\n';
+            if(value.m_bFixedType)
+                fileConfig << szKey << ".type=" << static_cast<int>(value.m_eType) << '\n';
+        }
     };
 
     fileConfig << "# Payday3-Internal config\n";
-    WriteInt("config.version", g_iConfigVersion);
+    Write("config.version", g_iConfigVersion);
 
-    WriteBool("aimbot.enabled", m_aimbot.m_bEnabled);
-    WriteFloat("aimbot.fov", m_aimbot.m_flAimFOV);
-    WriteInt("aimbot.sorting", static_cast<int>(m_aimbot.m_eSorting));
-    WriteBool("aimbot.targets.guards", m_aimbot.m_bGuards);
-    WriteBool("aimbot.targets.specials", m_aimbot.m_bSpecials);
-    WriteBool("aimbot.targets.fbiVan", m_aimbot.m_bFBIVan);
-    WriteBool("aimbot.targets.civilians", m_aimbot.m_bCivilians);
-    WriteBool("aimbot.throughWalls", m_aimbot.m_bThroughWalls);
-    WriteBool("aimbot.disableInStealth", m_aimbot.m_bDisableInStealth);
+    Write("aimbot.enabled", m_aimbot.m_bEnabled);
+    Write("aimbot.fov", m_aimbot.m_flAimFOV);
+    Write("aimbot.sorting", static_cast<int>(m_aimbot.m_eSorting));
+    Write("aimbot.targets.guards", m_aimbot.m_bGuards);
+    Write("aimbot.targets.specials", m_aimbot.m_bSpecials);
+    Write("aimbot.targets.fbiVan", m_aimbot.m_bFBIVan);
+    Write("aimbot.targets.civilians", m_aimbot.m_bCivilians);
+    Write("aimbot.throughWalls", m_aimbot.m_bThroughWalls);
+    Write("aimbot.disableInStealth", m_aimbot.m_bDisableInStealth);
 
-    WriteInt("misc.keyClientMove.key", static_cast<int>(m_misc.m_keyClientMove.m_eKeyCode));
-    WriteInt("misc.keyClientMove.type", static_cast<int>(m_misc.m_keyClientMove.m_eType));
-    WriteInt("misc.keyClientMoveTeleport.key", static_cast<int>(m_misc.m_keyClientMoveTeleport.m_eKeyCode));
-    WriteInt("misc.keyClientMoveTeleport.type", static_cast<int>(m_misc.m_keyClientMoveTeleport.m_eType));
-    WriteInt("misc.keyClientMoveFaster.key", static_cast<int>(m_misc.m_keyClientMoveFaster.m_eKeyCode));
-    WriteInt("misc.keyClientMoveFaster.type", static_cast<int>(m_misc.m_keyClientMoveFaster.m_eType));
+    Write("misc.keyClientMove", m_misc.m_keyClientMove);
+    Write("misc.keyClientMoveTeleport", m_misc.m_keyClientMoveTeleport);
+    Write("misc.keyClientMoveFaster", m_misc.m_keyClientMoveFaster);
 
-    WriteBool("misc.clientMove.autoTeleport", m_misc.m_bClientMoveAutoTeleport);
-    WriteFloat("misc.clientMove.baseSpeed", m_misc.m_flClientMoveBaseSpeed);
+    Write("misc.clientMove.autoTeleport", m_misc.m_bClientMoveAutoTeleport);
+    Write("misc.clientMove.baseSpeed", m_misc.m_flClientMoveBaseSpeed);
 
-    WriteBool("misc.noSpread", m_misc.m_bNoSpread);
-    WriteBool("misc.noRecoil", m_misc.m_bNoRecoil);
-    WriteBool("misc.noFallDamage", m_misc.m_bNoFallDamage);
-    WriteBool("misc.instantInteraction", m_misc.m_bInstantInteraction);
-    WriteBool("misc.instantMinigame", m_misc.m_bInstantMinigame);
-    WriteBool("misc.instantReload", m_misc.m_bInstantReload);
-    WriteBool("misc.instantMelee", m_misc.m_bInstantMelee);
-    WriteBool("misc.autoPistol", m_misc.m_bAutoPistol);
+    Write("misc.noSpread", m_misc.m_bNoSpread);
+    Write("misc.noRecoil", m_misc.m_bNoRecoil);
+    Write("misc.noFallDamage", m_misc.m_bNoFallDamage);
+    Write("misc.instantInteraction", m_misc.m_bInstantInteraction);
+    Write("misc.instantMinigame", m_misc.m_bInstantMinigame);
+    Write("misc.instantReload", m_misc.m_bInstantReload);
+    Write("misc.instantMelee", m_misc.m_bInstantMelee);
+    Write("misc.autoPistol", m_misc.m_bAutoPistol);
 
-    WriteBool("misc.speedBuff", m_misc.m_bSpeedBuff);
-    WriteBool("misc.damageBuff", m_misc.m_bDamageBuff);
-    WriteBool("misc.armorBuff", m_misc.m_bArmorBuff);
+    Write("misc.speedBuff", m_misc.m_bSpeedBuff);
+    Write("misc.damageBuff", m_misc.m_bDamageBuff);
+    Write("misc.armorBuff", m_misc.m_bArmorBuff);
 
-    WriteBool("misc.noCameraShake", m_misc.m_bNoCameraShake);
-    WriteBool("misc.noCameraTilt", m_misc.m_bNoCameraTilt);
-    WriteFloat("misc.cameraFov", m_misc.m_flCameraFOV);
+    Write("misc.noCameraShake", m_misc.m_bNoCameraShake);
+    Write("misc.noCameraTilt", m_misc.m_bNoCameraTilt);
+    Write("misc.cameraFov", m_misc.m_flCameraFOV);
 
-    WriteInt("misc.rapidFire", m_misc.m_iRapidFire);
+    Write("misc.rapidFire", m_misc.m_iRapidFire);
 
-    WriteBool("misc.moreBullets.enabled", m_misc.m_bMoreBullets);
-    WriteInt("misc.moreBullets.count", m_misc.m_iMoreBullets);
+    Write("misc.moreBullets.enabled", m_misc.m_bMoreBullets);
+    Write("misc.moreBullets.count", m_misc.m_iMoreBullets);
 
-    WriteBool("misc.superToss.enabled", m_misc.m_bSuperToss);
-    WriteFloat("misc.superToss.velocity", m_misc.m_flSuperToss);
+    Write("misc.superToss.enabled", m_misc.m_bSuperToss);
+    Write("misc.superToss.velocity", m_misc.m_flSuperToss);
 
     const auto& espConfig = ESP::GetConfig();
-    WriteBool("esp.enabled", espConfig.bESP);
-    WriteBool("esp.normal.box", espConfig.m_stNormalEnemies.m_bBox);
-    WriteBool("esp.normal.health", espConfig.m_stNormalEnemies.m_bHealth);
-    WriteBool("esp.normal.armor", espConfig.m_stNormalEnemies.m_bArmor);
-    WriteBool("esp.normal.name", espConfig.m_stNormalEnemies.m_bName);
-    WriteBool("esp.normal.flags", espConfig.m_stNormalEnemies.m_bFlags);
-    WriteBool("esp.normal.skeleton", espConfig.m_stNormalEnemies.m_bSkeleton);
-    WriteBool("esp.normal.outline", espConfig.m_stNormalEnemies.m_bOutline);
+    Write("esp.enabled", espConfig.bESP);
+    Write("esp.normal.box", espConfig.m_stNormalEnemies.m_bBox);
+    Write("esp.normal.health", espConfig.m_stNormalEnemies.m_bHealth);
+    Write("esp.normal.armor", espConfig.m_stNormalEnemies.m_bArmor);
+    Write("esp.normal.name", espConfig.m_stNormalEnemies.m_bName);
+    Write("esp.normal.flags", espConfig.m_stNormalEnemies.m_bFlags);
+    Write("esp.normal.skeleton", espConfig.m_stNormalEnemies.m_bSkeleton);
+    Write("esp.normal.outline", espConfig.m_stNormalEnemies.m_bOutline);
 
-    WriteBool("esp.special.box", espConfig.m_stSpecialEnemies.m_bBox);
-    WriteBool("esp.special.health", espConfig.m_stSpecialEnemies.m_bHealth);
-    WriteBool("esp.special.armor", espConfig.m_stSpecialEnemies.m_bArmor);
-    WriteBool("esp.special.name", espConfig.m_stSpecialEnemies.m_bName);
-    WriteBool("esp.special.flags", espConfig.m_stSpecialEnemies.m_bFlags);
-    WriteBool("esp.special.skeleton", espConfig.m_stSpecialEnemies.m_bSkeleton);
-    WriteBool("esp.special.outline", espConfig.m_stSpecialEnemies.m_bOutline);
+    Write("esp.special.box", espConfig.m_stSpecialEnemies.m_bBox);
+    Write("esp.special.health", espConfig.m_stSpecialEnemies.m_bHealth);
+    Write("esp.special.armor", espConfig.m_stSpecialEnemies.m_bArmor);
+    Write("esp.special.name", espConfig.m_stSpecialEnemies.m_bName);
+    Write("esp.special.flags", espConfig.m_stSpecialEnemies.m_bFlags);
+    Write("esp.special.skeleton", espConfig.m_stSpecialEnemies.m_bSkeleton);
+    Write("esp.special.outline", espConfig.m_stSpecialEnemies.m_bOutline);
 
-    WriteBool("esp.civilians.box", espConfig.m_stCivilians.m_bBox);
-    WriteBool("esp.civilians.flags", espConfig.m_stCivilians.m_bFlags);
-    WriteBool("esp.civilians.skeleton", espConfig.m_stCivilians.m_bSkeleton);
-    WriteBool("esp.civilians.outline", espConfig.m_stCivilians.m_bOutline);
-    WriteBool("esp.civilians.onlyWhenSpecial", espConfig.m_stCivilians.m_bOnlyWhenSpecial);
+    Write("esp.civilians.box", espConfig.m_stCivilians.m_bBox);
+    Write("esp.civilians.flags", espConfig.m_stCivilians.m_bFlags);
+    Write("esp.civilians.skeleton", espConfig.m_stCivilians.m_bSkeleton);
+    Write("esp.civilians.outline", espConfig.m_stCivilians.m_bOutline);
+    Write("esp.civilians.onlyWhenSpecial", espConfig.m_stCivilians.m_bOnlyWhenSpecial);
 
-    WriteBool("esp.debug.skeleton", espConfig.bDebugSkeleton);
-    WriteBool("esp.debug.drawBoneIndices", espConfig.bDebugDrawBoneIndices);
-    WriteBool("esp.debug.drawBoneNames", espConfig.bDebugDrawBoneNames);
-    WriteBool("esp.debug.skeletonDrawBoneIndices", espConfig.bDebugSkeletonDrawBoneIndices);
-    WriteBool("esp.debug.skeletonDrawBoneNames", espConfig.bDebugSkeletonDrawBoneNames);
-    WriteBool("esp.debug.esp", espConfig.bDebugESP);
+    Write("esp.debug.skeleton", espConfig.bDebugSkeleton);
+    Write("esp.debug.drawBoneIndices", espConfig.bDebugDrawBoneIndices);
+    Write("esp.debug.drawBoneNames", espConfig.bDebugDrawBoneNames);
+    Write("esp.debug.skeletonDrawBoneIndices", espConfig.bDebugSkeletonDrawBoneIndices);
+    Write("esp.debug.skeletonDrawBoneNames", espConfig.bDebugSkeletonDrawBoneNames);
+    Write("esp.debug.esp", espConfig.bDebugESP);
 
     LootESP::Config& lootespConfig = LootESP::GetConfig();
-    WriteBool("lootesp.enabled", lootespConfig.bLootESP);
+    Write("lootesp.enabled", lootespConfig.bLootESP);
 
     if (fileConfig.fail())
     {
@@ -342,7 +349,73 @@ bool CheatConfig::Load()
             mapConfigValues[sKey] = sValue;
     }
 
-    auto ReadBool = [&](const char* szKey, bool& bOut) -> bool {
+    auto Read = [&](const char* szKey, auto& value) -> bool {
+        using T = std::decay_t<decltype(value)>;
+        if constexpr(std::is_same_v<T, Menu::Hotkey_t>){
+            const auto itr1 = mapConfigValues.find((std::string{szKey} + ".key").c_str());
+            const auto itr2 = mapConfigValues.find((std::string{szKey} + ".type").c_str());
+
+            bool bFailed = true;
+            if(itr1 != mapConfigValues.end()){
+                int iParsed{};
+                if(TryParseInt(itr1->second, iParsed)){
+                    bFailed = false;
+                    value.m_eKeyCode = static_cast<ImGuiKey>(iParsed);
+                    if(iParsed < static_cast<int>(ImGuiKey_NamedKey_BEGIN) || iParsed > static_cast<int>(ImGuiKey_NamedKey_END))
+                        value.m_eKeyCode = ImGuiKey_None;
+
+                }
+            }
+
+            if(value.m_bFixedType)
+                return bFailed;
+
+            if(itr2 == mapConfigValues.end())
+                return false;
+
+            int iParsed{};
+            if(!TryParseInt(itr2->second, iParsed))
+                return false;
+
+            value.m_eType = static_cast<Menu::Hotkey_t::EType>(iParsed);
+            if(iParsed < static_cast<int>(Menu::Hotkey_t::EType::AlwaysOff) || iParsed > static_cast<int>(Menu::Hotkey_t::EType::Toggle))
+                value.m_eType = Menu::Hotkey_t::EType::Hold;
+            
+            return bFailed;
+        }
+
+        const auto itr = mapConfigValues.find(szKey);
+        if(itr == mapConfigValues.end())
+            return false;
+        
+        if constexpr(std::is_same_v<T, bool>){
+            bool bParsed{};
+            if(!TryParseBool(itr->second, bParsed))
+                return false;
+
+            value = bParsed;
+            return true;
+        }
+        else if(std::is_integral_v<T>){
+            int iParsed{};
+            if(!TryParseInt(itr->second, iParsed))
+                return false;
+
+            value = iParsed;
+            return true;
+        }
+        else if(std::is_floating_point_v<T>){
+            float flParsed{};
+            if(!TryParseFloat(itr->second, flParsed))
+                return false;
+
+            value = flParsed;
+            return true;
+        }
+    };
+
+
+    auto Read = [&](const char* szKey, bool& bOut) -> bool {
         const auto itr = mapConfigValues.find(szKey);
         if (itr == mapConfigValues.end())
             return false;
@@ -382,125 +455,97 @@ bool CheatConfig::Load()
     };
 
     int iVersion{};
-    if (ReadInt("config.version", iVersion) && iVersion != g_iConfigVersion)
+    if (Read("config.version", iVersion) && iVersion != g_iConfigVersion)
         Utils::LogDebug(std::format("Loading config version {} with parser version {}", iVersion, g_iConfigVersion));
 
-    ReadBool("aimbot.enabled", m_aimbot.m_bEnabled);
-    if (ReadFloat("aimbot.fov", m_aimbot.m_flAimFOV))
+    Read("aimbot.enabled", m_aimbot.m_bEnabled);
+    if (Read("aimbot.fov", m_aimbot.m_flAimFOV))
         m_aimbot.m_flAimFOV = std::clamp(m_aimbot.m_flAimFOV, 0.0f, 180.0f);
 
     int iSorting{};
-    if (ReadInt("aimbot.sorting", iSorting)
+    if (Read("aimbot.sorting", iSorting)
         && iSorting >= static_cast<int>(Aimbot_t::ESorting::Smart)
         && iSorting <= static_cast<int>(Aimbot_t::ESorting::Threat))
     {
         m_aimbot.m_eSorting = static_cast<Aimbot_t::ESorting>(iSorting);
     }
 
-    ReadBool("aimbot.targets.guards", m_aimbot.m_bGuards);
-    ReadBool("aimbot.targets.specials", m_aimbot.m_bSpecials);
-    ReadBool("aimbot.targets.fbiVan", m_aimbot.m_bFBIVan);
-    ReadBool("aimbot.targets.civilians", m_aimbot.m_bCivilians);
-    ReadBool("aimbot.throughWalls", m_aimbot.m_bThroughWalls);
-    ReadBool("aimbot.disableInStealth", m_aimbot.m_bDisableInStealth);
+    Read("aimbot.targets.guards", m_aimbot.m_bGuards);
+    Read("aimbot.targets.specials", m_aimbot.m_bSpecials);
+    Read("aimbot.targets.fbiVan", m_aimbot.m_bFBIVan);
+    Read("aimbot.targets.civilians", m_aimbot.m_bCivilians);
+    Read("aimbot.throughWalls", m_aimbot.m_bThroughWalls);
+    Read("aimbot.disableInStealth", m_aimbot.m_bDisableInStealth);
 
-    int iHotkeyKey{};
-    if (ReadInt("misc.keyClientMove.key", iHotkeyKey))
-        m_misc.m_keyClientMove.m_eKeyCode = static_cast<ImGuiKey>(iHotkeyKey);
+    Read("misc.keyClientMove", m_misc.m_keyClientMove);
+    Read("misc.keyClientMoveTeleport", m_misc.m_keyClientMoveTeleport);
+    Read("misc.keyClientMoveFaster", m_misc.m_keyClientMoveFaster);
 
-    int iHotkeyType{};
-    if (ReadInt("misc.keyClientMove.type", iHotkeyType)
-        && iHotkeyType >= static_cast<int>(Menu::Hotkey_t::EType::AlwaysOff)
-        && iHotkeyType <= static_cast<int>(Menu::Hotkey_t::EType::Toggle))
-    {
-        m_misc.m_keyClientMove.m_eType = static_cast<Menu::Hotkey_t::EType>(iHotkeyType);
-    }
-
-    if (ReadInt("misc.keyClientMoveTeleport.key", iHotkeyKey))
-        m_misc.m_keyClientMoveTeleport.m_eKeyCode = static_cast<ImGuiKey>(iHotkeyKey);
-
-    if (ReadInt("misc.keyClientMoveTeleport.type", iHotkeyType)
-        && iHotkeyType >= static_cast<int>(Menu::Hotkey_t::EType::AlwaysOff)
-        && iHotkeyType <= static_cast<int>(Menu::Hotkey_t::EType::Toggle))
-    {
-        m_misc.m_keyClientMoveTeleport.m_eType = static_cast<Menu::Hotkey_t::EType>(iHotkeyType);
-    }
-
-    if (ReadInt("misc.keyClientMoveFaster.key", iHotkeyKey))
-        m_misc.m_keyClientMoveFaster.m_eKeyCode = static_cast<ImGuiKey>(iHotkeyKey);
-
-    if (ReadInt("misc.keyClientMoveFaster.type", iHotkeyType)
-        && iHotkeyType >= static_cast<int>(Menu::Hotkey_t::EType::AlwaysOff)
-        && iHotkeyType <= static_cast<int>(Menu::Hotkey_t::EType::Toggle))
-    {
-        m_misc.m_keyClientMoveFaster.m_eType = static_cast<Menu::Hotkey_t::EType>(iHotkeyType);
-    }
-
-    ReadBool("misc.clientMove.autoTeleport", m_misc.m_bClientMoveAutoTeleport);
-    if (ReadFloat("misc.clientMove.baseSpeed", m_misc.m_flClientMoveBaseSpeed))
+    Read("misc.clientMove.autoTeleport", m_misc.m_bClientMoveAutoTeleport);
+    if (Read("misc.clientMove.baseSpeed", m_misc.m_flClientMoveBaseSpeed))
         m_misc.m_flClientMoveBaseSpeed = std::max(0.0f, m_misc.m_flClientMoveBaseSpeed);
 
-    ReadBool("misc.noSpread", m_misc.m_bNoSpread);
-    ReadBool("misc.noRecoil", m_misc.m_bNoRecoil);
-    ReadBool("misc.noFallDamage", m_misc.m_bNoFallDamage);
-    ReadBool("misc.instantInteraction", m_misc.m_bInstantInteraction);
-    ReadBool("misc.instantMinigame", m_misc.m_bInstantMinigame);
-    ReadBool("misc.instantReload", m_misc.m_bInstantReload);
-    ReadBool("misc.instantMelee", m_misc.m_bInstantMelee);
-    ReadBool("misc.autoPistol", m_misc.m_bAutoPistol);
+    Read("misc.noSpread", m_misc.m_bNoSpread);
+    Read("misc.noRecoil", m_misc.m_bNoRecoil);
+    Read("misc.noFallDamage", m_misc.m_bNoFallDamage);
+    Read("misc.instantInteraction", m_misc.m_bInstantInteraction);
+    Read("misc.instantMinigame", m_misc.m_bInstantMinigame);
+    Read("misc.instantReload", m_misc.m_bInstantReload);
+    Read("misc.instantMelee", m_misc.m_bInstantMelee);
+    Read("misc.autoPistol", m_misc.m_bAutoPistol);
 
-    ReadBool("misc.speedBuff", m_misc.m_bSpeedBuff);
-    ReadBool("misc.damageBuff", m_misc.m_bDamageBuff);
-    ReadBool("misc.armorBuff", m_misc.m_bArmorBuff);
+    Read("misc.speedBuff", m_misc.m_bSpeedBuff);
+    Read("misc.damageBuff", m_misc.m_bDamageBuff);
+    Read("misc.armorBuff", m_misc.m_bArmorBuff);
 
-    ReadBool("misc.noCameraShake", m_misc.m_bNoCameraShake);
-    ReadBool("misc.noCameraTilt", m_misc.m_bNoCameraTilt);
-    ReadFloat("misc.cameraFov", m_misc.m_flCameraFOV);
+    Read("misc.noCameraShake", m_misc.m_bNoCameraShake);
+    Read("misc.noCameraTilt", m_misc.m_bNoCameraTilt);
+    Read("misc.cameraFov", m_misc.m_flCameraFOV);
 
     int iRapidFire{};
-    if (ReadInt("misc.rapidFire", iRapidFire))
+    if (Read("misc.rapidFire", iRapidFire))
         m_misc.m_iRapidFire = std::clamp(iRapidFire, 0, 2);
 
-    ReadBool("misc.moreBullets.enabled", m_misc.m_bMoreBullets);
+    Read("misc.moreBullets.enabled", m_misc.m_bMoreBullets);
     int iMoreBullets{};
-    if (ReadInt("misc.moreBullets.count", iMoreBullets))
+    if (Read("misc.moreBullets.count", iMoreBullets))
         m_misc.m_iMoreBullets = std::max(1, iMoreBullets);
 
-    ReadBool("misc.superToss.enabled", m_misc.m_bSuperToss);
-    if (ReadFloat("misc.superToss.velocity", m_misc.m_flSuperToss))
+    Read("misc.superToss.enabled", m_misc.m_bSuperToss);
+    if (Read("misc.superToss.velocity", m_misc.m_flSuperToss))
         m_misc.m_flSuperToss = std::max(0.0f, m_misc.m_flSuperToss);
 
     auto& espConfig = ESP::GetConfig();
-    ReadBool("esp.enabled", espConfig.bESP);
+    Read("esp.enabled", espConfig.bESP);
 
-    ReadBool("esp.normal.box", espConfig.m_stNormalEnemies.m_bBox);
-    ReadBool("esp.normal.health", espConfig.m_stNormalEnemies.m_bHealth);
-    ReadBool("esp.normal.armor", espConfig.m_stNormalEnemies.m_bArmor);
-    ReadBool("esp.normal.name", espConfig.m_stNormalEnemies.m_bName);
-    ReadBool("esp.normal.flags", espConfig.m_stNormalEnemies.m_bFlags);
-    ReadBool("esp.normal.skeleton", espConfig.m_stNormalEnemies.m_bSkeleton);
-    ReadBool("esp.normal.outline", espConfig.m_stNormalEnemies.m_bOutline);
+    Read("esp.normal.box", espConfig.m_stNormalEnemies.m_bBox);
+    Read("esp.normal.health", espConfig.m_stNormalEnemies.m_bHealth);
+    Read("esp.normal.armor", espConfig.m_stNormalEnemies.m_bArmor);
+    Read("esp.normal.name", espConfig.m_stNormalEnemies.m_bName);
+    Read("esp.normal.flags", espConfig.m_stNormalEnemies.m_bFlags);
+    Read("esp.normal.skeleton", espConfig.m_stNormalEnemies.m_bSkeleton);
+    Read("esp.normal.outline", espConfig.m_stNormalEnemies.m_bOutline);
 
-    ReadBool("esp.special.box", espConfig.m_stSpecialEnemies.m_bBox);
-    ReadBool("esp.special.health", espConfig.m_stSpecialEnemies.m_bHealth);
-    ReadBool("esp.special.armor", espConfig.m_stSpecialEnemies.m_bArmor);
-    ReadBool("esp.special.name", espConfig.m_stSpecialEnemies.m_bName);
-    ReadBool("esp.special.flags", espConfig.m_stSpecialEnemies.m_bFlags);
-    ReadBool("esp.special.skeleton", espConfig.m_stSpecialEnemies.m_bSkeleton);
-    ReadBool("esp.special.outline", espConfig.m_stSpecialEnemies.m_bOutline);
+    Read("esp.special.box", espConfig.m_stSpecialEnemies.m_bBox);
+    Read("esp.special.health", espConfig.m_stSpecialEnemies.m_bHealth);
+    Read("esp.special.armor", espConfig.m_stSpecialEnemies.m_bArmor);
+    Read("esp.special.name", espConfig.m_stSpecialEnemies.m_bName);
+    Read("esp.special.flags", espConfig.m_stSpecialEnemies.m_bFlags);
+    Read("esp.special.skeleton", espConfig.m_stSpecialEnemies.m_bSkeleton);
+    Read("esp.special.outline", espConfig.m_stSpecialEnemies.m_bOutline);
 
-    ReadBool("esp.civilians.box", espConfig.m_stCivilians.m_bBox);
-    ReadBool("esp.civilians.flags", espConfig.m_stCivilians.m_bFlags);
-    ReadBool("esp.civilians.skeleton", espConfig.m_stCivilians.m_bSkeleton);
-    ReadBool("esp.civilians.outline", espConfig.m_stCivilians.m_bOutline);
-    ReadBool("esp.civilians.onlyWhenSpecial", espConfig.m_stCivilians.m_bOnlyWhenSpecial);
+    Read("esp.civilians.box", espConfig.m_stCivilians.m_bBox);
+    Read("esp.civilians.flags", espConfig.m_stCivilians.m_bFlags);
+    Read("esp.civilians.skeleton", espConfig.m_stCivilians.m_bSkeleton);
+    Read("esp.civilians.outline", espConfig.m_stCivilians.m_bOutline);
+    Read("esp.civilians.onlyWhenSpecial", espConfig.m_stCivilians.m_bOnlyWhenSpecial);
 
-    ReadBool("esp.debug.skeleton", espConfig.bDebugSkeleton);
-    ReadBool("esp.debug.drawBoneIndices", espConfig.bDebugDrawBoneIndices);
-    ReadBool("esp.debug.drawBoneNames", espConfig.bDebugDrawBoneNames);
-    ReadBool("esp.debug.skeletonDrawBoneIndices", espConfig.bDebugSkeletonDrawBoneIndices);
-    ReadBool("esp.debug.skeletonDrawBoneNames", espConfig.bDebugSkeletonDrawBoneNames);
-    ReadBool("esp.debug.esp", espConfig.bDebugESP);
+    Read("esp.debug.skeleton", espConfig.bDebugSkeleton);
+    Read("esp.debug.drawBoneIndices", espConfig.bDebugDrawBoneIndices);
+    Read("esp.debug.drawBoneNames", espConfig.bDebugDrawBoneNames);
+    Read("esp.debug.skeletonDrawBoneIndices", espConfig.bDebugSkeletonDrawBoneIndices);
+    Read("esp.debug.skeletonDrawBoneNames", espConfig.bDebugSkeletonDrawBoneNames);
+    Read("esp.debug.esp", espConfig.bDebugESP);
 
     m_misc.m_keyClientMove.m_bActive = false;
     m_misc.m_keyClientMove.m_bPressedThisFrame = false;
@@ -510,7 +555,7 @@ bool CheatConfig::Load()
     m_misc.m_keyClientMoveFaster.m_bPressedThisFrame = false;
 
     auto& lootespConfig = LootESP::GetConfig();
-    ReadBool("lootesp.enabled", lootespConfig.bLootESP);
+    Read("lootesp.enabled", lootespConfig.bLootESP);
 
     Utils::LogDebug(std::format("Config loaded: {}", pathConfig.string()));
     return true;
@@ -779,5 +824,21 @@ namespace Menu
         ImGui::End();
 	}
 
-    void PostDraw() {}
+    void PostDraw() {
+        auto vec2ScreenSize = ImGui::GetIO().DisplaySize;
+        auto vec2Pos = ImVec2{ vec2ScreenSize.x / 2.f + 10.f, vec2ScreenSize.y / 2.f + 10.f };
+        auto pDrawList = ImGui::GetBackgroundDrawList();
+
+        if(Cheat::g_bIsDesynced){
+            pDrawList->AddText(ImVec2{ vec2Pos.x + 1.f, vec2Pos.y + 1.f }, IM_COL32(0, 0, 0, 255), "DESYNC");
+            pDrawList->AddText(vec2Pos, IM_COL32(220, 0, 0, 255), "DESYNC");
+            vec2Pos.y += 16.f;
+        }
+
+        if(Cheat::g_stTargetInfo){
+            pDrawList->AddText(ImVec2{ vec2Pos.x + 1.f, vec2Pos.y + 1.f }, IM_COL32(0, 0, 0, 255), "Target");
+            pDrawList->AddText(vec2Pos, IM_COL32(11, 220, 0, 255), "Target");
+            vec2Pos.y += 16.f;
+        }
+    }
 }

@@ -18,6 +18,7 @@
 #include "Dumper-7/SDK.hpp"
 #include "Features/Features.hpp"
 #include "Features/FNames.hpp"
+#include "Features/Misc/ClientMove.hpp"
 #include <intrin.h>
 
 #pragma intrinsic(_ReturnAddress)
@@ -218,19 +219,14 @@ void UObjectProcessEvent_hk(const SDK::UObject* pObject, class SDK::UFunction* p
 		return;
 	}
 
+	if(nameFunction == FNames::ServerMovePacked){
+		//std::cout << nameSuper.ToString() << '\n';
+	}
+
 	if(nameSuper == FNames::CH_PlayerBase_C && nameFunction == FNames::ServerMovePacked){
-		if(CheatConfig::Get().m_misc.m_keyClientMove.GetState()){
-			if(Cheat::g_bForceMoveForTeleport && Cheat::g_iMovePacketsSentContiguously > 3)
-				Cheat::g_bForceMoveForTeleport = false;
-
-			if(!Cheat::g_bForceMoveForTeleport){
-				Cheat::g_iMovePacketsSentContiguously = 0;
-				return;
-			}
-		}
-
-		Cheat::g_iMovePacketsSentContiguously++;
-		UObjectProcessEvent_o(pObject, pFunction, pParams);
+		if(Cheat::ClientMove::ShouldSendMovePacket())
+			UObjectProcessEvent_o(pObject, pFunction, pParams);
+		
 		return;
 	}
 
