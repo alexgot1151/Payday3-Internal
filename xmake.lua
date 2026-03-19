@@ -24,7 +24,7 @@ target("Payday3-Internal")
         add_vectorexts("avx2")
     end
 
-    set_languages("gnu++latest")
+    set_languages("cxxlatest")
     set_kind("shared")
     add_files("Source/Payday3-Internal/DLLMain.cpp")
     add_files("Source/Payday3-Internal/Utils/**.cpp")
@@ -46,6 +46,6 @@ target("Payday3-Internal")
     add_cxflags("/wd4369")
 
 target("Injector")
-    set_languages("gnu++latest")
+    set_languages("cxxlatest")
     set_kind("binary")
     add_files("Source/Injector/**.cpp")

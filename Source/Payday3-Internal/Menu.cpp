@@ -396,7 +396,7 @@ bool CheatConfig::Load()
             value = bParsed;
             return true;
         }
-        else if(std::is_integral_v<T>){
+        else if constexpr(std::is_integral_v<T>){
             int iParsed{};
             if(!TryParseInt(itr->second, iParsed))
                 return false;
@@ -404,7 +404,7 @@ bool CheatConfig::Load()
             value = iParsed;
             return true;
         }
-        else if(std::is_floating_point_v<T>){
+        else if constexpr(std::is_floating_point_v<T>){
             float flParsed{};
             if(!TryParseFloat(itr->second, flParsed))
                 return false;
@@ -412,46 +412,6 @@ bool CheatConfig::Load()
             value = flParsed;
             return true;
         }
-    };
-
-
-    auto Read = [&](const char* szKey, bool& bOut) -> bool {
-        const auto itr = mapConfigValues.find(szKey);
-        if (itr == mapConfigValues.end())
-            return false;
-
-        bool bParsed{};
-        if (!TryParseBool(itr->second, bParsed))
-            return false;
-
-        bOut = bParsed;
-        return true;
-    };
-
-    auto ReadInt = [&](const char* szKey, int& iOut) -> bool {
-        const auto itr = mapConfigValues.find(szKey);
-        if (itr == mapConfigValues.end())
-            return false;
-
-        int iParsed{};
-        if (!TryParseInt(itr->second, iParsed))
-            return false;
-
-        iOut = iParsed;
-        return true;
-    };
-
-    auto ReadFloat = [&](const char* szKey, float& flOut) -> bool {
-        const auto itr = mapConfigValues.find(szKey);
-        if (itr == mapConfigValues.end())
-            return false;
-
-        float flParsed{};
-        if (!TryParseFloat(itr->second, flParsed))
-            return false;
-
-        flOut = flParsed;
-        return true;
     };
 
     int iVersion{};
