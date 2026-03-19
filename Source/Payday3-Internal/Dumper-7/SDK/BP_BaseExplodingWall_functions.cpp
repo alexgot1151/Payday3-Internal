@@ -17,23 +17,37 @@
 namespace SDK
 {
 
-// Function BP_BaseExplodingWall.BP_BaseExplodingWall_C.spawnExplosionVFX
-// (BlueprintCallable, BlueprintEvent)
+// Function BP_BaseExplodingWall.BP_BaseExplodingWall_C.ExecuteUbergraph_BP_BaseExplodingWall
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// bool                                    doCosmetics                                            (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_BaseExplodingWall_C::spawnExplosionVFX(bool doCosmetics)
+void ABP_BaseExplodingWall_C::ExecuteUbergraph_BP_BaseExplodingWall(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_BaseExplodingWall_C", "spawnExplosionVFX");
+		Func = Class->GetFunction("BP_BaseExplodingWall_C", "ExecuteUbergraph_BP_BaseExplodingWall");
 
-	Params::BP_BaseExplodingWall_C_spawnExplosionVFX Parms{};
+	Params::BP_BaseExplodingWall_C_ExecuteUbergraph_BP_BaseExplodingWall Parms{};
 
-	Parms.doCosmetics = doCosmetics;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_BaseExplodingWall.BP_BaseExplodingWall_C.onAllChargesPlaced
+// (Net, NetMulticast, BlueprintCallable, BlueprintEvent)
+
+void ABP_BaseExplodingWall_C::onAllChargesPlaced()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_BaseExplodingWall_C", "onAllChargesPlaced");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 
@@ -57,35 +71,21 @@ void ABP_BaseExplodingWall_C::onServerOnChargesChanged(int32 NewCount)
 }
 
 
-// Function BP_BaseExplodingWall.BP_BaseExplodingWall_C.onAllChargesPlaced
-// (Net, NetMulticast, BlueprintCallable, BlueprintEvent)
-
-void ABP_BaseExplodingWall_C::onAllChargesPlaced()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_BaseExplodingWall_C", "onAllChargesPlaced");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_BaseExplodingWall.BP_BaseExplodingWall_C.ExecuteUbergraph_BP_BaseExplodingWall
-// (Final, UbergraphFunction, HasDefaults)
+// Function BP_BaseExplodingWall.BP_BaseExplodingWall_C.spawnExplosionVFX
+// (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    doCosmetics                                            (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_BaseExplodingWall_C::ExecuteUbergraph_BP_BaseExplodingWall(int32 EntryPoint)
+void ABP_BaseExplodingWall_C::spawnExplosionVFX(bool doCosmetics)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_BaseExplodingWall_C", "ExecuteUbergraph_BP_BaseExplodingWall");
+		Func = Class->GetFunction("BP_BaseExplodingWall_C", "spawnExplosionVFX");
 
-	Params::BP_BaseExplodingWall_C_ExecuteUbergraph_BP_BaseExplodingWall Parms{};
+	Params::BP_BaseExplodingWall_C_spawnExplosionVFX Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.doCosmetics = doCosmetics;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

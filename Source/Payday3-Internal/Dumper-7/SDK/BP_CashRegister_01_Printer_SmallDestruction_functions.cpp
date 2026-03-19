@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BP_CashRegister_01_Printer_SmallDestruction.BP_CashRegister_01_Printer_SmallDestruction_C.ExecuteUbergraph_BP_CashRegister_01_Printer_SmallDestruction
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_CashRegister_01_Printer_SmallDestruction_C::ExecuteUbergraph_BP_CashRegister_01_Printer_SmallDestruction(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_CashRegister_01_Printer_SmallDestruction_C", "ExecuteUbergraph_BP_CashRegister_01_Printer_SmallDestruction");
+
+	Params::BP_CashRegister_01_Printer_SmallDestruction_C_ExecuteUbergraph_BP_CashRegister_01_Printer_SmallDestruction Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BP_CashRegister_01_Printer_SmallDestruction.BP_CashRegister_01_Printer_SmallDestruction_C.BndEvt__BP_CashRegister_01_Printer_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
 // (HasOutParams, BlueprintEvent)
 // Parameters:
@@ -34,26 +54,6 @@ void ABP_CashRegister_01_Printer_SmallDestruction_C::BndEvt__BP_CashRegister_01_
 
 	Parms.Type = Type;
 	Parms.HitContext = std::move(HitContext);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_CashRegister_01_Printer_SmallDestruction.BP_CashRegister_01_Printer_SmallDestruction_C.ExecuteUbergraph_BP_CashRegister_01_Printer_SmallDestruction
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_CashRegister_01_Printer_SmallDestruction_C::ExecuteUbergraph_BP_CashRegister_01_Printer_SmallDestruction(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_CashRegister_01_Printer_SmallDestruction_C", "ExecuteUbergraph_BP_CashRegister_01_Printer_SmallDestruction");
-
-	Params::BP_CashRegister_01_Printer_SmallDestruction_C_ExecuteUbergraph_BP_CashRegister_01_Printer_SmallDestruction Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

@@ -18,51 +18,6 @@
 namespace SDK::Params
 {
 
-// Function BP_DAT_SecurityScanner_01_SCR.BP_DAT_SecurityScanner_01_SCR_C.setStateFunction
-// 0x0002 (0x0002 - 0x0000)
-struct BP_DAT_SecurityScanner_01_SCR_C_setStateFunction final
-{
-public:
-	bool                                          enabled;                                           // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          CallFunc_IsServer_ReturnValue;                     // 0x0001(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_DAT_SecurityScanner_01_SCR_C_setStateFunction;
-
-// Function BP_DAT_SecurityScanner_01_SCR.BP_DAT_SecurityScanner_01_SCR_C.UserConstructionScript
-// 0x0010 (0x0010 - 0x0000)
-struct BP_DAT_SecurityScanner_01_SCR_C_UserConstructionScript final
-{
-public:
-	class UMaterialInterface*                     CallFunc_GetMaterial_ReturnValue;                  // 0x0000(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class UMaterialInstanceDynamic*               CallFunc_CreateDynamicMaterialInstance_ReturnValue; // 0x0008(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_DAT_SecurityScanner_01_SCR_C_UserConstructionScript;
-
-// Function BP_DAT_SecurityScanner_01_SCR.BP_DAT_SecurityScanner_01_SCR_C.OnStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct BP_DAT_SecurityScanner_01_SCR_C_OnStateChanged final
-{
-public:
-	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_DAT_SecurityScanner_01_SCR_C_OnStateChanged;
-
-// Function BP_DAT_SecurityScanner_01_SCR.BP_DAT_SecurityScanner_01_SCR_C.BndEvt__BP_DAT_SecurityScanner_01_SCR_Box_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature
-// 0x00B0 (0x00B0 - 0x0000)
-struct BP_DAT_SecurityScanner_01_SCR_C_BndEvt__BP_DAT_SecurityScanner_01_SCR_Box_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature final
-{
-public:
-	class UPrimitiveComponent*                    OverlappedComponent;                               // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class AActor*                                 OtherActor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	class UPrimitiveComponent*                    OtherComp;                                         // 0x0010(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         OtherBodyIndex;                                    // 0x0018(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bFromSweep;                                        // 0x001C(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	uint8                                         Pad_1D[0x3];                                       // 0x001D(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
-	struct FHitResult                             SweepResult;                                       // 0x0020(0x0090)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm, IsPlainOldData, NoDestructor, ContainsInstancedReference)
-};
-DUMPER7_ASSERTS_BP_DAT_SecurityScanner_01_SCR_C_BndEvt__BP_DAT_SecurityScanner_01_SCR_Box_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature;
-
 // Function BP_DAT_SecurityScanner_01_SCR.BP_DAT_SecurityScanner_01_SCR_C.ExecuteUbergraph_BP_DAT_SecurityScanner_01_SCR
 // 0x0180 (0x0180 - 0x0000)
 struct BP_DAT_SecurityScanner_01_SCR_C_ExecuteUbergraph_BP_DAT_SecurityScanner_01_SCR final
@@ -117,6 +72,51 @@ public:
 	float                                         K2Node_Select_Default_2;                           // 0x0178(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_DAT_SecurityScanner_01_SCR_C_ExecuteUbergraph_BP_DAT_SecurityScanner_01_SCR;
+
+// Function BP_DAT_SecurityScanner_01_SCR.BP_DAT_SecurityScanner_01_SCR_C.BndEvt__BP_DAT_SecurityScanner_01_SCR_Box_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature
+// 0x00B0 (0x00B0 - 0x0000)
+struct BP_DAT_SecurityScanner_01_SCR_C_BndEvt__BP_DAT_SecurityScanner_01_SCR_Box_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature final
+{
+public:
+	class UPrimitiveComponent*                    OverlappedComponent;                               // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class AActor*                                 OtherActor;                                        // 0x0008(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class UPrimitiveComponent*                    OtherComp;                                         // 0x0010(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         OtherBodyIndex;                                    // 0x0018(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bFromSweep;                                        // 0x001C(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	uint8                                         Pad_1D[0x3];                                       // 0x001D(0x0003)(Fixing Size After Last Property [ Dumper-7 ])
+	struct FHitResult                             SweepResult;                                       // 0x0020(0x0090)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm, IsPlainOldData, NoDestructor, ContainsInstancedReference)
+};
+DUMPER7_ASSERTS_BP_DAT_SecurityScanner_01_SCR_C_BndEvt__BP_DAT_SecurityScanner_01_SCR_Box_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature;
+
+// Function BP_DAT_SecurityScanner_01_SCR.BP_DAT_SecurityScanner_01_SCR_C.OnStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct BP_DAT_SecurityScanner_01_SCR_C_OnStateChanged final
+{
+public:
+	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_DAT_SecurityScanner_01_SCR_C_OnStateChanged;
+
+// Function BP_DAT_SecurityScanner_01_SCR.BP_DAT_SecurityScanner_01_SCR_C.UserConstructionScript
+// 0x0010 (0x0010 - 0x0000)
+struct BP_DAT_SecurityScanner_01_SCR_C_UserConstructionScript final
+{
+public:
+	class UMaterialInterface*                     CallFunc_GetMaterial_ReturnValue;                  // 0x0000(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	class UMaterialInstanceDynamic*               CallFunc_CreateDynamicMaterialInstance_ReturnValue; // 0x0008(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_DAT_SecurityScanner_01_SCR_C_UserConstructionScript;
+
+// Function BP_DAT_SecurityScanner_01_SCR.BP_DAT_SecurityScanner_01_SCR_C.setStateFunction
+// 0x0002 (0x0002 - 0x0000)
+struct BP_DAT_SecurityScanner_01_SCR_C_setStateFunction final
+{
+public:
+	bool                                          enabled;                                           // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          CallFunc_IsServer_ReturnValue;                     // 0x0001(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_DAT_SecurityScanner_01_SCR_C_setStateFunction;
 
 // Function BP_DAT_SecurityScanner_01_SCR.BP_DAT_SecurityScanner_01_SCR_C.TrippedAlarm
 // 0x0088 (0x0088 - 0x0000)

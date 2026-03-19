@@ -17,7 +17,7 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass BP_Crew_Controller.BP_Crew_Controller_C
-// 0x0000 (0x06D0 - 0x06D0)
+// 0x0000 (0x06E0 - 0x06E0)
 class ABP_Crew_Controller_C final : public ASBZAICrewController
 {
 public:

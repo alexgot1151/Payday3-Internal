@@ -66,22 +66,22 @@ public:
 	int32                                         hasFocus;                                          // 0x0474(0x0004)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void focusUpdate(bool add, int32 index);
-	void UserConstructionScript();
-	void DoorTimeline__FinishedFunc();
-	void DoorTimeline__UpdateFunc();
-	void SwitchTimeline__FinishedFunc();
-	void SwitchTimeline__UpdateFunc();
-	void BP_OpenDoor(bool bDoCosmetics);
-	void BP_UpdateModelNumber(const class FText& ModelNumberText);
-	void BP_FlipSwitch(int32 Index_0, bool bDoCosmetics, bool bReset);
-	void BP_OnComplete(bool bWasSuccess);
-	void ReceiveBeginPlay();
-	void BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_2_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
-	void BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_1_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
-	void BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_3_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
-	void BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_4_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
 	void ExecuteUbergraph_BP_ConnectedCableBox(int32 EntryPoint);
+	void BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_4_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
+	void BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_3_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
+	void BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_1_K2Node_ComponentBoundEvent_1_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
+	void BndEvt__BP_ConnectedCableBox_SBZInteractable_Cable_2_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
+	void ReceiveBeginPlay();
+	void BP_OnComplete(bool bWasSuccess);
+	void BP_FlipSwitch(int32 Index_0, bool bDoCosmetics, bool bReset);
+	void BP_UpdateModelNumber(const class FText& ModelNumberText);
+	void BP_OpenDoor(bool bDoCosmetics);
+	void SwitchTimeline__UpdateFunc();
+	void SwitchTimeline__FinishedFunc();
+	void DoorTimeline__UpdateFunc();
+	void DoorTimeline__FinishedFunc();
+	void UserConstructionScript();
+	void focusUpdate(bool add, int32 index);
 
 public:
 	static class UClass* StaticClass()

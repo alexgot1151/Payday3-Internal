@@ -17,23 +17,127 @@
 namespace SDK
 {
 
-// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.setTargetTime
-// (Public, BlueprintCallable, BlueprintEvent)
+// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.ExecuteUbergraph_BP_ONE_TimedClock_01
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                                   targetHour_0                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// int32                                   targetMinute_0                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_ONE_TimedClock_01_C::setTargetTime(int32 targetHour_0, int32 targetMinute_0)
+void ABP_ONE_TimedClock_01_C::ExecuteUbergraph_BP_ONE_TimedClock_01(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "setTargetTime");
+		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "ExecuteUbergraph_BP_ONE_TimedClock_01");
 
-	Params::BP_ONE_TimedClock_01_C_setTargetTime Parms{};
+	Params::BP_ONE_TimedClock_01_C_ExecuteUbergraph_BP_ONE_TimedClock_01 Parms{};
 
-	Parms.targetHour_0 = targetHour_0;
-	Parms.targetMinute_0 = targetMinute_0;
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.OnStateChanged
+// (Event, Protected, BlueprintEvent)
+// Parameters:
+// bool                                    bStateToChangeTo                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void ABP_ONE_TimedClock_01_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "OnStateChanged");
+
+	Params::BP_ONE_TimedClock_01_C_OnStateChanged Parms{};
+
+	Parms.bStateToChangeTo = bStateToChangeTo;
+	Parms.bDoCosmetics = bDoCosmetics;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.BndEvt__BP_ONE_TimedClock_01_timer_K2Node_ComponentBoundEvent_0_SBZTimerDelegate__DelegateSignature
+// (BlueprintAuthorityOnly, BlueprintEvent)
+
+void ABP_ONE_TimedClock_01_C::BndEvt__BP_ONE_TimedClock_01_timer_K2Node_ComponentBoundEvent_0_SBZTimerDelegate__DelegateSignature()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "BndEvt__BP_ONE_TimedClock_01_timer_K2Node_ComponentBoundEvent_0_SBZTimerDelegate__DelegateSignature");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.ReceiveTick
+// (Event, Public, BlueprintEvent)
+// Parameters:
+// float                                   DeltaSeconds                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_ONE_TimedClock_01_C::ReceiveTick(float DeltaSeconds)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "ReceiveTick");
+
+	Params::BP_ONE_TimedClock_01_C_ReceiveTick Parms{};
+
+	Parms.DeltaSeconds = DeltaSeconds;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.UserConstructionScript
+// (Event, Public, BlueprintCallable, BlueprintEvent)
+
+void ABP_ONE_TimedClock_01_C::UserConstructionScript()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "UserConstructionScript");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.postTimerUpdate
+// (Private, BlueprintCallable, BlueprintEvent)
+
+void ABP_ONE_TimedClock_01_C::postTimerUpdate()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "postTimerUpdate");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.setWatchHead
+// (Private, HasDefaults, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// int32                                   hour                                                   (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   minute                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_ONE_TimedClock_01_C::setWatchHead(int32 hour, int32 minute)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "setWatchHead");
+
+	Params::BP_ONE_TimedClock_01_C_setWatchHead Parms{};
+
+	Parms.hour = hour;
+	Parms.minute = minute;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -64,127 +168,23 @@ void ABP_ONE_TimedClock_01_C::getCurrentTime(int32* Hours, int32* Minutes)
 }
 
 
-// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.setWatchHead
-// (Private, HasDefaults, BlueprintCallable, BlueprintEvent)
+// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.setTargetTime
+// (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   hour                                                   (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// int32                                   minute                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   targetHour_0                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   targetMinute_0                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_ONE_TimedClock_01_C::setWatchHead(int32 hour, int32 minute)
+void ABP_ONE_TimedClock_01_C::setTargetTime(int32 targetHour_0, int32 targetMinute_0)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "setWatchHead");
+		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "setTargetTime");
 
-	Params::BP_ONE_TimedClock_01_C_setWatchHead Parms{};
+	Params::BP_ONE_TimedClock_01_C_setTargetTime Parms{};
 
-	Parms.hour = hour;
-	Parms.minute = minute;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.postTimerUpdate
-// (Private, BlueprintCallable, BlueprintEvent)
-
-void ABP_ONE_TimedClock_01_C::postTimerUpdate()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "postTimerUpdate");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.UserConstructionScript
-// (Event, Public, BlueprintCallable, BlueprintEvent)
-
-void ABP_ONE_TimedClock_01_C::UserConstructionScript()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "UserConstructionScript");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.ReceiveTick
-// (Event, Public, BlueprintEvent)
-// Parameters:
-// float                                   DeltaSeconds                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_ONE_TimedClock_01_C::ReceiveTick(float DeltaSeconds)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "ReceiveTick");
-
-	Params::BP_ONE_TimedClock_01_C_ReceiveTick Parms{};
-
-	Parms.DeltaSeconds = DeltaSeconds;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.BndEvt__BP_ONE_TimedClock_01_timer_K2Node_ComponentBoundEvent_0_SBZTimerDelegate__DelegateSignature
-// (BlueprintAuthorityOnly, BlueprintEvent)
-
-void ABP_ONE_TimedClock_01_C::BndEvt__BP_ONE_TimedClock_01_timer_K2Node_ComponentBoundEvent_0_SBZTimerDelegate__DelegateSignature()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "BndEvt__BP_ONE_TimedClock_01_timer_K2Node_ComponentBoundEvent_0_SBZTimerDelegate__DelegateSignature");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.OnStateChanged
-// (Event, Protected, BlueprintEvent)
-// Parameters:
-// bool                                    bStateToChangeTo                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-
-void ABP_ONE_TimedClock_01_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "OnStateChanged");
-
-	Params::BP_ONE_TimedClock_01_C_OnStateChanged Parms{};
-
-	Parms.bStateToChangeTo = bStateToChangeTo;
-	Parms.bDoCosmetics = bDoCosmetics;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_ONE_TimedClock_01.BP_ONE_TimedClock_01_C.ExecuteUbergraph_BP_ONE_TimedClock_01
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_ONE_TimedClock_01_C::ExecuteUbergraph_BP_ONE_TimedClock_01(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_TimedClock_01_C", "ExecuteUbergraph_BP_ONE_TimedClock_01");
-
-	Params::BP_ONE_TimedClock_01_C_ExecuteUbergraph_BP_ONE_TimedClock_01 Parms{};
-
-	Parms.EntryPoint = EntryPoint;
+	Parms.targetHour_0 = targetHour_0;
+	Parms.targetMinute_0 = targetMinute_0;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

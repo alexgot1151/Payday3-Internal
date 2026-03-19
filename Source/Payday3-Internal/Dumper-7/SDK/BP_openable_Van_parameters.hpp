@@ -17,15 +17,6 @@
 namespace SDK::Params
 {
 
-// Function BP_openable_Van.BP_openable_Van_C.BP_OnMiniGameSuccess
-// 0x0001 (0x0001 - 0x0000)
-struct BP_openable_Van_C_BP_OnMiniGameSuccess final
-{
-public:
-	bool                                          bDoCosmetics;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_openable_Van_C_BP_OnMiniGameSuccess;
-
 // Function BP_openable_Van.BP_openable_Van_C.ExecuteUbergraph_BP_openable_Van
 // 0x0148 (0x0148 - 0x0000)
 struct BP_openable_Van_C_ExecuteUbergraph_BP_openable_Van final
@@ -42,6 +33,15 @@ public:
 	struct FHitResult                             CallFunc_K2_SetRelativeRotation_SweepHitResult_1;  // 0x00B8(0x0090)(IsPlainOldData, NoDestructor, ContainsInstancedReference)
 };
 DUMPER7_ASSERTS_BP_openable_Van_C_ExecuteUbergraph_BP_openable_Van;
+
+// Function BP_openable_Van.BP_openable_Van_C.BP_OnMiniGameSuccess
+// 0x0001 (0x0001 - 0x0000)
+struct BP_openable_Van_C_BP_OnMiniGameSuccess final
+{
+public:
+	bool                                          bDoCosmetics;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_openable_Van_C_BP_OnMiniGameSuccess;
 
 }
 

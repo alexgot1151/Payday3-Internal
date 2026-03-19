@@ -45,6 +45,7 @@ public:
 
 public:
 	void ExecuteUbergraph_WBP_UI_Results_StayAsParty(int32 EntryPoint);
+	void Setup();
 	void OnStayAsPartyStateUpdated(int32 PlayerCount);
 	void OnStayAsPartyLocalStateUpdated(bool bInStayAsParty);
 	void BndEvt__WBP_UI_Results_StayAsParty_WBP_UI_YesNoToggleButton_K2Node_ComponentBoundEvent_4_OnMenuButtonSelected__DelegateSignature(class USBZMenuButton* Button);
@@ -53,7 +54,6 @@ public:
 	void OnMergePartyUpdated(const class FString& PlayerDisplayName, const bool bIsMergePartySelected);
 	void Construct();
 	void OnRestartStarted(float InNewTime);
-	void OnSetup(const TArray<class ASBZPlayerState*>& PlayerStateArray);
 	void OnRestartAcceptTimerStarted(float InNewTime);
 	void OnInitialTimerStarted(float InNewTime);
 	void TickPartyCountdown();

@@ -43,13 +43,13 @@ public:
 	float                                         lightIntensity;                                    // 0x033C(0x0004)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void setLight(float intensity, bool unlocked);
-	void setOpen(bool open, bool doCosmetics);
-	void UserConstructionScript();
-	void openGate__FinishedFunc();
-	void openGate__UpdateFunc();
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
 	void ExecuteUbergraph_BP_ONE_MetalGate_01(int32 EntryPoint);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void openGate__UpdateFunc();
+	void openGate__FinishedFunc();
+	void UserConstructionScript();
+	void setOpen(bool open, bool doCosmetics);
+	void setLight(float intensity, bool unlocked);
 
 public:
 	static class UClass* StaticClass()

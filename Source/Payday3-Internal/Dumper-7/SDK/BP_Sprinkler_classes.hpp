@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "CoreUObject_structs.hpp"
+#include "Engine_structs.hpp"
 #include "Starbreeze_classes.hpp"
 #include "AkAudio_structs.hpp"
 
@@ -35,13 +35,13 @@ public:
 	struct FVector                                groundSplashPosition;                              // 0x0330(0x000C)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void desactivate_sprinklers();
-	void Activate_sprinklers();
-	void Sprinkler_Management(int32 state);
-	void UserConstructionScript();
-	void ReceiveBeginPlay();
-	void OnStateChanged(int32 OldState, int32 NewState, bool bDoCosmetics);
 	void ExecuteUbergraph_BP_Sprinkler(int32 EntryPoint);
+	void OnStateChanged(int32 OldState, int32 NewState, bool bDoCosmetics);
+	void ReceiveBeginPlay();
+	void UserConstructionScript();
+	void Sprinkler_Management(int32 state);
+	void Activate_sprinklers();
+	void desactivate_sprinklers();
 
 public:
 	static class UClass* StaticClass()

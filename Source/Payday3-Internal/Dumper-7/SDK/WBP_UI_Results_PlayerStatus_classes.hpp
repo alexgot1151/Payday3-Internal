@@ -11,8 +11,8 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
-#include "struct_PlayerStatsToCompare_structs.hpp"
 #include "UMG_classes.hpp"
+#include "struct_PlayerStatsToCompare_structs.hpp"
 #include "Starbreeze_structs.hpp"
 
 

@@ -10,60 +10,12 @@
 
 #include "Basic.hpp"
 
-#include "doorStateSimple_structs.hpp"
 #include "Starbreeze_structs.hpp"
+#include "doorStateSimple_structs.hpp"
 
 
 namespace SDK::Params
 {
-
-// Function BP_interactableDoor_Base.BP_interactableDoor_Base_C.OnStateChanged
-// 0x0003 (0x0003 - 0x0000)
-struct BP_interactableDoor_Base_C_OnStateChanged final
-{
-public:
-	ESBZGateState                                 OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	ESBZGateState                                 NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bIsInitialStateChange;                             // 0x0002(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_interactableDoor_Base_C_OnStateChanged;
-
-// Function BP_interactableDoor_Base.BP_interactableDoor_Base_C.onDoorBreached
-// 0x0002 (0x0002 - 0x0000)
-struct BP_interactableDoor_Base_C_onDoorBreached final
-{
-public:
-	ESBZGateState                                 oldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	ESBZGateState                                 newState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_interactableDoor_Base_C_onDoorBreached;
-
-// Function BP_interactableDoor_Base.BP_interactableDoor_Base_C.onOpenAnimUpdateTick
-// 0x0004 (0x0004 - 0x0000)
-struct BP_interactableDoor_Base_C_onOpenAnimUpdateTick final
-{
-public:
-	float                                         alpha;                                             // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_interactableDoor_Base_C_onOpenAnimUpdateTick;
-
-// Function BP_interactableDoor_Base.BP_interactableDoor_Base_C.initToValidPosition
-// 0x0001 (0x0001 - 0x0000)
-struct BP_interactableDoor_Base_C_initToValidPosition final
-{
-public:
-	ESBZGateState                                 oldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_interactableDoor_Base_C_initToValidPosition;
-
-// Function BP_interactableDoor_Base.BP_interactableDoor_Base_C.setBreachedMeshVisibility
-// 0x0001 (0x0001 - 0x0000)
-struct BP_interactableDoor_Base_C_setBreachedMeshVisibility final
-{
-public:
-	bool                                          breached;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_interactableDoor_Base_C_setBreachedMeshVisibility;
 
 // Function BP_interactableDoor_Base.BP_interactableDoor_Base_C.ExecuteUbergraph_BP_interactableDoor_Base
 // 0x0070 (0x0070 - 0x0000)
@@ -123,6 +75,54 @@ public:
 	float                                         K2Node_Select_Default_1;                           // 0x0068(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_interactableDoor_Base_C_ExecuteUbergraph_BP_interactableDoor_Base;
+
+// Function BP_interactableDoor_Base.BP_interactableDoor_Base_C.setBreachedMeshVisibility
+// 0x0001 (0x0001 - 0x0000)
+struct BP_interactableDoor_Base_C_setBreachedMeshVisibility final
+{
+public:
+	bool                                          breached;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_interactableDoor_Base_C_setBreachedMeshVisibility;
+
+// Function BP_interactableDoor_Base.BP_interactableDoor_Base_C.initToValidPosition
+// 0x0001 (0x0001 - 0x0000)
+struct BP_interactableDoor_Base_C_initToValidPosition final
+{
+public:
+	ESBZGateState                                 oldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_interactableDoor_Base_C_initToValidPosition;
+
+// Function BP_interactableDoor_Base.BP_interactableDoor_Base_C.onOpenAnimUpdateTick
+// 0x0004 (0x0004 - 0x0000)
+struct BP_interactableDoor_Base_C_onOpenAnimUpdateTick final
+{
+public:
+	float                                         alpha;                                             // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_interactableDoor_Base_C_onOpenAnimUpdateTick;
+
+// Function BP_interactableDoor_Base.BP_interactableDoor_Base_C.onDoorBreached
+// 0x0002 (0x0002 - 0x0000)
+struct BP_interactableDoor_Base_C_onDoorBreached final
+{
+public:
+	ESBZGateState                                 oldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	ESBZGateState                                 newState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_interactableDoor_Base_C_onDoorBreached;
+
+// Function BP_interactableDoor_Base.BP_interactableDoor_Base_C.OnStateChanged
+// 0x0003 (0x0003 - 0x0000)
+struct BP_interactableDoor_Base_C_OnStateChanged final
+{
+public:
+	ESBZGateState                                 OldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	ESBZGateState                                 NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bIsInitialStateChange;                             // 0x0002(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_interactableDoor_Base_C_OnStateChanged;
 
 // Function BP_interactableDoor_Base.BP_interactableDoor_Base_C.getDoorSimpleState
 // 0x0010 (0x0010 - 0x0000)

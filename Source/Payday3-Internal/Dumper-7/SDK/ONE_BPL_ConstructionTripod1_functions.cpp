@@ -17,21 +17,21 @@
 namespace SDK
 {
 
-// Function ONE_BPL_ConstructionTripod1.ONE_BPL_ConstructionTripod1_C.SetStateFunction
-// (Public, BlueprintCallable, BlueprintEvent)
+// Function ONE_BPL_ConstructionTripod1.ONE_BPL_ConstructionTripod1_C.ExecuteUbergraph_ONE_BPL_ConstructionTripod1
+// (Final, UbergraphFunction)
 // Parameters:
-// Enum_LampStages                         States_0                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void AONE_BPL_ConstructionTripod1_C::SetStateFunction(Enum_LampStages States_0)
+void AONE_BPL_ConstructionTripod1_C::ExecuteUbergraph_ONE_BPL_ConstructionTripod1(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("ONE_BPL_ConstructionTripod1_C", "SetStateFunction");
+		Func = Class->GetFunction("ONE_BPL_ConstructionTripod1_C", "ExecuteUbergraph_ONE_BPL_ConstructionTripod1");
 
-	Params::ONE_BPL_ConstructionTripod1_C_SetStateFunction Parms{};
+	Params::ONE_BPL_ConstructionTripod1_C_ExecuteUbergraph_ONE_BPL_ConstructionTripod1 Parms{};
 
-	Parms.States_0 = States_0;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -61,21 +61,21 @@ void AONE_BPL_ConstructionTripod1_C::OnStateChanged(int32 OldState, int32 NewSta
 }
 
 
-// Function ONE_BPL_ConstructionTripod1.ONE_BPL_ConstructionTripod1_C.ExecuteUbergraph_ONE_BPL_ConstructionTripod1
-// (Final, UbergraphFunction)
+// Function ONE_BPL_ConstructionTripod1.ONE_BPL_ConstructionTripod1_C.SetStateFunction
+// (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Enum_LampStages                         States_0                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void AONE_BPL_ConstructionTripod1_C::ExecuteUbergraph_ONE_BPL_ConstructionTripod1(int32 EntryPoint)
+void AONE_BPL_ConstructionTripod1_C::SetStateFunction(Enum_LampStages States_0)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("ONE_BPL_ConstructionTripod1_C", "ExecuteUbergraph_ONE_BPL_ConstructionTripod1");
+		Func = Class->GetFunction("ONE_BPL_ConstructionTripod1_C", "SetStateFunction");
 
-	Params::ONE_BPL_ConstructionTripod1_C_ExecuteUbergraph_ONE_BPL_ConstructionTripod1 Parms{};
+	Params::ONE_BPL_ConstructionTripod1_C_SetStateFunction Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.States_0 = States_0;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

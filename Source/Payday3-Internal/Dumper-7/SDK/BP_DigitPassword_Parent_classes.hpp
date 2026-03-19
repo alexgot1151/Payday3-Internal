@@ -26,8 +26,8 @@ public:
 	class UStaticMeshComponent*                   StaticMesh;                                        // 0x02D0(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void BP_SetCode(class UWidgetComponent* Widget, int32 CodeToShow_0);
 	void ExecuteUbergraph_BP_DigitPassword_Parent(int32 EntryPoint);
+	void BP_SetCode(class UWidgetComponent* Widget, int32 CodeToShow_0);
 
 public:
 	static class UClass* StaticClass()

@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BP_BreachingEquipmentFuelTank.BP_BreachingEquipmentFuelTank_C.ExecuteUbergraph_BP_BreachingEquipmentFuelTank
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_BreachingEquipmentFuelTank_C::ExecuteUbergraph_BP_BreachingEquipmentFuelTank(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_BreachingEquipmentFuelTank_C", "ExecuteUbergraph_BP_BreachingEquipmentFuelTank");
+
+	Params::BP_BreachingEquipmentFuelTank_C_ExecuteUbergraph_BP_BreachingEquipmentFuelTank Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BP_BreachingEquipmentFuelTank.BP_BreachingEquipmentFuelTank_C.BndEvt__BP_BreachingEquipmentFuelTank_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
@@ -36,26 +56,6 @@ void ABP_BreachingEquipmentFuelTank_C::BndEvt__BP_BreachingEquipmentFuelTank_Int
 	Parms.Interactable_0 = Interactable_0;
 	Parms.Interactor = Interactor;
 	Parms.bIsLocallyControlledInteractor = bIsLocallyControlledInteractor;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_BreachingEquipmentFuelTank.BP_BreachingEquipmentFuelTank_C.ExecuteUbergraph_BP_BreachingEquipmentFuelTank
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_BreachingEquipmentFuelTank_C::ExecuteUbergraph_BP_BreachingEquipmentFuelTank(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_BreachingEquipmentFuelTank_C", "ExecuteUbergraph_BP_BreachingEquipmentFuelTank");
-
-	Params::BP_BreachingEquipmentFuelTank_C_ExecuteUbergraph_BP_BreachingEquipmentFuelTank Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

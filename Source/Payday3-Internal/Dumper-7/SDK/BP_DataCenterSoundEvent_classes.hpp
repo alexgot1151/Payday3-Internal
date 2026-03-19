@@ -30,9 +30,9 @@ public:
 	bool                                          DestroyOnComplete;                                 // 0x02F8(0x0001)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor)
 
 public:
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
-	void OnCompleted(EAkCallbackType CallbackType, class UAkCallbackInfo* CallbackInfo);
 	void ExecuteUbergraph_BP_DataCenterSoundEvent(int32 EntryPoint);
+	void OnCompleted(EAkCallbackType CallbackType, class UAkCallbackInfo* CallbackInfo);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
 
 public:
 	static class UClass* StaticClass()

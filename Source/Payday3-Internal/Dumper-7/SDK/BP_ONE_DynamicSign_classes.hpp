@@ -38,8 +38,8 @@ public:
 	float                                         resolution_multiplier;                             // 0x0370(0x0004)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void OnStateChanged(int32 OldState, int32 NewState, bool bDoCosmetics);
 	void ExecuteUbergraph_BP_ONE_DynamicSign(int32 EntryPoint);
+	void OnStateChanged(int32 OldState, int32 NewState, bool bDoCosmetics);
 	void setup();
 	void ReceiveBeginPlay();
 	void UserConstructionScript();

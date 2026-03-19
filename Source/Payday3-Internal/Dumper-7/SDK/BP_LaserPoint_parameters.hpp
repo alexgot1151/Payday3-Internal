@@ -14,15 +14,6 @@
 namespace SDK::Params
 {
 
-// Function BP_LaserPoint.BP_LaserPoint_C.ReceiveActorBeginOverlap_1
-// 0x0008 (0x0008 - 0x0000)
-struct BP_LaserPoint_C_ReceiveActorBeginOverlap_1 final
-{
-public:
-	class AActor*                                 OtherActor;                                        // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_LaserPoint_C_ReceiveActorBeginOverlap_1;
-
 // Function BP_LaserPoint.BP_LaserPoint_C.ExecuteUbergraph_BP_LaserPoint
 // 0x0010 (0x0010 - 0x0000)
 struct BP_LaserPoint_C_ExecuteUbergraph_BP_LaserPoint final
@@ -33,6 +24,15 @@ public:
 	class AActor*                                 K2Node_Event_OtherActor;                           // 0x0008(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_LaserPoint_C_ExecuteUbergraph_BP_LaserPoint;
+
+// Function BP_LaserPoint.BP_LaserPoint_C.ReceiveActorBeginOverlap_1
+// 0x0008 (0x0008 - 0x0000)
+struct BP_LaserPoint_C_ReceiveActorBeginOverlap_1 final
+{
+public:
+	class AActor*                                 OtherActor;                                        // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_LaserPoint_C_ReceiveActorBeginOverlap_1;
 
 }
 

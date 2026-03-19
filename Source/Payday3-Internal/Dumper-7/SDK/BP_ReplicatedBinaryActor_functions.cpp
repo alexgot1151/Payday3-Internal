@@ -17,23 +17,21 @@
 namespace SDK
 {
 
-// Function BP_ReplicatedBinaryActor.BP_ReplicatedBinaryActor_C.OnStateChanged
-// (Event, Protected, BlueprintEvent)
+// Function BP_ReplicatedBinaryActor.BP_ReplicatedBinaryActor_C.ExecuteUbergraph_BP_ReplicatedBinaryActor
+// (Final, UbergraphFunction)
 // Parameters:
-// bool                                    bStateToChangeTo                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_ReplicatedBinaryActor_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
+void ABP_ReplicatedBinaryActor_C::ExecuteUbergraph_BP_ReplicatedBinaryActor(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ReplicatedBinaryActor_C", "OnStateChanged");
+		Func = Class->GetFunction("BP_ReplicatedBinaryActor_C", "ExecuteUbergraph_BP_ReplicatedBinaryActor");
 
-	Params::BP_ReplicatedBinaryActor_C_OnStateChanged Parms{};
+	Params::BP_ReplicatedBinaryActor_C_ExecuteUbergraph_BP_ReplicatedBinaryActor Parms{};
 
-	Parms.bStateToChangeTo = bStateToChangeTo;
-	Parms.bDoCosmetics = bDoCosmetics;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -53,21 +51,23 @@ void ABP_ReplicatedBinaryActor_C::ReceiveBeginPlay()
 }
 
 
-// Function BP_ReplicatedBinaryActor.BP_ReplicatedBinaryActor_C.ExecuteUbergraph_BP_ReplicatedBinaryActor
-// (Final, UbergraphFunction)
+// Function BP_ReplicatedBinaryActor.BP_ReplicatedBinaryActor_C.OnStateChanged
+// (Event, Protected, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    bStateToChangeTo                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_ReplicatedBinaryActor_C::ExecuteUbergraph_BP_ReplicatedBinaryActor(int32 EntryPoint)
+void ABP_ReplicatedBinaryActor_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ReplicatedBinaryActor_C", "ExecuteUbergraph_BP_ReplicatedBinaryActor");
+		Func = Class->GetFunction("BP_ReplicatedBinaryActor_C", "OnStateChanged");
 
-	Params::BP_ReplicatedBinaryActor_C_ExecuteUbergraph_BP_ReplicatedBinaryActor Parms{};
+	Params::BP_ReplicatedBinaryActor_C_OnStateChanged Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.bStateToChangeTo = bStateToChangeTo;
+	Parms.bDoCosmetics = bDoCosmetics;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

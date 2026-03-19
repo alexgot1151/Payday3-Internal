@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BP_IGL_BRE_NAV_ATT_2HITS.BP_IGL_BRE_NAV_ATT_2HITS_C.ExecuteUbergraph_BP_IGL_BRE_NAV_ATT_2HITS
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_IGL_BRE_NAV_ATT_2HITS_C::ExecuteUbergraph_BP_IGL_BRE_NAV_ATT_2HITS(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_IGL_BRE_NAV_ATT_2HITS_C", "ExecuteUbergraph_BP_IGL_BRE_NAV_ATT_2HITS");
+
+	Params::BP_IGL_BRE_NAV_ATT_2HITS_C_ExecuteUbergraph_BP_IGL_BRE_NAV_ATT_2HITS Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BP_IGL_BRE_NAV_ATT_2HITS.BP_IGL_BRE_NAV_ATT_2HITS_C.OnStateChanged
 // (Event, Protected, BlueprintEvent)
 // Parameters:
@@ -36,26 +56,6 @@ void ABP_IGL_BRE_NAV_ATT_2HITS_C::OnStateChanged(ESBZGateState OldState, ESBZGat
 	Parms.OldState = OldState;
 	Parms.NewState = NewState;
 	Parms.bIsInitialStateChange = bIsInitialStateChange;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_IGL_BRE_NAV_ATT_2HITS.BP_IGL_BRE_NAV_ATT_2HITS_C.ExecuteUbergraph_BP_IGL_BRE_NAV_ATT_2HITS
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_IGL_BRE_NAV_ATT_2HITS_C::ExecuteUbergraph_BP_IGL_BRE_NAV_ATT_2HITS(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_IGL_BRE_NAV_ATT_2HITS_C", "ExecuteUbergraph_BP_IGL_BRE_NAV_ATT_2HITS");
-
-	Params::BP_IGL_BRE_NAV_ATT_2HITS_C_ExecuteUbergraph_BP_IGL_BRE_NAV_ATT_2HITS Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

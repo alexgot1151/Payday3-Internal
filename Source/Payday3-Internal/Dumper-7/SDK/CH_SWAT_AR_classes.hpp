@@ -17,11 +17,11 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass CH_SWAT_AR.CH_SWAT_AR_C
-// 0x0000 (0x1D10 - 0x1D10)
+// 0x0000 (0x1D20 - 0x1D20)
 class ACH_SWAT_AR_C final : public ACH_BaseCommonSwat_C
 {
 public:
-	class UStaticMeshComponent*                   Helmet;                                            // 0x1D08(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	class UStaticMeshComponent*                   Helmet;                                            // 0x1D18(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
 	static class UClass* StaticClass()

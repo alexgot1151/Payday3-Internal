@@ -16,17 +16,6 @@
 namespace SDK::Params
 {
 
-// Function BP_ONE_DynamicSign.BP_ONE_DynamicSign_C.OnStateChanged
-// 0x000C (0x000C - 0x0000)
-struct BP_ONE_DynamicSign_C_OnStateChanged final
-{
-public:
-	int32                                         OldState;                                          // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	int32                                         NewState;                                          // 0x0004(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bDoCosmetics;                                      // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ONE_DynamicSign_C_OnStateChanged;
-
 // Function BP_ONE_DynamicSign.BP_ONE_DynamicSign_C.ExecuteUbergraph_BP_ONE_DynamicSign
 // 0x0078 (0x0078 - 0x0000)
 struct BP_ONE_DynamicSign_C_ExecuteUbergraph_BP_ONE_DynamicSign final
@@ -54,6 +43,17 @@ public:
 	struct FVector2D                              CallFunc_MakeVector2D_ReturnValue;                 // 0x006C(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_ONE_DynamicSign_C_ExecuteUbergraph_BP_ONE_DynamicSign;
+
+// Function BP_ONE_DynamicSign.BP_ONE_DynamicSign_C.OnStateChanged
+// 0x000C (0x000C - 0x0000)
+struct BP_ONE_DynamicSign_C_OnStateChanged final
+{
+public:
+	int32                                         OldState;                                          // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	int32                                         NewState;                                          // 0x0004(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bDoCosmetics;                                      // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ONE_DynamicSign_C_OnStateChanged;
 
 // Function BP_ONE_DynamicSign.BP_ONE_DynamicSign_C.Set Text
 // 0x0004 (0x0004 - 0x0000)

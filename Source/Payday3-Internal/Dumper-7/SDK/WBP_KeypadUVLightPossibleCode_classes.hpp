@@ -34,8 +34,8 @@ public:
 	class UTextBlock*                             CodeText;                                          // 0x02E0(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
 
 public:
-	void SetText(int32 Value);
 	void SetKeypad(int32 TrueCode, int32 RandomCode, bool ShowTrueCode);
+	void SetText(int32 Value);
 
 public:
 	static class UClass* StaticClass()

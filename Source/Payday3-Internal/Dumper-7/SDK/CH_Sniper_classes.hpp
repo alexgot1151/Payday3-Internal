@@ -17,11 +17,11 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass CH_Sniper.CH_Sniper_C
-// 0x0010 (0x1D10 - 0x1D00)
+// 0x0010 (0x1D20 - 0x1D10)
 class ACH_Sniper_C final : public ACH_BaseCop_C
 {
 public:
-	class UStaticMeshComponent*                   Hat;                                               // 0x1D00(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+	class UStaticMeshComponent*                   Hat;                                               // 0x1D10(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
 	static class UClass* StaticClass()

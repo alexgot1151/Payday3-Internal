@@ -14,16 +14,6 @@
 namespace SDK::Params
 {
 
-// Function BP_ReplicatedBinaryActor.BP_ReplicatedBinaryActor_C.OnStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct BP_ReplicatedBinaryActor_C_OnStateChanged final
-{
-public:
-	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ReplicatedBinaryActor_C_OnStateChanged;
-
 // Function BP_ReplicatedBinaryActor.BP_ReplicatedBinaryActor_C.ExecuteUbergraph_BP_ReplicatedBinaryActor
 // 0x0020 (0x0020 - 0x0000)
 struct BP_ReplicatedBinaryActor_C_ExecuteUbergraph_BP_ReplicatedBinaryActor final
@@ -36,6 +26,16 @@ public:
 	bool                                          K2Node_Event_bDoCosmetics;                         // 0x0019(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_BP_ReplicatedBinaryActor_C_ExecuteUbergraph_BP_ReplicatedBinaryActor;
+
+// Function BP_ReplicatedBinaryActor.BP_ReplicatedBinaryActor_C.OnStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct BP_ReplicatedBinaryActor_C_OnStateChanged final
+{
+public:
+	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ReplicatedBinaryActor_C_OnStateChanged;
 
 }
 

@@ -32,11 +32,11 @@ public:
 	TArray<struct FLinearColor>                   colorStates;                                       // 0x0320(0x0010)(Edit, BlueprintVisible)
 
 public:
-	void setLightState(int32 state);
-	void setLight(float intensity, const struct FLinearColor& color);
-	void UserConstructionScript();
-	void OnStateChanged(int32 OldState, int32 NewState, bool bDoCosmetics);
 	void ExecuteUbergraph_BP_ONE_IndicatorLight_Controllable_01(int32 EntryPoint);
+	void OnStateChanged(int32 OldState, int32 NewState, bool bDoCosmetics);
+	void UserConstructionScript();
+	void setLight(float intensity, const struct FLinearColor& color);
+	void setLightState(int32 state);
 
 public:
 	static class UClass* StaticClass()

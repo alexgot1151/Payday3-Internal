@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BP_FOR_USBDrive.BP_FOR_USBDrive_C.ExecuteUbergraph_BP_FOR_USBDrive
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_FOR_USBDrive_C::ExecuteUbergraph_BP_FOR_USBDrive(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_FOR_USBDrive_C", "ExecuteUbergraph_BP_FOR_USBDrive");
+
+	Params::BP_FOR_USBDrive_C_ExecuteUbergraph_BP_FOR_USBDrive Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BP_FOR_USBDrive.BP_FOR_USBDrive_C.OnStateChanged
 // (Event, Protected, BlueprintEvent)
 // Parameters:
@@ -36,26 +56,6 @@ void ABP_FOR_USBDrive_C::OnStateChanged(int32 OldState, int32 NewState, bool bDo
 	Parms.OldState = OldState;
 	Parms.NewState = NewState;
 	Parms.bDoCosmetics = bDoCosmetics;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_FOR_USBDrive.BP_FOR_USBDrive_C.ExecuteUbergraph_BP_FOR_USBDrive
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_FOR_USBDrive_C::ExecuteUbergraph_BP_FOR_USBDrive(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_FOR_USBDrive_C", "ExecuteUbergraph_BP_FOR_USBDrive");
-
-	Params::BP_FOR_USBDrive_C_ExecuteUbergraph_BP_FOR_USBDrive Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

@@ -18,7 +18,7 @@ namespace SDK
 {
 
 // Function WBP_UI_Widget_MarkerContainer.WBP_UI_Widget_MarkerContainer_C.ExecuteUbergraph_WBP_UI_Widget_MarkerContainer
-// (Final, UbergraphFunction)
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
 // int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
@@ -54,6 +54,28 @@ void UWBP_UI_Widget_MarkerContainer_C::BP_OnInsideVolumeChanged(bool bInsideVolu
 
 	Parms.bInsideVolume = bInsideVolume;
 	Parms.MarkerDataAsset = MarkerDataAsset;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_UI_Widget_MarkerContainer.WBP_UI_Widget_MarkerContainer_C.BP_ShouldShowMarkerText
+// (Event, Protected, BlueprintEvent)
+// Parameters:
+// bool                                    bShowMarkerText                                        (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// class UObject*                          DataObject                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_UI_Widget_MarkerContainer_C::BP_ShouldShowMarkerText(bool bShowMarkerText, class UObject* DataObject)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_UI_Widget_MarkerContainer_C", "BP_ShouldShowMarkerText");
+
+	Params::WBP_UI_Widget_MarkerContainer_C_BP_ShouldShowMarkerText Parms{};
+
+	Parms.bShowMarkerText = bShowMarkerText;
+	Parms.DataObject = DataObject;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

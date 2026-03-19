@@ -37,6 +37,20 @@ void UWBP_UI_LoginScreenBase_C::ExecuteUbergraph_WBP_UI_LoginScreenBase(int32 En
 }
 
 
+// Function WBP_UI_LoginScreenBase.WBP_UI_LoginScreenBase_C.Destruct
+// (BlueprintCosmetic, Event, Public, BlueprintEvent)
+
+void UWBP_UI_LoginScreenBase_C::Destruct()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_UI_LoginScreenBase_C", "Destruct");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
 // Function WBP_UI_LoginScreenBase.WBP_UI_LoginScreenBase_C.PreConstruct
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:

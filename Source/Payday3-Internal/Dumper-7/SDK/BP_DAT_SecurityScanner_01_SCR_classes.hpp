@@ -38,13 +38,13 @@ public:
 	TMulticastInlineDelegate<void()>              onAlarmTimedOut;                                   // 0x0330(0x0010)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, BlueprintAssignable, BlueprintCallable)
 
 public:
-	void setStateFunction(bool enabled);
-	void UserConstructionScript();
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
-	void BndEvt__BP_DAT_SecurityScanner_01_SCR_Box_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const struct FHitResult& SweepResult);
-	void ReceiveBeginPlay();
-	void onAlarmTimedOut_Event();
 	void ExecuteUbergraph_BP_DAT_SecurityScanner_01_SCR(int32 EntryPoint);
+	void onAlarmTimedOut_Event();
+	void ReceiveBeginPlay();
+	void BndEvt__BP_DAT_SecurityScanner_01_SCR_Box_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const struct FHitResult& SweepResult);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void UserConstructionScript();
+	void setStateFunction(bool enabled);
 	void TrippedAlarm();
 	void deactivateAlarm();
 	void setAlarmTimedOut();

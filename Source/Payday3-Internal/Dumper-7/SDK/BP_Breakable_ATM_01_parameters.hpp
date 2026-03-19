@@ -19,16 +19,6 @@
 namespace SDK::Params
 {
 
-// Function BP_Breakable_ATM_01.BP_Breakable_ATM_01_C.BndEvt__BP_Breakable_ATM_01_InteractableComponent_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature
-// 0x0010 (0x0010 - 0x0000)
-struct BP_Breakable_ATM_01_C_BndEvt__BP_Breakable_ATM_01_InteractableComponent_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature final
-{
-public:
-	const class USBZBaseInteractableComponent*    InteractableComponent_0;                           // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_Breakable_ATM_01_C_BndEvt__BP_Breakable_ATM_01_InteractableComponent_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature;
-
 // Function BP_Breakable_ATM_01.BP_Breakable_ATM_01_C.ExecuteUbergraph_BP_Breakable_ATM_01
 // 0x0340 (0x0340 - 0x0000)
 struct BP_Breakable_ATM_01_C_ExecuteUbergraph_BP_Breakable_ATM_01 final
@@ -122,6 +112,16 @@ public:
 	bool                                          CallFunc_Less_IntInt_ReturnValue_1;                // 0x0338(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_BP_Breakable_ATM_01_C_ExecuteUbergraph_BP_Breakable_ATM_01;
+
+// Function BP_Breakable_ATM_01.BP_Breakable_ATM_01_C.BndEvt__BP_Breakable_ATM_01_InteractableComponent_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature
+// 0x0010 (0x0010 - 0x0000)
+struct BP_Breakable_ATM_01_C_BndEvt__BP_Breakable_ATM_01_InteractableComponent_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature final
+{
+public:
+	const class USBZBaseInteractableComponent*    InteractableComponent_0;                           // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          bInNewState;                                       // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_Breakable_ATM_01_C_BndEvt__BP_Breakable_ATM_01_InteractableComponent_K2Node_ComponentBoundEvent_3_SBZOnInteractableStateChangedDelegate__DelegateSignature;
 
 // Function BP_Breakable_ATM_01.BP_Breakable_ATM_01_C.BndEvt__BP_Breakable_ATM_01_InteractableComponent_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature
 // 0x0018 (0x0018 - 0x0000)

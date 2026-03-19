@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BP_Boquet_Destructible_01_C.BP_Boquet_Destructible_01_C_C.ExecuteUbergraph_BP_Boquet_Destructible_01_C
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_Boquet_Destructible_01_C_C::ExecuteUbergraph_BP_Boquet_Destructible_01_C(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Boquet_Destructible_01_C_C", "ExecuteUbergraph_BP_Boquet_Destructible_01_C");
+
+	Params::BP_Boquet_Destructible_01_C_C_ExecuteUbergraph_BP_Boquet_Destructible_01_C Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BP_Boquet_Destructible_01_C.BP_Boquet_Destructible_01_C_C.BndEvt__BP_Boquet_Destructible_01_A_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
 // (HasOutParams, BlueprintEvent)
 // Parameters:
@@ -34,26 +54,6 @@ void ABP_Boquet_Destructible_01_C_C::BndEvt__BP_Boquet_Destructible_01_A_SBZCosm
 
 	Parms.Type = Type;
 	Parms.HitContext = std::move(HitContext);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_Boquet_Destructible_01_C.BP_Boquet_Destructible_01_C_C.ExecuteUbergraph_BP_Boquet_Destructible_01_C
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_Boquet_Destructible_01_C_C::ExecuteUbergraph_BP_Boquet_Destructible_01_C(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Boquet_Destructible_01_C_C", "ExecuteUbergraph_BP_Boquet_Destructible_01_C");
-
-	Params::BP_Boquet_Destructible_01_C_C_ExecuteUbergraph_BP_Boquet_Destructible_01_C Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

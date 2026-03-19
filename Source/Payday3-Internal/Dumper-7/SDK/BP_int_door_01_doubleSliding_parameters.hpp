@@ -11,31 +11,13 @@
 #include "Basic.hpp"
 
 #include "Starbreeze_structs.hpp"
+#include "Engine_structs.hpp"
 #include "doorStateSimple_structs.hpp"
 #include "CoreUObject_structs.hpp"
-#include "Engine_structs.hpp"
 
 
 namespace SDK::Params
 {
-
-// Function BP_int_door_01_doubleSliding.BP_int_door_01_doubleSliding_C.initToValidPosition
-// 0x0001 (0x0001 - 0x0000)
-struct BP_int_door_01_doubleSliding_C_initToValidPosition final
-{
-public:
-	ESBZGateState                                 oldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_int_door_01_doubleSliding_C_initToValidPosition;
-
-// Function BP_int_door_01_doubleSliding.BP_int_door_01_doubleSliding_C.onOpenAnimUpdateTick
-// 0x0004 (0x0004 - 0x0000)
-struct BP_int_door_01_doubleSliding_C_onOpenAnimUpdateTick final
-{
-public:
-	float                                         alpha;                                             // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-DUMPER7_ASSERTS_BP_int_door_01_doubleSliding_C_onOpenAnimUpdateTick;
 
 // Function BP_int_door_01_doubleSliding.BP_int_door_01_doubleSliding_C.ExecuteUbergraph_BP_int_door_01_doubleSliding
 // 0x03E0 (0x03E0 - 0x0000)
@@ -69,6 +51,24 @@ public:
 	struct FHitResult                             CallFunc_K2_SetRelativeLocation_SweepHitResult_5;  // 0x0350(0x0090)(IsPlainOldData, NoDestructor, ContainsInstancedReference)
 };
 DUMPER7_ASSERTS_BP_int_door_01_doubleSliding_C_ExecuteUbergraph_BP_int_door_01_doubleSliding;
+
+// Function BP_int_door_01_doubleSliding.BP_int_door_01_doubleSliding_C.onOpenAnimUpdateTick
+// 0x0004 (0x0004 - 0x0000)
+struct BP_int_door_01_doubleSliding_C_onOpenAnimUpdateTick final
+{
+public:
+	float                                         alpha;                                             // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_int_door_01_doubleSliding_C_onOpenAnimUpdateTick;
+
+// Function BP_int_door_01_doubleSliding.BP_int_door_01_doubleSliding_C.initToValidPosition
+// 0x0001 (0x0001 - 0x0000)
+struct BP_int_door_01_doubleSliding_C_initToValidPosition final
+{
+public:
+	ESBZGateState                                 oldState;                                          // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+DUMPER7_ASSERTS_BP_int_door_01_doubleSliding_C_initToValidPosition;
 
 }
 

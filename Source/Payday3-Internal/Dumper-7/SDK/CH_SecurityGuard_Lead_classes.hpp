@@ -37,7 +37,6 @@ public:
 		return GetDefaultObjImpl<ACH_SecurityGuard_Lead_C>();
 	}
 };
-DUMPER7_ASSERTS_ACH_SecurityGuard_Lead_C;
 
 }
 

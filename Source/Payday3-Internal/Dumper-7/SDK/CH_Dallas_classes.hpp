@@ -34,7 +34,6 @@ public:
 		return GetDefaultObjImpl<ACH_Dallas_C>();
 	}
 };
-DUMPER7_ASSERTS_ACH_Dallas_C;
 
 }
 

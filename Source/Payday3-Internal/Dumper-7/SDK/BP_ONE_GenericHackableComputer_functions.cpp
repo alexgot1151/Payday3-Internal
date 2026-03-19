@@ -17,56 +17,6 @@
 namespace SDK
 {
 
-// Function BP_ONE_GenericHackableComputer.BP_ONE_GenericHackableComputer_C.goLoud
-// (BlueprintCallable, BlueprintEvent)
-
-void ABP_ONE_GenericHackableComputer_C::goLoud()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_GenericHackableComputer_C", "goLoud");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_ONE_GenericHackableComputer.BP_ONE_GenericHackableComputer_C.BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature
-// (BlueprintEvent)
-// Parameters:
-// bool                                    bState                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-
-void ABP_ONE_GenericHackableComputer_C::BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature(bool bState, bool bDoCosmetics)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_GenericHackableComputer_C", "BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature");
-
-	Params::BP_ONE_GenericHackableComputer_C_BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature Parms{};
-
-	Parms.bState = bState;
-	Parms.bDoCosmetics = bDoCosmetics;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_ONE_GenericHackableComputer.BP_ONE_GenericHackableComputer_C.K2_OnReset
-// (Event, Public, BlueprintEvent)
-
-void ABP_ONE_GenericHackableComputer_C::K2_OnReset()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_GenericHackableComputer_C", "K2_OnReset");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
 // Function BP_ONE_GenericHackableComputer.BP_ONE_GenericHackableComputer_C.ExecuteUbergraph_BP_ONE_GenericHackableComputer
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
@@ -126,6 +76,56 @@ void ABP_ONE_GenericHackableComputer_C::BP_OnStateChanged(ESBZHackableActorState
 	Parms.NewState = NewState;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_ONE_GenericHackableComputer.BP_ONE_GenericHackableComputer_C.K2_OnReset
+// (Event, Public, BlueprintEvent)
+
+void ABP_ONE_GenericHackableComputer_C::K2_OnReset()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_GenericHackableComputer_C", "K2_OnReset");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_ONE_GenericHackableComputer.BP_ONE_GenericHackableComputer_C.BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature
+// (BlueprintEvent)
+// Parameters:
+// bool                                    bState                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void ABP_ONE_GenericHackableComputer_C::BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature(bool bState, bool bDoCosmetics)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_GenericHackableComputer_C", "BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature");
+
+	Params::BP_ONE_GenericHackableComputer_C_BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature Parms{};
+
+	Parms.bState = bState;
+	Parms.bDoCosmetics = bDoCosmetics;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_ONE_GenericHackableComputer.BP_ONE_GenericHackableComputer_C.goLoud
+// (BlueprintCallable, BlueprintEvent)
+
+void ABP_ONE_GenericHackableComputer_C::goLoud()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_GenericHackableComputer_C", "goLoud");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

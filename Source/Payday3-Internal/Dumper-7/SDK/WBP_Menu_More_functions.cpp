@@ -37,6 +37,26 @@ void UWBP_Menu_More_C::ExecuteUbergraph_WBP_Menu_More(int32 EntryPoint)
 }
 
 
+// Function WBP_Menu_More.WBP_Menu_More_C.BndEvt__WBP_Menu_More_Debug_QuestLinesMenu_K2Node_ComponentBoundEvent_19_OnMenuButtonSelected__DelegateSignature
+// (BlueprintEvent)
+// Parameters:
+// class USBZMenuButton*                   Button                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_Menu_More_C::BndEvt__WBP_Menu_More_Debug_QuestLinesMenu_K2Node_ComponentBoundEvent_19_OnMenuButtonSelected__DelegateSignature(class USBZMenuButton* Button)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_Menu_More_C", "BndEvt__WBP_Menu_More_Debug_QuestLinesMenu_K2Node_ComponentBoundEvent_19_OnMenuButtonSelected__DelegateSignature");
+
+	Params::WBP_Menu_More_C_BndEvt__WBP_Menu_More_Debug_QuestLinesMenu_K2Node_ComponentBoundEvent_19_OnMenuButtonSelected__DelegateSignature Parms{};
+
+	Parms.Button = Button;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function WBP_Menu_More.WBP_Menu_More_C.BndEvt__WBP_Menu_More_Debug_Skills2Menu_K2Node_ComponentBoundEvent_12_OnMenuButtonSelected__DelegateSignature
 // (BlueprintEvent)
 // Parameters:

@@ -16,16 +16,6 @@
 namespace SDK::Params
 {
 
-// Function BP_ONE_GenericHackableComputer.BP_ONE_GenericHackableComputer_C.BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature
-// 0x0002 (0x0002 - 0x0000)
-struct BP_ONE_GenericHackableComputer_C_BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature final
-{
-public:
-	bool                                          bState;                                            // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ONE_GenericHackableComputer_C_BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature;
-
 // Function BP_ONE_GenericHackableComputer.BP_ONE_GenericHackableComputer_C.ExecuteUbergraph_BP_ONE_GenericHackableComputer
 // 0x0060 (0x0060 - 0x0000)
 struct BP_ONE_GenericHackableComputer_C_ExecuteUbergraph_BP_ONE_GenericHackableComputer final
@@ -71,6 +61,16 @@ public:
 	ESBZHackableActorState                        NewState;                                          // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_ONE_GenericHackableComputer_C_BP_OnStateChanged;
+
+// Function BP_ONE_GenericHackableComputer.BP_ONE_GenericHackableComputer_C.BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature
+// 0x0002 (0x0002 - 0x0000)
+struct BP_ONE_GenericHackableComputer_C_BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature final
+{
+public:
+	bool                                          bState;                                            // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ONE_GenericHackableComputer_C_BndEvt__BP_ONE_GenericHackableComputer_isLoudState_K2Node_ComponentBoundEvent_0_SBZBinaryStateChangedSignature__DelegateSignature;
 
 }
 

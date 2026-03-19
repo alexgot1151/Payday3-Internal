@@ -17,20 +17,6 @@
 namespace SDK
 {
 
-// Function BP_SBZNiagaraWwise_TrashbinRollout01.BP_SBZNiagaraWwise_TrashbinRollout01_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
-
-void ABP_SBZNiagaraWwise_TrashbinRollout01_C::ReceiveBeginPlay()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_SBZNiagaraWwise_TrashbinRollout01_C", "ReceiveBeginPlay");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
 // Function BP_SBZNiagaraWwise_TrashbinRollout01.BP_SBZNiagaraWwise_TrashbinRollout01_C.ExecuteUbergraph_BP_SBZNiagaraWwise_TrashbinRollout01
 // (Final, UbergraphFunction)
 // Parameters:
@@ -48,6 +34,20 @@ void ABP_SBZNiagaraWwise_TrashbinRollout01_C::ExecuteUbergraph_BP_SBZNiagaraWwis
 	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_SBZNiagaraWwise_TrashbinRollout01.BP_SBZNiagaraWwise_TrashbinRollout01_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
+
+void ABP_SBZNiagaraWwise_TrashbinRollout01_C::ReceiveBeginPlay()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_SBZNiagaraWwise_TrashbinRollout01_C", "ReceiveBeginPlay");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

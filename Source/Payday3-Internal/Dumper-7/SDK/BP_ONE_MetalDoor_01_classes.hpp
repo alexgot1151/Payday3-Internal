@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "BP_int_door_01_doubleSliding_classes.hpp"
+#include "Engine_structs.hpp"
 #include "Starbreeze_structs.hpp"
 
 
@@ -32,11 +32,11 @@ public:
 	float                                         lightIntensity;                                    // 0x0674(0x0004)(Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	bool isUnlocked(const ESBZGateState& ItemToFind);
-	void setLight(float intensity, bool unlocked);
-	void UserConstructionScript();
-	void OnStateChanged(ESBZGateState OldState, ESBZGateState NewState, bool bIsInitialStateChange);
 	void ExecuteUbergraph_BP_ONE_MetalDoor_01(int32 EntryPoint);
+	void OnStateChanged(ESBZGateState OldState, ESBZGateState NewState, bool bIsInitialStateChange);
+	void UserConstructionScript();
+	void setLight(float intensity, bool unlocked);
+	bool isUnlocked(const ESBZGateState& ItemToFind);
 
 public:
 	static class UClass* StaticClass()

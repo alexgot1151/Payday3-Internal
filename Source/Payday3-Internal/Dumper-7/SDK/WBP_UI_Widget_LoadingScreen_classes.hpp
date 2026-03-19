@@ -32,6 +32,7 @@ public:
 
 public:
 	void ExecuteUbergraph_WBP_UI_Widget_LoadingScreen(int32 EntryPoint);
+	void Destruct();
 	void Construct();
 
 public:

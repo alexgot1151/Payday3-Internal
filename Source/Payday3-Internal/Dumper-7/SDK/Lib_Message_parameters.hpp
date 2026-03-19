@@ -14,16 +14,16 @@
 namespace SDK::Params
 {
 
-// Function Lib_Message.Lib_Message_C.GMessage_Success
+// Function Lib_Message.Lib_Message_C.GMessage_Warning
 // 0x0028 (0x0028 - 0x0000)
-struct Lib_Message_C_GMessage_Success final
+struct Lib_Message_C_GMessage_Warning final
 {
 public:
-	class FString                                 B;                                                 // 0x0000(0x0010)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, HasGetValueTypeHash)
+	class FString                                 InString;                                          // 0x0000(0x0010)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, HasGetValueTypeHash)
 	class UObject*                                __WorldContext;                                    // 0x0010(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	class FString                                 CallFunc_Concat_StrStr_ReturnValue;                // 0x0018(0x0010)(ZeroConstructor, HasGetValueTypeHash)
 };
-DUMPER7_ASSERTS_Lib_Message_C_GMessage_Success;
+DUMPER7_ASSERTS_Lib_Message_C_GMessage_Warning;
 
 // Function Lib_Message.Lib_Message_C.GMessage_Error
 // 0x0028 (0x0028 - 0x0000)
@@ -36,16 +36,16 @@ public:
 };
 DUMPER7_ASSERTS_Lib_Message_C_GMessage_Error;
 
-// Function Lib_Message.Lib_Message_C.GMessage_Warning
+// Function Lib_Message.Lib_Message_C.GMessage_Success
 // 0x0028 (0x0028 - 0x0000)
-struct Lib_Message_C_GMessage_Warning final
+struct Lib_Message_C_GMessage_Success final
 {
 public:
-	class FString                                 InString;                                          // 0x0000(0x0010)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, HasGetValueTypeHash)
+	class FString                                 B;                                                 // 0x0000(0x0010)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, HasGetValueTypeHash)
 	class UObject*                                __WorldContext;                                    // 0x0010(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	class FString                                 CallFunc_Concat_StrStr_ReturnValue;                // 0x0018(0x0010)(ZeroConstructor, HasGetValueTypeHash)
 };
-DUMPER7_ASSERTS_Lib_Message_C_GMessage_Warning;
+DUMPER7_ASSERTS_Lib_Message_C_GMessage_Success;
 
 }
 

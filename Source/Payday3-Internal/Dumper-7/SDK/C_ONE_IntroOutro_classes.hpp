@@ -26,9 +26,9 @@ public:
 	class ALevelSequenceActor*                    SequenceMaster_One_01_4_ExecuteUbergraph_C_ONE_IntroOutro_RefProperty; // 0x0348(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void IntroSequenceChanged(bool bIsStarted);
-	void OnIntroFinished();
 	void ExecuteUbergraph_C_ONE_IntroOutro(int32 EntryPoint);
+	void OnIntroFinished();
+	void IntroSequenceChanged(bool bIsStarted);
 
 public:
 	static class UClass* StaticClass()

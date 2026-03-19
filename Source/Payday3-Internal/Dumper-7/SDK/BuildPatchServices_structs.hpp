@@ -16,15 +16,6 @@
 namespace SDK
 {
 
-// ScriptStruct BuildPatchServices.SHAHashData
-// 0x0014 (0x0014 - 0x0000)
-struct FSHAHashData final
-{
-public:
-	uint8                                         Hash[0x14];                                        // 0x0000(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-};
-DUMPER7_ASSERTS_FSHAHashData;
-
 // ScriptStruct BuildPatchServices.ChunkPartData
 // 0x0018 (0x0018 - 0x0000)
 struct FChunkPartData final
@@ -35,6 +26,15 @@ public:
 	uint32                                        Size;                                              // 0x0014(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
 DUMPER7_ASSERTS_FChunkPartData;
+
+// ScriptStruct BuildPatchServices.SHAHashData
+// 0x0014 (0x0014 - 0x0000)
+struct FSHAHashData final
+{
+public:
+	uint8                                         Hash[0x14];                                        // 0x0000(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+};
+DUMPER7_ASSERTS_FSHAHashData;
 
 // ScriptStruct BuildPatchServices.FileManifestData
 // 0x0068 (0x0068 - 0x0000)

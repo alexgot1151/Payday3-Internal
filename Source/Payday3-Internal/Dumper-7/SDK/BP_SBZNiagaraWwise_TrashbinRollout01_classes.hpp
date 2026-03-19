@@ -26,8 +26,8 @@ public:
 	class USBZNiagaraWwiseComponent*              SBZNiagaraWwise;                                   // 0x02E8(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ReceiveBeginPlay();
 	void ExecuteUbergraph_BP_SBZNiagaraWwise_TrashbinRollout01(int32 EntryPoint);
+	void ReceiveBeginPlay();
 
 public:
 	static class UClass* StaticClass()

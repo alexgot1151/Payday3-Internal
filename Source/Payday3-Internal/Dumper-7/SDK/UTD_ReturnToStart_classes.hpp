@@ -28,8 +28,8 @@ public:
 	struct FGameplayTag                           TagToBeRemoved;                                    // 0x00B8(0x000C)(Edit, BlueprintVisible, DisableEditOnInstance, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void OnDeactivatedBP(EBTNodeResult NodeResult);
 	void ExecuteUbergraph_UTD_ReturnToStart(int32 EntryPoint);
+	void OnDeactivatedBP(EBTNodeResult NodeResult);
 
 public:
 	static class UClass* StaticClass()

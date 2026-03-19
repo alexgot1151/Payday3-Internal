@@ -10,11 +10,11 @@
 
 #include "Basic.hpp"
 
-#include "S_ContractorHeists_structs.hpp"
-#include "Engine_structs.hpp"
 #include "Starbreeze_structs.hpp"
-#include "UMG_classes.hpp"
+#include "Engine_structs.hpp"
 #include "SlateCore_structs.hpp"
+#include "S_ContractorHeists_structs.hpp"
+#include "UMG_classes.hpp"
 
 
 namespace SDK

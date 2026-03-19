@@ -17,129 +17,35 @@
 namespace SDK
 {
 
-// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.SetNeedsFuel
-// (Public, BlueprintCallable, BlueprintEvent)
+// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.ExecuteUbergraph_WBP_ThermalLanceWidget
+// (Final, UbergraphFunction)
 // Parameters:
-// bool                                    bNeedsFuel                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void UWBP_ThermalLanceWidget_C::SetNeedsFuel(bool bNeedsFuel)
+void UWBP_ThermalLanceWidget_C::ExecuteUbergraph_WBP_ThermalLanceWidget(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "SetNeedsFuel");
+		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "ExecuteUbergraph_WBP_ThermalLanceWidget");
 
-	Params::WBP_ThermalLanceWidget_C_SetNeedsFuel Parms{};
+	Params::WBP_ThermalLanceWidget_C_ExecuteUbergraph_WBP_ThermalLanceWidget Parms{};
 
-	Parms.bNeedsFuel = bNeedsFuel;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
 
 
-// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.SetDrillPercentage
-// (Public, BlueprintCallable, BlueprintEvent)
-
-void UWBP_ThermalLanceWidget_C::SetDrillPercentage()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "SetDrillPercentage");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.SetDrillingHalted
-// (Public, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// bool                                    bIsHalted                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-
-void UWBP_ThermalLanceWidget_C::SetDrillingHalted(bool bIsHalted)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "SetDrillingHalted");
-
-	Params::WBP_ThermalLanceWidget_C_SetDrillingHalted Parms{};
-
-	Parms.bIsHalted = bIsHalted;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.SetDrillActive
-// (Public, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// bool                                    bIsActive                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-
-void UWBP_ThermalLanceWidget_C::SetDrillActive(bool bIsActive)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "SetDrillActive");
-
-	Params::WBP_ThermalLanceWidget_C_SetDrillActive Parms{};
-
-	Parms.bIsActive = bIsActive;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.BP_OnStateChanged
+// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.BP_OnThermalLanceSet
 // (Event, Protected, BlueprintEvent)
-// Parameters:
-// ESBZBreachingEquipmentState             NewState                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void UWBP_ThermalLanceWidget_C::BP_OnStateChanged(ESBZBreachingEquipmentState NewState)
+void UWBP_ThermalLanceWidget_C::BP_OnThermalLanceSet()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "BP_OnStateChanged");
-
-	Params::WBP_ThermalLanceWidget_C_BP_OnStateChanged Parms{};
-
-	Parms.NewState = NewState;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.PreConstruct
-// (BlueprintCosmetic, Event, Public, BlueprintEvent)
-// Parameters:
-// bool                                    IsDesignTime                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-
-void UWBP_ThermalLanceWidget_C::PreConstruct(bool IsDesignTime)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "PreConstruct");
-
-	Params::WBP_ThermalLanceWidget_C_PreConstruct Parms{};
-
-	Parms.IsDesignTime = IsDesignTime;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.OnInitialized
-// (BlueprintCosmetic, Event, Public, BlueprintEvent)
-
-void UWBP_ThermalLanceWidget_C::OnInitialized()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "OnInitialized");
+		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "BP_OnThermalLanceSet");
 
 	UObject::ProcessEvent(Func, nullptr);
 }
@@ -165,35 +71,129 @@ void UWBP_ThermalLanceWidget_C::BP_OnRefuelingNeeded(bool bIsFuelingNeeded)
 }
 
 
-// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.BP_OnThermalLanceSet
-// (Event, Protected, BlueprintEvent)
+// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.OnInitialized
+// (BlueprintCosmetic, Event, Public, BlueprintEvent)
 
-void UWBP_ThermalLanceWidget_C::BP_OnThermalLanceSet()
+void UWBP_ThermalLanceWidget_C::OnInitialized()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "BP_OnThermalLanceSet");
+		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "OnInitialized");
 
 	UObject::ProcessEvent(Func, nullptr);
 }
 
 
-// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.ExecuteUbergraph_WBP_ThermalLanceWidget
-// (Final, UbergraphFunction)
+// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.PreConstruct
+// (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    IsDesignTime                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void UWBP_ThermalLanceWidget_C::ExecuteUbergraph_WBP_ThermalLanceWidget(int32 EntryPoint)
+void UWBP_ThermalLanceWidget_C::PreConstruct(bool IsDesignTime)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "ExecuteUbergraph_WBP_ThermalLanceWidget");
+		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "PreConstruct");
 
-	Params::WBP_ThermalLanceWidget_C_ExecuteUbergraph_WBP_ThermalLanceWidget Parms{};
+	Params::WBP_ThermalLanceWidget_C_PreConstruct Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.IsDesignTime = IsDesignTime;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.BP_OnStateChanged
+// (Event, Protected, BlueprintEvent)
+// Parameters:
+// ESBZBreachingEquipmentState             NewState                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_ThermalLanceWidget_C::BP_OnStateChanged(ESBZBreachingEquipmentState NewState)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "BP_OnStateChanged");
+
+	Params::WBP_ThermalLanceWidget_C_BP_OnStateChanged Parms{};
+
+	Parms.NewState = NewState;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.SetDrillActive
+// (Public, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// bool                                    bIsActive                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void UWBP_ThermalLanceWidget_C::SetDrillActive(bool bIsActive)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "SetDrillActive");
+
+	Params::WBP_ThermalLanceWidget_C_SetDrillActive Parms{};
+
+	Parms.bIsActive = bIsActive;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.SetDrillingHalted
+// (Public, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// bool                                    bIsHalted                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void UWBP_ThermalLanceWidget_C::SetDrillingHalted(bool bIsHalted)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "SetDrillingHalted");
+
+	Params::WBP_ThermalLanceWidget_C_SetDrillingHalted Parms{};
+
+	Parms.bIsHalted = bIsHalted;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.SetDrillPercentage
+// (Public, BlueprintCallable, BlueprintEvent)
+
+void UWBP_ThermalLanceWidget_C::SetDrillPercentage()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "SetDrillPercentage");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function WBP_ThermalLanceWidget.WBP_ThermalLanceWidget_C.SetNeedsFuel
+// (Public, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// bool                                    bNeedsFuel                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void UWBP_ThermalLanceWidget_C::SetNeedsFuel(bool bNeedsFuel)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_ThermalLanceWidget_C", "SetNeedsFuel");
+
+	Params::WBP_ThermalLanceWidget_C_SetNeedsFuel Parms{};
+
+	Parms.bNeedsFuel = bNeedsFuel;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

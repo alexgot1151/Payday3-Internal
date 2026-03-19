@@ -16,5 +16,28 @@
 namespace SDK
 {
 
+// BlueprintGeneratedClass SBZModularWeaponDisplay.SBZModularWeaponDisplay_C
+// 0x0008 (0x0328 - 0x0320)
+class ASBZModularWeaponDisplay_C final : public ASBZModularWeaponDisplay
+{
+public:
+	class UStaticMeshComponent*                   Cube;                                              // 0x0320(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
+
+public:
+	static class UClass* StaticClass()
+	{
+		BP_STATIC_CLASS_IMPL("SBZModularWeaponDisplay_C")
+	}
+	static const class FName& StaticName()
+	{
+		STATIC_NAME_IMPL(L"SBZModularWeaponDisplay_C")
+	}
+	static class ASBZModularWeaponDisplay_C* GetDefaultObj()
+	{
+		return GetDefaultObjImpl<ASBZModularWeaponDisplay_C>();
+	}
+};
+DUMPER7_ASSERTS_ASBZModularWeaponDisplay_C;
+
 }
 

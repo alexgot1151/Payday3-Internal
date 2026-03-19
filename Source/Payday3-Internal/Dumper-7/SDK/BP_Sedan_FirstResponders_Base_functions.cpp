@@ -17,25 +17,73 @@
 namespace SDK
 {
 
-// Function BP_Sedan_FirstResponders_Base.BP_Sedan_FirstResponders_Base_C.CustomEvent_1
-// (BlueprintCallable, BlueprintEvent)
+// Function BP_Sedan_FirstResponders_Base.BP_Sedan_FirstResponders_Base_C.ExecuteUbergraph_BP_Sedan_FirstResponders_Base
+// (Final, UbergraphFunction)
 // Parameters:
-// class APawn*                            SpawnedPawn                                            (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class ASBZCarriedStaticInteractionActor*Spawnedloot                                            (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_Sedan_FirstResponders_Base_C::CustomEvent_1(class APawn* SpawnedPawn, class ASBZCarriedStaticInteractionActor* Spawnedloot)
+void ABP_Sedan_FirstResponders_Base_C::ExecuteUbergraph_BP_Sedan_FirstResponders_Base(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Sedan_FirstResponders_Base_C", "CustomEvent_1");
+		Func = Class->GetFunction("BP_Sedan_FirstResponders_Base_C", "ExecuteUbergraph_BP_Sedan_FirstResponders_Base");
 
-	Params::BP_Sedan_FirstResponders_Base_C_CustomEvent_1 Parms{};
+	Params::BP_Sedan_FirstResponders_Base_C_ExecuteUbergraph_BP_Sedan_FirstResponders_Base Parms{};
 
-	Parms.SpawnedPawn = SpawnedPawn;
-	Parms.Spawnedloot = Spawnedloot;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_Sedan_FirstResponders_Base.BP_Sedan_FirstResponders_Base_C.On End Of Spline
+// (BlueprintCallable, BlueprintEvent)
+// Parameters:
+// class ASBZWheeledVehicle*               Vehicle                                                (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class ASBZSpline*                       Spline                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_Sedan_FirstResponders_Base_C::On_End_Of_Spline(class ASBZWheeledVehicle* Vehicle, class ASBZSpline* Spline)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Sedan_FirstResponders_Base_C", "On End Of Spline");
+
+	Params::BP_Sedan_FirstResponders_Base_C_On_End_Of_Spline Parms{};
+
+	Parms.Vehicle = Vehicle;
+	Parms.Spline = Spline;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_Sedan_FirstResponders_Base.BP_Sedan_FirstResponders_Base_C.BndEvt__BP_Sedan_FirstResponders_Base_SplineFollowingComponent_K2Node_ComponentBoundEvent_0_SBZVehicleOnStarted__DelegateSignature
+// (BlueprintEvent)
+
+void ABP_Sedan_FirstResponders_Base_C::BndEvt__BP_Sedan_FirstResponders_Base_SplineFollowingComponent_K2Node_ComponentBoundEvent_0_SBZVehicleOnStarted__DelegateSignature()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Sedan_FirstResponders_Base_C", "BndEvt__BP_Sedan_FirstResponders_Base_SplineFollowingComponent_K2Node_ComponentBoundEvent_0_SBZVehicleOnStarted__DelegateSignature");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_Sedan_FirstResponders_Base.BP_Sedan_FirstResponders_Base_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
+
+void ABP_Sedan_FirstResponders_Base_C::ReceiveBeginPlay()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Sedan_FirstResponders_Base_C", "ReceiveBeginPlay");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 
@@ -61,35 +109,23 @@ void ABP_Sedan_FirstResponders_Base_C::CustomEvent_2(class APawn* SpawnedPawn, c
 }
 
 
-// Function BP_Sedan_FirstResponders_Base.BP_Sedan_FirstResponders_Base_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
-
-void ABP_Sedan_FirstResponders_Base_C::ReceiveBeginPlay()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Sedan_FirstResponders_Base_C", "ReceiveBeginPlay");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_Sedan_FirstResponders_Base.BP_Sedan_FirstResponders_Base_C.ExecuteUbergraph_BP_Sedan_FirstResponders_Base
-// (Final, UbergraphFunction)
+// Function BP_Sedan_FirstResponders_Base.BP_Sedan_FirstResponders_Base_C.CustomEvent_1
+// (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class APawn*                            SpawnedPawn                                            (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class ASBZCarriedStaticInteractionActor*Spawnedloot                                            (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_Sedan_FirstResponders_Base_C::ExecuteUbergraph_BP_Sedan_FirstResponders_Base(int32 EntryPoint)
+void ABP_Sedan_FirstResponders_Base_C::CustomEvent_1(class APawn* SpawnedPawn, class ASBZCarriedStaticInteractionActor* Spawnedloot)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Sedan_FirstResponders_Base_C", "ExecuteUbergraph_BP_Sedan_FirstResponders_Base");
+		Func = Class->GetFunction("BP_Sedan_FirstResponders_Base_C", "CustomEvent_1");
 
-	Params::BP_Sedan_FirstResponders_Base_C_ExecuteUbergraph_BP_Sedan_FirstResponders_Base Parms{};
+	Params::BP_Sedan_FirstResponders_Base_C_CustomEvent_1 Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.SpawnedPawn = SpawnedPawn;
+	Parms.Spawnedloot = Spawnedloot;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

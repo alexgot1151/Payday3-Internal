@@ -17,6 +17,144 @@
 namespace SDK
 {
 
+// Function BP_Locker_02.BP_Locker_02_C.ExecuteUbergraph_BP_Locker_02
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_Locker_02_C::ExecuteUbergraph_BP_Locker_02(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Locker_02_C", "ExecuteUbergraph_BP_Locker_02");
+
+	Params::BP_Locker_02_C_ExecuteUbergraph_BP_Locker_02 Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_Locker_02.BP_Locker_02_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
+
+void ABP_Locker_02_C::ReceiveBeginPlay()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Locker_02_C", "ReceiveBeginPlay");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_Locker_02.BP_Locker_02_C.BP_OnMiniGameSuccess
+// (Event, Protected, BlueprintEvent)
+// Parameters:
+// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void ABP_Locker_02_C::BP_OnMiniGameSuccess(bool bDoCosmetics)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Locker_02_C", "BP_OnMiniGameSuccess");
+
+	Params::BP_Locker_02_C_BP_OnMiniGameSuccess Parms{};
+
+	Parms.bDoCosmetics = bDoCosmetics;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_Locker_02.BP_Locker_02_C.OnActorSpawned
+// (Event, Public, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// class AActor*                           SpawnedActor                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USceneComponent*                  AttachParent                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_Locker_02_C::OnActorSpawned(class AActor* SpawnedActor, class USceneComponent* AttachParent)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Locker_02_C", "OnActorSpawned");
+
+	Params::BP_Locker_02_C_OnActorSpawned Parms{};
+
+	Parms.SpawnedActor = SpawnedActor;
+	Parms.AttachParent = AttachParent;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_Locker_02.BP_Locker_02_C.Open__UpdateFunc
+// (BlueprintEvent)
+
+void ABP_Locker_02_C::Open__UpdateFunc()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Locker_02_C", "Open__UpdateFunc");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_Locker_02.BP_Locker_02_C.Open__FinishedFunc
+// (BlueprintEvent)
+
+void ABP_Locker_02_C::Open__FinishedFunc()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Locker_02_C", "Open__FinishedFunc");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_Locker_02.BP_Locker_02_C.UserConstructionScript
+// (Event, Public, HasDefaults, BlueprintCallable, BlueprintEvent)
+
+void ABP_Locker_02_C::UserConstructionScript()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Locker_02_C", "UserConstructionScript");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_Locker_02.BP_Locker_02_C.setNumber
+// (Public, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// int32                                   number                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_Locker_02_C::setNumber(int32 number)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Locker_02_C", "setNumber");
+
+	Params::BP_Locker_02_C_setNumber Parms{};
+
+	Parms.number = number;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BP_Locker_02.BP_Locker_02_C.randomizeSpawnedActorTransform
 // (Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
@@ -45,65 +183,24 @@ void ABP_Locker_02_C::randomizeSpawnedActorTransform(class AActor* spawnedActor,
 }
 
 
-// Function BP_Locker_02.BP_Locker_02_C.setNumber
-// (Public, BlueprintCallable, BlueprintEvent)
+// Function BP_Locker_02.BP_Locker_02_C.PopulateSpawnInformationMap
+// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   number                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// TMap<class USceneComponent*, struct FTransform>*InOutSpawnDataMap                                      (Parm, OutParm, ContainsInstancedReference)
 
-void ABP_Locker_02_C::setNumber(int32 number)
+void ABP_Locker_02_C::PopulateSpawnInformationMap(TMap<class USceneComponent*, struct FTransform>* InOutSpawnDataMap)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Locker_02_C", "setNumber");
+		Func = Class->GetFunction("BP_Locker_02_C", "PopulateSpawnInformationMap");
 
-	Params::BP_Locker_02_C_setNumber Parms{};
-
-	Parms.number = number;
+	Params::BP_Locker_02_C_PopulateSpawnInformationMap Parms{};
 
 	UObject::ProcessEvent(Func, &Parms);
-}
 
-
-// Function BP_Locker_02.BP_Locker_02_C.UserConstructionScript
-// (Event, Public, HasDefaults, BlueprintCallable, BlueprintEvent)
-
-void ABP_Locker_02_C::UserConstructionScript()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Locker_02_C", "UserConstructionScript");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_Locker_02.BP_Locker_02_C.Open__FinishedFunc
-// (BlueprintEvent)
-
-void ABP_Locker_02_C::Open__FinishedFunc()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Locker_02_C", "Open__FinishedFunc");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_Locker_02.BP_Locker_02_C.Open__UpdateFunc
-// (BlueprintEvent)
-
-void ABP_Locker_02_C::Open__UpdateFunc()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Locker_02_C", "Open__UpdateFunc");
-
-	UObject::ProcessEvent(Func, nullptr);
+	if (InOutSpawnDataMap != nullptr)
+		*InOutSpawnDataMap = std::move(Parms.InOutSpawnDataMap);
 }
 
 
@@ -130,103 +227,6 @@ void ABP_Locker_02_C::SpawnItemInContainer(class UClass* WhatShould_Spawn, class
 
 	if (SpawnedActor != nullptr)
 		*SpawnedActor = Parms.SpawnedActor;
-}
-
-
-// Function BP_Locker_02.BP_Locker_02_C.PopulateSpawnInformationMap
-// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// TMap<class USceneComponent*, struct FTransform>*InOutSpawnDataMap                                      (Parm, OutParm, ContainsInstancedReference)
-
-void ABP_Locker_02_C::PopulateSpawnInformationMap(TMap<class USceneComponent*, struct FTransform>* InOutSpawnDataMap)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Locker_02_C", "PopulateSpawnInformationMap");
-
-	Params::BP_Locker_02_C_PopulateSpawnInformationMap Parms{};
-
-	UObject::ProcessEvent(Func, &Parms);
-
-	if (InOutSpawnDataMap != nullptr)
-		*InOutSpawnDataMap = std::move(Parms.InOutSpawnDataMap);
-}
-
-
-// Function BP_Locker_02.BP_Locker_02_C.OnActorSpawned
-// (Event, Public, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// class AActor*                           SpawnedActor                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class USceneComponent*                  AttachParent                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_Locker_02_C::OnActorSpawned(class AActor* SpawnedActor, class USceneComponent* AttachParent)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Locker_02_C", "OnActorSpawned");
-
-	Params::BP_Locker_02_C_OnActorSpawned Parms{};
-
-	Parms.SpawnedActor = SpawnedActor;
-	Parms.AttachParent = AttachParent;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_Locker_02.BP_Locker_02_C.BP_OnMiniGameSuccess
-// (Event, Protected, BlueprintEvent)
-// Parameters:
-// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-
-void ABP_Locker_02_C::BP_OnMiniGameSuccess(bool bDoCosmetics)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Locker_02_C", "BP_OnMiniGameSuccess");
-
-	Params::BP_Locker_02_C_BP_OnMiniGameSuccess Parms{};
-
-	Parms.bDoCosmetics = bDoCosmetics;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_Locker_02.BP_Locker_02_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
-
-void ABP_Locker_02_C::ReceiveBeginPlay()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Locker_02_C", "ReceiveBeginPlay");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_Locker_02.BP_Locker_02_C.ExecuteUbergraph_BP_Locker_02
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_Locker_02_C::ExecuteUbergraph_BP_Locker_02(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Locker_02_C", "ExecuteUbergraph_BP_Locker_02");
-
-	Params::BP_Locker_02_C_ExecuteUbergraph_BP_Locker_02 Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
 }
 
 }

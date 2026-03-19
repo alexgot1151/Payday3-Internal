@@ -31,16 +31,16 @@ public:
 	class UTextBlock*                             Text_NonActiveStateDescription;                    // 0x02E8(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
 
 public:
-	void SetNeedsFuel(bool bNeedsFuel);
-	void SetDrillPercentage();
-	void SetDrillingHalted(bool bIsHalted);
-	void SetDrillActive(bool bIsActive);
-	void BP_OnStateChanged(ESBZBreachingEquipmentState NewState);
-	void PreConstruct(bool IsDesignTime);
-	void OnInitialized();
-	void BP_OnRefuelingNeeded(bool bIsFuelingNeeded);
-	void BP_OnThermalLanceSet();
 	void ExecuteUbergraph_WBP_ThermalLanceWidget(int32 EntryPoint);
+	void BP_OnThermalLanceSet();
+	void BP_OnRefuelingNeeded(bool bIsFuelingNeeded);
+	void OnInitialized();
+	void PreConstruct(bool IsDesignTime);
+	void BP_OnStateChanged(ESBZBreachingEquipmentState NewState);
+	void SetDrillActive(bool bIsActive);
+	void SetDrillingHalted(bool bIsHalted);
+	void SetDrillPercentage();
+	void SetNeedsFuel(bool bNeedsFuel);
 
 public:
 	static class UClass* StaticClass()

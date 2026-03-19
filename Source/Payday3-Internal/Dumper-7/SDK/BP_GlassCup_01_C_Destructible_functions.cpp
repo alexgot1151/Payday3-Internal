@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BP_GlassCup_01_C_Destructible.BP_GlassCup_01_C_Destructible_C.ExecuteUbergraph_BP_GlassCup_01_C_Destructible
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_GlassCup_01_C_Destructible_C::ExecuteUbergraph_BP_GlassCup_01_C_Destructible(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_GlassCup_01_C_Destructible_C", "ExecuteUbergraph_BP_GlassCup_01_C_Destructible");
+
+	Params::BP_GlassCup_01_C_Destructible_C_ExecuteUbergraph_BP_GlassCup_01_C_Destructible Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BP_GlassCup_01_C_Destructible.BP_GlassCup_01_C_Destructible_C.BndEvt__BP_CactusPot_01_A_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
 // (HasOutParams, BlueprintEvent)
 // Parameters:
@@ -34,26 +54,6 @@ void ABP_GlassCup_01_C_Destructible_C::BndEvt__BP_CactusPot_01_A_SBZCosmeticDest
 
 	Parms.Type = Type;
 	Parms.HitContext = std::move(HitContext);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_GlassCup_01_C_Destructible.BP_GlassCup_01_C_Destructible_C.ExecuteUbergraph_BP_GlassCup_01_C_Destructible
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_GlassCup_01_C_Destructible_C::ExecuteUbergraph_BP_GlassCup_01_C_Destructible(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_GlassCup_01_C_Destructible_C", "ExecuteUbergraph_BP_GlassCup_01_C_Destructible");
-
-	Params::BP_GlassCup_01_C_Destructible_C_ExecuteUbergraph_BP_GlassCup_01_C_Destructible Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

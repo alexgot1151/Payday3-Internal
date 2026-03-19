@@ -17,87 +17,23 @@
 namespace SDK
 {
 
-// Function BP_ShutterBase.BP_ShutterBase_C.setShutterCollision
-// (Private, BlueprintCallable, BlueprintEvent)
+// Function BP_ShutterBase.BP_ShutterBase_C.ExecuteUbergraph_BP_ShutterBase
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// bool                                    open                                                   (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_ShutterBase_C::setShutterCollision(bool open)
+void ABP_ShutterBase_C::ExecuteUbergraph_BP_ShutterBase(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ShutterBase_C", "setShutterCollision");
+		Func = Class->GetFunction("BP_ShutterBase_C", "ExecuteUbergraph_BP_ShutterBase");
 
-	Params::BP_ShutterBase_C_setShutterCollision Parms{};
+	Params::BP_ShutterBase_C_ExecuteUbergraph_BP_ShutterBase Parms{};
 
-	Parms.open = open;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_ShutterBase.BP_ShutterBase_C.SetStateFunction
-// (Public, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// ESBZVehicleDoorState                    State                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// bool                                    animateOpening                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-
-void ABP_ShutterBase_C::SetStateFunction(ESBZVehicleDoorState State, bool animateOpening)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ShutterBase_C", "SetStateFunction");
-
-	Params::BP_ShutterBase_C_SetStateFunction Parms{};
-
-	Parms.State = State;
-	Parms.animateOpening = animateOpening;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_ShutterBase.BP_ShutterBase_C.UserConstructionScript
-// (Event, Public, BlueprintCallable, BlueprintEvent)
-
-void ABP_ShutterBase_C::UserConstructionScript()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ShutterBase_C", "UserConstructionScript");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_ShutterBase.BP_ShutterBase_C.open_timeline__FinishedFunc
-// (BlueprintEvent)
-
-void ABP_ShutterBase_C::open_timeline__FinishedFunc()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ShutterBase_C", "open_timeline__FinishedFunc");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_ShutterBase.BP_ShutterBase_C.open_timeline__UpdateFunc
-// (BlueprintEvent)
-
-void ABP_ShutterBase_C::open_timeline__UpdateFunc()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ShutterBase_C", "open_timeline__UpdateFunc");
-
-	UObject::ProcessEvent(Func, nullptr);
 }
 
 
@@ -123,21 +59,85 @@ void ABP_ShutterBase_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
 }
 
 
-// Function BP_ShutterBase.BP_ShutterBase_C.ExecuteUbergraph_BP_ShutterBase
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function BP_ShutterBase.BP_ShutterBase_C.open_timeline__UpdateFunc
+// (BlueprintEvent)
 
-void ABP_ShutterBase_C::ExecuteUbergraph_BP_ShutterBase(int32 EntryPoint)
+void ABP_ShutterBase_C::open_timeline__UpdateFunc()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ShutterBase_C", "ExecuteUbergraph_BP_ShutterBase");
+		Func = Class->GetFunction("BP_ShutterBase_C", "open_timeline__UpdateFunc");
 
-	Params::BP_ShutterBase_C_ExecuteUbergraph_BP_ShutterBase Parms{};
+	UObject::ProcessEvent(Func, nullptr);
+}
 
-	Parms.EntryPoint = EntryPoint;
+
+// Function BP_ShutterBase.BP_ShutterBase_C.open_timeline__FinishedFunc
+// (BlueprintEvent)
+
+void ABP_ShutterBase_C::open_timeline__FinishedFunc()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ShutterBase_C", "open_timeline__FinishedFunc");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_ShutterBase.BP_ShutterBase_C.UserConstructionScript
+// (Event, Public, BlueprintCallable, BlueprintEvent)
+
+void ABP_ShutterBase_C::UserConstructionScript()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ShutterBase_C", "UserConstructionScript");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_ShutterBase.BP_ShutterBase_C.SetStateFunction
+// (Public, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// ESBZVehicleDoorState                    State                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    animateOpening                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void ABP_ShutterBase_C::SetStateFunction(ESBZVehicleDoorState State, bool animateOpening)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ShutterBase_C", "SetStateFunction");
+
+	Params::BP_ShutterBase_C_SetStateFunction Parms{};
+
+	Parms.State = State;
+	Parms.animateOpening = animateOpening;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_ShutterBase.BP_ShutterBase_C.setShutterCollision
+// (Private, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// bool                                    open                                                   (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void ABP_ShutterBase_C::setShutterCollision(bool open)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ShutterBase_C", "setShutterCollision");
+
+	Params::BP_ShutterBase_C_setShutterCollision Parms{};
+
+	Parms.open = open;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

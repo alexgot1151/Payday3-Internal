@@ -17,135 +17,21 @@
 namespace SDK
 {
 
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.Code
-// (BlueprintCallable, BlueprintEvent)
-
-void UWBP_WixiaComputer_C::Code()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_WixiaComputer_C", "Code");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.UpdateEmailDisplayText
-// (BlueprintCallable, BlueprintEvent)
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.ExecuteUbergraph_WBP_WixiaComputer
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// const struct FSBZHackableDisplayText&   DisplayText                                            (BlueprintVisible, BlueprintReadOnly, Parm)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void UWBP_WixiaComputer_C::UpdateEmailDisplayText(const struct FSBZHackableDisplayText& DisplayText)
+void UWBP_WixiaComputer_C::ExecuteUbergraph_WBP_WixiaComputer(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_WixiaComputer_C", "UpdateEmailDisplayText");
+		Func = Class->GetFunction("WBP_WixiaComputer_C", "ExecuteUbergraph_WBP_WixiaComputer");
 
-	Params::WBP_WixiaComputer_C_UpdateEmailDisplayText Parms{};
+	Params::WBP_WixiaComputer_C_ExecuteUbergraph_WBP_WixiaComputer Parms{};
 
-	Parms.DisplayText = std::move(DisplayText);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.UpdateSuccessText
-// (BlueprintCallable, BlueprintEvent)
-// Parameters:
-// const class FText&                      InText                                                 (BlueprintVisible, BlueprintReadOnly, Parm)
-
-void UWBP_WixiaComputer_C::UpdateSuccessText(const class FText& InText)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_WixiaComputer_C", "UpdateSuccessText");
-
-	Params::WBP_WixiaComputer_C_UpdateSuccessText Parms{};
-
-	Parms.InText = std::move(InText);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.UpdateUnlockDisplayText
-// (BlueprintCallable, BlueprintEvent)
-// Parameters:
-// const struct FSBZHackableDisplayText&   NewDisplayText                                         (BlueprintVisible, BlueprintReadOnly, Parm)
-
-void UWBP_WixiaComputer_C::UpdateUnlockDisplayText(const struct FSBZHackableDisplayText& NewDisplayText)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_WixiaComputer_C", "UpdateUnlockDisplayText");
-
-	Params::WBP_WixiaComputer_C_UpdateUnlockDisplayText Parms{};
-
-	Parms.NewDisplayText = std::move(NewDisplayText);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateHackingTimerProcessName
-// (BlueprintCallable, BlueprintEvent)
-// Parameters:
-// const class FText&                      InText                                                 (BlueprintVisible, BlueprintReadOnly, Parm)
-
-void UWBP_WixiaComputer_C::updateHackingTimerProcessName(const class FText& InText)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_WixiaComputer_C", "updateHackingTimerProcessName");
-
-	Params::WBP_WixiaComputer_C_updateHackingTimerProcessName Parms{};
-
-	Parms.InText = std::move(InText);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateHackingProgress
-// (BlueprintCallable, BlueprintEvent)
-// Parameters:
-// int32                                   progress                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UWBP_WixiaComputer_C::updateHackingProgress(int32 progress)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_WixiaComputer_C", "updateHackingProgress");
-
-	Params::WBP_WixiaComputer_C_updateHackingProgress Parms{};
-
-	Parms.progress = progress;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateKeypadPossibleCodes
-// (HasOutParams, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// const TArray<int32>&                    codes                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
-
-void UWBP_WixiaComputer_C::updateKeypadPossibleCodes(const TArray<int32>& codes)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_WixiaComputer_C", "updateKeypadPossibleCodes");
-
-	Params::WBP_WixiaComputer_C_updateKeypadPossibleCodes Parms{};
-
-	Parms.codes = std::move(codes);
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -175,23 +61,137 @@ void UWBP_WixiaComputer_C::updateInformation(const class FText& main, const clas
 }
 
 
-// Function WBP_WixiaComputer.WBP_WixiaComputer_C.ExecuteUbergraph_WBP_WixiaComputer
-// (Final, UbergraphFunction, HasDefaults)
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateKeypadPossibleCodes
+// (HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// const TArray<int32>&                    codes                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReferenceParm)
 
-void UWBP_WixiaComputer_C::ExecuteUbergraph_WBP_WixiaComputer(int32 EntryPoint)
+void UWBP_WixiaComputer_C::updateKeypadPossibleCodes(const TArray<int32>& codes)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_WixiaComputer_C", "ExecuteUbergraph_WBP_WixiaComputer");
+		Func = Class->GetFunction("WBP_WixiaComputer_C", "updateKeypadPossibleCodes");
 
-	Params::WBP_WixiaComputer_C_ExecuteUbergraph_WBP_WixiaComputer Parms{};
+	Params::WBP_WixiaComputer_C_updateKeypadPossibleCodes Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.codes = std::move(codes);
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateHackingProgress
+// (BlueprintCallable, BlueprintEvent)
+// Parameters:
+// int32                                   progress                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UWBP_WixiaComputer_C::updateHackingProgress(int32 progress)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_WixiaComputer_C", "updateHackingProgress");
+
+	Params::WBP_WixiaComputer_C_updateHackingProgress Parms{};
+
+	Parms.progress = progress;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.updateHackingTimerProcessName
+// (BlueprintCallable, BlueprintEvent)
+// Parameters:
+// const class FText&                      InText                                                 (BlueprintVisible, BlueprintReadOnly, Parm)
+
+void UWBP_WixiaComputer_C::updateHackingTimerProcessName(const class FText& InText)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_WixiaComputer_C", "updateHackingTimerProcessName");
+
+	Params::WBP_WixiaComputer_C_updateHackingTimerProcessName Parms{};
+
+	Parms.InText = std::move(InText);
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.UpdateUnlockDisplayText
+// (BlueprintCallable, BlueprintEvent)
+// Parameters:
+// const struct FSBZHackableDisplayText&   NewDisplayText                                         (BlueprintVisible, BlueprintReadOnly, Parm)
+
+void UWBP_WixiaComputer_C::UpdateUnlockDisplayText(const struct FSBZHackableDisplayText& NewDisplayText)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_WixiaComputer_C", "UpdateUnlockDisplayText");
+
+	Params::WBP_WixiaComputer_C_UpdateUnlockDisplayText Parms{};
+
+	Parms.NewDisplayText = std::move(NewDisplayText);
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.UpdateSuccessText
+// (BlueprintCallable, BlueprintEvent)
+// Parameters:
+// const class FText&                      InText                                                 (BlueprintVisible, BlueprintReadOnly, Parm)
+
+void UWBP_WixiaComputer_C::UpdateSuccessText(const class FText& InText)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_WixiaComputer_C", "UpdateSuccessText");
+
+	Params::WBP_WixiaComputer_C_UpdateSuccessText Parms{};
+
+	Parms.InText = std::move(InText);
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.UpdateEmailDisplayText
+// (BlueprintCallable, BlueprintEvent)
+// Parameters:
+// const struct FSBZHackableDisplayText&   DisplayText                                            (BlueprintVisible, BlueprintReadOnly, Parm)
+
+void UWBP_WixiaComputer_C::UpdateEmailDisplayText(const struct FSBZHackableDisplayText& DisplayText)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_WixiaComputer_C", "UpdateEmailDisplayText");
+
+	Params::WBP_WixiaComputer_C_UpdateEmailDisplayText Parms{};
+
+	Parms.DisplayText = std::move(DisplayText);
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_WixiaComputer.WBP_WixiaComputer_C.Code
+// (BlueprintCallable, BlueprintEvent)
+
+void UWBP_WixiaComputer_C::Code()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_WixiaComputer_C", "Code");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 

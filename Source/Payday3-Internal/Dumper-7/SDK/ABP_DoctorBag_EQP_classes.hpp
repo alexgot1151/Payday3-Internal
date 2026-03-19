@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "AnimGraphRuntime_structs.hpp"
 #include "Engine_structs.hpp"
+#include "AnimGraphRuntime_structs.hpp"
 #include "Starbreeze_classes.hpp"
 
 
@@ -29,8 +29,8 @@ public:
 	struct FAnimNode_Slot                         AnimGraphNode_Slot;                                // 0x03F0(0x0060)()
 
 public:
-	void AnimGraph(struct FPoseLink* AnimGraph_0);
 	void ExecuteUbergraph_ABP_DoctorBag_EQP(int32 EntryPoint);
+	void AnimGraph(struct FPoseLink* AnimGraph_0);
 
 public:
 	static class UClass* StaticClass()

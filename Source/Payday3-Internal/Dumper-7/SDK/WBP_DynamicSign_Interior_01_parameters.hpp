@@ -16,25 +16,6 @@
 namespace SDK::Params
 {
 
-// Function WBP_DynamicSign_Interior_01.WBP_DynamicSign_Interior_01_C.setText
-// 0x0030 (0x0030 - 0x0000)
-struct WBP_DynamicSign_Interior_01_C_setText final
-{
-public:
-	class FText                                   primary;                                           // 0x0000(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
-	class FText                                   secondary;                                         // 0x0018(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
-};
-DUMPER7_ASSERTS_WBP_DynamicSign_Interior_01_C_setText;
-
-// Function WBP_DynamicSign_Interior_01.WBP_DynamicSign_Interior_01_C.PreConstruct
-// 0x0001 (0x0001 - 0x0000)
-struct WBP_DynamicSign_Interior_01_C_PreConstruct final
-{
-public:
-	bool                                          IsDesignTime;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_WBP_DynamicSign_Interior_01_C_PreConstruct;
-
 // Function WBP_DynamicSign_Interior_01.WBP_DynamicSign_Interior_01_C.ExecuteUbergraph_WBP_DynamicSign_Interior_01
 // 0x0040 (0x0040 - 0x0000)
 struct WBP_DynamicSign_Interior_01_C_ExecuteUbergraph_WBP_DynamicSign_Interior_01 final
@@ -51,6 +32,25 @@ public:
 	bool                                          K2Node_Event_IsDesignTime;                         // 0x0039(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor)
 };
 DUMPER7_ASSERTS_WBP_DynamicSign_Interior_01_C_ExecuteUbergraph_WBP_DynamicSign_Interior_01;
+
+// Function WBP_DynamicSign_Interior_01.WBP_DynamicSign_Interior_01_C.PreConstruct
+// 0x0001 (0x0001 - 0x0000)
+struct WBP_DynamicSign_Interior_01_C_PreConstruct final
+{
+public:
+	bool                                          IsDesignTime;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_WBP_DynamicSign_Interior_01_C_PreConstruct;
+
+// Function WBP_DynamicSign_Interior_01.WBP_DynamicSign_Interior_01_C.setText
+// 0x0030 (0x0030 - 0x0000)
+struct WBP_DynamicSign_Interior_01_C_setText final
+{
+public:
+	class FText                                   primary;                                           // 0x0000(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
+	class FText                                   secondary;                                         // 0x0018(0x0018)(BlueprintVisible, BlueprintReadOnly, Parm)
+};
+DUMPER7_ASSERTS_WBP_DynamicSign_Interior_01_C_setText;
 
 }
 

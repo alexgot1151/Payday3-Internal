@@ -17,31 +17,23 @@
 namespace SDK
 {
 
-// Function BP_CosmeticLapTopWithScreen.BP_CosmeticLapTopWithScreen_C.UserConstructionScript
-// (Event, Public, BlueprintCallable, BlueprintEvent)
+// Function BP_CosmeticLapTopWithScreen.BP_CosmeticLapTopWithScreen_C.ExecuteUbergraph_BP_CosmeticLapTopWithScreen
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_CosmeticLapTopWithScreen_C::UserConstructionScript()
+void ABP_CosmeticLapTopWithScreen_C::ExecuteUbergraph_BP_CosmeticLapTopWithScreen(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_CosmeticLapTopWithScreen_C", "UserConstructionScript");
+		Func = Class->GetFunction("BP_CosmeticLapTopWithScreen_C", "ExecuteUbergraph_BP_CosmeticLapTopWithScreen");
 
-	UObject::ProcessEvent(Func, nullptr);
-}
+	Params::BP_CosmeticLapTopWithScreen_C_ExecuteUbergraph_BP_CosmeticLapTopWithScreen Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 
-// Function BP_CosmeticLapTopWithScreen.BP_CosmeticLapTopWithScreen_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
-
-void ABP_CosmeticLapTopWithScreen_C::ReceiveBeginPlay()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_CosmeticLapTopWithScreen_C", "ReceiveBeginPlay");
-
-	UObject::ProcessEvent(Func, nullptr);
+	UObject::ProcessEvent(Func, &Parms);
 }
 
 
@@ -67,23 +59,31 @@ void ABP_CosmeticLapTopWithScreen_C::BndEvt__bp_screen_SBZCosmeticDestruction_K2
 }
 
 
-// Function BP_CosmeticLapTopWithScreen.BP_CosmeticLapTopWithScreen_C.ExecuteUbergraph_BP_CosmeticLapTopWithScreen
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function BP_CosmeticLapTopWithScreen.BP_CosmeticLapTopWithScreen_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
 
-void ABP_CosmeticLapTopWithScreen_C::ExecuteUbergraph_BP_CosmeticLapTopWithScreen(int32 EntryPoint)
+void ABP_CosmeticLapTopWithScreen_C::ReceiveBeginPlay()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_CosmeticLapTopWithScreen_C", "ExecuteUbergraph_BP_CosmeticLapTopWithScreen");
+		Func = Class->GetFunction("BP_CosmeticLapTopWithScreen_C", "ReceiveBeginPlay");
 
-	Params::BP_CosmeticLapTopWithScreen_C_ExecuteUbergraph_BP_CosmeticLapTopWithScreen Parms{};
+	UObject::ProcessEvent(Func, nullptr);
+}
 
-	Parms.EntryPoint = EntryPoint;
 
-	UObject::ProcessEvent(Func, &Parms);
+// Function BP_CosmeticLapTopWithScreen.BP_CosmeticLapTopWithScreen_C.UserConstructionScript
+// (Event, Public, BlueprintCallable, BlueprintEvent)
+
+void ABP_CosmeticLapTopWithScreen_C::UserConstructionScript()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_CosmeticLapTopWithScreen_C", "UserConstructionScript");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

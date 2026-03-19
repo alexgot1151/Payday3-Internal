@@ -33,13 +33,13 @@ public:
 	TArray<float>                                 Values;                                            // 0x0338(0x0010)(Edit, BlueprintVisible, DisableEditOnInstance)
 
 public:
-	void SetPrimitiveAndVisability(class UPrimitiveComponent* StaticMesh_0, float Value);
-	void Timeline_0__FinishedFunc();
-	void Timeline_0__UpdateFunc();
-	void BndEvt__BP_KeycardReaderBase_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent_0, bool bInNewState);
-	void ReceiveBeginPlay();
-	void BP_OnStateChanged(ESBZModuleActorState NewState, bool bDoCosmetics);
 	void ExecuteUbergraph_BP_RFIDTagReaderBase(int32 EntryPoint);
+	void BP_OnStateChanged(ESBZModuleActorState NewState, bool bDoCosmetics);
+	void ReceiveBeginPlay();
+	void BndEvt__BP_KeycardReaderBase_InteractableComponent_K2Node_ComponentBoundEvent_0_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent_0, bool bInNewState);
+	void Timeline_0__UpdateFunc();
+	void Timeline_0__FinishedFunc();
+	void SetPrimitiveAndVisability(class UPrimitiveComponent* StaticMesh_0, float Value);
 
 public:
 	static class UClass* StaticClass()

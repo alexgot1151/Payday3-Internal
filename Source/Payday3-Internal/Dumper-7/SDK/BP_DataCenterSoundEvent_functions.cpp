@@ -17,23 +17,21 @@
 namespace SDK
 {
 
-// Function BP_DataCenterSoundEvent.BP_DataCenterSoundEvent_C.OnStateChanged
-// (Event, Protected, BlueprintEvent)
+// Function BP_DataCenterSoundEvent.BP_DataCenterSoundEvent_C.ExecuteUbergraph_BP_DataCenterSoundEvent
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// bool                                    bStateToChangeTo                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_DataCenterSoundEvent_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
+void ABP_DataCenterSoundEvent_C::ExecuteUbergraph_BP_DataCenterSoundEvent(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_DataCenterSoundEvent_C", "OnStateChanged");
+		Func = Class->GetFunction("BP_DataCenterSoundEvent_C", "ExecuteUbergraph_BP_DataCenterSoundEvent");
 
-	Params::BP_DataCenterSoundEvent_C_OnStateChanged Parms{};
+	Params::BP_DataCenterSoundEvent_C_ExecuteUbergraph_BP_DataCenterSoundEvent Parms{};
 
-	Parms.bStateToChangeTo = bStateToChangeTo;
-	Parms.bDoCosmetics = bDoCosmetics;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -61,21 +59,23 @@ void ABP_DataCenterSoundEvent_C::OnCompleted(EAkCallbackType CallbackType, class
 }
 
 
-// Function BP_DataCenterSoundEvent.BP_DataCenterSoundEvent_C.ExecuteUbergraph_BP_DataCenterSoundEvent
-// (Final, UbergraphFunction, HasDefaults)
+// Function BP_DataCenterSoundEvent.BP_DataCenterSoundEvent_C.OnStateChanged
+// (Event, Protected, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    bStateToChangeTo                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_DataCenterSoundEvent_C::ExecuteUbergraph_BP_DataCenterSoundEvent(int32 EntryPoint)
+void ABP_DataCenterSoundEvent_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_DataCenterSoundEvent_C", "ExecuteUbergraph_BP_DataCenterSoundEvent");
+		Func = Class->GetFunction("BP_DataCenterSoundEvent_C", "OnStateChanged");
 
-	Params::BP_DataCenterSoundEvent_C_ExecuteUbergraph_BP_DataCenterSoundEvent Parms{};
+	Params::BP_DataCenterSoundEvent_C_OnStateChanged Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.bStateToChangeTo = bStateToChangeTo;
+	Parms.bDoCosmetics = bDoCosmetics;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

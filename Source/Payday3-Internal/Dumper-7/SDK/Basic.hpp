@@ -33,12 +33,12 @@ using namespace UC;
 */
 namespace Offsets
 {
-	constexpr int32 GObjects          = 0x07236F10;
-	constexpr int32 AppendString      = 0x01A1BC10;
-	constexpr int32 GNames            = 0x071DF040;
-	constexpr int32 GWorld            = 0x0738CBD0;
-	constexpr int32 ProcessEvent      = 0x01C17720;
-	constexpr int32 ProcessEventIdx   = 0x00000045;
+	static int32 GObjects          = 0x07282CE0;
+	static int32 AppendString      = 0x01A262B0;
+	static int32 GNames            = 0x0722AE00;
+	static int32 GWorld            = 0x073D89A0;
+	static int32 ProcessEvent      = 0x01C21DC0;
+	static int32 ProcessEventIdx   = 0x00000045;
 }
 
 namespace InSDKUtils
@@ -487,6 +487,7 @@ public:
 		return TextData->TextSource.ToString();
 	}
 };
+DUMPER7_ASSERTS_FText;
 
 // Predefined struct FWeakObjectPtr
 // 0x0008 (0x0008 - 0x0000)

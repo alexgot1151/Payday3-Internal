@@ -30,8 +30,8 @@ public:
 	class USceneComponent*                        DefaultSceneRoot;                                  // 0x02F8(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
 	void ExecuteUbergraph_BP_VentReactor(int32 EntryPoint);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
 	void ReactToCloset(bool bActorsInCloset, bool bDoCosmetics);
 
 public:

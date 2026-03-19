@@ -50,15 +50,15 @@ public:
 	TMulticastInlineDelegate<void()>              onOpened;                                          // 0x03B8(0x0010)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, BlueprintAssignable, BlueprintCallable)
 
 public:
-	void OnRep_Logo_visibility();
-	void Hide_Logo();
-	void Show_Logo();
-	void Set_interaction_disable();
-	void Set_interaction_enable();
-	void open_timeline__FinishedFunc();
-	void open_timeline__UpdateFunc();
-	void BP_OnMiniGameSuccess(bool bDoCosmetics);
 	void ExecuteUbergraph_BP_openable_Van(int32 EntryPoint);
+	void BP_OnMiniGameSuccess(bool bDoCosmetics);
+	void open_timeline__UpdateFunc();
+	void open_timeline__FinishedFunc();
+	void Set_interaction_enable();
+	void Set_interaction_disable();
+	void Show_Logo();
+	void Hide_Logo();
+	void OnRep_Logo_visibility();
 
 public:
 	static class UClass* StaticClass()

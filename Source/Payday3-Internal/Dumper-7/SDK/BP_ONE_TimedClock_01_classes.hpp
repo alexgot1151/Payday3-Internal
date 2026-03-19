@@ -37,15 +37,15 @@ public:
 	int32                                         currentMinute;                                     // 0x0324(0x0004)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void setTargetTime(int32 targetHour_0, int32 targetMinute_0);
-	void getCurrentTime(int32* Hours, int32* Minutes);
-	void setWatchHead(int32 hour, int32 minute);
-	void postTimerUpdate();
-	void UserConstructionScript();
-	void ReceiveTick(float DeltaSeconds);
-	void BndEvt__BP_ONE_TimedClock_01_timer_K2Node_ComponentBoundEvent_0_SBZTimerDelegate__DelegateSignature();
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
 	void ExecuteUbergraph_BP_ONE_TimedClock_01(int32 EntryPoint);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void BndEvt__BP_ONE_TimedClock_01_timer_K2Node_ComponentBoundEvent_0_SBZTimerDelegate__DelegateSignature();
+	void ReceiveTick(float DeltaSeconds);
+	void UserConstructionScript();
+	void postTimerUpdate();
+	void setWatchHead(int32 hour, int32 minute);
+	void getCurrentTime(int32* Hours, int32* Minutes);
+	void setTargetTime(int32 targetHour_0, int32 targetMinute_0);
 
 public:
 	static class UClass* StaticClass()

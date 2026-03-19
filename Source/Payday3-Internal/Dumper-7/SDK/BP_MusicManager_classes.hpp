@@ -17,7 +17,7 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass BP_MusicManager.BP_MusicManager_C
-// 0x0000 (0x00B8 - 0x00B8)
+// 0x0000 (0x00C8 - 0x00C8)
 class UBP_MusicManager_C final : public USBZMusicManager
 {
 public:

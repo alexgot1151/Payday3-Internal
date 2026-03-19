@@ -32,8 +32,8 @@ public:
 	class USBZRoomConnectorComponent*             SBZRoomConnector;                                  // 0x0558(0x0008)(BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void spawnExplosionVFX(bool doCosmetics);
 	void ExecuteUbergraph_BP_ONE_ExplodingWall(int32 EntryPoint);
+	void spawnExplosionVFX(bool doCosmetics);
 	void BP_OnExplosion(bool bDoCosmetics);
 	void ReceiveBeginPlay();
 

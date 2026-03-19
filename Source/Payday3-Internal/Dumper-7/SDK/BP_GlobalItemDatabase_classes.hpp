@@ -17,7 +17,7 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass BP_GlobalItemDatabase.BP_GlobalItemDatabase_C
-// 0x0000 (0x08D0 - 0x08D0)
+// 0x0000 (0x0930 - 0x0930)
 class UBP_GlobalItemDatabase_C final : public USBZGlobalItemDatabase
 {
 public:

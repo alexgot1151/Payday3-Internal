@@ -42,18 +42,18 @@ public:
 	TMulticastInlineDelegate<void(bool opened)>   onHatchCompleteInteraction;                        // 0x0330(0x0010)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, BlueprintAssignable, BlueprintCallable)
 
 public:
-	void setInteraction(bool enabled);
-	void goToState(bool open, bool animate);
-	void UserConstructionScript();
-	void openHatch_timeline__FinishedFunc();
-	void openHatch_timeline__UpdateFunc();
-	void interactHatch_timeline__FinishedFunc();
-	void interactHatch_timeline__UpdateFunc();
-	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
-	void BndEvt__BP_ONE_ElevatorHatch_01_SBZInteractable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void BndEvt__BP_ONE_ElevatorHatch_01_SBZInteractable_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void BndEvt__BP_ONE_ElevatorHatch_01_SBZInteractable_K2Node_ComponentBoundEvent_3_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
 	void ExecuteUbergraph_BP_ONE_ElevatorHatch_01(int32 EntryPoint);
+	void BndEvt__BP_ONE_ElevatorHatch_01_SBZInteractable_K2Node_ComponentBoundEvent_3_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void BndEvt__BP_ONE_ElevatorHatch_01_SBZInteractable_K2Node_ComponentBoundEvent_2_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void BndEvt__BP_ONE_ElevatorHatch_01_SBZInteractable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void OnStateChanged(bool bStateToChangeTo, bool bDoCosmetics);
+	void interactHatch_timeline__UpdateFunc();
+	void interactHatch_timeline__FinishedFunc();
+	void openHatch_timeline__UpdateFunc();
+	void openHatch_timeline__FinishedFunc();
+	void UserConstructionScript();
+	void goToState(bool open, bool animate);
+	void setInteraction(bool enabled);
 
 public:
 	static class UClass* StaticClass()

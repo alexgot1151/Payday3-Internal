@@ -10,10 +10,10 @@
 
 #include "Basic.hpp"
 
-#include "PropertyPath_structs.hpp"
 #include "ControlRig_structs.hpp"
 #include "CoreUObject_structs.hpp"
 #include "CoreUObject_classes.hpp"
+#include "PropertyPath_structs.hpp"
 #include "LevelSequence_classes.hpp"
 #include "Engine_classes.hpp"
 #include "AnimGraphRuntime_classes.hpp"

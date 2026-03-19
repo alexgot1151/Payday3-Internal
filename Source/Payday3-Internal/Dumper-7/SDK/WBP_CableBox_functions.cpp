@@ -17,26 +17,6 @@
 namespace SDK
 {
 
-// Function WBP_CableBox.WBP_CableBox_C.SetState
-// (Public, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// const class FText&                      InText                                                 (BlueprintVisible, BlueprintReadOnly, Parm)
-
-void UWBP_CableBox_C::SetState(const class FText& InText)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("WBP_CableBox_C", "SetState");
-
-	Params::WBP_CableBox_C_SetState Parms{};
-
-	Parms.InText = std::move(InText);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function WBP_CableBox.WBP_CableBox_C.SetCodeText
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
@@ -50,6 +30,26 @@ void UWBP_CableBox_C::SetCodeText(const class FText& InText)
 		Func = Class->GetFunction("WBP_CableBox_C", "SetCodeText");
 
 	Params::WBP_CableBox_C_SetCodeText Parms{};
+
+	Parms.InText = std::move(InText);
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function WBP_CableBox.WBP_CableBox_C.SetState
+// (Public, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// const class FText&                      InText                                                 (BlueprintVisible, BlueprintReadOnly, Parm)
+
+void UWBP_CableBox_C::SetState(const class FText& InText)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("WBP_CableBox_C", "SetState");
+
+	Params::WBP_CableBox_C_SetState Parms{};
 
 	Parms.InText = std::move(InText);
 

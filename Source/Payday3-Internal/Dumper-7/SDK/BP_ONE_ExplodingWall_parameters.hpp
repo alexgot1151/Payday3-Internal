@@ -16,15 +16,6 @@
 namespace SDK::Params
 {
 
-// Function BP_ONE_ExplodingWall.BP_ONE_ExplodingWall_C.spawnExplosionVFX
-// 0x0001 (0x0001 - 0x0000)
-struct BP_ONE_ExplodingWall_C_spawnExplosionVFX final
-{
-public:
-	bool                                          doCosmetics;                                       // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_ONE_ExplodingWall_C_spawnExplosionVFX;
-
 // Function BP_ONE_ExplodingWall.BP_ONE_ExplodingWall_C.ExecuteUbergraph_BP_ONE_ExplodingWall
 // 0x0038 (0x0038 - 0x0000)
 struct BP_ONE_ExplodingWall_C_ExecuteUbergraph_BP_ONE_ExplodingWall final
@@ -42,6 +33,15 @@ public:
 	int32                                         CallFunc_ApplyCameraFeedbackToLocalPlayer_ReturnValue_1; // 0x0030(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_ONE_ExplodingWall_C_ExecuteUbergraph_BP_ONE_ExplodingWall;
+
+// Function BP_ONE_ExplodingWall.BP_ONE_ExplodingWall_C.spawnExplosionVFX
+// 0x0001 (0x0001 - 0x0000)
+struct BP_ONE_ExplodingWall_C_spawnExplosionVFX final
+{
+public:
+	bool                                          doCosmetics;                                       // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_ONE_ExplodingWall_C_spawnExplosionVFX;
 
 // Function BP_ONE_ExplodingWall.BP_ONE_ExplodingWall_C.BP_OnExplosion
 // 0x0001 (0x0001 - 0x0000)

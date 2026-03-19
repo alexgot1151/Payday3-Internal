@@ -17,15 +17,35 @@
 namespace SDK
 {
 
-// Function BP_Thermite_Breach.BP_Thermite_Breach_C.UserConstructionScript
-// (Event, Public, BlueprintCallable, BlueprintEvent)
+// Function BP_Thermite_Breach.BP_Thermite_Breach_C.ExecuteUbergraph_BP_Thermite_Breach
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_Thermite_Breach_C::UserConstructionScript()
+void ABP_Thermite_Breach_C::ExecuteUbergraph_BP_Thermite_Breach(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Thermite_Breach_C", "UserConstructionScript");
+		Func = Class->GetFunction("BP_Thermite_Breach_C", "ExecuteUbergraph_BP_Thermite_Breach");
+
+	Params::BP_Thermite_Breach_C_ExecuteUbergraph_BP_Thermite_Breach Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_Thermite_Breach.BP_Thermite_Breach_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
+
+void ABP_Thermite_Breach_C::ReceiveBeginPlay()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Thermite_Breach_C", "ReceiveBeginPlay");
 
 	UObject::ProcessEvent(Func, nullptr);
 }
@@ -53,37 +73,17 @@ void ABP_Thermite_Breach_C::OnStateChanged(bool bStateToChangeTo, bool bDoCosmet
 }
 
 
-// Function BP_Thermite_Breach.BP_Thermite_Breach_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
+// Function BP_Thermite_Breach.BP_Thermite_Breach_C.UserConstructionScript
+// (Event, Public, BlueprintCallable, BlueprintEvent)
 
-void ABP_Thermite_Breach_C::ReceiveBeginPlay()
+void ABP_Thermite_Breach_C::UserConstructionScript()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Thermite_Breach_C", "ReceiveBeginPlay");
+		Func = Class->GetFunction("BP_Thermite_Breach_C", "UserConstructionScript");
 
 	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_Thermite_Breach.BP_Thermite_Breach_C.ExecuteUbergraph_BP_Thermite_Breach
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_Thermite_Breach_C::ExecuteUbergraph_BP_Thermite_Breach(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Thermite_Breach_C", "ExecuteUbergraph_BP_Thermite_Breach");
-
-	Params::BP_Thermite_Breach_C_ExecuteUbergraph_BP_Thermite_Breach Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
 }
 
 }

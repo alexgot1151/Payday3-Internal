@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BP_Glass_Railing_Base.BP_Glass_Railing_Base_C.ExecuteUbergraph_BP_Glass_Railing_Base
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_Glass_Railing_Base_C::ExecuteUbergraph_BP_Glass_Railing_Base(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_Glass_Railing_Base_C", "ExecuteUbergraph_BP_Glass_Railing_Base");
+
+	Params::BP_Glass_Railing_Base_C_ExecuteUbergraph_BP_Glass_Railing_Base Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BP_Glass_Railing_Base.BP_Glass_Railing_Base_C.BndEvt__NewBlueprint_PropDamage_K2Node_ComponentBoundEvent_0_SBZPropDamageHitsSignature__DelegateSignature
 // (HasOutParams, BlueprintEvent)
 // Parameters:
@@ -38,26 +58,6 @@ void ABP_Glass_Railing_Base_C::BndEvt__NewBlueprint_PropDamage_K2Node_ComponentB
 	Parms.Hits = Hits;
 	Parms.bDoCosmetics = bDoCosmetics;
 	Parms.DamageContext = std::move(DamageContext);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_Glass_Railing_Base.BP_Glass_Railing_Base_C.ExecuteUbergraph_BP_Glass_Railing_Base
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_Glass_Railing_Base_C::ExecuteUbergraph_BP_Glass_Railing_Base(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_Glass_Railing_Base_C", "ExecuteUbergraph_BP_Glass_Railing_Base");
-
-	Params::BP_Glass_Railing_Base_C_ExecuteUbergraph_BP_Glass_Railing_Base Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

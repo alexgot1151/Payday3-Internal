@@ -36,15 +36,15 @@ public:
 	class UWBP_Interupted_C*                      WBP_Interupted;                                    // 0x02F0(0x0008)(BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash)
 
 public:
-	void Code();
-	void UpdateEmailDisplayText(const struct FSBZHackableDisplayText& DisplayText);
-	void UpdateSuccessText(const class FText& InText);
-	void UpdateUnlockDisplayText(const struct FSBZHackableDisplayText& NewDisplayText);
-	void updateHackingTimerProcessName(const class FText& InText);
-	void updateHackingProgress(int32 progress);
-	void updateKeypadPossibleCodes(const TArray<int32>& codes);
-	void updateInformation(const class FText& main, const class FText& secondary, const class FText& additional);
 	void ExecuteUbergraph_WBP_WixiaComputer(int32 EntryPoint);
+	void updateInformation(const class FText& main, const class FText& secondary, const class FText& additional);
+	void updateKeypadPossibleCodes(const TArray<int32>& codes);
+	void updateHackingProgress(int32 progress);
+	void updateHackingTimerProcessName(const class FText& InText);
+	void UpdateUnlockDisplayText(const struct FSBZHackableDisplayText& NewDisplayText);
+	void UpdateSuccessText(const class FText& InText);
+	void UpdateEmailDisplayText(const struct FSBZHackableDisplayText& DisplayText);
+	void Code();
 	void Names();
 	void Email();
 	void Unlocked();

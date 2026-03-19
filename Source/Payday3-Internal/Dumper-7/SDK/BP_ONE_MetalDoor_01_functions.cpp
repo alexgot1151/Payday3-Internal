@@ -17,62 +17,23 @@
 namespace SDK
 {
 
-// Function BP_ONE_MetalDoor_01.BP_ONE_MetalDoor_01_C.isUnlocked
-// (Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent, BlueprintPure)
+// Function BP_ONE_MetalDoor_01.BP_ONE_MetalDoor_01_C.ExecuteUbergraph_BP_ONE_MetalDoor_01
+// (Final, UbergraphFunction)
 // Parameters:
-// const ESBZGateState&                    ItemToFind                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReferenceParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// bool                                    ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-bool ABP_ONE_MetalDoor_01_C::isUnlocked(const ESBZGateState& ItemToFind)
+void ABP_ONE_MetalDoor_01_C::ExecuteUbergraph_BP_ONE_MetalDoor_01(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_MetalDoor_01_C", "isUnlocked");
+		Func = Class->GetFunction("BP_ONE_MetalDoor_01_C", "ExecuteUbergraph_BP_ONE_MetalDoor_01");
 
-	Params::BP_ONE_MetalDoor_01_C_isUnlocked Parms{};
+	Params::BP_ONE_MetalDoor_01_C_ExecuteUbergraph_BP_ONE_MetalDoor_01 Parms{};
 
-	Parms.ItemToFind = ItemToFind;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
-}
-
-
-// Function BP_ONE_MetalDoor_01.BP_ONE_MetalDoor_01_C.setLight
-// (Public, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// float                                   intensity                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// bool                                    unlocked                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-
-void ABP_ONE_MetalDoor_01_C::setLight(float intensity, bool unlocked)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_MetalDoor_01_C", "setLight");
-
-	Params::BP_ONE_MetalDoor_01_C_setLight Parms{};
-
-	Parms.intensity = intensity;
-	Parms.unlocked = unlocked;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_ONE_MetalDoor_01.BP_ONE_MetalDoor_01_C.UserConstructionScript
-// (Event, Public, BlueprintCallable, BlueprintEvent)
-
-void ABP_ONE_MetalDoor_01_C::UserConstructionScript()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_MetalDoor_01_C", "UserConstructionScript");
-
-	UObject::ProcessEvent(Func, nullptr);
 }
 
 
@@ -100,23 +61,62 @@ void ABP_ONE_MetalDoor_01_C::OnStateChanged(ESBZGateState OldState, ESBZGateStat
 }
 
 
-// Function BP_ONE_MetalDoor_01.BP_ONE_MetalDoor_01_C.ExecuteUbergraph_BP_ONE_MetalDoor_01
-// (Final, UbergraphFunction)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function BP_ONE_MetalDoor_01.BP_ONE_MetalDoor_01_C.UserConstructionScript
+// (Event, Public, BlueprintCallable, BlueprintEvent)
 
-void ABP_ONE_MetalDoor_01_C::ExecuteUbergraph_BP_ONE_MetalDoor_01(int32 EntryPoint)
+void ABP_ONE_MetalDoor_01_C::UserConstructionScript()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ONE_MetalDoor_01_C", "ExecuteUbergraph_BP_ONE_MetalDoor_01");
+		Func = Class->GetFunction("BP_ONE_MetalDoor_01_C", "UserConstructionScript");
 
-	Params::BP_ONE_MetalDoor_01_C_ExecuteUbergraph_BP_ONE_MetalDoor_01 Parms{};
+	UObject::ProcessEvent(Func, nullptr);
+}
 
-	Parms.EntryPoint = EntryPoint;
+
+// Function BP_ONE_MetalDoor_01.BP_ONE_MetalDoor_01_C.setLight
+// (Public, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// float                                   intensity                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    unlocked                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void ABP_ONE_MetalDoor_01_C::setLight(float intensity, bool unlocked)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_MetalDoor_01_C", "setLight");
+
+	Params::BP_ONE_MetalDoor_01_C_setLight Parms{};
+
+	Parms.intensity = intensity;
+	Parms.unlocked = unlocked;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_ONE_MetalDoor_01.BP_ONE_MetalDoor_01_C.isUnlocked
+// (Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent, BlueprintPure)
+// Parameters:
+// const ESBZGateState&                    ItemToFind                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReferenceParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor)
+
+bool ABP_ONE_MetalDoor_01_C::isUnlocked(const ESBZGateState& ItemToFind)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ONE_MetalDoor_01_C", "isUnlocked");
+
+	Params::BP_ONE_MetalDoor_01_C_isUnlocked Parms{};
+
+	Parms.ItemToFind = ItemToFind;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 }
 
 }

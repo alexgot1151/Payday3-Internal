@@ -32,10 +32,10 @@ public:
 	class UNiagaraSystem*                         End_Play_Niagara_System;                           // 0x0350(0x0008)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void setBinaryState(bool state);
-	void BndEvt__BP_SingleBagGeneratorBase_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable_0, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
-	void ReceiveEndPlay(EEndPlayReason EndPlayReason);
 	void ExecuteUbergraph_BP_SingleBagGeneratorBase(int32 EntryPoint);
+	void ReceiveEndPlay(EEndPlayReason EndPlayReason);
+	void BndEvt__BP_SingleBagGeneratorBase_Interactable_K2Node_ComponentBoundEvent_0_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable_0, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor);
+	void setBinaryState(bool state);
 
 public:
 	static class UClass* StaticClass()

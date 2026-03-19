@@ -17,25 +17,21 @@
 namespace SDK
 {
 
-// Function BP_TestThermite.BP_TestThermite_C.BP_OnStateChanged
-// (Event, Protected, BlueprintEvent)
+// Function BP_TestThermite.BP_TestThermite_C.ExecuteUbergraph_BP_TestThermite
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// ESBZThermiteBurnState                   OldState                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// ESBZThermiteBurnState                   NewState                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_TestThermite_C::BP_OnStateChanged(ESBZThermiteBurnState OldState, ESBZThermiteBurnState NewState, bool bDoCosmetics)
+void ABP_TestThermite_C::ExecuteUbergraph_BP_TestThermite(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_TestThermite_C", "BP_OnStateChanged");
+		Func = Class->GetFunction("BP_TestThermite_C", "ExecuteUbergraph_BP_TestThermite");
 
-	Params::BP_TestThermite_C_BP_OnStateChanged Parms{};
+	Params::BP_TestThermite_C_ExecuteUbergraph_BP_TestThermite Parms{};
 
-	Parms.OldState = OldState;
-	Parms.NewState = NewState;
-	Parms.bDoCosmetics = bDoCosmetics;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -55,21 +51,25 @@ void ABP_TestThermite_C::BP_OnFlashOver()
 }
 
 
-// Function BP_TestThermite.BP_TestThermite_C.ExecuteUbergraph_BP_TestThermite
-// (Final, UbergraphFunction, HasDefaults)
+// Function BP_TestThermite.BP_TestThermite_C.BP_OnStateChanged
+// (Event, Protected, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// ESBZThermiteBurnState                   OldState                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// ESBZThermiteBurnState                   NewState                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_TestThermite_C::ExecuteUbergraph_BP_TestThermite(int32 EntryPoint)
+void ABP_TestThermite_C::BP_OnStateChanged(ESBZThermiteBurnState OldState, ESBZThermiteBurnState NewState, bool bDoCosmetics)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_TestThermite_C", "ExecuteUbergraph_BP_TestThermite");
+		Func = Class->GetFunction("BP_TestThermite_C", "BP_OnStateChanged");
 
-	Params::BP_TestThermite_C_ExecuteUbergraph_BP_TestThermite Parms{};
+	Params::BP_TestThermite_C_BP_OnStateChanged Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.OldState = OldState;
+	Parms.NewState = NewState;
+	Parms.bDoCosmetics = bDoCosmetics;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

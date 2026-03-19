@@ -17,81 +17,21 @@
 namespace SDK
 {
 
-// Function BP_ThermalLance.BP_ThermalLance_C.BP_OnStateChanged
-// (Event, Public, BlueprintEvent)
+// Function BP_ThermalLance.BP_ThermalLance_C.ExecuteUbergraph_BP_ThermalLance
+// (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// ESBZBreachingEquipmentState             OldState                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// ESBZBreachingEquipmentState             NewState                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_ThermalLance_C::BP_OnStateChanged(ESBZBreachingEquipmentState OldState, ESBZBreachingEquipmentState NewState, bool bDoCosmetics)
+void ABP_ThermalLance_C::ExecuteUbergraph_BP_ThermalLance(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ThermalLance_C", "BP_OnStateChanged");
+		Func = Class->GetFunction("BP_ThermalLance_C", "ExecuteUbergraph_BP_ThermalLance");
 
-	Params::BP_ThermalLance_C_BP_OnStateChanged Parms{};
+	Params::BP_ThermalLance_C_ExecuteUbergraph_BP_ThermalLance Parms{};
 
-	Parms.OldState = OldState;
-	Parms.NewState = NewState;
-	Parms.bDoCosmetics = bDoCosmetics;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_ThermalLance.BP_ThermalLance_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
-
-void ABP_ThermalLance_C::ReceiveBeginPlay()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ThermalLance_C", "ReceiveBeginPlay");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
-// Function BP_ThermalLance.BP_ThermalLance_C.BP_PartAdded
-// (Event, Protected, BlueprintEvent)
-// Parameters:
-// int32                                   Amount                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_ThermalLance_C::BP_PartAdded(int32 Amount)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ThermalLance_C", "BP_PartAdded");
-
-	Params::BP_ThermalLance_C_BP_PartAdded Parms{};
-
-	Parms.Amount = Amount;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_ThermalLance.BP_ThermalLance_C.BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature
-// (BlueprintEvent)
-// Parameters:
-// const class USBZBaseInteractableComponent*InteractableComponent                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// bool                                    bInNewState                                            (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-
-void ABP_ThermalLance_C::BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ThermalLance_C", "BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature");
-
-	Params::BP_ThermalLance_C_BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature Parms{};
-
-	Parms.InteractableComponent = InteractableComponent;
-	Parms.bInNewState = bInNewState;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -119,21 +59,81 @@ void ABP_ThermalLance_C::BP_OnBolted(int32 Amount, int32 BoltIndex)
 }
 
 
-// Function BP_ThermalLance.BP_ThermalLance_C.ExecuteUbergraph_BP_ThermalLance
-// (Final, UbergraphFunction, HasDefaults)
+// Function BP_ThermalLance.BP_ThermalLance_C.BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature
+// (BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// const class USBZBaseInteractableComponent*InteractableComponent                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    bInNewState                                            (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_ThermalLance_C::ExecuteUbergraph_BP_ThermalLance(int32 EntryPoint)
+void ABP_ThermalLance_C::BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature(const class USBZBaseInteractableComponent* InteractableComponent, bool bInNewState)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_ThermalLance_C", "ExecuteUbergraph_BP_ThermalLance");
+		Func = Class->GetFunction("BP_ThermalLance_C", "BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature");
 
-	Params::BP_ThermalLance_C_ExecuteUbergraph_BP_ThermalLance Parms{};
+	Params::BP_ThermalLance_C_BndEvt__AddCanisterInteraction_K2Node_ComponentBoundEvent_2_SBZOnInteractableStateChangedDelegate__DelegateSignature Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.InteractableComponent = InteractableComponent;
+	Parms.bInNewState = bInNewState;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_ThermalLance.BP_ThermalLance_C.BP_PartAdded
+// (Event, Protected, BlueprintEvent)
+// Parameters:
+// int32                                   Amount                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_ThermalLance_C::BP_PartAdded(int32 Amount)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ThermalLance_C", "BP_PartAdded");
+
+	Params::BP_ThermalLance_C_BP_PartAdded Parms{};
+
+	Parms.Amount = Amount;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function BP_ThermalLance.BP_ThermalLance_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
+
+void ABP_ThermalLance_C::ReceiveBeginPlay()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ThermalLance_C", "ReceiveBeginPlay");
+
+	UObject::ProcessEvent(Func, nullptr);
+}
+
+
+// Function BP_ThermalLance.BP_ThermalLance_C.BP_OnStateChanged
+// (Event, Public, BlueprintEvent)
+// Parameters:
+// ESBZBreachingEquipmentState             OldState                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// ESBZBreachingEquipmentState             NewState                                               (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    bDoCosmetics                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+
+void ABP_ThermalLance_C::BP_OnStateChanged(ESBZBreachingEquipmentState OldState, ESBZBreachingEquipmentState NewState, bool bDoCosmetics)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_ThermalLance_C", "BP_OnStateChanged");
+
+	Params::BP_ThermalLance_C_BP_OnStateChanged Parms{};
+
+	Parms.OldState = OldState;
+	Parms.NewState = NewState;
+	Parms.bDoCosmetics = bDoCosmetics;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

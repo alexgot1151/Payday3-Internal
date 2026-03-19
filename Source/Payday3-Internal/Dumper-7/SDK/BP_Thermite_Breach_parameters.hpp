@@ -10,22 +10,12 @@
 
 #include "Basic.hpp"
 
-#include "CoreUObject_structs.hpp"
 #include "AkAudio_structs.hpp"
+#include "CoreUObject_structs.hpp"
 
 
 namespace SDK::Params
 {
-
-// Function BP_Thermite_Breach.BP_Thermite_Breach_C.OnStateChanged
-// 0x0002 (0x0002 - 0x0000)
-struct BP_Thermite_Breach_C_OnStateChanged final
-{
-public:
-	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
-};
-DUMPER7_ASSERTS_BP_Thermite_Breach_C_OnStateChanged;
 
 // Function BP_Thermite_Breach.BP_Thermite_Breach_C.ExecuteUbergraph_BP_Thermite_Breach
 // 0x0070 (0x0070 - 0x0000)
@@ -50,6 +40,16 @@ public:
 	class UNiagaraComponent*                      CallFunc_SpawnSystemAtLocation_ReturnValue_1;      // 0x0068(0x0008)(ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
 DUMPER7_ASSERTS_BP_Thermite_Breach_C_ExecuteUbergraph_BP_Thermite_Breach;
+
+// Function BP_Thermite_Breach.BP_Thermite_Breach_C.OnStateChanged
+// 0x0002 (0x0002 - 0x0000)
+struct BP_Thermite_Breach_C_OnStateChanged final
+{
+public:
+	bool                                          bStateToChangeTo;                                  // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	bool                                          bDoCosmetics;                                      // 0x0001(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+};
+DUMPER7_ASSERTS_BP_Thermite_Breach_C_OnStateChanged;
 
 }
 

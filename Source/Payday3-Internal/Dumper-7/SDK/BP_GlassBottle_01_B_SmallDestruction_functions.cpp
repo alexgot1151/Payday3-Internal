@@ -17,6 +17,26 @@
 namespace SDK
 {
 
+// Function BP_GlassBottle_01_B_SmallDestruction.BP_GlassBottle_01_B_SmallDestruction_C.ExecuteUbergraph_BP_GlassBottle_01_B_SmallDestruction
+// (Final, UbergraphFunction, HasDefaults)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void ABP_GlassBottle_01_B_SmallDestruction_C::ExecuteUbergraph_BP_GlassBottle_01_B_SmallDestruction(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("BP_GlassBottle_01_B_SmallDestruction_C", "ExecuteUbergraph_BP_GlassBottle_01_B_SmallDestruction");
+
+	Params::BP_GlassBottle_01_B_SmallDestruction_C_ExecuteUbergraph_BP_GlassBottle_01_B_SmallDestruction Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
 // Function BP_GlassBottle_01_B_SmallDestruction.BP_GlassBottle_01_B_SmallDestruction_C.BndEvt__BP_SmallDestruction_GlassBottle_01_B_SBZCosmeticDestruction_K2Node_ComponentBoundEvent_0_SBZCosmeticDestructionComponenteSignature__DelegateSignature
 // (HasOutParams, BlueprintEvent)
 // Parameters:
@@ -34,26 +54,6 @@ void ABP_GlassBottle_01_B_SmallDestruction_C::BndEvt__BP_SmallDestruction_GlassB
 
 	Parms.Type = Type;
 	Parms.HitContext = std::move(HitContext);
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
-// Function BP_GlassBottle_01_B_SmallDestruction.BP_GlassBottle_01_B_SmallDestruction_C.ExecuteUbergraph_BP_GlassBottle_01_B_SmallDestruction
-// (Final, UbergraphFunction, HasDefaults)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void ABP_GlassBottle_01_B_SmallDestruction_C::ExecuteUbergraph_BP_GlassBottle_01_B_SmallDestruction(int32 EntryPoint)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("BP_GlassBottle_01_B_SmallDestruction_C", "ExecuteUbergraph_BP_GlassBottle_01_B_SmallDestruction");
-
-	Params::BP_GlassBottle_01_B_SmallDestruction_C_ExecuteUbergraph_BP_GlassBottle_01_B_SmallDestruction Parms{};
-
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

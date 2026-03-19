@@ -17,23 +17,17 @@
 namespace SDK
 {
 
-// Function BP_RedKeycard.BP_RedKeycard_C.GetSensorOutlineComponent
-// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// class USBZOutlineComponent*             ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function BP_RedKeycard.BP_RedKeycard_C.UserConstructionScript
+// (Event, Public, BlueprintCallable, BlueprintEvent)
 
-class USBZOutlineComponent* ABP_RedKeycard_C::GetSensorOutlineComponent()
+void ABP_RedKeycard_C::UserConstructionScript()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_RedKeycard_C", "GetSensorOutlineComponent");
+		Func = Class->GetFunction("BP_RedKeycard_C", "UserConstructionScript");
 
-	Params::BP_RedKeycard_C_GetSensorOutlineComponent Parms{};
-
-	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 
@@ -57,17 +51,23 @@ class USBZSensorComponent* ABP_RedKeycard_C::GetSensorComponent()
 }
 
 
-// Function BP_RedKeycard.BP_RedKeycard_C.UserConstructionScript
-// (Event, Public, BlueprintCallable, BlueprintEvent)
+// Function BP_RedKeycard.BP_RedKeycard_C.GetSensorOutlineComponent
+// (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// class USBZOutlineComponent*             ReturnValue                                            (Parm, OutParm, ZeroConstructor, ReturnParm, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_RedKeycard_C::UserConstructionScript()
+class USBZOutlineComponent* ABP_RedKeycard_C::GetSensorOutlineComponent()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_RedKeycard_C", "UserConstructionScript");
+		Func = Class->GetFunction("BP_RedKeycard_C", "GetSensorOutlineComponent");
 
-	UObject::ProcessEvent(Func, nullptr);
+	Params::BP_RedKeycard_C_GetSensorOutlineComponent Parms{};
+
+	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 }
 
 }

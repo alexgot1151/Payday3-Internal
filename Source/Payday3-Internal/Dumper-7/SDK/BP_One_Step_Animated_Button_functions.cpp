@@ -17,39 +17,41 @@
 namespace SDK
 {
 
-// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.UserConstructionScript
-// (Event, Public, HasDefaults, BlueprintCallable, BlueprintEvent)
+// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.ExecuteUbergraph_BP_One_Step_Animated_Button
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void ABP_One_Step_Animated_Button_C::UserConstructionScript()
+void ABP_One_Step_Animated_Button_C::ExecuteUbergraph_BP_One_Step_Animated_Button(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_One_Step_Animated_Button_C", "UserConstructionScript");
+		Func = Class->GetFunction("BP_One_Step_Animated_Button_C", "ExecuteUbergraph_BP_One_Step_Animated_Button");
 
-	UObject::ProcessEvent(Func, nullptr);
+	Params::BP_One_Step_Animated_Button_C_ExecuteUbergraph_BP_One_Step_Animated_Button Parms{};
+
+	Parms.EntryPoint = EntryPoint;
+
+	UObject::ProcessEvent(Func, &Parms);
 }
 
 
-// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature
-// (BlueprintEvent)
+// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.setBinaryState
+// (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class USBZBaseInteractableComponent*    Interactable_0                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// class USBZInteractorComponent*          Interactor                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-// bool                                    bIsLocallyControlledInteractor                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// bool                                    state                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_One_Step_Animated_Button_C::BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable_0, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor)
+void ABP_One_Step_Animated_Button_C::setBinaryState(bool state)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_One_Step_Animated_Button_C", "BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature");
+		Func = Class->GetFunction("BP_One_Step_Animated_Button_C", "setBinaryState");
 
-	Params::BP_One_Step_Animated_Button_C_BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature Parms{};
+	Params::BP_One_Step_Animated_Button_C_setBinaryState Parms{};
 
-	Parms.Interactable_0 = Interactable_0;
-	Parms.Interactor = Interactor;
-	Parms.bIsLocallyControlledInteractor = bIsLocallyControlledInteractor;
+	Parms.state = state;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -79,43 +81,41 @@ void ABP_One_Step_Animated_Button_C::BndEvt__BP_One_Step_Animated_Button_Interac
 }
 
 
-// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.setBinaryState
-// (Public, BlueprintCallable, BlueprintEvent)
+// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature
+// (BlueprintEvent)
 // Parameters:
-// bool                                    state                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+// class USBZBaseInteractableComponent*    Interactable_0                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class USBZInteractorComponent*          Interactor                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// bool                                    bIsLocallyControlledInteractor                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 
-void ABP_One_Step_Animated_Button_C::setBinaryState(bool state)
+void ABP_One_Step_Animated_Button_C::BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature(class USBZBaseInteractableComponent* Interactable_0, class USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_One_Step_Animated_Button_C", "setBinaryState");
+		Func = Class->GetFunction("BP_One_Step_Animated_Button_C", "BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature");
 
-	Params::BP_One_Step_Animated_Button_C_setBinaryState Parms{};
+	Params::BP_One_Step_Animated_Button_C_BndEvt__BP_One_Step_Animated_Button_Interactable_K2Node_ComponentBoundEvent_1_SBZOnInteraction__DelegateSignature Parms{};
 
-	Parms.state = state;
+	Parms.Interactable_0 = Interactable_0;
+	Parms.Interactor = Interactor;
+	Parms.bIsLocallyControlledInteractor = bIsLocallyControlledInteractor;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
 
 
-// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.ExecuteUbergraph_BP_One_Step_Animated_Button
-// (Final, UbergraphFunction)
-// Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// Function BP_One_Step_Animated_Button.BP_One_Step_Animated_Button_C.UserConstructionScript
+// (Event, Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 
-void ABP_One_Step_Animated_Button_C::ExecuteUbergraph_BP_One_Step_Animated_Button(int32 EntryPoint)
+void ABP_One_Step_Animated_Button_C::UserConstructionScript()
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("BP_One_Step_Animated_Button_C", "ExecuteUbergraph_BP_One_Step_Animated_Button");
+		Func = Class->GetFunction("BP_One_Step_Animated_Button_C", "UserConstructionScript");
 
-	Params::BP_One_Step_Animated_Button_C_ExecuteUbergraph_BP_One_Step_Animated_Button Parms{};
-
-	Parms.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(Func, &Parms);
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }

@@ -27,11 +27,11 @@ public:
 	float                                         SmokeSightModifier;                                // 0x0558(0x0004)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void BP_OnExplosion(bool bDoCosmetics);
 	void ExecuteUbergraph_BP_FireExtinguisher_Foam(int32 EntryPoint);
+	void BP_OnExplosion(bool bDoCosmetics);
 
-	bool CanAffectStealth() const;
 	float GetSightModifier(const struct FVector& Start, const struct FVector& End) const;
+	bool CanAffectStealth() const;
 
 public:
 	static class UClass* StaticClass()
