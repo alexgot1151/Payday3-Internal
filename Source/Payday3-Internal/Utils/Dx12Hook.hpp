@@ -449,9 +449,9 @@ namespace Dx12Hook
 			return false;
 		}
 
-		Utils::LogDebug("Got Present address: " + std::to_string(reinterpret_cast<uint64_t>(pPresentAddr)));
-		Utils::LogDebug("Got ResizeBuffers address: " + std::to_string(reinterpret_cast<uint64_t>(pResizeBuffersAddr)));
-		Utils::LogDebug("Got ExecuteCommandLists address: " + std::to_string(reinterpret_cast<uint64_t>(pExecuteCommandListsAddr)));
+		Utils::LogDebug(std::format("Got Present address: 0x{:016X}", reinterpret_cast<uint64_t>(pPresentAddr)));
+		Utils::LogDebug(std::format("Got ResizeBuffers address: 0x{:016X}", reinterpret_cast<uint64_t>(pResizeBuffersAddr)));
+		Utils::LogDebug(std::format("Got ExecuteCommandLists address: 0x{:016X}", reinterpret_cast<uint64_t>(pExecuteCommandListsAddr)));
 
 		// Create hooks
 		MH_STATUS status = MH_CreateHook(pExecuteCommandListsAddr, (LPVOID)&HookedExecuteCommandLists, reinterpret_cast<void**>(&oExecuteCommandLists));
