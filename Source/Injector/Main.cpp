@@ -6,61 +6,89 @@
 #include <chrono>
 #include <thread>
 
-DWORD GetProcessId(const wchar_t* processName)
+DWORD GetProcessId(const char* processName)
 {
     DWORD processId = 0;
     HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
     
     if (snapshot == INVALID_HANDLE_VALUE)
     {
-        std::wcerr << L"Failed to create process snapshot. Error: " << GetLastError() << std::endl;
+        std::cerr << "Failed to create process snapshot. Error: " << GetLastError() << std::endl;
         return 0;
     }
 
-    PROCESSENTRY32W processEntry = { 0 };
-    processEntry.dwSize = sizeof(PROCESSENTRY32W);
+    PROCESSENTRY32 processEntry = { 0 };
+    processEntry.dwSize = sizeof(PROCESSENTRY32);
 
-    if (Process32FirstW(snapshot, &processEntry))
+    if (Process32First(snapshot, &processEntry))
     {
         do
         {
-            if (_wcsicmp(processEntry.szExeFile, processName) == 0)
+            if (_stricmp(processEntry.szExeFile, processName) == 0)
             {
                 processId = processEntry.th32ProcessID;
                 break;
             }
-        } while (Process32NextW(snapshot, &processEntry));
+        } while (Process32Next(snapshot, &processEntry));
     }
 
     CloseHandle(snapshot);
     return processId;
 }
 
+bool IsModuleLoaded(DWORD processId, const std::string& moduleName)
+{
+    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, processId);
+    if (snapshot == INVALID_HANDLE_VALUE)
+    {
+        return false;
+    }
+
+    MODULEENTRY32 moduleEntry = { 0 };
+    moduleEntry.dwSize = sizeof(MODULEENTRY32);
+
+    bool found = false;
+    if (Module32First(snapshot, &moduleEntry))
+    {
+        do
+        {
+            if (_stricmp(moduleEntry.szModule, moduleName.c_str()) == 0)
+            {
+                found = true;
+                break;
+            }
+        } while (Module32Next(snapshot, &moduleEntry));
+    }
+
+    CloseHandle(snapshot);
+    return found;
+}
+
 bool LaunchGame()
 {
-    std::wcout << L"Game not found. Launching PAYDAY 3 via Steam..." << std::endl;
+    std::cout << "Game not found. Launching PAYDAY 3 via Steam..." << std::endl;
     
-    STARTUPINFOW si = { sizeof(STARTUPINFOW) };
+    STARTUPINFOA si = { sizeof(STARTUPINFOA) };
     PROCESS_INFORMATION pi = { 0 };
     
-    wchar_t command[] = L"cmd.exe /c start steam://run/1272080";
+    char command[] = "cmd.exe /c start \"\" steam://run/1272080";
     
-    if (!CreateProcessW(nullptr, command, nullptr, nullptr, FALSE, CREATE_NO_WINDOW, nullptr, nullptr, &si, &pi))
+    if (!CreateProcessA(nullptr, command, nullptr, nullptr, FALSE, CREATE_NO_WINDOW, nullptr, nullptr, &si, &pi))
     {
-        std::wcerr << L"Failed to launch game. Error: " << GetLastError() << std::endl;
+        std::cerr << "Failed to launch game. Error: " << GetLastError() << std::endl;
         return false;
     }
     
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
     
-    std::wcout << L"Steam launch command sent successfully." << std::endl;
+    std::cout << "Steam launch command sent successfully." << std::endl;
     return true;
 }
 
-DWORD WaitForProcess(const wchar_t* processName, int timeoutSeconds)
+DWORD WaitForProcess(const char* processName, int timeoutSeconds)
 {
-    std::wcout << L"Waiting for game to start (timeout: " << timeoutSeconds << L" seconds)..." << std::endl;
+    std::cout << "Waiting for game to start (timeout: " << timeoutSeconds << " seconds)..." << std::endl;
     
     auto startTime = std::chrono::steady_clock::now();
     auto timeoutDuration = std::chrono::seconds(timeoutSeconds);
@@ -71,7 +99,7 @@ DWORD WaitForProcess(const wchar_t* processName, int timeoutSeconds)
         DWORD processId = GetProcessId(processName);
         if (processId != 0)
         {
-            std::wcout << L"\n";
+            std::cout << "\n";
             return processId;
         }
         
@@ -80,155 +108,214 @@ DWORD WaitForProcess(const wchar_t* processName, int timeoutSeconds)
         
         if (elapsed >= timeoutDuration)
         {
-            std::wcout << L"\n";
+            std::cout << "\n";
             return 0;
         }
         
         if (dots % 4 == 0)
-            std::wcout << L"\rWaiting";
-        std::wcout << L".";
+            std::cout << "\rWaiting";
+        std::cout << ".";
         dots++;
-        std::wcout.flush();
+        std::cout.flush();
         
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 }
 
-bool InjectDLL(DWORD processId, const std::wstring& dllPath)
+bool InjectDLL(DWORD processId, const std::string& dllPath)
 {
-    HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, processId);
-    if (!hProcess || hProcess == INVALID_HANDLE_VALUE)
+    bool success = false;
+    HANDLE hProcess = nullptr;
+    HANDLE hThread = nullptr;
+    LPVOID pRemoteMemory = nullptr;
+
+    auto cleanup = [&]()
     {
-        std::wcerr << L"Failed to open target process. Error: " << GetLastError() << std::endl;
-        return false;
-    }
+        if (pRemoteMemory)
+        {
+            VirtualFreeEx(hProcess, pRemoteMemory, 0, MEM_RELEASE);
+            pRemoteMemory = nullptr;
+        }
 
-    int size = WideCharToMultiByte(CP_UTF8, 0, dllPath.c_str(), -1, nullptr, 0, nullptr, nullptr);
-    std::string dllPathA(size, 0);
-    WideCharToMultiByte(CP_UTF8, 0, dllPath.c_str(), -1, &dllPathA[0], size, nullptr, nullptr);
+        if (hThread)
+        {
+            CloseHandle(hThread);
+            hThread = nullptr;
+        }
 
-    LPVOID pRemoteMemory = VirtualAllocEx(hProcess, nullptr, dllPathA.size(), MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
-    if (!pRemoteMemory)
+        if (hProcess)
+        {
+            CloseHandle(hProcess);
+            hProcess = nullptr;
+        }
+    };
+
+    do
     {
-        std::wcerr << L"Failed to allocate memory in target process. Error: " << GetLastError() << std::endl;
-        CloseHandle(hProcess);
-        return false;
-    }
+        hProcess = OpenProcess(
+            PROCESS_CREATE_THREAD | PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION | PROCESS_VM_WRITE | PROCESS_VM_READ,
+            FALSE,
+            processId
+        );
 
-    SIZE_T bytesWritten = 0;
-    if (!WriteProcessMemory(hProcess, pRemoteMemory, dllPathA.c_str(), dllPathA.size(), &bytesWritten))
-    {
-        std::wcerr << L"Failed to write to target process memory. Error: " << GetLastError() << std::endl;
-        VirtualFreeEx(hProcess, pRemoteMemory, 0, MEM_RELEASE);
-        CloseHandle(hProcess);
-        return false;
-    }
+        if (!hProcess || hProcess == INVALID_HANDLE_VALUE)
+        {
+            std::cerr << "Failed to open target process. Error: " << GetLastError() << std::endl;
+            break;
+        }
 
-    LPVOID pLoadLibrary = (LPVOID)GetProcAddress(GetModuleHandleW(L"kernel32.dll"), "LoadLibraryA");
-    if (!pLoadLibrary)
-    {
-        std::wcerr << L"Failed to get LoadLibraryA address. Error: " << GetLastError() << std::endl;
-        VirtualFreeEx(hProcess, pRemoteMemory, 0, MEM_RELEASE);
-        CloseHandle(hProcess);
-        return false;
-    }
+        const SIZE_T dllPathBytes = dllPath.size() + 1;
+        pRemoteMemory = VirtualAllocEx(hProcess, nullptr, dllPathBytes, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+        if (!pRemoteMemory)
+        {
+            std::cerr << "Failed to allocate memory in target process. Error: " << GetLastError() << std::endl;
+            break;
+        }
 
-    HANDLE hThread = CreateRemoteThread(hProcess, nullptr, 0, (LPTHREAD_START_ROUTINE)pLoadLibrary, pRemoteMemory, 0, nullptr);
-    if (!hThread || hThread == INVALID_HANDLE_VALUE)
-    {
-        std::wcerr << L"Failed to create remote thread. Error: " << GetLastError() << std::endl;
-        VirtualFreeEx(hProcess, pRemoteMemory, 0, MEM_RELEASE);
-        CloseHandle(hProcess);
-        return false;
-    }
+        SIZE_T bytesWritten = 0;
+        if (!WriteProcessMemory(hProcess, pRemoteMemory, dllPath.c_str(), dllPathBytes, &bytesWritten) || bytesWritten != dllPathBytes)
+        {
+            std::cerr << "Failed to write DLL path to target process memory. Error: " << GetLastError() << std::endl;
+            break;
+        }
 
-    WaitForSingleObject(hThread, INFINITE);
+        HMODULE hKernel32 = GetModuleHandleA("kernel32.dll");
+        if (!hKernel32)
+        {
+            std::cerr << "Failed to get kernel32.dll handle. Error: " << GetLastError() << std::endl;
+            break;
+        }
 
-    DWORD exitCode = 0;
-    GetExitCodeThread(hThread, &exitCode);
+        LPVOID pLoadLibrary = reinterpret_cast<LPVOID>(GetProcAddress(hKernel32, "LoadLibraryA"));
+        if (!pLoadLibrary)
+        {
+            std::cerr << "Failed to get LoadLibraryA address. Error: " << GetLastError() << std::endl;
+            break;
+        }
 
-    VirtualFreeEx(hProcess, pRemoteMemory, 0, MEM_RELEASE);
-    CloseHandle(hThread);
-    CloseHandle(hProcess);
+        hThread = CreateRemoteThread(
+            hProcess,
+            nullptr,
+            0,
+            reinterpret_cast<LPTHREAD_START_ROUTINE>(pLoadLibrary),
+            pRemoteMemory,
+            0,
+            nullptr
+        );
 
-    if (exitCode == 0)
-    {
-        std::wcerr << L"LoadLibrary failed in target process." << std::endl;
-        return false;
-    }
+        if (!hThread || hThread == INVALID_HANDLE_VALUE)
+        {
+            std::cerr << "Failed to create remote thread. Error: " << GetLastError() << std::endl;
+            break;
+        }
 
-    return true;
+        DWORD waitResult = WaitForSingleObject(hThread, 30000);
+        if (waitResult != WAIT_OBJECT_0)
+        {
+            std::cerr << "Remote thread did not finish successfully. Wait result: " << waitResult << ", Error: " << GetLastError() << std::endl;
+            break;
+        }
+
+        DWORD exitCode = 0;
+        if (!GetExitCodeThread(hThread, &exitCode))
+        {
+            std::cerr << "GetExitCodeThread failed. Error: " << GetLastError() << std::endl;
+            break;
+        }
+
+        if (exitCode == 0)
+        {
+            const std::string moduleName = std::filesystem::path(dllPath).filename().string();
+            if (IsModuleLoaded(processId, moduleName))
+            {
+                std::cout << "LoadLibraryA returned 0, but module appears loaded: " << moduleName << std::endl;
+                success = true;
+                break;
+            }
+
+            std::cerr << "LoadLibraryA returned NULL in target process." << std::endl;
+            std::cerr << "Common causes: missing DLL dependencies, blocked injection, or an invalid DLL path." << std::endl;
+            std::cerr << "DLL path used: " << dllPath << std::endl;
+            break;
+        }
+
+        success = true;
+    } while (false);
+
+    cleanup();
+    return success;
 }
 
 int main()
 {
-    const wchar_t* targetProcess = L"PAYDAY3-Win64-Shipping.exe";
-    const wchar_t* dllName = L"Payday3-Internal.dll";
+    const char* targetProcess = "PAYDAY3-Win64-Shipping.exe";
+    const char* dllName = "Payday3-Internal.dll";
 
-    std::wcout << L"========================================" << std::endl;
-    std::wcout << L"  PAYDAY 3 DLL Injector" << std::endl;
-    std::wcout << L"========================================" << std::endl;
-    std::wcout << L"Target Process: " << targetProcess << std::endl;
-    std::wcout << L"DLL to Inject: " << dllName << std::endl;
-    std::wcout << L"========================================" << std::endl << std::endl;
+    std::cout << "========================================" << std::endl;
+    std::cout << "  PAYDAY 3 DLL Injector" << std::endl;
+    std::cout << "========================================" << std::endl;
+    std::cout << "Target Process: " << targetProcess << std::endl;
+    std::cout << "DLL to Inject: " << dllName << std::endl;
+    std::cout << "========================================" << std::endl << std::endl;
 
-    std::wstring dllPath = std::filesystem::current_path().wstring() + L"\\" + dllName;
+    std::filesystem::path dllPath = std::filesystem::current_path() / dllName;
+    std::string dllPathString = dllPath.string();
     
     if (!std::filesystem::exists(dllPath))
     {
-        std::wcerr << L"Error: DLL not found at: " << dllPath << std::endl;
-        std::wcout << L"Press Enter to exit..." << std::endl;
+        std::cerr << "Error: DLL not found at: " << dllPathString << std::endl;
+        std::cout << "Press Enter to exit..." << std::endl;
         std::cin.get();
         return 1;
     }
 
-    std::wcout << L"DLL Path: " << dllPath << std::endl << std::endl;
+    std::cout << "DLL Path: " << dllPathString << std::endl << std::endl;
 
-    std::wcout << L"Searching for process: " << targetProcess << std::endl;
+    std::cout << "Searching for process: " << targetProcess << std::endl;
     DWORD processId = GetProcessId(targetProcess);
 
     if (processId == 0)
     {
-        std::wcout << L"Process not found." << std::endl << std::endl;
+        std::cout << "Process not found." << std::endl << std::endl;
         
         if (!LaunchGame())
         {
-            std::wcerr << L"Failed to launch the game." << std::endl;
-            std::wcout << L"Press Enter to exit..." << std::endl;
+            std::cerr << "Failed to launch the game." << std::endl;
+            std::cout << "Press Enter to exit..." << std::endl;
             std::cin.get();
             return 1;
         }
         
-        std::wcout << std::endl;
+        std::cout << std::endl;
         
         processId = WaitForProcess(targetProcess, 180);
         
         if (processId == 0)
         {
-            std::wcerr << L"Timeout: Game process not found after 3 minutes." << std::endl;
-            std::wcerr << L"Please make sure Steam is running and try again." << std::endl;
-            std::wcout << L"Press Enter to exit..." << std::endl;
+            std::cerr << "Timeout: Game process not found after 3 minutes." << std::endl;
+            std::cerr << "Please make sure Steam is running and try again." << std::endl;
+            std::cout << "Press Enter to exit..." << std::endl;
             std::cin.get();
             return 1;
         }
     }
 
-    std::wcout << L"Process found! PID: " << processId << std::endl << std::endl;
+    std::cout << "Process found! PID: " << processId << std::endl << std::endl;
 
-    std::wcout << L"Injecting DLL..." << std::endl;
-    if (InjectDLL(processId, dllPath))
+    std::cout << "Injecting DLL..." << std::endl;
+    if (InjectDLL(processId, dllPathString))
     {
-        std::wcout << L"Success! DLL injected successfully." << std::endl;
+        std::cout << "Success! DLL injected successfully." << std::endl;
     }
     else
     {
-        std::wcerr << L"Failed to inject DLL." << std::endl;
-        std::wcout << L"Press Enter to exit..." << std::endl;
+        std::cerr << "Failed to inject DLL." << std::endl;
+        std::cout << "Press Enter to exit..." << std::endl;
         std::cin.get();
         return 1;
     }
 
-    std::wcout << L"\nPress Enter to exit..." << std::endl;
+    std::cout << "\nPress Enter to exit..." << std::endl;
     std::cin.get();
     return 0;
 }

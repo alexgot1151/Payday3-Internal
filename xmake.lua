@@ -14,7 +14,7 @@ option("avx2")
 option_end()
 
 set_targetdir(is_mode("debug") and "Build/Debug" or "Build/Release")
-set_runtimes(is_mode("debug") and "MDd" or "MD")
+set_runtimes(is_mode("debug") and "MTd" or "MT")
 
 add_requires("vcpkg::minhook 1.3.4")
 add_requires("vcpkg::imgui", {configs = {vs_runtimes = "MDd",features = {"win32-binding", "dx12-binding"}}})
