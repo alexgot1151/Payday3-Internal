@@ -44,7 +44,6 @@ public:
 		return GetDefaultObjImpl<ABP_RFIDTagBase_C>();
 	}
 };
-DUMPER7_ASSERTS_ABP_RFIDTagBase_C;
 
 }
 

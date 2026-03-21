@@ -21,7 +21,7 @@ namespace SDK
 
 // WidgetBlueprintGeneratedClass WBP_PlayerNameplate.WBP_PlayerNameplate_C
 // 0x0068 (0x0308 - 0x02A0)
-class UWBP_PlayerNameplate_C final : public USBZMainMenuPlayerNameplateWidget
+class UWBP_PlayerNameplate_C : public USBZMainMenuPlayerNameplateWidget
 {
 public:
 	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x02A0(0x0008)(ZeroConstructor, Transient, DuplicateTransient)

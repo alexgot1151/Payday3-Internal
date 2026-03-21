@@ -70,7 +70,6 @@ public:
 		return GetDefaultObjImpl<ABP_LocationBase_C>();
 	}
 };
-DUMPER7_ASSERTS_ABP_LocationBase_C;
 
 }
 

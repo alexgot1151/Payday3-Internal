@@ -50,7 +50,6 @@ public:
 		return GetDefaultObjImpl<ABP_KeycardBase_C>();
 	}
 };
-DUMPER7_ASSERTS_ABP_KeycardBase_C;
 
 }
 

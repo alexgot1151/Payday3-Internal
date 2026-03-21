@@ -44,7 +44,6 @@ public:
 		return GetDefaultObjImpl<ABP_FOR_USBDrive_C>();
 	}
 };
-DUMPER7_ASSERTS_ABP_FOR_USBDrive_C;
 
 }
 

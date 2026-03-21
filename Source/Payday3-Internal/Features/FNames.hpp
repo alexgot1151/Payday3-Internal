@@ -28,7 +28,8 @@ namespace FNames{
         fn(BP_Meth_CausticSoda_C) \
         fn(BP_Meth_MuriaticAcid_C) \
         fn(BP_Meth_HydrogenChloride_C) \
-
+        fn(BP_FOR_USBDrive_C) \
+        fn(BP_Plankspile_C) \
     
     #define DefineFName(name) inline SDK::FName name{};
     ForEachFName(DefineFName)

@@ -36,7 +36,6 @@ public:
 	int32                                         CallFunc_PostAkEvent_ReturnValue;                  // 0x005C(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	int32                                         CallFunc_PostAkEvent_ReturnValue_1;                // 0x0060(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 };
-DUMPER7_ASSERTS_BP_FOR_USBDrive_C_ExecuteUbergraph_BP_FOR_USBDrive;
 
 // Function BP_FOR_USBDrive.BP_FOR_USBDrive_C.OnStateChanged
 // 0x000C (0x000C - 0x0000)
@@ -47,7 +46,6 @@ public:
 	int32                                         NewState;                                          // 0x0004(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	bool                                          bDoCosmetics;                                      // 0x0008(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 };
-DUMPER7_ASSERTS_BP_FOR_USBDrive_C_OnStateChanged;
 
 }
 

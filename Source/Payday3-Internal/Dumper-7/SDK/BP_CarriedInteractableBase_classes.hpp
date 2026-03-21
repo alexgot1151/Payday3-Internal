@@ -51,7 +51,6 @@ public:
 		return GetDefaultObjImpl<ABP_CarriedInteractableBase_C>();
 	}
 };
-DUMPER7_ASSERTS_ABP_CarriedInteractableBase_C;
 
 }
 

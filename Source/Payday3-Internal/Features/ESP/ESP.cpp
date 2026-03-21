@@ -753,10 +753,13 @@ namespace ESP
             pCamera->OutlineComponent->Multicast_SetActiveReplicated(pCamera->OutlineAsset);
         }
 
+        if (!LootESP::GetConfig().bLootESP)
+            return;
+
         // Other ESP
         UC::TArray<SDK::ULevel*> vecLevels = pGWorld->Levels;
         for (SDK::ULevel* pLevel : vecLevels) {
-            if (!pLevel || !pLevel->Actors || !LootESP::GetConfig().bLootESP)
+            if (!pLevel || !pLevel->Actors)
                 continue;
 
             for (SDK::AActor* pActor : pLevel->Actors) {
@@ -771,18 +774,50 @@ namespace ESP
                     FNames::BP_DAT_C4Explosive_01_Pickup_C,
                     FNames::BP_Meth_CausticSoda_C,
                     FNames::BP_Meth_MuriaticAcid_C,
-                    FNames::BP_Meth_HydrogenChloride_C
+                    FNames::BP_Meth_HydrogenChloride_C,
+                    FNames::BP_FOR_USBDrive_C,
+                    FNames::BP_Plankspile_C
                 };
 
                 SDK::FName actorName = pActor->Class->Name;
 
-                if (std::find(lootNames.begin(), lootNames.end(), actorName) == lootNames.end())
+                if (std::find(lootNames.begin(), lootNames.end(), actorName) == lootNames.end() || actorName.ToString().contains("Computer"))
                     continue;
 
                 SDK::FVector2D vec2ScreenLocation;
                 if (!pPlayerController->ProjectWorldLocationToScreen(pActor->K2_GetActorLocation(), &vec2ScreenLocation, false))
                     continue;
 
+                if (actorName == FNames::BP_QRPhone_C) {
+                    SDK::ABP_QRPhone_C* pPhone = reinterpret_cast<SDK::ABP_QRPhone_C*>(pActor);
+                    SDK::USBZInteractableComponent* pInteractable = pPhone->SBZInteractable;
+                    if (!pInteractable || !pInteractable->bInteractionEnabled)
+                        continue;
+                }
+
+                if (actorName == FNames::BP_FOR_USBDrive_C) {
+                    SDK::ABP_FOR_USBDrive_C* pUSBDrive = reinterpret_cast<SDK::ABP_FOR_USBDrive_C*>(pActor);
+                    
+                    SDK::USBZInteractableComponent* pInteractable = pUSBDrive->SBZInteractableObject;
+                    if (!pInteractable || !pInteractable->bInteractionEnabled)
+                        continue;
+                }
+
+                if (pActor->IsA(SDK::ABP_MethIngredientBase_C::StaticClass())) {
+                    SDK::ABP_MethIngredientBase_C* pMethIngredient = reinterpret_cast<SDK::ABP_MethIngredientBase_C*>(pActor);
+                    
+                    SDK::USBZInteractableComponent* pInteractable = pMethIngredient->SBZInteractable;
+                    if (!pInteractable || !pInteractable->bInteractionEnabled)
+                        continue;
+                }
+
+                if (pActor->IsA(SDK::ABP_Plankspile_C::StaticClass())) {
+                    SDK::ABP_Plankspile_C* pPlankspile = reinterpret_cast<SDK::ABP_Plankspile_C*>(pActor);
+                    
+                    SDK::USBZInteractableComponent* pInteractable = pPlankspile->Interactable;
+                    if (!pInteractable || !pInteractable->bInteractionEnabled)
+                        continue;
+                }
 
                 pDrawList->AddText(
                     ImVec2(vec2ScreenLocation.X, vec2ScreenLocation.Y),
@@ -795,6 +830,8 @@ namespace ESP
                     (actorName == FNames::BP_Meth_CausticSoda_C) ? "Caustic Soda" :
                     (actorName == FNames::BP_Meth_MuriaticAcid_C) ? "Muriatic Acid" :
                     (actorName == FNames::BP_Meth_HydrogenChloride_C) ? "Hydrogen Chloride" :
+                    (actorName == FNames::BP_FOR_USBDrive_C) ? "USB Drive" :
+                    (actorName == FNames::BP_Plankspile_C) ? "Planks" :
                     actorName.ToString()).c_str());
             }
         }
