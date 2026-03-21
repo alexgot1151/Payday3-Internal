@@ -803,7 +803,7 @@ namespace ESP
                         continue;
                 }
 
-                if (pActor->IsA(SDK::ABP_MethIngredientBase_C::StaticClass())) {
+                if (actorName == FNames::BP_Meth_CausticSoda_C || actorName == FNames::BP_Meth_MuriaticAcid_C || actorName == FNames::BP_Meth_HydrogenChloride_C) {
                     SDK::ABP_MethIngredientBase_C* pMethIngredient = reinterpret_cast<SDK::ABP_MethIngredientBase_C*>(pActor);
                     
                     SDK::USBZInteractableComponent* pInteractable = pMethIngredient->SBZInteractable;
@@ -811,7 +811,7 @@ namespace ESP
                         continue;
                 }
 
-                if (pActor->IsA(SDK::ABP_Plankspile_C::StaticClass())) {
+                if (actorName == FNames::BP_Plankspile_C) {
                     SDK::ABP_Plankspile_C* pPlankspile = reinterpret_cast<SDK::ABP_Plankspile_C*>(pActor);
                     
                     SDK::USBZInteractableComponent* pInteractable = pPlankspile->Interactable;
