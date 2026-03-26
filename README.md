@@ -24,13 +24,6 @@ Output: `Build/Debug/` or `Build/Release/`
 - minhook 1.3.4
 - imgui (with win32-binding, dx12-binding)
 
-## Architecture
-
-- **SDK**: Auto-generated Unreal Engine SDK made using [Dumper-7](https://github.com/Encryqed/Dumper-7)
-- **Build System**: xmake (C++latest)
-
-Target game version: `918758`
-
 ## Usage
 
 - **Build**: Follow the build instructions above to compile the project.
