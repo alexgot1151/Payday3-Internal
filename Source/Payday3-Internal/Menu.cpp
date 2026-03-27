@@ -8,6 +8,7 @@
 #include <string_view>
 #include <unordered_map>
 #include <variant>
+#include <cstdlib>
 
 #ifndef NOMINMAX
 #define NOMINMAX
@@ -749,6 +750,29 @@ namespace Menu
                 ImGui::EndTabItem();
             }
 
+            if (ImGui::BeginTabItem("Debug")){
+                auto sHostStatus = [](){
+                    SDK::UWorld* pGWorld = SDK::UWorld::GetWorld();
+                    if (!pGWorld)
+                        return "Unknown";
+
+                    SDK::UGameInstance* pGameInstance = pGWorld->OwningGameInstance;
+                    if (!pGameInstance || !pGameInstance->IsA(SDK::USBZGameInstance::StaticClass()))
+                        return "Unknown";
+
+                    SDK::USBZGameInstance* pSBZGameInstance = static_cast<SDK::USBZGameInstance*>(pGameInstance);
+                    auto pAccelByteUser = pSBZGameInstance->AccelByteUser;
+                    if (!pAccelByteUser)
+                        return "Unknown";
+
+                    auto pUserActivity = pAccelByteUser->UserActivity;
+                    return pUserActivity.bIsHost ? "Host" : "Client";    
+                };
+                ImGui::Text(std::format("bIsHost: {}", sHostStatus()).c_str());
+                ImGui::EndTabItem();
+            }
+
+
             ImGui::EndTabBar();
         }
 
@@ -759,14 +783,21 @@ namespace Menu
         ImGui::SameLine();
         if (ImGui::Button("Load Config"))
             CheatConfig::Get().Load();
+
+        ImGui::SameLine();
+        float buttonWidth = ImGui::CalcTextSize("Source").x + ImGui::GetStyle().FramePadding.x * 2.0f;
+        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - buttonWidth);
+        if (ImGui::Button("Source"))
+        {
+            std::system("start https://github.com/Omega172/Payday3-Internal");
+        }
 		
 		// Performance metrics
-		//ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-
+		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 
         ImGui::End();
 
-
+#ifdef _DEBUG
         ImGui::Begin("Call Traces",  &bShowMenu);
         static const char* aCallTraceItems[] = { "Inactive", "UObject", "PlayerController" };
         if(ImGui::Combo("Call Trace Area", reinterpret_cast<int*>(&g_eCallTraceArea), aCallTraceItems, IM_ARRAYSIZE(aCallTraceItems)))
@@ -782,6 +813,7 @@ namespace Menu
         for (auto& pairEntry : g_mapCallTraces)
             pairEntry.second.Draw();
         ImGui::End();
+#endif
 	}
 
     void PostDraw() {
