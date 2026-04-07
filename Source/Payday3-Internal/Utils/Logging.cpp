@@ -242,7 +242,6 @@ namespace Utils
 
 	void LogError(const std::string& sErrorMessage, std::source_location location)
 	{
-	#ifdef _DEBUG
 		::LogError(sErrorMessage, location);
 
 		std::filesystem::path pathError{};
@@ -265,7 +264,6 @@ namespace Utils
 
 		fileError << std::format("Error: {} Info: {}\n", GetColorlessLocationString(location), sErrorMessage);
 		fileError.close();
-	#endif
 	}
 
 	void LogDebug(const std::string& sDebugMessage, std::source_location location)

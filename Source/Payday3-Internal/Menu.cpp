@@ -728,9 +728,7 @@ namespace Menu
 		if (!bShowMenu)
 			return;
 
-        
-
-        std::string windowTitle = std::format("Omegaware Pd3 Internal - {}", CURRENT_VERSION);
+        std::string windowTitle = std::format("OmegaWare PD3 Internal - {}", CURRENT_VERSION);
         ImGui::Begin(windowTitle.c_str(), &bShowMenu, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse);
 
         if(ImGui::BeginTabBar("CheatTabs"))
