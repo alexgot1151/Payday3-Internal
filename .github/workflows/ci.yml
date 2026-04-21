@@ -26,13 +26,15 @@ jobs:
         build-cache: true
 
     - name: Configure xmake (Debug)
+      timeout-minutes: 15
       run: |
         xmake update
         xmake global --clean
-        xmake config -m debug -a x64 -p windows -y
+        xmake config -m debug -a x64 -p windows -y -vD
 
     - name: Build project (Debug)
-      run: xmake build Payday3-Internal
+      timeout-minutes: 20
+      run: xmake build Payday3-Internal -vD
 
     - name: Dump xmake package failure logs (Debug)
       if: failure()
@@ -56,12 +58,15 @@ jobs:
       continue-on-error: true
 
     - name: Configure xmake (Release)
+      timeout-minutes: 15
       run: |
+        xmake update
         xmake global --clean
-        xmake config -m release -a x64 -p windows -y
+        xmake config -m release -a x64 -p windows -y -vD
 
     - name: Build project (Release)
-      run: xmake build Payday3-Internal
+      timeout-minutes: 20
+      run: xmake build Payday3-Internal -vD
 
     - name: Dump xmake package failure logs (Release)
       if: failure()
