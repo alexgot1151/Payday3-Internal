@@ -5,6 +5,7 @@
 
 # Payday 3 Internal
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Omega172/Payday3-Internal/total)
+[![Discord](https://img.shields.io/discord/1209142443627257856)](https://discord.gg/zc8E7dYYRe)
 
 An cheat for Payday 3 targeting the steam build.
 
