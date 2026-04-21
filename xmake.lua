@@ -16,8 +16,8 @@ option_end()
 set_targetdir(is_mode("debug") and "Build/Debug" or "Build/Release")
 set_runtimes(is_mode("debug") and "MTd" or "MT")
 
-add_requires("minhook 1.3.4")
-add_requires("vcpkg::imgui 1.92.7", {configs = {features = {"win32-binding", "dx12-binding"}}})
+add_requires("minhook")
+add_requires("imgui", {configs = {win32 = true, dx12 = true}, system = false})
 
 target("Payday3-Internal")
     if has_config("avx2") then
@@ -39,7 +39,7 @@ target("Payday3-Internal")
     add_files("Source/Payday3-Internal/Dumper-7/SDK/GameplayAbilities_functions.cpp")
     add_files("Source/Payday3-Internal/Dumper-7/SDK/BP_FOR_USBDrive_functions.cpp")
 
-    add_packages("minhook", "vcpkg::imgui")
+    add_packages("minhook", "imgui")
     add_syslinks("d3d12", "dxgi")
 
     add_links("user32", "minhook", "imgui")
