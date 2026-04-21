@@ -16,8 +16,8 @@ option_end()
 set_targetdir(is_mode("debug") and "Build/Debug" or "Build/Release")
 set_runtimes(is_mode("debug") and "MTd" or "MT")
 
-add_requires("vcpkg::minhook 1.3.4")
-add_requires("vcpkg::imgui", {configs = {vs_runtimes = "MDd",features = {"win32-binding", "dx12-binding"}}})
+add_requires("vcpkg::minhook")
+add_requires("vcpkg::imgui", {configs = {features = {"win32-binding", "dx12-binding"}}})
 
 target("Payday3-Internal")
     if has_config("avx2") then
