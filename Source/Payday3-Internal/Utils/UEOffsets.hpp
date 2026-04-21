@@ -813,93 +813,159 @@ inline uint32_t FindGNames(uintptr_t IB) noexcept
 }
 
 // ============================================================
-// FIX 2: FindGWorld
+// GWorld (strict)
 //
-// Uses a class-chain name walk to positively identify UWorld objects
-// instead of the fragile "OuterPrivate == null" heuristic.
-// Also uses gMatchedNumElementsOffset so the count read is always correct.
+// Validate object type through class-name resolution via AppendString,
+// then find UWorld** pointing to that object.
 // ============================================================
 
-// Check if a UObject (or its class chain) has class name "World".
-// Walks up to 8 super-class steps. Uses GNames RVA to resolve FName if available.
-inline bool IsUWorldObject(uintptr_t ObjPtr, uintptr_t GNamesAbs) noexcept
+struct FNameLite
 {
-    // UObject standard layout (UE4.21+ / UE5):
-    //  +0x00 VFT
-    //  +0x08 ObjFlags (int32)
-    //  +0x0C InternalIndex (int32)
-    //  +0x10 ClassPrivate (UClass*)
-    //  +0x18 FName { CompIdx int32, Number int32 }
-    //  +0x20 OuterPrivate (UObject*)
+    int32_t ComparisonIndex;
+    int32_t DisplayIndex;
+    uint32_t Number;
+};
+
+struct FStringLite
+{
+    wchar_t* Data;
+    int32_t  Count;
+    int32_t  Max;
+};
+
+inline bool IsWorldClassToken(const wchar_t* WName, int32_t Count) noexcept
+{
+    if (!WName || Count <= 0) return false;
+
+    int32_t LastSep = -1;
+    for (int32_t i = 0; i < Count; ++i)
+    {
+        if (WName[i] == L'/' || WName[i] == L'.')
+            LastSep = i;
+    }
+
+    const wchar_t* Token = WName + LastSep + 1;
+    const int32_t TokenLen = Count - (LastSep + 1);
+
+    return TokenLen == 5 &&
+           Token[0] == L'W' && Token[1] == L'o' && Token[2] == L'r' && Token[3] == L'l' && Token[4] == L'd';
+}
+
+inline bool FNameEqualsWorld(uintptr_t AppendStringAbs, const FNameLite& Name) noexcept
+{
+    if (!AppendStringAbs) return false;
+
+    using AppendStringFn = void(*)(const FNameLite*, FStringLite&);
+    auto AppendString = reinterpret_cast<AppendStringFn>(AppendStringAbs);
+
+    wchar_t Buffer[128] = {};
+    FStringLite Temp{ Buffer, 0, static_cast<int32_t>(sizeof(Buffer) / sizeof(Buffer[0])) };
+
+    __try
+    {
+        AppendString(&Name, Temp);
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER)
+    {
+        return false;
+    }
+
+    int32_t Count = Temp.Count;
+    if (Count <= 0 || Count >= static_cast<int32_t>(sizeof(Buffer) / sizeof(Buffer[0])))
+    {
+        Count = 0;
+        while (Count < static_cast<int32_t>(sizeof(Buffer) / sizeof(Buffer[0])) && Buffer[Count] != L'\0')
+            ++Count;
+    }
+
+    return IsWorldClassToken(Buffer, Count);
+}
+
+inline uintptr_t FindWorldClass(uintptr_t GObjectsAbs, uintptr_t AppendStringAbs) noexcept
+{
+    if (!AppendStringAbs) return 0;
+
+    uintptr_t SeedObj = GetFirstValidObject(GObjectsAbs);
+    if (!SeedObj) return 0;
+
+    uintptr_t SeedClass = 0;
+    if (!SafeRead(SeedObj + 0x10, SeedClass) || !SeedClass || IsBadReadPtr(SeedClass))
+        return 0;
+
+    // UClass::StaticClass() instance pointer
+    uintptr_t ClassClass = 0;
+    if (!SafeRead(SeedClass + 0x10, ClassClass) || !ClassClass || IsBadReadPtr(ClassClass))
+        return 0;
+
+    int32_t NumElements = 0;
+    if (!SafeRead<int32_t>(GObjectsAbs + gMatchedNumElementsOffset, NumElements))
+        return 0;
+
+    const int32_t Limit = (NumElements < 0x40000) ? NumElements : 0x40000;
+    for (int32_t Idx = 0; Idx < Limit; ++Idx)
+    {
+        uintptr_t ObjPtr = GetObjectByIndex(GObjectsAbs, Idx);
+        if (!ObjPtr || IsBadReadPtr(ObjPtr))
+            continue;
+
+        uintptr_t ObjClass = 0;
+        if (!SafeRead(ObjPtr + 0x10, ObjClass) || !ObjClass || IsBadReadPtr(ObjClass))
+            continue;
+
+        // Class objects have Class == UClass::StaticClass()
+        if (ObjClass != ClassClass)
+            continue;
+
+        FNameLite ObjName{};
+        if (!SafeRead(ObjPtr + 0x18, ObjName))
+            continue;
+
+        if (FNameEqualsWorld(AppendStringAbs, ObjName))
+            return ObjPtr;
+    }
+
+    return 0;
+}
+
+inline bool IsAWorldClass(uintptr_t ObjPtr, uintptr_t WorldClassPtr) noexcept
+{
+    if (!WorldClassPtr) return false;
 
     uintptr_t ClassPtr = 0;
     if (!SafeRead(ObjPtr + 0x10, ClassPtr) || !ClassPtr || IsBadReadPtr(ClassPtr))
         return false;
 
-    // Walk the class chain up to 8 levels
-    for (int depth = 0; depth < 8; ++depth)
+    for (int depth = 0; depth < 16 && ClassPtr; ++depth)
     {
-        // Read FName of this class (at +0x18 from the class object itself)
-        int32_t CompIdx = 0;
-        if (!SafeRead<int32_t>(ClassPtr + 0x18, CompIdx)) return false;
+        if (ClassPtr == WorldClassPtr)
+            return true;
 
-        // If we have GNames, try to resolve to "World"
-        if (GNamesAbs)
-        {
-            // TNameEntryArray: GNames -> ptr -> chunk[0] -> FNameEntry
-            // FNamePool: GNames is the pool directly
-            // Try both: read GNames as a pointer-to-pointer first (TNameEntryArray style)
-            uintptr_t NamesPtr = 0;
-            if (SafeRead(GNamesAbs, NamesPtr) && !IsBadReadPtr(NamesPtr))
-            {
-                // Chunked name array: chunk index = CompIdx / 0x4000
-                const int32_t ChunkIdx   = CompIdx / 0x4000;
-                const int32_t InChunkIdx = CompIdx % 0x4000;
-                uintptr_t ChunkPtr = 0;
-                if (SafeRead(NamesPtr + ChunkIdx * sizeof(uintptr_t), ChunkPtr) && !IsBadReadPtr(ChunkPtr))
-                {
-                    // FNameEntry string is at +0x10 (typical StringOffset for UE4)
-                    // Try offsets 0x10, 0x0C, 0x08 for the string
-                    for (int strOff : { 0x10, 0x0C, 0x08, 0x06, 0x02 })
-                    {
-                        uintptr_t EntryAddr = ChunkPtr + InChunkIdx * sizeof(void*);
-                        uintptr_t Entry = 0;
-                        if (!SafeRead(EntryAddr, Entry) || IsBadReadPtr(Entry)) continue;
-                        char Name[32] = {};
-                        if (IsBadReadPtr(Entry + strOff)) continue;
-                        memcpy(Name, reinterpret_cast<const void*>(Entry + strOff), 5);
-                        if (memcmp(Name, "World", 5) == 0) return true;
-                    }
-                }
-            }
-        }
-
-        // Fallback: no GNames yet — check OuterPrivate == null (outer-less object)
-        // AND the class chain has a readable SuperStruct pointer at a plausible offset.
-        // This is the original heuristic but only as last resort.
-
-        // Walk SuperStruct — try +0x30 (common UE4.21+ offset for UStruct::SuperStruct)
         uintptr_t SuperPtr = 0;
-        if (!SafeRead(ClassPtr + 0x30, SuperPtr)) return false;
-        if (!SuperPtr) break; // reached top of hierarchy without finding "World"
-        if (IsBadReadPtr(SuperPtr)) return false;
+        if (!SafeRead(ClassPtr + 0x30, SuperPtr) || !SuperPtr || IsBadReadPtr(SuperPtr))
+            break;
+
         ClassPtr = SuperPtr;
     }
 
     return false;
 }
 
-inline uint32_t FindGWorld(uintptr_t IB, uintptr_t GObjectsAbs, uintptr_t GNamesAbs) noexcept
+inline uint32_t FindGWorld(uintptr_t IB, uintptr_t GObjectsAbs, uintptr_t AppendStringAbs) noexcept
 {
-    if (!GObjectsAbs) return 0u;
+    if (!GObjectsAbs || !AppendStringAbs) return 0u;
+
+    const uintptr_t WorldClassPtr = FindWorldClass(GObjectsAbs, AppendStringAbs);
+    if (!WorldClassPtr)
+        return 0u;
 
     int32_t NumElements = 0;
     if (!SafeRead<int32_t>(GObjectsAbs + gMatchedNumElementsOffset, NumElements)) return 0u;
     if (NumElements <= 0 || NumElements > 4000000) return 0u;
 
     constexpr int32_t RF_CDO = 0x10;
+    const int32_t Limit = NumElements;
 
-    for (int32_t Idx = 0; Idx < NumElements; ++Idx)
+    for (int32_t Idx = 0; Idx < Limit; ++Idx)
     {
         uintptr_t ObjPtr = GetObjectByIndex(GObjectsAbs, Idx);
         if (!ObjPtr || IsBadReadPtr(ObjPtr)) continue;
@@ -908,27 +974,17 @@ inline uint32_t FindGWorld(uintptr_t IB, uintptr_t GObjectsAbs, uintptr_t GNames
         if (!SafeRead<int32_t>(ObjPtr + 0x08, Flags)) continue;
         if (Flags & RF_CDO) continue;
 
-        uintptr_t ClassPtr = 0;
-        if (!SafeRead(ObjPtr + 0x10, ClassPtr) || !ClassPtr || IsBadReadPtr(ClassPtr)) continue;
-
-        // Quick pre-filter: read the class's FName CompIdx — "World" FName CompIdx
-        // is small and fixed for any given game session. Skip non-class-like objects fast.
-        int32_t ClassNameIdx = 0;
-        if (!SafeRead<int32_t>(ClassPtr + 0x18, ClassNameIdx)) continue;
-        if (ClassNameIdx <= 0) continue;
-
-        // Check using IsUWorldObject
-        if (!IsUWorldObject(ObjPtr, GNamesAbs)) continue;
+        if (!IsAWorldClass(ObjPtr, WorldClassPtr))
+            continue;
 
         auto Results = FindAllAlignedValuesInProcess(reinterpret_cast<const void*>(ObjPtr));
-        if (Results.empty()) continue;
+        if (Results.empty())
+            continue;
 
-        void* Result = nullptr;
         if (Results.size() == 1)
-        {
-            Result = Results[0];
-        }
-        else if (Results.size() == 2)
+            return GetOffset(Results[0], IB);
+
+        if (Results.size() == 2)
         {
             auto ObjAddress      = ObjPtr;
             auto* PossibleGWorld = reinterpret_cast<volatile uintptr_t*>(Results[0]);
@@ -938,65 +994,36 @@ inline uint32_t FindGWorld(uintptr_t IB, uintptr_t GObjectsAbs, uintptr_t GNames
                 ::Sleep(1);
                 CurrentValue = *PossibleGWorld;
             }
-            Result = (CurrentValue == ObjAddress) ? Results[0] : Results[1];
-        }
-        else
-        {
-            Result = Results[0];
-        }
-
-        if (Result)
+            void* Result = (CurrentValue == ObjAddress) ? Results[0] : Results[1];
             return GetOffset(Result, IB);
-    }
-
-    // Fallback: original heuristic (OuterPrivate == null, non-CDO)
-    // Used when IsUWorldObject can't resolve names (no GNames, no SuperStruct chain)
-    for (int32_t Idx = 0; Idx < NumElements && Idx < 0x10000; ++Idx)
-    {
-        uintptr_t ObjPtr = GetObjectByIndex(GObjectsAbs, Idx);
-        if (!ObjPtr || IsBadReadPtr(ObjPtr)) continue;
-
-        int32_t Flags = 0;
-        if (!SafeRead<int32_t>(ObjPtr + 0x08, Flags)) continue;
-        if (Flags & RF_CDO) continue;
-
-        uintptr_t ClassPtr = 0;
-        if (!SafeRead(ObjPtr + 0x10, ClassPtr) || !ClassPtr || IsBadReadPtr(ClassPtr)) continue;
-
-        uintptr_t OuterPtr = 0;
-        if (!SafeRead(ObjPtr + 0x20, OuterPtr)) continue;
-        if (OuterPtr != 0) continue;
-
-        uintptr_t Meta = 0;
-        if (!SafeRead(ClassPtr + 0x10, Meta) || !Meta || IsBadReadPtr(Meta)) continue;
-
-        auto Results = FindAllAlignedValuesInProcess(reinterpret_cast<const void*>(ObjPtr));
-        if (Results.empty()) continue;
-
-        void* Result = nullptr;
-        if (Results.size() == 1)
-        {
-            Result = Results[0];
         }
-        else if (Results.size() == 2)
+
+        // If there are multiple candidates, choose the most stable pointer.
+        // The real GWorld pointer should keep pointing to ObjPtr over a short window.
+        int BestIdx = -1;
+        int BestScore = -1;
+        for (size_t c = 0; c < Results.size(); ++c)
         {
-            auto ObjAddress      = ObjPtr;
-            auto* PossibleGWorld = reinterpret_cast<volatile uintptr_t*>(Results[0]);
-            auto  CurrentValue   = *PossibleGWorld;
-            for (int i = 0; CurrentValue == ObjAddress && i < 50; ++i)
+            auto* Candidate = reinterpret_cast<volatile uintptr_t*>(Results[c]);
+            int Score = 0;
+            for (int i = 0; i < 20; ++i)
             {
+                if (*Candidate == ObjPtr)
+                    ++Score;
                 ::Sleep(1);
-                CurrentValue = *PossibleGWorld;
             }
-            Result = (CurrentValue == ObjAddress) ? Results[0] : Results[1];
-        }
-        else
-        {
-            Result = Results[0];
+
+            if (Score > BestScore)
+            {
+                BestScore = Score;
+                BestIdx = static_cast<int>(c);
+            }
         }
 
-        if (Result)
-            return GetOffset(Result, IB);
+        if (BestIdx >= 0 && BestScore > 0)
+            return GetOffset(Results[BestIdx], IB);
+
+        continue;
     }
 
     return 0u;
@@ -1094,8 +1121,9 @@ inline std::optional<Offsets> Scan(const char* ModuleName = nullptr) noexcept
     Out.GNames = detail::FindGNames(IB);
     const uintptr_t GNamesAbs = Out.GNames ? (IB + Out.GNames) : 0;
 
-    // 4. GWorld — pass GNames so IsUWorldObject can resolve names
-    Out.GWorld = detail::FindGWorld(IB, GObjectsAbs, GNamesAbs);
+    // 4. GWorld
+    const uintptr_t AppendStringAbs = Out.AppendString ? (IB + Out.AppendString) : 0;
+    Out.GWorld = detail::FindGWorld(IB, GObjectsAbs, AppendStringAbs);
 
     // 5. ProcessEvent
     auto [PERva, PEIdx] = detail::FindProcessEvent(IB, GObjectsAbs);

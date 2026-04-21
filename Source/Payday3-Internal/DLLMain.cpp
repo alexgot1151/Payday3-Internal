@@ -62,7 +62,6 @@ bool Init()
 		SDK::Offsets::GObjects = offsets.GObjects;
 		SDK::Offsets::AppendString = offsets.AppendString;
 		SDK::Offsets::GNames = offsets.GNames;
-		SDK::Offsets::GWorld = offsets.GWorld;
 		SDK::Offsets::ProcessEvent = offsets.ProcessEvent;
 		SDK::Offsets::ProcessEventIdx = offsets.ProcessEventIdx;
 
@@ -105,9 +104,13 @@ bool Init()
 		std::chrono::time_point currentTime = std::chrono::high_resolution_clock::now();
 		auto elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime).count();
 		if (elapsedTime >= 30) {
-			Globals::g_upConsole->SetVisibility(true);
-			Utils::LogError("Timeout while waiting for GWorld pointer!");
-			return false;
+			SDK::Offsets::GWorld = result.value().GWorld;
+			pGWorld = SDK::UWorld::GetWorld();
+			if (!pGWorld) {
+				Globals::g_upConsole->SetVisibility(true);
+				Utils::LogError("Timeout while waiting for GWorld pointer!");
+				return false;
+			}
 		}
 	}
 
@@ -532,7 +535,6 @@ bool VerifyGameVersion()
 
 	if(std::string(static_cast<char*>(lpBuffer)) != TARGET_VERSION) {
 		Utils::LogError(std::string("Game version mismatch! Expected ") + TARGET_VERSION + ", got " + static_cast<char*>(lpBuffer));
-		return false;
 	}
 
 	return true;
