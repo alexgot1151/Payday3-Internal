@@ -17,6 +17,10 @@ permissions:
 jobs:
   build-release:
     runs-on: windows-latest
+
+    env:
+      VCPKG_ROOT: ${{ github.workspace }}/vcpkg
+      VCPKG_MAX_CONCURRENCY: 1
     
     steps:
     - name: Checkout code
@@ -26,6 +30,7 @@ jobs:
       uses: xmake-io/github-action-setup-xmake@v1
       with:
         xmake-version: latest
+        build-cache: true
 
     - name: Configure xmake (Release)
       run: xmake config -m release -a x64 -p windows -y
