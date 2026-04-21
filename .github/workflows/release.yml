@@ -33,10 +33,38 @@ jobs:
         build-cache: true
 
     - name: Configure xmake (Release)
-      run: xmake config -m release -a x64 -p windows -y
+      run: |
+        xmake global --clean
+        xmake config -m release -a x64 -p windows -y
 
     - name: Build project (Release)
       run: xmake build Payday3-Internal
+
+    - name: Dump xmake package failure logs
+      if: failure()
+      shell: pwsh
+      run: |
+        Write-Host "Searching for xmake package failure logs..."
+        $failed = Get-ChildItem -Path "build/.packages" -Recurse -Filter "install.txt" -ErrorAction SilentlyContinue |
+          Where-Object { $_.FullName -match "installdir\.failed\\logs\\install\.txt$" }
+
+        if (-not $failed) {
+          Write-Host "No install.txt files found under installdir.failed/logs."
+        }
+
+        foreach ($f in $failed) {
+          Write-Host "`n===== $($f.FullName) ====="
+          Get-Content -Path $f.FullName -Raw
+        }
+
+    - name: Upload xmake package logs on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: xmake-package-logs-release
+        path: build/.packages/**/cache/**/logs/*.txt
+        if-no-files-found: ignore
+        retention-days: 7
 
     - name: Package Release artifacts (DLL + PDB)
       run: |
