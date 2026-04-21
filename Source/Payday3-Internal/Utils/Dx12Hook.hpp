@@ -40,6 +40,7 @@ namespace Dx12Hook
 		ID3D12CommandAllocator* pCommandAllocator = nullptr;
 		ID3D12Resource* pBackBuffer = nullptr;
 		D3D12_CPU_DESCRIPTOR_HANDLE rtvDescriptor = {};
+		UINT64 fenceValue = 0;
 	};
 
 	// D3D12 resources
@@ -48,10 +49,13 @@ namespace Dx12Hook
 	static ID3D12DescriptorHeap* g_pd3dSrvDescHeap = nullptr;
 	static ID3D12CommandQueue* g_pd3dCommandQueue = nullptr;
 	static ID3D12GraphicsCommandList* g_pd3dCommandList = nullptr;
+	static ID3D12Fence* g_pd3dFence = nullptr;
 	static IDXGISwapChain3* g_pSwapChain = nullptr;
 	static FrameContext* g_frameContext = nullptr;
 	static UINT g_numBackBuffers = 0;
 	static UINT g_frameIndex = 0;
+	static UINT64 g_fenceLastSignaledValue = 0;
+	static HANDLE g_hFenceEvent = nullptr;
 	static HWND g_hWindow = nullptr;
 	static bool g_bInitialized = false;
 	static bool g_bShowMenu = true;
@@ -129,6 +133,10 @@ namespace Dx12Hook
 			g_pd3dSrvDescHeap,
 			g_pd3dSrvDescHeap->GetCPUDescriptorHandleForHeapStart(),
 			g_pd3dSrvDescHeap->GetGPUDescriptorHandleForHeapStart());
+
+		// Ensure font atlas is built
+		if (io.Fonts && !io.Fonts->IsBuilt())
+			io.Fonts->Build();
 	}
 
 	// Hooked WndProc
@@ -142,7 +150,7 @@ namespace Dx12Hook
 		}
 
 		// Let ImGui handle input first
-		if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
+		if (g_bInitialized && ImGui::GetCurrentContext() && ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
 			return true;
 
 		// Block all input to game when menu is open
@@ -218,28 +226,36 @@ namespace Dx12Hook
 					}
 				}
 
-				// Create command allocator
-				ID3D12CommandAllocator* allocator = nullptr;
-				if (FAILED(g_pd3dDevice->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&allocator))))
+				// Create frame contexts and one command allocator per backbuffer
+				g_frameContext = new FrameContext[g_numBackBuffers];
+				for (UINT i = 0; i < g_numBackBuffers; i++)
 				{
-					Utils::LogError("Failed to create command allocator");
-					return oPresent(pSwapChain, SyncInterval, Flags);
+					if (FAILED(g_pd3dDevice->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&g_frameContext[i].pCommandAllocator))))
+					{
+						Utils::LogError("Failed to create frame command allocator");
+						return oPresent(pSwapChain, SyncInterval, Flags);
+					}
 				}
 
 				// Create command list
-				if (FAILED(g_pd3dDevice->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, allocator, nullptr, IID_PPV_ARGS(&g_pd3dCommandList))))
+				if (FAILED(g_pd3dDevice->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, g_frameContext[0].pCommandAllocator, nullptr, IID_PPV_ARGS(&g_pd3dCommandList))))
 				{
-					allocator->Release();
 					Utils::LogError("Failed to create command list");
 					return oPresent(pSwapChain, SyncInterval, Flags);
 				}
 				g_pd3dCommandList->Close();
 
-				// Create frame contexts
-				g_frameContext = new FrameContext[g_numBackBuffers];
-				for (UINT i = 0; i < g_numBackBuffers; i++)
+				if (FAILED(g_pd3dDevice->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&g_pd3dFence))))
 				{
-					g_frameContext[i].pCommandAllocator = allocator;
+					Utils::LogError("Failed to create frame fence");
+					return oPresent(pSwapChain, SyncInterval, Flags);
+				}
+
+				g_hFenceEvent = CreateEventW(nullptr, FALSE, FALSE, nullptr);
+				if (!g_hFenceEvent)
+				{
+					Utils::LogError("Failed to create frame fence event");
+					return oPresent(pSwapChain, SyncInterval, Flags);
 				}
 
 				g_pSwapChain = pSwapChain;
@@ -254,6 +270,7 @@ namespace Dx12Hook
 				InitImGui();
 
 				bInit = true;
+				g_bShuttingDown = false;
 				g_bInitialized = true;
 				Utils::LogDebug("DirectX 12 hook initialized successfully");
 			}
@@ -271,6 +288,15 @@ namespace Dx12Hook
 
 	Cheat::AimbotOnFrameBegin();
 	
+	ImGuiContext* ctx = ImGui::GetCurrentContext();
+	if (!ctx)
+		return oPresent(pSwapChain, SyncInterval, Flags);
+
+	// Validate font atlas before starting frame
+	ImGuiIO& io = ImGui::GetIO();
+	if (!io.Fonts || !io.Fonts->IsBuilt())
+		return oPresent(pSwapChain, SyncInterval, Flags);
+
 	// Start new frame
 	ImGui_ImplDX12_NewFrame();
 	ImGui_ImplWin32_NewFrame();
@@ -289,6 +315,15 @@ namespace Dx12Hook
 	UINT backBufferIdx = g_pSwapChain->GetCurrentBackBufferIndex();
 	FrameContext& frameCtx = g_frameContext[backBufferIdx];
 
+	if (!frameCtx.pBackBuffer || !frameCtx.pCommandAllocator)
+		return oPresent(pSwapChain, SyncInterval, Flags);
+
+	if (g_pd3dFence && frameCtx.fenceValue != 0 && g_pd3dFence->GetCompletedValue() < frameCtx.fenceValue)
+	{
+		g_pd3dFence->SetEventOnCompletion(frameCtx.fenceValue, g_hFenceEvent);
+		WaitForSingleObject(g_hFenceEvent, INFINITE);
+	}
+
 	// Reset command allocator
 	frameCtx.pCommandAllocator->Reset();
 
@@ -301,21 +336,6 @@ namespace Dx12Hook
 	barrier.Transition.StateBefore = D3D12_RESOURCE_STATE_PRESENT;
 	barrier.Transition.StateAfter = D3D12_RESOURCE_STATE_RENDER_TARGET;
 
-	// Wait for GPU to finish previous work to avoid state conflicts
-	ID3D12Fence* pFence = nullptr;
-	if (SUCCEEDED(g_pd3dDevice->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&pFence))))
-	{
-		HANDLE hEvent = CreateEventW(nullptr, FALSE, FALSE, nullptr);
-		if (hEvent)
-		{
-			g_pd3dCommandQueue->Signal(pFence, 1);
-			pFence->SetEventOnCompletion(1, hEvent);
-			WaitForSingleObject(hEvent, 100); // Short timeout
-			CloseHandle(hEvent);
-		}
-		pFence->Release();
-	}
-
 	// Execute rendering commands
 	g_pd3dCommandList->Reset(frameCtx.pCommandAllocator, nullptr);
 	g_pd3dCommandList->ResourceBarrier(1, &barrier);
@@ -326,11 +346,21 @@ namespace Dx12Hook
 	ImDrawData* pDrawData = ImGui::GetDrawData();
 	if (pDrawData && pDrawData->Valid)
 		ImGui_ImplDX12_RenderDrawData(pDrawData, g_pd3dCommandList);
+
+	barrier.Transition.StateBefore = D3D12_RESOURCE_STATE_RENDER_TARGET;
+	barrier.Transition.StateAfter = D3D12_RESOURCE_STATE_PRESENT;
 		g_pd3dCommandList->ResourceBarrier(1, &barrier);
 		g_pd3dCommandList->Close();
 
 		// Execute command list
 		g_pd3dCommandQueue->ExecuteCommandLists(1, (ID3D12CommandList* const*)&g_pd3dCommandList);
+
+		if (g_pd3dFence)
+		{
+			g_fenceLastSignaledValue++;
+			g_pd3dCommandQueue->Signal(g_pd3dFence, g_fenceLastSignaledValue);
+			frameCtx.fenceValue = g_fenceLastSignaledValue;
+		}
 
 		return oPresent(pSwapChain, SyncInterval, Flags);
 	}
@@ -343,6 +373,17 @@ namespace Dx12Hook
 
 		if (g_bInitialized)
 		{
+			if (g_pd3dFence)
+			{
+				g_fenceLastSignaledValue++;
+				g_pd3dCommandQueue->Signal(g_pd3dFence, g_fenceLastSignaledValue);
+				if (g_pd3dFence->GetCompletedValue() < g_fenceLastSignaledValue)
+				{
+					g_pd3dFence->SetEventOnCompletion(g_fenceLastSignaledValue, g_hFenceEvent);
+					WaitForSingleObject(g_hFenceEvent, INFINITE);
+				}
+			}
+
 			ImGui_ImplDX12_InvalidateDeviceObjects();
 			CleanupRenderTarget();
 		}
@@ -532,10 +573,14 @@ namespace Dx12Hook
 
 			if (g_pd3dCommandList)
 				g_pd3dCommandList->Release();
+			if (g_pd3dFence)
+				g_pd3dFence->Release();
 			if (g_pd3dSrvDescHeap)
 				g_pd3dSrvDescHeap->Release();
 			if (g_pd3dRtvDescHeap)
 				g_pd3dRtvDescHeap->Release();
+			if (g_hFenceEvent)
+				CloseHandle(g_hFenceEvent);
 
 			g_bInitialized = false;
 		}
