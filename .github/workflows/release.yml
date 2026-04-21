@@ -19,7 +19,6 @@ jobs:
     runs-on: windows-latest
 
     env:
-      VCPKG_ROOT: ${{ github.workspace }}/vcpkg
       VCPKG_MAX_CONCURRENCY: 1
     
     steps:
