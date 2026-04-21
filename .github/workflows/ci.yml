@@ -10,9 +10,6 @@ jobs:
   build-and-test:
     runs-on: windows-latest
     timeout-minutes: 60
-    
-    env:
-      VCPKG_MAX_CONCURRENCY: 1
 
     steps:
     - name: Checkout code
@@ -33,24 +30,7 @@ jobs:
 
     - name: Build project (Debug)
       timeout-minutes: 20
-      run: xmake build Payday3-Internal -vD
-
-    - name: Dump xmake package failure logs (Debug)
-      if: failure()
-      shell: pwsh
-      run: |
-        Write-Host "Searching for xmake package failure logs..."
-        $failed = Get-ChildItem -Path "build/.packages" -Recurse -Filter "install.txt" -ErrorAction SilentlyContinue |
-          Where-Object { $_.FullName -match "installdir\.failed\\logs\\install\.txt$" }
-
-        if (-not $failed) {
-          Write-Host "No install.txt files found under installdir.failed/logs."
-        }
-
-        foreach ($f in $failed) {
-          Write-Host "`n===== $($f.FullName) ====="
-          Get-Content -Path $f.FullName -Raw
-        }
+      run: xmake build Payday3-Internal
 
     - name: Run tests
       run: xmake test
@@ -65,33 +45,7 @@ jobs:
 
     - name: Build project (Release)
       timeout-minutes: 20
-      run: xmake build Payday3-Internal -vD
-
-    - name: Dump xmake package failure logs (Release)
-      if: failure()
-      shell: pwsh
-      run: |
-        Write-Host "Searching for xmake package failure logs..."
-        $failed = Get-ChildItem -Path "build/.packages" -Recurse -Filter "install.txt" -ErrorAction SilentlyContinue |
-          Where-Object { $_.FullName -match "installdir\.failed\\logs\\install\.txt$" }
-
-        if (-not $failed) {
-          Write-Host "No install.txt files found under installdir.failed/logs."
-        }
-
-        foreach ($f in $failed) {
-          Write-Host "`n===== $($f.FullName) ====="
-          Get-Content -Path $f.FullName -Raw
-        }
-
-    - name: Upload xmake package logs on failure
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: xmake-package-logs
-        path: build/.packages/**/cache/**/logs/*.txt
-        if-no-files-found: ignore
-        retention-days: 7
+      run: xmake build Payday3-Internal
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4

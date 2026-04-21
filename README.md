@@ -1,4 +1,7 @@
-UnknownCheats Thread: https://www.unknowncheats.me/forum/payday-3-a/736601-internal-cheeto.html
+# Note
+> UnknownCheats Thread: https://www.unknowncheats.me/forum/payday-3-a/736601-internal-cheeto.html
+>
+> Join our [discord](https://discord.gg/zc8E7dYYRe)
 
 # Payday 3 Internal
 
