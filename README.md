@@ -15,8 +15,7 @@ Download the injector from [here](https://github.com/Omega172/Payday3-Internal/r
 
 ## Building
 
-Requires xmake, vcpkg, and an installation of VisualStudio with the C++ build tools for the compiler.
-add the variable VCPKG_ROOT pointing to your vcpkg root dir to your environment variables
+Requires xmake, and an installation of VisualStudio with the C++ build tools for the compiler.
 
 ```cmd
 xmake config -m debug   # or -m release
@@ -27,8 +26,8 @@ Output: `Build/Debug/` or `Build/Release/`
 
 **Note:** If IntelliSense breaks in VS Code, run `update_compile_commands.bat` to rebuild compile commands and potentially fix IntelliSense.
 
-### Dependencies (via vcpkg)
-- minhook 1.3.4
+### Dependencies (via xmake repo)
+- minhook
 - imgui (with win32-binding, dx12-binding)
 
 ## Usage
