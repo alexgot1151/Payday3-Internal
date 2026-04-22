@@ -1,0 +1,39 @@
+File Type: DLL
+
+  Section contains the following exports for xinput1_3.dll
+
+    00000000 characteristics
+    FFFFFFFF time date stamp
+        0.00 version
+           1 ordinal base
+         103 number of functions
+          12 number of names
+
+    ordinal hint RVA      name
+
+          1    0 00001810 DllMain
+          5    1 00001816 XInputEnable
+          7    2 0000181C XInputGetBatteryInformation
+          4    3 00001822 XInputGetCapabilities
+          6    4 00001828 XInputGetDSoundAudioDeviceGuids
+          8    5 0000182E XInputGetKeystroke
+          2    6 00001834 XInputGetState
+          3    7 0000183A XInputSetState
+        100    8 00001840 ordinal100
+        101    9 00001846 ordinal101
+        102    A 0000184C ordinal102
+        103    B 00001852 ordinal103
+
+  Summary
+
+        1000 .00cfg
+     2B81000 .data
+       47000 .data1
+        2000 .idata
+       D7000 .pdata
+      37D000 .rdata
+       1F000 .reloc
+        B000 .rsrc
+     1231000 .text
+        1000 .tls
+        8000 _RDATA
