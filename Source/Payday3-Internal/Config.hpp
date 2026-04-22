@@ -1,6 +1,6 @@
 #pragma once
 
-#define CURRENT_VERSION "v1.2.11b"
+#define CURRENT_VERSION "v1.2.12b"
 
 #define UNLOAD_KEY VK_END
 #define UNLOAD_KEY_ALT VK_DELETE
