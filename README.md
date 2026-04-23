@@ -41,10 +41,10 @@ Output: `Build/Debug/` or `Build/Release/`
 ### Proton
 - **Supports Proton:** As of v1.2.13b & [#6](https://github.com/Omega172/Payday3-Internal/pull/6), the cheat should work on both Windows and Linux (proton) versions of the game. Thanks to [alexgot1151](https://github.com/alexgot1151)
 #### Set the stage
-- Install protonhax on your linux machine.
-- Open PAYDAY3 options in Steam and "Force the use of a specific Steam Play compatibility tool" (Use the latest stable release that is available).
+- Install [protonhax](https://github.com/jcnils/protonhax) on your linux machine.
+- Open PAYDAY3's options in Steam and "Force the use of a specific Steam Play compatibility tool" (Use the latest stable release that is available).
 - In "General" under Launch options put `protonhax init %COMMAND%  -fileopenlog` the `-fileopenlog` part is if you decide to mod the game.
 #### Running and injecting the cheat
 - Download the latest release of the precompiled DLL or compile it.
-- Put in in the same folder `injector.exe`, if you are using the [injector](https://github.com/Omega172/Payday3-Internal/releases/tag/Injector) from this repo. If you are using another injector, please follow its instructions on how to use it.
+- Put it in the same folder as `injector.exe`, if you are using the [injector](https://github.com/Omega172/Payday3-Internal/releases/tag/Injector) from this repo. If you are using another injector, please follow its instructions on how to use it.
 - Open a terminal and navigate to the folder that has the DLL and the `injector.exe` and run the command `protonhax run 1272080 injector.exe`.
