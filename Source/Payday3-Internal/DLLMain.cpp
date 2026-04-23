@@ -56,7 +56,7 @@ bool Init()
 	if (!result) {
 		Globals::g_upConsole->SetVisibility(true);
 		Utils::LogError("Offset auto updating failed! Using fallback offsets. The internal may not work correctly or may even crash!");
-		std::this_thread::sleep_for(std::chrono::seconds(10));
+		std::this_thread::sleep_for(std::chrono::seconds(3));
 	} else {
 		const UEOffsets::Offsets& offsets = result.value();
 		SDK::Offsets::GObjects = offsets.GObjects;
@@ -65,14 +65,13 @@ bool Init()
 		SDK::Offsets::ProcessEvent = offsets.ProcessEvent;
 		SDK::Offsets::ProcessEventIdx = offsets.ProcessEventIdx;
 
-		Globals::g_upConsole->SetVisibility(true);
-		Utils::LogError("Offsets updated successfully:");
-		Utils::LogError(std::format("GObjects: 0x{:08X}", offsets.GObjects));
-		Utils::LogError(std::format("AppendString: 0x{:08X}", offsets.AppendString));
-		Utils::LogError(std::format("GNames: 0x{:08X}", offsets.GNames));
-		Utils::LogError(std::format("GWorld: 0x{:08X}", offsets.GWorld));
-		Utils::LogError(std::format("ProcessEvent: 0x{:08X}", offsets.ProcessEvent));
-		Utils::LogError(std::format("ProcessEventIdx: 0x{:08X}", offsets.ProcessEventIdx));
+		Utils::LogDebug("Offsets updated successfully:");
+		Utils::LogDebug(std::format("GObjects: 0x{:08X}", offsets.GObjects));
+		Utils::LogDebug(std::format("AppendString: 0x{:08X}", offsets.AppendString));
+		Utils::LogDebug(std::format("GNames: 0x{:08X}", offsets.GNames));
+		Utils::LogDebug(std::format("GWorld: 0x{:08X}", offsets.GWorld));
+		Utils::LogDebug(std::format("ProcessEvent: 0x{:08X}", offsets.ProcessEvent));
+		Utils::LogDebug(std::format("ProcessEventIdx: 0x{:08X}", offsets.ProcessEventIdx));
 	}
 	std::chrono::time_point offsetEndTime = std::chrono::high_resolution_clock::now();
 
@@ -118,20 +117,17 @@ bool Init()
 	int32_t iFramerateLimit = SDK::USBZSettingsFunctionsVideo::GetFramerateLimit(pGWorld);
 	Utils::LogDebug(std::format("GWorld pointer acquired: 0x{:016X}", reinterpret_cast<uint64_t>(pGWorld)));
 
-	Utils::LogError("[init-stage] Before MH_Initialize");
 	if (MH_Initialize() != MH_OK) {
 		Globals::g_upConsole->SetVisibility(true);
 		Utils::LogError("Failed to initialize MinHook library!");
 		return false;
 	}
-	Utils::LogError("[init-stage] After MH_Initialize, before Dx12Hook::Initialize");
 
     if (!Dx12Hook::Initialize()) {
         Globals::g_upConsole->SetVisibility(true);
         Utils::LogError("Failed to initialize DirectX 12 hook!");
         return false;
     }
-    Utils::LogError("[init-stage] After Dx12Hook::Initialize");
 
 	SDK::USBZSettingsFunctionsVideo::SetFramerateLimit(pGWorld, iFramerateLimit);
 	return true;
