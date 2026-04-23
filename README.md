@@ -39,5 +39,5 @@ Output: `Build/Debug/` or `Build/Release/`
 - **In-Game**: Press `INSERT` to open the menu and `END` to unload the cheat.
 
 ### Proton
-- **Supports Proton:** As of v1.2.13b & #6, the cheat should work on both Windows and Linux (proton) versions of the game. Thanks to [alexgot1151](https://github.com/alexgot1151)
+- **Supports Proton:** As of v1.2.13b & [#6](https://github.com/Omega172/Payday3-Internal/pull/6), the cheat should work on both Windows and Linux (proton) versions of the game. Thanks to [alexgot1151](https://github.com/alexgot1151)
 - TODO: Write proton instructions
