@@ -1,9 +1,9 @@
 Repo: https://github.com/Omega172/Payday3-Internal
 
-Compiled DLL and PDB Provided along side the source for quick anilysis.
+Compiled DLL and PDB Provided along side the source for quick analysis.
 
 Building:
-Requires xmake, vcpkg, and an installation of VisualStudio with the C++ build tools for the compiler.
+Requires xmake, and an installation of VisualStudio with the C++ build tools for the compiler.
 
 in the project root, run the following commands:
 
