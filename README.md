@@ -32,7 +32,12 @@ Output: `Build/Debug/` or `Build/Release/`
 
 ## Usage
 
+### Windows
 - **Build**: Follow the build instructions above to compile the project.
 - **Remove Streamline DLSS**: I have yet to find a fix so stop streamline from crashing the game upon init of the dx12 hook so delete all the files in `C:\Path\To\PAYDAY3\Engine\Plugins\Runtime\Nvidia\Streamline\Binaries\ThirdParty\Win64`
 - **Injection**: Use any DLL injector to inject `Payday3-Internal.dll` into the `PAYDAY3Client-Win64-Shipping.exe` process.
 - **In-Game**: Press `INSERT` to open the menu and `END` to unload the cheat.
+
+### Proton
+- **Supports Proton:** As of v1.2.13b, the cheat should work on both Windows and Linux (proton) versions of the game. Thanks to [alexgot1151](https://github.com/alexgot1151)
+- TODO: Write proton instructions
