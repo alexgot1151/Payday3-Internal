@@ -783,12 +783,6 @@ namespace Menu
             CheatConfig::Get().Load();
 
         ImGui::SameLine();
-        float buttonWidth = ImGui::CalcTextSize("Source").x + ImGui::GetStyle().FramePadding.x * 2.0f;
-        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - buttonWidth);
-        if (ImGui::Button("Source"))
-        {
-            std::system("start https://github.com/Omega172/Payday3-Internal");
-        }
 		
 		// Performance metrics
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
