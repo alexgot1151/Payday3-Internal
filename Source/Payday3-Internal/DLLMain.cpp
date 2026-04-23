@@ -117,17 +117,20 @@ bool Init()
 	int32_t iFramerateLimit = SDK::USBZSettingsFunctionsVideo::GetFramerateLimit(pGWorld);
 	Utils::LogDebug(std::format("GWorld pointer acquired: 0x{:016X}", reinterpret_cast<uint64_t>(pGWorld)));
 
+	Utils::LogDebug("[init-stage] Before MH_Initialize");
 	if (MH_Initialize() != MH_OK) {
 		Globals::g_upConsole->SetVisibility(true);
 		Utils::LogError("Failed to initialize MinHook library!");
 		return false;
 	}
+	Utils::LogDebug("[init-stage] After MH_Initialize, before Dx12Hook::Initialize");
 
     if (!Dx12Hook::Initialize()) {
         Globals::g_upConsole->SetVisibility(true);
         Utils::LogError("Failed to initialize DirectX 12 hook!");
         return false;
     }
+    Utils::LogDebug("[init-stage] After Dx12Hook::Initialize");
 
 	SDK::USBZSettingsFunctionsVideo::SetFramerateLimit(pGWorld, iFramerateLimit);
 	return true;
