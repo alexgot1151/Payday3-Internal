@@ -12,6 +12,3 @@
 
 #define ULOCALPLAYER_GETVIEWPOINT_INDEX 0x50
 #define APLAYERCONTROLLER_GETPLAYERVIEWPOINT_INDEX 0xED
-
-// To update SDK offsets 
-/// @file ./Dumper-7/SDK/Basic.hpp:34
