@@ -46,5 +46,5 @@ Output: `Build/Debug/` or `Build/Release/`
 - In "General" under Launch options put `protonhax init %COMMAND%  -fileopenlog` the `-fileopenlog` part is if you decide to mod the game.
 #### Running and injecting the cheat
 - Download the latest release of the precompiled DLL or compile it.
-- Put in in the same folder `injector.exe`, if you are using injector by [Omega](https://github.com/Omega172). If you are using another injector, please follow its instructions on how to use it.
+- Put in in the same folder `injector.exe`, if you are using the [injector](https://github.com/Omega172/Payday3-Internal/releases/tag/Injector) from this repo. If you are using another injector, please follow its instructions on how to use it.
 - Open a terminal and navigate to the folder that has the DLL and the `injector.exe` and run the command `protonhax run 1272080 injector.exe`.
