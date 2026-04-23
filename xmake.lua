@@ -17,7 +17,7 @@ set_targetdir(is_mode("debug") and "Build/Debug" or "Build/Release")
 set_runtimes(is_mode("debug") and "MTd" or "MT")
 
 add_requires("minhook")
-add_requires("imgui", {configs = {win32 = true, dx12 = true}, system = false})
+add_requires("imgui v1.91.9-docking", {configs = {win32 = true, dx12 = true}, system = false})
 
 target("Payday3-Internal")
     if has_config("avx2") then
