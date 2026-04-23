@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main, p2p-beta ]
+    branches: [ main, p2p-beta, proton-debug ]
   pull_request:
-    branches: [ main, p2p-beta ]
+    branches: [ main, p2p-beta, proton-debug ]
 
 jobs:
   build-and-test:
